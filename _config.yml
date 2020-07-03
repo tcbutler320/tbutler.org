@@ -11,10 +11,36 @@ mode: dark # default theme "dark" | "light"
 author: 
   name: Tyler Butler  # author name
   bio: >- # tell to the world
-    Tyler Butler is a cyber risk consultant and developer. 
+    Cyber Risk Consultant and Developer at <a href="https://www2.deloitte.com/us/en.html">Deloitte</a><br/>
+    Security Researcher at <a href="https://hackerone.com/tcbutler320">Hackerone</a><br/>
+    CTF Player for <a href="https://0x90skids.com/">0x90skids</a><br/>
   username: tbutler0x90 # social media username eg. github, twitter 
   email: developer.tbutler@gmail.com # your contact adress
   avatar: /assets/img/avatar.png # change with your own avatar
+
+# Jekyll Scholar Configurations
+scholar:
+  last_name: Butler
+
+  style: apa
+  locale: en
+
+  sort_by: year
+  order: descending
+
+  source: /_bibliography/
+  bibliography: bibliography.bib
+  bibliography_template: bib
+
+  replace_strings: true
+  join_strings: true
+
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: Details
+
+  query: "@*"
+
 
 # Url settings
 url: "https://tbutler.org"
@@ -56,6 +82,14 @@ jekyll_compose:
 # Build settings
 sass:
   style: compressed
+  sass_dir: _sass
+  load_paths:
+    - _sass
+    - node_modules
+  exclude: []
+
+
+
 
 include:
   - _redirects
@@ -76,3 +110,5 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-postfiles
+  - jekyll/scholar
+

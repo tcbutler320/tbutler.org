@@ -2,15 +2,26 @@
   url: /
   external: false
 
-- title: about
-  url: /about/
+- title: articles
+  url: /articles/
   external: false
 
-- title: notes
-  url: /notes/
-  external: false # set true if you using external link, see bellow
+- title: publications
+  url: /publications/
+  external: false
 
-# Example:
-# - title: github
-#   url: https://github.com/piharpi/jekyll-klise
-#   external: true
+- title: projects
+  url: /projects/
+  external: false 
+
+- title: trophies
+  url: /trophies/
+  external: false 
+
+- title: vitæ
+  url: /vitæ/
+  external: false
+
+- title: tags
+  url: /tags/
+  external: false

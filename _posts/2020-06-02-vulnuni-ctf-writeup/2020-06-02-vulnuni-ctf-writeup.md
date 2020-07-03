@@ -6,7 +6,6 @@ modified: 2020-05-28 01:00 +0700
 description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 tag:
   - ctf
-  - vulnhub
 image: vulnuni-header.png
 ---
 

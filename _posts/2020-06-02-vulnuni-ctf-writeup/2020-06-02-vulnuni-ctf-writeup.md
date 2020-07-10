@@ -1,11 +1,11 @@
 ---
 layout: post
-title: VulnUni CTF
+title: VulnUni CTF Writeup
 date: 2020-05-28 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 tag:
-  - ctf
+  - CTF
 image: vulnuni-header.png
 ---
 

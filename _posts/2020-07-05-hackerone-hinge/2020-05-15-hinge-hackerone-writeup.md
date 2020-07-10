@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hackerone Report | Modification of Assumed Immutable Data on Hinge
+title: Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application
 date: 2020-07-05 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Abusing default settings in the Cloudinary Image Transformation API
@@ -17,15 +17,18 @@ image:
 </a>
 
 
-# Abstract 
 
-<br/>
-<div class="whoah">
-    <img class="img-fluid rounded z-depth-1" src="figure1.png" style="max-width:75%;">
-    <div class="caption">
-        Overview of bug bounty details.
-    </div> 
+<div class="row">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="figure1.png" alt="" title="example image"/>
+    </div>
 </div>
+<div class="caption">
+    An overview of the bug bounty disclosure
+</div>
+
+
+# Abstract 
 
 
 Hinge is dating application for android and iOS devices launched in 2013. Like its competitors Tinder and Bumble, it enables users to search through a database of other users and match with potential dating partners. Offering features to create unique profiles, integrate with existing social platforms, and chat with other users, it uses a mixture of proprietary code and third-party services. This report outlines a low risk misconfiguration disclosed to Hinge through Hackerone in March of 2020 by Tyler Butler and triaged in June 2020. Hackerone is a bug bounty platform that connects freelance security researchers with clients to enable public and private security vulnerability disclosure.  
@@ -70,7 +73,23 @@ The risk described in this report and submitted to Hinge relies on the lack of u
 > https://app.hinge.co/[User profile ID]”
 
 
-When shared through SMS messaging and opened on mobile devices with Hinge installed, the link triggers the application to open. If Hinge is not installed, the user will be re-directed to the app store. Users are automatically guided in this way from the use of iOS deep links, a feature implement for iOS in 20096. Figure 2 shows the hinge.co subdomain which hosts the Universal Link json file necessary for such configurations. User profiles are also able to be viewed with a browser. Browser-based Hinge profiles feature only the username, a comment, and a profile photo. Browser access to the user profile photo allowed for easy access to the custom Hinge Cloudinary domain, *hinge-res.cloudinary.com.* 
+When shared through SMS messaging and opened on mobile devices with Hinge installed, the link triggers the application to open. If Hinge is not installed, the user will be re-directed to the app store. Users are automatically guided in this way from the use of iOS deep links, a feature implement for iOS in 20096.   
+
+<div class="row">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="figure2.png" alt="" title="example image"/>
+    </div>
+</div>
+
+
+Figure 2 shows the hinge.co subdomain which hosts the Universal Link json file necessary for such configurations. User profiles are also able to be viewed with a browser. Browser-based Hinge profiles feature only the username, a comment, and a profile photo. Browser access to the user profile photo allowed for easy access to the custom Hinge Cloudinary domain, *hinge-res.cloudinary.com.* 
+
+
+<div class="row">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="figure3.png" alt="" title="example image"/>
+    </div>
+</div>
 
 As seen in Figure 3, profile pictures are loaded into the browser-based profile page through the hinge-res subdomain of Cloudinary. The URL extension, including the various tags denoted with backspaces, are a part of the Cloudinary Image Transformation API.
   
@@ -86,4 +105,25 @@ While no seriously damaging information or images was found through this method,
 
 # Proof of Concept  
 
-To demonstrate accessing original user assets, and to protect the information and identify of Hinge users, a limited proof of concept has been created using a free account on the Cloudinary platform. After creating a free account, a public domain image was uploaded to the account’s media library. Next, using the Transformations dashboard, a new transformation was created which adjusts image width to 461 pixels, moves the x axis to position 190 and the y axis to position 0. The final transformation request looks like the following “c_crop,w_461,x_190,y_0”. With Strict Transformations not enabled, the transformation was applied to the sample image . The new transformed image was browsed at the footnoted address and is shown in. Figure 5.7 To demonstrate the flaw with default Cloudinary settings, the transformation parameter was removed from the requested address. The original image was browsed using the footnoted address and is shown in Figure 6.8
+To demonstrate accessing original user assets, and to protect the information and identify of Hinge users, a limited proof of concept has been created using a free account on the Cloudinary platform. After creating a free account, a public domain image was uploaded to the account’s media library. Next, using the Transformations dashboard, a new transformation was created which adjusts image width to 461 pixels, moves the x axis to position 190 and the y axis to position 0. The final transformation request looks like the following “c_crop,w_461,x_190,y_0”. With Strict Transformations not enabled, the transformation was applied to the sample image . The new transformed image was browsed at the footnoted address and is shown in Figure 5.7. 
+
+<div class="row">
+    <div class="center">
+        <img class="center" src="figure5.png" alt="" title="example image"/>
+    </div>
+</div>
+
+To demonstrate the flaw with default Cloudinary settings, the transformation parameter was removed from the requested address. The original image was browsed using the footnoted address and is shown in Figure 6.8
+
+<div class="row">
+    <div class="center">
+        <img class="center" src="figure6.png" alt="" title="example image"/>
+    </div>
+</div>
+
+
+<a href="/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf">
+  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+    For citations, View PDF Report
+  </button>
+</a>

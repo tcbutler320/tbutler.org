@@ -10,9 +10,23 @@ tag:
 image: 
 ---
 
-[PDF Report](/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf)
+<a href="/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf">
+  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+    See PDF Report
+  </button>
+</a>
+
 
 # Abstract 
+
+<br/>
+<div class="whoah">
+    <img class="img-fluid rounded z-depth-1" src="figure1.png" style="max-width:75%;">
+    <div class="caption">
+        Overview of bug bounty details.
+    </div> 
+</div>
+
 
 Hinge is dating application for android and iOS devices launched in 2013. Like its competitors Tinder and Bumble, it enables users to search through a database of other users and match with potential dating partners. Offering features to create unique profiles, integrate with existing social platforms, and chat with other users, it uses a mixture of proprietary code and third-party services. This report outlines a low risk misconfiguration disclosed to Hinge through Hackerone in March of 2020 by Tyler Butler and triaged in June 2020. Hackerone is a bug bounty platform that connects freelance security researchers with clients to enable public and private security vulnerability disclosure.  
 

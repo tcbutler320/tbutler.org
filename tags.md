@@ -1,6 +1,6 @@
 ---
-title: Articles
-permalink: /tags/
+title: articles
+permalink: /articles/
 layout: page
 ---
 

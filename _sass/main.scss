@@ -22,6 +22,8 @@ $purple-color:        #B509AC !default;
 $pink-color:          #f92080 !default;
 $pink-color-light:    #ffdddd !default;
 $yellow-color:        #efcc00 !default;
+$alt-color:        hsl(0, 70%, 46%);
+$alt-color-darker: darken($alt-color, 6%);
 
 $grey-color:          #828282 !default;
 $grey-color-light:    lighten($grey-color, 40%);
@@ -74,6 +76,7 @@ $on-mobile: 768px;
 $on-tablet: 769px;
 $on-desktop: 1024px;
 $on-widescreen: 1152px;
+
 
 @mixin media-query($device) {
   @media screen and (max-width: $device) {

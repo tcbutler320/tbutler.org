@@ -14,14 +14,10 @@
   url: /projects/
   external: false 
 
-- title: trophies
+- title: bug trophies
   url: /trophies/
   external: false 
 
-- title: vitæ
-  url: /vitæ/
-  external: false
-
-- title: tags
-  url: /tags/
+- title: vitae
+  url: /assets/pdf/Butler,Tyler-Resume.pdf
   external: false

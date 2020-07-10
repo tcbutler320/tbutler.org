@@ -3,17 +3,21 @@ layout: default
 home: true
 ---
 
-<h4 class="posts-item-note">Recent Articles</h4>
+<h5 class="posts-item-note">Recent Articles</h5>
 {% for post in site.posts %}
 <article class="post-item">
   <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
-  <h4 class="post-item-title">
+  <p class="post-item-title">
     <a href="{{ post.url }}">{{ post.title | escape }}</a>
-  </h4>
+  </p>
 </article>
 {% endfor %}
 
-<h4 class="posts-item-note">Recent Publications</h4>
+<br/>
+<br/>
+
+
+<h5 class="posts-item-note">Recent Publications</h5>
 {% bibliography %}
 
 

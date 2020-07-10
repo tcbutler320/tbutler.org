@@ -1,11 +1,11 @@
 ---
 layout: post
-title: VulnUni CTF
+title: VulnUni CTF Writeup
 date: 2020-05-28 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 tag:
-  - ctf
+  - CTF
 image: vulnuni-header.png
 ---
 
@@ -24,7 +24,7 @@ image: vulnuni-header.png
 
 First, I launched both the VulnUni and Kali Linux virtual machines on the same local network. To identify the ip addresses of my local attack machine and the target, I ran an arp-scan.
 
-{% highlight Docker %}
+```bash
 root@kali$ arp-scan -I eth1 -l
 Interface: eth1, type: EN10MB, MAC: 00:50:56:3e:70:2d, IPv4: 192.168.8.131
 Starting arp-scan 1.9.7 with 256 hosts (https://github.com/royhills/arp-scan)
@@ -34,8 +34,7 @@ Starting arp-scan 1.9.7 with 256 hosts (https://github.com/royhills/arp-scan)
 
 3 packets received by filter, 0 packets dropped by kernel
 Ending arp-scan 1.9.7: 256 hosts scanned in 1.991 seconds (128.58 hosts/sec). 3 responded
-{% endhighlight %}
-
+```
 
 With the ip address handy, I started a couple quick nmap scans to kick off some basic enumeration to learn more about the target. I used one quick nmap scan to get an idea of what was open as well as a longer scan to check all ports.
 

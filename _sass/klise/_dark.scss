@@ -20,7 +20,10 @@ body[data-theme="dark"] {
     }
 
     th,
-    td,
+    td,{
+      color: $dark-white;
+      border-color: $dark-light;
+    }
     tr {
       border-color: $dark-light;
     }
@@ -121,7 +124,7 @@ body[data-theme="dark"] {
   }
 
   // Navbar
-  .navbar {
+  .navbar-klise {
     border-color: $dark-light;
     .menu {
       a#mode {

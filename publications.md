@@ -11,7 +11,19 @@ nav: true
 
 {% for y in page.years %}
   <h2 class="year">{{y}}</h2>
-  {% bibliography -f papers -q @*[year={{y}}]* %}
+  {% bibliography -f bibliography -q @*[year={{y}}]* %}
+{% endfor %}
+
+</div>
+
+
+##### *Supported Work* 
+*Below is a selection of articles I supported as a research intern at [FDD](https://www.fdd.org/). The research supported former senior fellow Yaya Fanusie, now also affilated with the Center for a New American Security [(CNAS)](https://www.cnas.org/people/yaya-j-fanusie)*
+
+<div class="publications">
+
+{% for y in page.years %}
+  {% bibliography -f supported -q @*[year={{y}}]* %}
 {% endfor %}
 
 </div>

@@ -9,7 +9,7 @@ tag:
 image: 1-nmap-intense.png
 ---
 
-> Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.
+Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.
 
 <div class="row mt-3">
     <div class="center">
@@ -26,7 +26,7 @@ $ arp-scan -l
 ```
 <br/>
 
-### Port and Service Enumeration</h3>
+### Port and Service Enumeration
 
 Arp-scan showed the targets IP was 192.168.8.129. The next step was to start enumerating what ports were open on the target and determine the running services. I used a basic nmap scan to brush the surface.
 
@@ -61,7 +61,7 @@ As dirbuster was running in the background, I did a manual inspection of the web
 ```  
 
 <br/>
-### SQL Injection</h3>
+### SQL Injection
 
 
  An easy compromise was not available, so I clicked the link to create my own account with the credential’s username: hacker, password: hacker. Logging into the website with the new account, I now had access to a search field in a book catalog. 
@@ -166,7 +166,7 @@ Now armed with usernames and raw text passwords, I logged into the site as the u
 
 <div class="row mt-3">
     <div class="center">
-        <img class="img-fluid rounded z-depth-1" src="/10-welcomeadmin.png?">
+        <img class="img-fluid rounded z-depth-1" src="10-welcomeadmin.png?">
     </div>
 </div>
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application
+title: Hinge Hackerone Bug Bounty Writeup
 date: 2020-07-05 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Abusing default settings in the Cloudinary Image Transformation API
@@ -58,7 +58,7 @@ The Cloudinary platform offers image, video, asset, and media management solutio
 
 Each asset in the Cloudinary media library is given a unique public ID and is accessible through their website at the cloudinary.com/image/upload directory. Cloudinary uses dynamic URL’s to apply effects to images on its platform. To apply effects, transformation parameters can be appended to the address of the asset. In total, 33 different transformation parameters can be used for a variety of purposes such as changing height and width, effects, backgrounds, and custom functions among others.4 An example of a transformed image on Hinge looks like the following,  
 
-> https://hinge-res.cloudinary.com/image/upload/x_0.18,y_0.21,w_0.36,h_0.27,c_crop/w_1055,q_auto/f_webp/[profile number]/[unique profile id].jpg
+*https://hinge-res.cloudinary.com/image/upload/x_0.18,y_0.21,w_0.36,h_0.27,c_crop/w_1055,q_auto/f_webp/[profile number]/[unique profile id].jpg*
 
 When users make a change to an image hosted on Cloudinary, new transformation requests are added on the fly. Original image assets themselves are not changed, however, transformation parameters applied to the request URL change what is displayed when requested. This distinction means that both the original asset as it was uploaded to the platform as well as the new requested URL with transformations are able to be requested and exist available to the public. This is an intended function of Cloudinary and a default setting, however, this can be changed through the enforcement of Media Access Controls such as Strict Transformation and Signed Delivery URLS5.  
 
@@ -70,7 +70,7 @@ One media access control method to mitigate the risk of user requested transform
 
 The risk described in this report and submitted to Hinge relies on the lack of use of media access controls on user images. In fact, by default, no access controls are implemented on the Cloudinary platform. In effect, this means that any asset uploaded to the platform should be accessible in its original state regardless of what users cropped out in the app. To exploit these settings, the URL address of user profile pictures needed to be located. This was achieved using the iOS app “share profile” option. This feature enables users to share profiles with others. The feature generates a standard message, “I recommended [Username] for you on Hinge! Log into the app to view their profile”, as well as a URL link to the user’s profile with the format,    
 
-> https://app.hinge.co/[User profile ID]”
+*https://app.hinge.co/[User profile ID]*
 
 
 When shared through SMS messaging and opened on mobile devices with Hinge installed, the link triggers the application to open. If Hinge is not installed, the user will be re-directed to the app store. Users are automatically guided in this way from the use of iOS deep links, a feature implement for iOS in 20096.   

@@ -134,7 +134,7 @@ ul {
     text-align: -webkit-match-parent;
   }
   li::before {
-    content: "\03BB";
+    content: "\2022";
     display: inline-block;
     width: 1em;
     position: relative;

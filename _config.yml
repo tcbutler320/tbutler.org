@@ -1,6 +1,6 @@
 # Site settings
 title: tbutler.org 
-description:  Tyler Butler is a cyber risk consultant and developer
+description:  tbutler.org is Tyler Butler's personal website detailing research on information technology, privacy, and cryptocurrency.
 lang: en-US 
 timezone: America/New_York
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
@@ -17,6 +17,7 @@ author:
   username: tbutler0x90 # social media username eg. github, twitter 
   email: developer.tbutler@gmail.com # your contact adress
   avatar: /assets/img/avatar.png # change with your own avatar
+  twitter_username: tbutler0x90
 
 # Jekyll Scholar Configurations
 scholar:

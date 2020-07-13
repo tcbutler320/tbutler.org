@@ -7,25 +7,20 @@ description: Abusing default settings in the Cloudinary Image Transformation API
 tag:
   - Bug Bounty
   - 
-image: 
+image: /2020-07-05-hackerone-hinge/hinge-preview.png
 ---
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="hinge-preview.png">
+    </div>
+</div>
 
 <a href="/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf">
   <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
     See PDF Report
   </button>
 </a>
-
-
-
-<div class="row">
-    <div class="center">
-        <img class="img-fluid rounded z-depth-1" src="figure1.png" alt="" title="example image"/>
-    </div>
-</div>
-<div class="caption">
-    An overview of the bug bounty disclosure
-</div>
 
 
 # Abstract 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hinge Hackerone Bug Bounty Writeup
+title: Hinge Hackerone Writeup
 date: 2020-07-05 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Abusing default settings in the Cloudinary Image Transformation API

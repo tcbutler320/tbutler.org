@@ -7,7 +7,7 @@ description: Abusing default settings in the Cloudinary Image Transformation API
 tag:
   - Bug Bounty
   - 
-image: /2020-07-05-hackerone-hinge/hinge-preview.png
+image: /hinge-hackerone-writeup/hinge-preview.png
 ---
 
 <div class="row mt-3">

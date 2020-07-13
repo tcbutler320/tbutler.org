@@ -6,6 +6,7 @@ timezone: America/New_York
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 repo: 
 mode: light # default theme "dark" | "light"
+url: https://tbutler.org
 
 # Profile settings
 author: 

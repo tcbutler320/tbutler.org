@@ -6,10 +6,10 @@ modified: 2020-05-28 01:00 +0700
 description: Writeup for the HackMe CTF on Vulnhub
 tag:
   - CTF
-image: 1-nmap-intense.png
+image: /hackme-ctf-writeup/2-dirbuster.png
+author: Tyler Butler
+summary: Writeup for the HackMe CTF on Vulnhub
 ---
-
-Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.
 
 <div class="row mt-3">
     <div class="center">
@@ -17,6 +17,8 @@ Hackme is a CTF challenge which primarily focuses on web application testing. Th
     </div>
 </div>
 <br/>
+
+Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.
 
 ### Getting Started
 To start the challenge, I downloaded the hackme OVA image and loaded it into VMware. I launched both my attack and virtual machine on the same local network, logged into my attack machine, and tested the connection with arp-scan. After receiving packets from the target machine, it was time to get started. The first step was to go through the usual enumeration scripts to get the target's ip and check what services and ports were running. I used arp-scan to find the IP.

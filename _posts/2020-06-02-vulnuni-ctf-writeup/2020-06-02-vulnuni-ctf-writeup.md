@@ -6,11 +6,10 @@ modified: 2020-05-28 01:00 +0700
 description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 tag:
   - CTF
-image: vulnuni-header.png
+image: /vulnuni-ctf-writeup/vulnuni-header.png
+author: Tyler Butler
+summary: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 ---
-
-
-VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability. My workstation setup included VMware fusion and the 2020 release of Kali Linux for VMware which can be found on Offensive Securities VM Image Download Page. One interesting aspect of this challenge is the use of a vulnerable E-learning platform from the Greek University Network GUnet.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -19,6 +18,8 @@ VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a 
 </div>
 
 <br/>
+
+VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability. My workstation setup included VMware fusion and the 2020 release of Kali Linux for VMware which can be found on Offensive Securities VM Image Download Page. One interesting aspect of this challenge is the use of a vulnerable E-learning platform from the Greek University Network GUnet.
 
 #### Getting Started
 

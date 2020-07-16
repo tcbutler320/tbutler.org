@@ -4,6 +4,9 @@ permalink: /about/
 layout: page
 excerpt: Tyler Butler is a cyber risk consultant and developer.
 comments: false
+image: 
+author: Tyler Butler
+summary: Tyler Butler is a consultant and developer at Deloitte, and freelance security researcher for Hackerone
 ---
 
 > *A consultant and developer at Deloitte, and freelance security researcher for Hackerone* 

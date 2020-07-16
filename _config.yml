@@ -48,7 +48,7 @@ scholar:
 url: "https://tbutler.org"
 baseurl:
 permalink: /:title/
-google_analytics:
+google_analytics: UA-122575211-3
 fb_appid:
 
 # Collection setting

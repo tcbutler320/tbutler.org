@@ -8,6 +8,7 @@ tag:
   - Bug Bounty
   - 
 image: /hinge-hackerone-writeup/hinge-preview.png
+comments: true
 ---
 
 <div class="row mt-3">

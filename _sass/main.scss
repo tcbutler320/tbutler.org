@@ -92,8 +92,12 @@ $on-widescreen: 1152px;
 @import "klise/fonts", "klise/base", "klise/layout", "klise/post",
   "klise/miscellaneous", "klise/syntax", "klise/dark";
 
+
+
+
 @import "variables";
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap/css/bootstrap";
+
 
 .content {
   font-size: $custom-font-size;

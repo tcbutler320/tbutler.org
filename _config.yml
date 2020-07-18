@@ -5,7 +5,7 @@ lang: en-US
 timezone: America/New_York
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
 repo: 
-mode: light # default theme "dark" | "light"
+mode: dark # default theme "dark" | "light"
 url: https://tbutler.org
 
 # Profile settings
@@ -14,7 +14,7 @@ author:
   bio: >- # tell to the world
     Cyber Risk Consultant and Developer at <a href="https://www2.deloitte.com/us/en.html">Deloitte</a><br/>
     Security Researcher at <a href="https://hackerone.com/tcbutler320">Hackerone</a><br/>
-    CTF Player for <a href="https://0x90skids.com/">0x90skids</a><br/><a href="https://github.com/tcbutler320"><img src="https://img.shields.io/github/followers/tcbutler320?label=Follow&style=social"></a>
+    CTF Player for <a href="https://0x90skids.com/">0x90skids</a><br/>
   username: tbutler0x90 # social media username eg. github, twitter 
   email: developer.tbutler@gmail.com # your contact adress
   avatar: /assets/img/avatar.png # change with your own avatar

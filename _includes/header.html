@@ -182,9 +182,9 @@
 
 
   {% if page.permalink %}
-  <meta name="twitter:image" content="{{page.permalink}}{{ page.image }}">
+  <meta name="twitter:image" content="{{ site.url }}{{page.permalink}}{{ page.image }}">
   {% else %}
-  <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ page.permalink }}{{ page.image }}">
   {% endif %}
 
 <!-- end of Twitter cards -->

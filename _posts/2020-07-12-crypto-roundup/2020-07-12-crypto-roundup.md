@@ -7,7 +7,7 @@ permalink: /roundup-7-12
 description: A curated selection of news surrounding Cryptocurrency and U.S National Security interests
 tag:
   - Cryptocurrency and National Security
-image: /crypto-roundup/roundup.png
+image: /roundup.png
 author: Tyler Butler
 summary: A curated selection of news surrounding Cryptocurrency and U.S National Security interests for the week of July 6th - July 12th
 comments: true

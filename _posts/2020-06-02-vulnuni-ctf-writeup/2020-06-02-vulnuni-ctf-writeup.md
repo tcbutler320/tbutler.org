@@ -9,6 +9,7 @@ tag:
 image: /vulnuni-ctf-writeup/vulnuni-header.png
 author: Tyler Butler
 summary: Unauthenticated blind SQL injection on the Greek University GUnet Platform
+comments: true
 ---
 
 <div class="row mt-3">

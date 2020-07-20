@@ -9,6 +9,7 @@ tag:
 image: /hackme-ctf-writeup/2-dirbuster.png
 author: Tyler Butler
 summary: Writeup for the HackMe CTF on Vulnhub
+comments: true
 ---
 
 <div class="row mt-3">

@@ -9,6 +9,7 @@ tag:
 image: /crypto-roundup/roundup.png
 author: Tyler Butler
 summary: A curated selection of news surrounding Cryptocurrency and U.S National Security interests for the week of July 6th - July 12th
+comments: true
 ---
 
 >  The Crypto & National Security Roundup is a curated selection of news surrounding Cryptocurrency and U.S National Security interests

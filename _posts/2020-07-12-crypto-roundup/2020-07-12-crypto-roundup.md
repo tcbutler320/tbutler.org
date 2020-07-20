@@ -3,6 +3,7 @@ layout: post
 title: Crypto & National Security Roundup 7/12
 date: 2020-07-12 01:00 +0700
 modified: 2020-07-12 01:00 +0700
+permalink: /roundup-7-12/
 description: A curated selection of news surrounding Cryptocurrency and U.S National Security interests
 tag:
   - Cryptocurrency and National Security

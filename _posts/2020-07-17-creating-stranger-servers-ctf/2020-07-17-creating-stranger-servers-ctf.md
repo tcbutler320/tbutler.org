@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Creating Stranger Servers CTF
-date: 2020-07-21 01:00 +0700
-modified: 2020-07-21 01:00 +0700
+date: 2020-07-22 01:00 +0700
+modified: 2020-07-22 01:00 +0700
 description: How I built my first CTF Challenge
 tag:
   - CTF

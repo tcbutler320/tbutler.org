@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Crypto & National Security Roundup 7/12
+title: Crypto & Nat'l Sec Brief 7/12
 date: 2020-07-12 01:00 +0700
 modified: 2020-07-12 01:00 +0700
 permalink: /roundup-7-12
@@ -13,7 +13,7 @@ summary: A curated selection of news surrounding Cryptocurrency and U.S National
 comments: true
 ---
 
->  The Crypto & National Security Roundup is a curated selection of news surrounding Cryptocurrency and U.S National Security interests
+>  The Crypto & National Security Brief is a curated selection of news surrounding Cryptocurrency and U.S National Security interests
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">

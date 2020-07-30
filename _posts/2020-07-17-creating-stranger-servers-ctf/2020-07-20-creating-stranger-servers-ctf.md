@@ -1,18 +1,18 @@
 ---
 layout: post
-title: How I built my first CTF Challenge
+title: Creating my first CTF Challenge
 date: 2020-07-20 01:00 +0700
 modified: 2020-07-20 01:00 +0700
-description: How I built my first CTF Challenge
+description: Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
 tag:
   - CTF
 image: /creating-stranger-servers/stranger-servers-ctf.png
 author: Tyler Butler
-summary: How I built my first CTF Challenge
+summary: Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
 comments: true
 tweet: true
 ---
-> How I built my first CTF Challenge
+>  Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
 
 <div class="row mt-3">
     <div class="center">
@@ -25,9 +25,9 @@ tweet: true
 
 ## Overview
 
-**Stranger Servers** is the first CTF Challenge I've created. The basic web challenge consists of a 90's themed website with a hidden vulnerable php application. The inspiration for backend comes from an old php application called timeclock which  has several reported vulnerabilities [(See Employee TimeClock Software 0.99 - SQL Injection)](https://www.exploit-db.com/exploits/39427)     
+**Stranger Servers** is the first CTF Challenge I've created. The basic web challenge consists of a 90's themed website with a hidden vulnerable php application. The inspiration for the backend comes from an older php application called timeclock which has several reported vulnerabilities [(See Employee TimeClock Software 0.99 - SQL Injection)](https://www.exploit-db.com/exploits/39427)     
 
-The main challenge website is hosted on an apache webserver on a basic tier server from digital ocean. This is not the cheapest way to host a challenge, however, I chose this design because I was already using the server as a testing ground for vulnerability research into the timeclock application. 
+The main challenge website is hosted on an apache webserver on a basic tier droplet from digital ocean. This is not the cheapest way to host a challenge, however, I chose this design because I was already using the server as a testing ground for vulnerability research into the timeclock application. 
 
 <div class="alert alert-danger alert-dismissible fade show" role="alert" >
   <strong class="text-dark">Before you Read!</strong> This article will contain spoilers, if you want to solve this challenge, have a go before reading.
@@ -51,8 +51,11 @@ The main challenge website is hosted on an apache webserver on a basic tier serv
     - [Configuring Vulnerable Timeclock App](#configuring-vulnerable-timeclock-app)
     - [Creating a MySQL Database](#creating-a-mysql-database)
     - [Connecting MySQL to Timeclock App](#connecting-mysql-to-timeclock-app)
+    - [Flag Layout](#flag-layout)
+    - [Making the App Vulnerable](#making-the-app-vulnerable)
   - [Front-End](#front-end)
     - [Website Generation](#website-generation)
+- [Conclusion](#conclusion)
 
 ## Seting up 
 
@@ -94,7 +97,7 @@ snap install hugo --channel=extended
 #### Configuring Vulnerable Timeclock App  
 *Now for the fun stuff.*
 
-The idea for this CTF was to use the [timeclock](http://timeclock-software.net/) application as a basic SQLinjectible form. Timeclock is a basic php app which enables employers to track empolyee working time through an apache,php,mysql website. Older versions of the app are vulnerable to a host of exploits, including three on the exploit-db database. These include exploits like as [Employee TimeClock Software 0.99 - SQL Injection](https://www.exploit-db.com/exploits/39427), [TimeClock Software 0.995 - Multiple SQL Injections](https://www.exploit-db.com/exploits/39404), and [TimeClock 0.99 - Cross-Site Request Forgery (Add Admin)](https://www.exploit-db.com/exploits/11516).  
+The idea for this CTF was to use the [timeclock](http://timeclock-software.net/) application as a basic SQLinjectible form. Timeclock is a basic php app which enables employers to track empolyee working time through an apache, php, and mysql website. Older versions of the app are vulnerable to a host of exploits, including three on the exploit-db database. These include exploits like as [Employee TimeClock Software 0.99 - SQL Injection](https://www.exploit-db.com/exploits/39427), [TimeClock Software 0.995 - Multiple SQL Injections](https://www.exploit-db.com/exploits/39404), and [TimeClock 0.99 - Cross-Site Request Forgery (Add Admin)](https://www.exploit-db.com/exploits/11516).  
 
 <div class="row mt-3">
     <div class="center">
@@ -103,7 +106,7 @@ The idea for this CTF was to use the [timeclock](http://timeclock-software.net/)
 </div>
 <br/>  
 
-Each of these exploits were for older versions of timeclock. I was unable to find these particular versions, so I settled on removing the security patches from the latest version 1.01.  
+Each of these exploits were for older versions of timeclock. Since I was unable to find these particular versions, I settled on removing the security patches from the latest version 1.01.  
 
 I downloaded the latest version from the vendor portal at http://timeclock-software.net/timeclock-download.php. I unzipped the download package and using SCP I transfered the entire application to my digital ocean server.  
 
@@ -152,7 +155,82 @@ To test if the application works, I moved it to the /var/www/html directory and 
 ```bash
 cp /timeclock /var/www/html
 service apache2 start 
-```
+```  
+
+#### Flag Layout  
+
+The plan for the CTF was to have 3 flags at varying levels of difficulty. Each flag would provide hints to the next, with the first flag being found through common directory scanning or a hint in the challenge description. The flags are structured like this.  
+
+1.  Beginner Flag: Located at robots.txt
+2.  Intermediate Flag: Available through a simple SQL injection in the login-in field of the hidden timeclock application  
+3.  Intermediate-Advanced Flag: Available through either a time-based SQLinjection in the add_time form, or alternatively available through a modified SQLinjection of the second flag in the log-in field.  
+
+#### Making the App Vulnerable    
+
+According to some basic research, the timeclock 1.01 application is not vulnerable to any known exploits, however, older versions are. Looking at the exploit-db records for timeclock, I noticed there was a SQLinjection on the log-in form in version .99. It appears as if there was not any proper sanitization of user input in this field, leading to this exploit.     
+
+While I could not be certain, taking a look at the source code 1.01, it appears the developers added the cclean and dclean functions to sanitize inputs.   
+
+```php
+function dclean($data) {
+	if ( !is_numeric ($data) ) {
+		echo "Invalid Data";
+		exit;
+	}
+	$data = htmlspecialchars($data, ENT_QUOTES);
+return $data;
+}
+
+function cclean($data) {
+	$data = htmlspecialchars($data, ENT_QUOTES);
+return $data;
+}
+```  
+
+Removing the references to these functions, would remove any user input sanitization. The SQLi on the log-in form still would not work until I removed the password_verify function in the login_action.php file. 
+
+*Original Timeclock Application*
+```php
+if (password_verify($timeapp_password, $password)) {
+	//echo "<p>Success!</p>";
+	$_SESSION['timeapp_id'] 		= $row["user_id"];
+	$_SESSION['timeapp_level']		= $row["level"];
+	$_SESSION["timeapp_username"]	= $row["username"];
+	header ("Location: index.php?success");
+	
+}else {
+	//echo "<p>Failure</p>";
+	unset($_SESSION['timeapp_username']);
+	unset($_SESSION['timeapp_password']);
+	unset($_SESSION['timeapp_level']);
+	$_SESSION = array();
+	session_destroy();
+	header ("Location: login.php?error2");
+	exit;
+}
+```  
+
+With the p
+
+*New CTF Application*
+```php
+if ($result->num_rows > 0) {
+   	$_SESSION['timeapp_id']                 = $row["user_id"];
+        $_SESSION['timeapp_level']              = $row["level"];
+        $_SESSION["timeapp_username"]   = $row["username"];
+        header ("Location: index.php?timeapp_password:$timeapp_password:passcode:$passcode");
+    } else {
+      unset($_SESSION['timeapp_username']);
+      unset($_SESSION['timeapp_password']);
+      unset($_SESSION['timeapp_level']);
+      $_SESSION = array();
+      session_destroy();
+      header ("Location: login.php?better_luck_next_time:$sql");
+      exit;
+}
+```  
+
+With the ```password_verify``` function gone, any SQLi that returns a valid user can log into the app as that user. 
 
 ### Front-End  
 
@@ -179,6 +257,22 @@ Last, I created new pages for the site, including the books, news, study groups,
 
 ```bash
 hugo new book.md
-```  
+```       
+
+When I was finished designing the front end for the challenge. I copied the generated static site into the apache web directory, restarted apache, and the challenge was live.  
+
+<div class="row mt-3">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="hawkins-lab.png">
+    </div>
+</div>  
+
+
+## Conclusion
+
+Overall it was a good learning experience to design, create, and host my own capture the flag challenge. In the future, I will plan on dockerizing this challenge for easier portabiliy and allow others to host the challenge locally instead of on a remote server.   
+
+
+
 
 

@@ -14,11 +14,11 @@ nav: true
   {% bibliography -f bibliography -q @*[year={{y}}]* %}
 {% endfor %}
 
-</div>
+</div>  
 
 
 ##### *Supported Work* 
-*Below is a selection of articles I supported as a research intern at [FDD](https://www.fdd.org/). The research supported former senior fellow Yaya Fanusie, now also affilated with the Center for a New American Security [(CNAS)](https://www.cnas.org/people/yaya-j-fanusie)*
+*A selection of publications I supported as a research intern at [FDD](https://www.fdd.org/). The research supported former senior fellow Yaya Fanusie, now also affilated with the Center for a New American Security [(CNAS)](https://www.cnas.org/people/yaya-j-fanusie)*
 
 <div class="publications">
 
@@ -26,4 +26,16 @@ nav: true
   {% bibliography -f supported -q @*[year={{y}}]* %}
 {% endfor %}
 
-</div>
+</div>  
+
+##### *Cited Work*   
+*A selection of my publications featured online*  
+
+<div class="publications">
+
+{% for y in page.years %}
+  {% bibliography -f cited -q @*[year={{y}}]* %}
+{% endfor %}
+
+</div> 
+

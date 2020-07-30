@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Crypto & National Security Roundup 7/19
+title: Crypto & Nat'l Sec Brief 7/19
 date: 2020-07-19 22:00 +0700
 modified: 2020-07-19 22:00 +0700
 permalink: /roundup-7-19
@@ -12,7 +12,7 @@ author: Tyler Butler
 summary: A curated selection of news surrounding Cryptocurrency and U.S National Security interests for the week of July 13th - July 19th
 ---
 
->  The Crypto & National Security Roundup is a curated selection of news surrounding Cryptocurrency and U.S National Security interests
+>  The Crypto & National Security Brief is a curated selection of news surrounding Cryptocurrency and U.S National Security interests
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">

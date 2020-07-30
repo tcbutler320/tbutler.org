@@ -18,7 +18,24 @@ home: true
 
 
 <h5 class="posts-item-note">Recent Publications</h5>
+<article class="post-item">
+</article>
 {% bibliography %}
+
+<h5 class="posts-item-note">Recent Cited Work</h5>
+<article class="post-item">
+</article>
+<div class="publications">
+  {% bibliography -f cited %}
+</div> 
+
+<h5 class="posts-item-note">Recent CTF Competitions</h5>
+<article class="post-item">
+</article>
+<div class="publications">
+  {% bibliography -f ctf %}
+</div> 
+
 
 
 

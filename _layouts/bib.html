@@ -73,6 +73,12 @@
     {% if entry.html %}
       [<a href="{{ entry.html }}" target="_blank">HTML</a>]
     {% endif %}
+    {% if entry.competition%}
+      [<a href="{{ entry.competition }}" target="_blank">Competition</a>]
+    {% endif %}
+    {% if entry.writeup %}
+      [<a href="{{ entry.writeup }}" target="_blank">Write-Up</a>]
+    {% endif %}
     {% if entry.pdf %}
       [<a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" target="_blank">PDF</a>]
     {% endif %}

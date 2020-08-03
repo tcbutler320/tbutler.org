@@ -223,7 +223,7 @@
 }
 
 .home-args {
-  padding-bottom: 100px;
+  padding-bottom: 10px;
 }
 
 // List of posts
@@ -245,7 +245,7 @@
     padding-right: 10px;
 
     @include media-query($on-mobile) {
-      font-size: 16px;
+      font-size: 10px;
     }
   }
 

@@ -4,8 +4,7 @@ title: Creating my first CTF Challenge
 date: 2020-07-20 01:00 +0700
 modified: 2020-07-20 01:00 +0700
 description: Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
-tag:
-  - CTF
+tag: CTF
 image: /creating-stranger-servers/stranger-servers-ctf.png
 author: Tyler Butler
 summary: Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge

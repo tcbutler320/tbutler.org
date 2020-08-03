@@ -4,8 +4,7 @@ title: VulnUni CTF Writeup
 date: 2020-05-28 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
-tag:
-  - CTF
+tag: CTF
 image: /vulnuni-ctf-writeup/vulnuni-header.png
 author: Tyler Butler
 summary: Unauthenticated blind SQL injection on the Greek University GUnet Platform

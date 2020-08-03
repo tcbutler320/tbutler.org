@@ -4,8 +4,7 @@ title: Hackeme CTF Writeup
 date: 2020-05-28 01:00 +0700
 modified: 2020-05-28 01:00 +0700
 description: Writeup for the HackMe CTF on Vulnhub
-tag:
-  - CTF
+tag: CTF
 image: /hackme-ctf-writeup/2-dirbuster.png
 author: Tyler Butler
 summary: Writeup for the HackMe CTF on Vulnhub

@@ -5,8 +5,7 @@ date: 2020-07-19 22:00 +0700
 modified: 2020-07-19 22:00 +0700
 permalink: /roundup-7-19
 description: A curated selection of news surrounding Cryptocurrency and U.S National Security interests
-tag:
-  - Cryptocurrency and National Security
+tag: Cryptocurrency and National Security
 image: /assets/img/roundup-13Jul20.png
 author: Tyler Butler
 summary: A curated selection of news surrounding Cryptocurrency and U.S National Security interests for the week of July 13th - July 19th

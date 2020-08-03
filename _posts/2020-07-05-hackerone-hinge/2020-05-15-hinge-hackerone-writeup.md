@@ -6,9 +6,7 @@ modified: 2020-05-28 01:00 +0700
 description: Abusing default settings in the Cloudinary Image Transformation API
 summary: Abusing default settings in the Cloudinary Image Transformation API
 author: Tyler Butler
-tag:
-  - Bug Bounty
-  - 
+tag: Bug Bounty
 image: /hinge-hackerone-writeup/hinge-preview.png
 comments: true
 ---

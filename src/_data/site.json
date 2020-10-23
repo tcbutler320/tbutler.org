@@ -1,0 +1,42 @@
+{
+  "theme": "light",
+  "url": "https://tbutler.org",
+  "title": "Tyler Butler",
+  "description": "Cyber Risk Consultant, Freelance Security Researcher, Passionate Developer",
+  "navigation": [
+    {
+      "label": "Work",
+      "url": "/work/"
+    },
+    {
+      "label": "Posts",
+      "url": "/posts/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "social": [
+    {
+      "label": "Twitter",
+      "url": "https://twitter.com/tbutler0x90"
+    },
+    {
+      "label": "Github",
+      "url": "https://github.com/tcbutler320"
+    },
+    {
+      "label": "Linkedin",
+      "url": "https://www.linkedin.com/in/tyler-b-a700a1aa"
+    }
+  ],
+  "projects": [
+    {
+      "title": "alexcarpenter.me",
+      "url": "https://github.com/alexcarpenter/alexcarpenter.me",
+      "description": "Source files for my personal website built with Eleventy and hosted with Netlify.",
+      "language": "HTML"
+    }
+  ]
+}

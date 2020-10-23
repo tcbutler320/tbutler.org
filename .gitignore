@@ -1,6 +1,4 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-_drafts
-Gemfile.lock
+node_modules
+package-lock.json
+www/
+

@@ -1,0 +1,65 @@
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: var(--font-family-code);
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .95rem;
+  line-height: 1.3;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+code:not([class]) {
+  padding: 2px 4px;
+  font-family: var(--font-family-code);
+  font-size: .875rem;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  overflow: auto;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  color: #222222;
+  border-radius: 4px;
+}
+
+.highlight-line {
+  padding: 0.25rem 1rem;
+  border-left: 4px solid #FAFAFA;
+}
+
+.highlight-line-active {
+  background-color: var(--color-blue-100);
+  border-color: var(--theme-color-primary);
+}
+
+.highlight-line-add {
+  background-color: var(--color-green-100);
+  border-color: var(--color-green);
+}
+
+.highlight-line-remove {
+  background-color: var(--color-red-100);
+  border-color: var(--color-red);
+}
+
+.token.comment {
+  color: #777;
+}

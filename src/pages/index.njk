@@ -1,0 +1,46 @@
+---
+title: "Tyler Butler"
+description: Cyber risk consultant, freelance security researcher, and passionate amateur developer
+permalink: /
+---
+{% extends 'layouts/page.njk' %}
+{% import "components/macros.njk" as components %}
+
+{% block content %}
+  {% Breakout %}
+    {% Container 'lg' %}
+      {% Grid {
+        align: { md: 'center' }
+      } %}
+        {% GridCol {
+          span: { md: '4of12' }
+        } %}
+          {% AspectRatio '1/1' %}
+            <img class="u-shadow u-rounded" src="https://res.cloudinary.com/tbutler-org/image/upload/v1603335469/IMG_4333_3_pubgcc.png" alt="Tyler Butler">
+          {% endAspectRatio %}
+        {% endGridCol %}
+        {% GridCol {
+          span: { default: '6of12', md: '4of12' },
+          order: { md: 'first' }
+        } %}
+          <div class="u-text-center">
+            <p class="u-font-size-4xl">1</p>
+            <p><a href="/posts/2020/05/hinge-hackerone-writeup/" class="u-primary-anchor">Triaged Bug Bounty</a></p>
+            <p class="u-font-size-4xl u-margin-top-4">5</p>
+            <p><a href="https://0x90skids.com" class="u-primary-anchor">CTF Competitions in 2020</a></p>
+          </div>
+        {% endGridCol %}
+        {% GridCol {
+          span: { default: '6of12', md: '4of12' }
+        } %}
+          <div class="u-text-center">
+            <p class="u-font-size-4xl">1</p>
+            <p><a href="https://www.exploit-db.com/exploits/48874" class="u-primary-anchor">Public Proof of Concept Exploit</a></p>
+            <p class="u-font-size-4xl u-margin-top-4">50+</p>
+            <p class="u-color-gray"><a href="https://github.com/tcbutler320" class="u-primary-anchor">Open Source Repositories</a></p>
+          </div>
+        {% endGridCol %}
+      {% endGrid %}
+    {% endContainer %}
+  {% endBreakout %}
+{% endblock %}

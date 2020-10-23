@@ -1,25 +1,26 @@
 {
-  "name": "tbutler.org",
+  "name": "alexcarpenter.me",
   "version": "1.0.0",
-  "description": "tbutler.org is Tyler Butler's personal blog and portfolio.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ELEVENTY_ENV=development npx eleventy --config=_eleventy/config.js --serve --watch",
+    "dev": "ELEVENTY_ENV=development npx eleventy --config=_eleventy/config.js",
+    "build": "ELEVENTY_ENV=production npx eleventy --config=_eleventy/config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/piharpi/jekyll-klise.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/piharpi/jekyll-klise/issues"
-  },
-  "homepage": "https://github.com/piharpi/jekyll-klise#readme",
-  "dependencies": {
-    "bootstrap": "^4.5.0",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^1.0.5",
+    "@alexcarpenter/eleventy-plugin-caniuse": "^0.1.0",
+    "@sindresorhus/slugify": "^0.11.0",
+    "clean-css": "^4.2.3",
+    "common-tags": "^1.8.0",
+    "html-minifier": "^3.5.21",
+    "luxon": "^1.22.0",
+    "markdown-it": "^8.4.2",
+    "markdown-it-anchor": "^5.2.5",
+    "markdown-it-kbd": "^2.0.0",
+    "markdown-it-mark": "^3.0.0",
+    "ramda": "^0.26.1",
+    "terser": "^4.6.7"
   }
 }

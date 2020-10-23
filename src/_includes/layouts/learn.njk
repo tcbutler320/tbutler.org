@@ -1,0 +1,31 @@
+{% extends "layouts/page.njk" %}
+{% import "components/macros.njk" as components %}
+
+{% block content %}
+  <ul class="c-listing c-listing--4">
+    {% for section in sections %}
+    <li class="c-listing__item" id="section-{{ section.heading | kebab }}">
+      <div class="o-stack o-stack--prose">
+        <h2>{{ section.heading }}</h2>
+        {% if section.youtubeId %}
+          {{ components.youtube({
+            id: section.youtubeId,
+            title: title
+          }) }}
+        {% endif %}
+        {% if section.description %}
+          <p>{{ section.description | markdownify_inline }}</p>
+        {% endif %}
+        <p>
+          {% if section.docs %}
+            <span class="u-margin-right-3">{{ components.link({ url: section.docs, text: section.heading + " documentation", external: true }) }}</span>
+          {% endif %}
+          {% if section.repo %}
+            <span class="u-margin-right-3">{{ components.link({ url: section.repo, text: "View source files", external: true }) }}</span>
+          {% endif %}
+        </p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

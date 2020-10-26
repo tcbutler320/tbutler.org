@@ -5,17 +5,17 @@ permalink: /posts/feed.xml
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>posts - {{ site.title }}</title>
   <subtitle>{{ site.description }}</subtitle>
-  <link href="https://alexcarpenter.me/posts/feed" rel="self"/>
-  <link href="https://alexcarpenter.me"/>
+  <link href="https://tbutler.org/posts/feed" rel="self"/>
+  <link href="https://tbutler.org"/>
   <updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
-  <id>https://alexcarpenter.me</id>
+  <id>https://tbutler.org</id>
   <author>
     <name>Tyler Butler</name>
     <email>developer.tbutler@gmail.com</email>
   </author>
   {%- for post in collections.posts %}
-  {% set idUrl %}{{ post.url | url | absoluteUrl('https://alexcarpenter.me') }}{% endset %}
-  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl('https://alexcarpenter.me') }}{% endset %}
+  {% set idUrl %}{{ post.url | url | absoluteUrl('https://tbutler.org') }}{% endset %}
+  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl('https://tbutler.org') }}{% endset %}
   <entry>
     <title>{{ post.data.title }}</title>
     {% if post.data.link %}

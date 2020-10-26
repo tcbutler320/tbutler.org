@@ -1,5 +1,6 @@
 ---
 favorite: true
+cloudinary: true
 order: 1
 title: "TimeClock Software 1.01 0 - (Authenticated) Time-Based SQL Injection"
 team: "Exploit-DB"

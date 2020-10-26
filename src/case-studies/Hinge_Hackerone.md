@@ -1,5 +1,6 @@
 ---
 favorite: true
+cloudinary: true
 order: 2
 title: "Modification of Assumed Immutable Data (M.A.I.D) on the HingeDating Application"
 team: "Hackerone"

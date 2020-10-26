@@ -2,7 +2,7 @@
   "theme": "light",
   "url": "https://tbutler.org",
   "title": "Tyler Butler",
-  "description": "Cyber Risk Consultant, Freelance Security Researcher, Passionate Developer",
+  "description": "I'm a cyber risk consultant, mainframe developer, freelance security researcher, and passionate developer. As a consultant at Deloitte, I help convert legacy IBM mainframe applications from Cobol and Assembly to Java.",
   "navigation": [
     {
       "label": "Work",
@@ -11,6 +11,10 @@
     {
       "label": "Posts",
       "url": "/posts/"
+    },
+    {
+      "label": "Bug Trophies",
+      "url": "/trophies/"
     },
     {
       "label": "Contact",

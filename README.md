@@ -1,6 +1,9 @@
 # About 
 tbutler.org 2.0 is Tyler Butler's personal blog and portfolio. 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bcd84a54-0069-495d-b875-e691d0318e58/deploy-status)](https://app.netlify.com/sites/eloquent-brahmagupta-d94f47/deploys)
+
+
 ## Version 2.0  
 
 tbutler.org 2.0 was adapted from Alex Carpenter's alexcarpenter.me project. For more information visit [alexcarptener.me"](https://github.com/alexcarpenter/alexcarpenter.me) 

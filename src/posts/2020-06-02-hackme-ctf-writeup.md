@@ -2,7 +2,6 @@
 title: Hackeme CTF Writeup
 description: Writeup for the HackMe CTF on Vulnhub
 tag: CTF
-image: /assets/images/posts/2020-06-02-hackme-ctf-writeup/2-dirbuster.png
 ---
 
 <div class="row mt-3">

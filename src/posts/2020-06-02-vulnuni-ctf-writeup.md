@@ -2,7 +2,6 @@
 title: VulnUni CTF Writeup
 description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 tag: CTF
-image: /assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni-header.png
 ---
 
 <div class="row mt-3">

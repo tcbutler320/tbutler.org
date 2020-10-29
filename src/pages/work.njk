@@ -39,6 +39,35 @@ permalink: /work/index.html
     </div> #}
   </section>
 
+    <section class="u-margin-top-5">
+    <h2 class="u-text-uppercase">Cyber Threat Intelligence</h2>
+    <ul class="c-listing c-listing--4 u-margin-top-4">
+      <li class="c-listing__item">
+        {% Grid %}
+          {% GridCol { span: { md: '8of12' } } %}
+            <div>
+              <iframe
+                src="https://www.virustotal.com/graph/embed/gde3a19e840b4411489b1a54d2bbf2f0c84ab5668cd644247abdb58a4a9f852ab"
+                width="500"
+                height="400">
+              </iframe>
+            </div>
+          {% endGridCol %}
+          {% GridCol { span: { md: '4of12' } } %}
+            <h3 class="u-font-size-lg u-font-weight-semi-bold"><a class="u-primary-anchor" href="/">Zaprop Malware</a></h3>
+            <p class="u-margin-top-2">Some recent recent reseacch I conducted on a cloned website with links to malicious apk files.</p>
+            <div class="u-margin-top-2">
+              {{ components.link({ url: "https://www.virustotal.com/graph/embed/gde3a19e840b4411489b1a54d2bbf2f0c84ab5668cd644247abdb58a4a9f852ab", external: true }) }}
+            </div>
+          {% endGridCol %}
+        {% endGrid %}
+      </li>
+    </ul>
+    {# <div class="u-margin-top-4">
+      {{ components.link({ url: "/case-studies/", text: "View more case studies" }) }}
+    </div> #}
+  </section>
+
   <section class="u-margin-top-5">
     <h2 class="u-text-uppercase">Experience</h2>
     <ul class="c-listing c-listing--4 u-margin-top-4">

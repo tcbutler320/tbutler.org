@@ -2,7 +2,6 @@
 title: Creating my first CTF Challenge
 description: Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
 tag: CTF
-image: /assets/images/posts/2020-07-17-creating-stranger-servers-ctf/stranger-servers-ctf.png
 summary: Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
 ---
 >  Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge

@@ -1,0 +1,11 @@
+- name: Jekyll-Theme-Dumbarton
+  id: Jekyll-Theme-Dumbarton
+  description: >
+    Dumbarton is a jekyll theme designed for academics. It is the theme that powers this site.
+    It provides enough content to fully represent a full body of work but still retains a minimalistic feel. 
+    The theme features a central homepage with easy access to publications, projects, courses, 
+    and projects in a single interactive card.
+  date: true
+  link: https://github.com/tcbutler320/Jekyll-Theme-Dumbarton
+  image:  http://placehold.it/100x100
+

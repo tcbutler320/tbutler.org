@@ -1,29 +1,22 @@
 {
-  "name": "alexcarpenter.me",
+  "name": "dumbarton",
   "version": "1.0.0",
+  "description": "A Jekyll theme for academics",
+  "main": "index.js",
   "scripts": {
-    "start": "ELEVENTY_ENV=development npx eleventy --config=_eleventy/config.js --serve --watch",
-    "dev": "ELEVENTY_ENV=development npx eleventy --config=_eleventy/config.js",
-    "build": "ELEVENTY_ENV=production npx eleventy --config=_eleventy/config.js"
+    "test": "test"
   },
-  "devDependencies": {
-    "@11ty/eleventy": "^0.11.0",
-    "@11ty/eleventy-plugin-rss": "^1.0.7",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^1.0.5",
-    "@alexcarpenter/eleventy-plugin-caniuse": "^0.1.0",
-    "@sindresorhus/slugify": "^0.11.0",
-    "clean-css": "^4.2.3",
-    "common-tags": "^1.8.0",
-    "html-minifier": "^3.5.21",
-    "luxon": "^1.22.0",
-    "markdown-it": "^8.4.2",
-    "markdown-it-anchor": "^5.2.5",
-    "markdown-it-kbd": "^2.0.0",
-    "markdown-it-mark": "^3.0.0",
-    "ramda": "^0.26.1",
-    "terser": "^4.6.7"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcbutler320/Dumbarton.git"
   },
-  "dependencies": {
-    "animejs": "^3.2.1"
-  }
+  "keywords": [
+    "jekyll"
+  ],
+  "author": "Tyler Butler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tcbutler320/Dumbarton/issues"
+  },
+  "homepage": "https://github.com/tcbutler320/Dumbarton#readme"
 }

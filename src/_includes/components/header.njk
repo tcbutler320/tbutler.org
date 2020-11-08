@@ -1,8 +1,0 @@
-{% macro header(params) %}
-  <header class="o-grid">
-    <div class="o-grid__col u-width-8of12@md u-offset-4of12@md">
-      <h1 class="c-heading-decorate u-font-size-4">{{ params.title }}</h1>
-      <p class="u-font-size-md u-margin-top-025">{{ params.description | markdownify_inline | safe }}</p>
-    </div>
-  </header>
-{% endmacro %}

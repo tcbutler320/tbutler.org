@@ -1,0 +1,211 @@
+---
+layout: default
+---
+
+<!--  HELP TIPS SECTION  -->
+<!-- used only for develop mode, disable these in _config.yml with `help_tips: false` -->
+{% if site.help_tips %}
+<div class="toast animate__animated animate__pulse animate__infinite" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-delay="10000" style="position: absolute; top: 10px; right: 10px;z-index: 10000;">
+  <div class="toast-header">
+    <img src="/assets/img/icons/favicon-16x16.png" class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Tyler Butler</strong>
+    <small class="text-muted">11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Thanks for checking out Jekyll-Theme-Dumbarton ! This theme was developed by <a href="https://twitter.com/tbutler0x90">Tyler Butler</a>. If you're interested in using this in your own website, checkout the project on <a href="https://github.com/tcbutler320/Jekyll-Theme-Dumbarton">Github</a>
+  </div>
+</div>
+{% endif %}
+
+<!-- ABOUT ME SECTION -->
+<div class="card mx-auto border-light">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      {% if site.animate %}
+        <img src="{{ site.profile_image }}" class="img-thumbnail float-left animate__animated animate__fadeInLeft shadow bg-white rounded" alt="...">
+      {% else %}
+        <img src="{{ site.profile_image }}" class="img-thumbnail float-left" alt="...">
+      {% endif %}
+    </div>
+    <!-- EDUCATION SECTION -->
+    <div class="col-md-8">
+      {% if site.animate %}
+      <div class="card-body animate__animated animate__fadeInRight" style:"height: .5rem;">
+      {% else %}
+      <div class="card-body">
+      {% endif %}
+        <h5 class="card-title">{{ page.title }}</h5>
+        <p class="card-text">{{ content | markdownify }}</p>
+        {% if site.home_option == "education" %}
+          {% include education.html %}
+        {% elsif site.home_option == "timeline" %}
+          {% include timeline.html %}
+        {% elsif site.home_option =="skills" %}
+        <canvas id="myBarChart" height="50"></canvas>
+        {% endif %}
+        <p class="card-text"><small class="text-muted"><i>Last updated {{ page.date }}</i></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOME HIGHLIGHTS SECTION --> 
+<h5 class="card-title text-center mb-3"></h5>
+{% if site.animate %}
+<div class="card mx-auto animate__animated animate__slideInUp animate__delay-1s" style="max-width: 100%;">
+{% else %}
+<div class="card mx-auto" style="max-width: 100%;">
+{% endif %}
+  <div class="card-header" style="background-color:{{ site.card-color }};">
+    <ul class="nav nav-tabs card-header-tabs" id="test-list" role="tablist">
+      {% for section in site.data.sections %}
+        {% if section.first %}
+          <li class="nav-item">
+            <a class="nav-link active" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}}" aria-selected="true">{{section.name}}</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+              <a class="nav-link text-light"  href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="false">{{section.name}}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="card-body">          
+      <div class="tab-content mt-3">
+        {% for section in site.data.sections %}
+          {% if section.first %}
+            {% if section.name == "Publications" %}
+              <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
+                <h5 class="card-title text-center" style="font-family:Courgette;"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
+                <p class="card-text">{% bibliography -f papers %}</p>
+              </div>
+            {% else %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
+                <p class="card-text">{{section.description}}</p>
+              </div>
+            {% endif %}
+          {% else %}  
+            {% if section.name == "Presentations" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <p class="card-text">{% bibliography -f presentations %}</p>              
+              </div>
+            {% elsif section.name == "Projects" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                  {% for projects in site.data.projects %}
+                  <div class="media">
+                    <a href="{{ projects.link }}"><img src="{{ projects.image }}" class="mr-3 mb-2 img-thumbnail" alt="..."></a>
+                    <div class="media-body">
+                      <h5 class="mt-0"><a href="{{ projects.link }}" class="highlighted">{{ projects.name }}</a></h5>
+                      {{ projects.description }}
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>        
+              </div>
+            {% elsif section.name == "Teaching" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                    {% for courses in site.data.teaching %}
+                    <div class="list-group">
+                      <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">{{ courses.Schoool }}</h5>
+                          <p>{{ courses.Program }}</p>
+                          <small>{{ courses.StartDate }} - {{ courses.EndDate }}</small>
+                        </div>
+                        <p class="mb-1">{{ courses.description }}</p>
+                        <small>{{ courses.Department }}</small>
+                      </div>
+                    </div>
+                    {% endfor %}
+              </div>
+            {% elsif section.name == "Coursework" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <div class="list-group">
+                {% for courses in site.data.courses %}
+                  <button type="button" class="list-group-item list-group-item-action">{{ courses.Course }}</button>
+                {% endfor %}
+                </div>
+
+              </div>
+            {% else %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
+                <p class="card-text">{{ section.content }} </p>              
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+<!-- ANIMATE.JS ANIMATE LIBRARY
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous"></script>
+-->
+
+
+<!--JS FUNCTION FOR RECENT WORK SECTION -->
+<script>
+    $('#test-list a').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+    })
+</script> 
+
+<!-- OPTIONAL TOAST JS FUNCTION-->
+<script>
+    $(document).ready(function() {
+        $(".toast").toast("show");
+    });
+</script>
+
+
+<script>
+$('body').scrollspy({ target: '#list-example' })
+</script>
+
+
+<script>
+var ctx = document.getElementById('myBarChart').getContext('2d');
+var myBarChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: 'My Skills',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+
+
+
+<script>
+$('.collapse').collapse()
+</script>
+
+<script>
+$('.show').show()
+</script>
+

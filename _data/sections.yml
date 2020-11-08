@@ -1,0 +1,26 @@
+- name: Publications
+  id: publications
+  description: My Publications
+  url: publications.html
+  first: true
+  
+- name: Coursework
+  id: courses
+  description: Releveant Course Work
+  content: 
+  first: false
+
+- name: Teaching
+  id: teaching
+  description: Courses I've Taught
+  content: 
+  url: teaching.html
+  first: false
+
+- name: Projects
+  id: projects
+  description: My Projects
+  content: 
+  url: projects.html
+  first: false
+

@@ -1,4 +1,11 @@
-node_modules
-package-lock.json
-www/
+*.gem
+.bundle
+.jekyll-cache
+.sass-cache
+_site
+Gemfile.lock
 
+# Demo Site 
+/Demo
+*.sh 
+*.xml

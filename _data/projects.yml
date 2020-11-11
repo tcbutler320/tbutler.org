@@ -1,0 +1,28 @@
+- name: Jekyll-Theme-Dumbarton
+  id: Jekyll-Theme-Dumbarton
+  description: >
+    Dumbarton is a jekyll theme designed for academics. It is the theme that powers this site.
+    It provides enough content to fully represent a full body of work but still retains a minimalistic feel. 
+    The theme features a central homepage with easy access to publications, projects, courses, 
+    and projects in a single interactive card.
+  date: true
+  link: https://github.com/tcbutler320/Jekyll-Theme-Dumbarton
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  tech: 
+    - jekyll 
+    - github 
+    - bootstrap
+
+- name: TimeClock-1.01-Vuln
+  id: TimeClock-1.01-Vuln
+  description: >
+    TimeClock-1.01-Vuln is a proof of concept for a time-based SQL injection attack in the Employee Time-clock software, version 1.01. 
+    This exploit was added to Exploit-DB in entry 48874.
+  date: true
+  link: https://github.com/tcbutler320/TimeClock-1.01-Vuln
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  tech: 
+    - docker
+    - PhpMyAdmin
+    - Digital Ocean
+

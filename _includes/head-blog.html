@@ -1,0 +1,121 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  The above 2 meta tags *must* come first in the <head>
+  to consistently ensure proper document rendering.
+  Any other head element should come *after* these tags.
+ -->
+<title>{{ site.title }}</title>
+<!-- Set the base URL for all relative URLs within the document -->
+<base href="{{ site.url }}">
+
+<!--
+  Allows control over where resources are loaded from.
+  Place as early in the <head> as possible, as the tag  
+  only applies to resources that are declared after it.
+-->
+
+<!-- Short description of the document (limit to 150 characters) -->
+<!-- This content *may* be used as a part of search engine results. -->
+<meta name="description" content="{{ site.description }}">
+
+<!-- Control the behavior of search engine crawling and indexing -->
+<meta name="robots" content="index,follow"><!-- All Search Engines -->
+<meta name="googlebot" content="index,follow"><!-- Google Specific -->
+
+<!-- Verify website ownership -->
+<meta name="google-site-verification" content="{{ site.google-site-verification }}"><!-- Google Search Console -->
+<meta name="yandex-verification" content="{{ site.yandex-verification }}"><!-- Yandex Webmasters -->
+<meta name="msvalidate.01" content="{{ site.msvalidate }}"><!-- Bing Webmaster Center -->
+<meta name="alexaVerifyID" content="{{ site.alexaVerifyID }}"><!-- Alexa Console -->
+<meta name="p:domain_verify" content="{{ site.pinterestdomain_verify }}"><!-- Pinterest Console-->
+<meta name="norton-safeweb-site-verification" content="{{ site.norton-safeweb }}"><!-- Norton Safe Web -->
+
+<!-- Allows control over how referrer information is passed -->
+<meta name="referrer" content="no-referrer">
+
+<!-- Disable automatic detection and formatting of possible phone numbers -->
+<meta name="format-detection" content="telephone={{ site.detectphone }}">
+
+<!-- Completely opt out of DNS prefetching by setting to "off" -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- Geo tags -->
+<!-- meta name="ICBM" content="latitude, longitude"-->
+<!-- meta name="geo.position" content="latitude;longitude"-->
+<!-- meta name="geo.region" content="country[-state]"><Country code (ISO 3166-1): mandatory, state code (ISO 3166-2): optional; eg. content="US" / content="US-NY" -->
+<!-- meta name="geo.placename" content="city/town"><eg. content="New York City" -->
+
+<!-- Link to an external CSS file -->
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Courgette&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/main.css">
+<!-- BootStrap CDN --> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<script src="https://kit.fontawesome.com/{{ site.font_awesome_id }}.js" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
+
+<!--  GIT TALK CDN  for comment system -->
+<!--
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> -->
+
+
+<!-- Provides information about an author or another person -->
+<link rel="me" href="mailto:{{ site.email }}">
+<link rel="me" href="sms:+{{ site.phonenumber }}">
+
+<!-- Open Search -->
+<!-- link rel="search" href="/open-search.xml" type="application/opensearchdescription+xml" title="Search Title" -->
+
+<!-- Feeds -->
+<!-- link rel="alternate" href="https://feeds.feedburner.com/example" type="application/rss+xml" title="RSS" -->
+<!-- link rel="alternate" href="https://example.com/feed.atom" type="application/atom+xml" title="Atom 0.3" -->
+
+<!-- For IE 10 and below -->
+<!-- Place favicon.ico in the root directory - no tag necessary -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+<link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+
+<meta property="fb:app_id" content="{{ site.fbappid }}">
+<meta property="og:url" content="{{ page.url }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page.description }}">
+<meta property="og:image" content="{{ page.image }}">
+<meta property="og:image:alt" content="{{ page.image_alt }}">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:site_name" content="{{ page.title }}">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="{{ page.author }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ page.twitter }}">
+<meta name="twitter:creator" content="@{{ page.twitter }}">
+<meta name="twitter:url" content="{{ page.url }}">
+<meta name="twitter:title" content="{{ page.description }}">
+<meta name="twitter:description" content="{{ page.description }}">
+<meta name="twitter:image" content="{{ page.image }}">
+<meta name="twitter:image:alt" content="{{ page.image_alt }}">
+
+<!-- Used for adding in-document CSS -->
+
+
+
+<!-- JavaScript & No-JavaScript tags -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!--
+<script>
+    $(document).ready(function() {
+        $(".toast").toast('show');
+    });
+</script> -->
+<noscript>
+  <!-- No JS alternative -->
+</noscript>

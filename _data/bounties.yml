@@ -1,0 +1,16 @@
+- Title: "CWE-471: Modification of Assumed-Immutable Data"
+  Date: 05/20/2020
+  CVE: N/A
+  Platform: Hackerone
+  Vendor: Hinge
+  Link: assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf
+
+- Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
+  Date: 10/13/2020
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: Timeclock
+  Link: https://www.exploit-db.com/exploits/48874
+
+
+  

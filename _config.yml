@@ -1,0 +1,149 @@
+# =======================================#
+# -----------DUMBARTON THEME-------------#
+# ----------------By: Tyler Butler-------#
+#-----------------https://tbutler.org----#
+#========================================#
+
+# =======================================#
+# -----------BASE SETTINGS---------------#
+#========================================#
+
+title: Tyler Butler 
+email: developer.tbutler@gmail.com
+description: Cyber risk consultant, security researcher, open source developer
+baseurl:                                       # the subpath of your site, e.g. /blog
+url: "https://tbutler.org"          # the base hostname & protocol for your site, e.g. http://example.com
+image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg               # used to generate site link preview
+image_alt: Cyber risk consultant, security researcher, open source developer   # image description
+
+algolia:
+  application_id: 'GTDLL59LKC'
+  index_name: dev_Dumbarton
+  search_only_api_key: 27b84023d785cb190ef11b4ed8115c6d                                                   
+
+# =======================================#
+# -----------SITE SETTINGS---------------#
+#========================================#: 
+author: Tyler Butler 
+profile_image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg #/assets/img/avatar/avatar.jpeg 
+occupation: 
+snippet: 
+twitter: tbutler0x90
+github: tcbutler320
+linkedin: tyler-b-a700a1aa
+stackoverflow: 12935605
+website: https://tbutler.org
+codepen: tcbutler320
+email: 
+pgp: 
+ctftime: 
+phonenumber: 
+
+# =======================================#
+# -----------BLOG SETTINGS---------------#
+#========================================#
+
+tags:  ctf bug-bounty devops jekyll
+
+comments: false                                     # Used to enable comments on blog posts
+gitalk_client_id:             
+gitalk_client_secret:    
+gitalk_repo:
+gitalk_owner: 
+gitalk_admin: 
+gitalk_distraction_mode: false
+
+# =======================================#
+# -----------THEME SETTINGS--------------#
+#========================================#
+
+nav-color: "#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
+footer-color: "#00334e"
+color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values 
+card-color: "#00334e"                                # Used on cards like the home highlights section
+nav-dIcon: "fas fa-caret-down"                       # Change the navbar dropdown (for mobile or small screen sizes) to any fontawesome icon. for a list of icons visit https://fontawesome.com/ 
+animate: true                                        # false or true, uses animate.css to animate certain functions
+
+# =======================================#
+# -----------HOME PAGE  SETTINGS --------#
+#========================================#
+home_option: education                               # options: education, skills, timeline
+
+# =======================================#          # These  settings are for demo purposes only, things like 
+# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new 
+#========================================#          #     developers as they look into using this theme      
+help_tips: false                                    # options: true, false  | use false to disable these for production mode
+
+
+# =======================================#
+# -----------BUILD SETTINGS--------------#
+#========================================#
+theme: 
+markdown: kramdown
+
+kramdown:
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-scholar
+  - jekyll-environment-variables
+  - jekyll-algolia
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+
+include:
+  - _posts
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - /archive
+
+# =======================================#
+# -----JEKYLL SCHOLAR SETTINGS-----------#
+#========================================#
+scholar:
+  last_name: Butler
+  style: apa
+  locale: en
+  source: /_bibliography/
+  bibliography: papers.bib
+  bibliography_template: bib
+  replace_strings: true
+  join_strings: true
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: 
+  query: "@*"
+
+# =======================================#
+# ------------CDN SETTINGS---------------#
+#-------------Used to generate icons-----#
+#========================================#
+font_awesome_id: 32a2b2a489                       # Register for free at https://fontawesome.com/ to get your id
+
+
+# =======================================#        # For more information about these settings, visit https://htmlhead.dev #
+# ------------META TAG SETTINGS----------#
+#========================================#
+google-site-verification:                         #<meta name="google-site-verification" content="verification_token"><!-- Google Search Console -->
+yandex-verification:                              #<meta name="yandex-verification" content="verification_token"><!-- Yandex Webmasters -->
+msvalidate:                                       # meta name="msvalidate.01" content="verification_token"><!-- Bing Webmaster Center -->
+alexaVerifyID:                                    # <meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
+pinterestdomain_verify:                           #<meta name="p:domain_verify" content="code_from_pinterest"><!-- Pinterest Console-->
+norton-safeweb:                                   # <meta name="norton-safeweb-site-verification" content="norton_code"><!-- Norton Safe Web -->
+detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers 
+x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
+fbappid:                                          # Facebook OpenGraph 

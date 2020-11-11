@@ -81,6 +81,7 @@ layout: default
             {% if section.name == "Publications" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
                 <h5 class="card-title text-center" style="font-family:Courgette;"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
+                <small> Non Peer Reviewed </small>
                 <p class="card-text">{% bibliography -f papers %}</p>
               </div>
             {% else %}
@@ -103,6 +104,11 @@ layout: default
                     <div class="media-body">
                       <h5 class="mt-0"><a href="{{ projects.link }}" class="highlighted">{{ projects.name }}</a></h5>
                       {{ projects.description }}
+                      <h6><mark><u>Technologies</u></mark></h6>
+                      <span class="badge badge-secondary" style="background-color:#145374;">Jekyll</span>
+                      <span class="badge badge-secondary" style="background-color:#145374;">Github</span>
+                      <span class="badge badge-secondary" style="background-color:#145374;">Bootstrap</span>  
+                      <span class="badge badge-secondary" style="background-color:#145374;">Netlify</span>
                     </div>
                   </div>
                   {% endfor %}

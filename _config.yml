@@ -16,6 +16,11 @@ url: "https://tbutler.org"          # the base hostname & protocol for your site
 image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg               # used to generate site link preview
 image_alt: Cyber risk consultant, security researcher, open source developer   # image description
 
+algolia:
+  application_id: 'GTDLL59LKC'
+  index_name: dev_Dumbarton
+  search_only_api_key: 27b84023d785cb190ef11b4ed8115c6d                                                   
+
 # =======================================#
 # -----------SITE SETTINGS---------------#
 #========================================#: 
@@ -83,6 +88,8 @@ plugins:
   - jekyll-feed
   - jekyll-scholar
   - jekyll-environment-variables
+  - jekyll-algolia
+
 sass:
   sass_dir: _sass
   style: compressed

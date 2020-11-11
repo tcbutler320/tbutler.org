@@ -99,7 +99,7 @@ layout: default
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
                 <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
                   {% for projects in site.data.projects %}
-                  <div class="media">
+                  <div class="media mt-2">
                     <a href="{{ projects.link }}"><img src="{{ projects.image }}" class="mr-3 mb-2 img-thumbnail" alt="..."></a>
                     <div class="media-body">
                       <h5 class="mt-0"><a href="{{ projects.link }}" class="highlighted">{{ projects.name }}</a></h5>
@@ -148,7 +148,7 @@ layout: default
                     {% for bounty in site.data.bounties %}
                     <tr>
                       <th scope="row">{{ bounty.Date }}</th>
-                      <td><a href={{ bounty.link }}>{{ bounty.Title }}</q></td>
+                      <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>
                       <td>{{ bounty.Platform }}</td>
                     </tr>

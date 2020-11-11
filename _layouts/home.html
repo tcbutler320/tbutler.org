@@ -104,11 +104,12 @@ layout: default
                     <div class="media-body">
                       <h5 class="mt-0"><a href="{{ projects.link }}" class="highlighted">{{ projects.name }}</a></h5>
                       {{ projects.description }}
-                      <h6><mark><u>Technologies</u></mark></h6>
-                      <span class="badge badge-secondary" style="background-color:#145374;">Jekyll</span>
-                      <span class="badge badge-secondary" style="background-color:#145374;">Github</span>
-                      <span class="badge badge-secondary" style="background-color:#145374;">Bootstrap</span>  
-                      <span class="badge badge-secondary" style="background-color:#145374;">Netlify</span>
+                      {% if projects.tech %}
+                        <h6><mark><u>Technologies</u></mark></h6>
+                        {% for tech in projects.tech %}
+                        <span class="badge badge-secondary mr-1" style="background-color:#145374;">{{ tech }}</span>
+                        {% endfor %}
+                      {% endif %}
                     </div>
                   </div>
                   {% endfor %}

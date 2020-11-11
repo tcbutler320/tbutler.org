@@ -1,9 +1,6 @@
 nav_list_title: Navigation List
 links:
 
-- title: About
-  url: about.html
-
 - title: Publications
   url: publications.html
 

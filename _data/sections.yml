@@ -3,6 +3,13 @@
   description: My Publications
   url: publications.html
   first: true
+
+- name: Bug Bounties
+  id: bounties
+  description: My Bug Bounties
+  url: /
+  content: 
+  first: false
   
 - name: Coursework
   id: courses

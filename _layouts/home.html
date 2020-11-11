@@ -132,6 +132,30 @@ layout: default
                     </div>
                     {% endfor %}
               </div>
+            {% elsif section.name == "Bug Bounties" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
+                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <table class="table table-striped">
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Platform</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for bounty in site.data.bounties %}
+                    <tr>
+                      <th scope="row">{{ bounty.Date }}</th>
+                      <td><a href={{ bounty.link }}>{{ bounty.Title }}</q></td>
+                      <td>{{ bounty.Vendor }}</td>
+                      <td>{{ bounty.Platform }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
             {% elsif section.name == "Coursework" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
                 <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
@@ -140,7 +164,6 @@ layout: default
                   <button type="button" class="list-group-item list-group-item-action">{{ courses.Course }}</button>
                 {% endfor %}
                 </div>
-
               </div>
             {% else %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  

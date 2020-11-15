@@ -5,7 +5,7 @@ summary: Abusing default settings in the Cloudinary Image Transformation API
 tag: Bug Bounty
 image: /assets/img/posts/2020-07-05-hackerone-hinge/hinge-preview.png
 layout: post
-date:   2020-10-29 20:01:21 -0400
+date:   2020-10-30 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
 tag: bug-bounty
 author: Tyler Butler

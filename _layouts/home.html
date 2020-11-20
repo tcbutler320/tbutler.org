@@ -21,7 +21,7 @@ layout: default
 {% endif %}
 
 <!-- ABOUT ME SECTION -->
-<div class="card mx-auto border-light">
+<div class="card mx-auto border-0">
   <div class="row no-gutters">
     <div class="col-md-4">
       {% if site.animate %}
@@ -55,9 +55,9 @@ layout: default
 <!-- HOME HIGHLIGHTS SECTION --> 
 <h5 class="card-title text-center mb-3"></h5>
 {% if site.animate %}
-<div class="card mx-auto animate__animated animate__slideInUp animate__delay-1s" style="max-width: 100%;">
+<div class="card mx-auto mb-1 animate__animated animate__slideInUp animate__delay-1s" style="max-width: 100%;">
 {% else %}
-<div class="card mx-auto" style="max-width: 100%;">
+<div class="card mx-auto mb-1 " style="max-width: 100%;">
 {% endif %}
   <div class="card-header" style="background-color:{{ site.card-color }};">
     <ul class="nav nav-tabs card-header-tabs" id="test-list" role="tablist">

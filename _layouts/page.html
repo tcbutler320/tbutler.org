@@ -6,7 +6,7 @@
     <div class="dumbarton-spacer-sm"></div>
     <div class="container">
       {% if page.header-img %}
-      <div class="card mb-3 border-light">
+      <div class="card mb-3 border-0">
         <img class="card-img-top rounded-lg" src="{{ page.header-img }}" alt="Card image cap">
           <div class="card-body">
             <p class="card-text">
@@ -15,10 +15,10 @@
             {% if page.last-updated %}
               <p class="card-text"><small class="text-muted">Last updated {{ page.last-updated }}</small></p>
             {% endif %}
-        </div>
+          </div>
       </div>
       {% else %}
-      <div class="card mb-3 border-light">
+      <div class="card mb-3 border-0">
           <div class="card-body">
             <p class="card-text">
                 {{ content }}
@@ -26,11 +26,10 @@
             {% if page.last-updated %}
               <p class="card-text"><small class="text-muted">Last updated {{ page.last-updated }}</small></p>
             {% endif %}
-        </div>
+          </div>
       </div>
       {% endif %}
     </div>
-    <div class="dumbarton-spacer"></div>
     {% include footer.html %}
   </body>
 </html>

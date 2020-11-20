@@ -16,7 +16,7 @@ last-updated: 2020-10-30 5:55 PM
           <h1 class="my-4" style="font-family:Courgette;">{{ page.title }}</h1>
           <!-- Blog Post -->
           {% for post in site.posts %}
-            <div class="card mb-4">
+            <div class="card mb-3">
               <img class="card-img-top" src="{{ post.image }}" alt="Card image cap">
               <div class="card-body">
                 <h2 class="card-title">{{ post.title }}</h2>
@@ -31,7 +31,7 @@ last-updated: 2020-10-30 5:55 PM
           {% endfor %}
 
           <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
+          <ul class="pagination justify-content-center mb-3">
             <li class="page-item">
               <a class="page-link" href="#">&larr; Older</a>
             </li>
@@ -73,7 +73,7 @@ last-updated: 2020-10-30 5:55 PM
                   <ul class="list-unstyled mb-0">
                     {% for tag in site.tags %}
                     <li>
-                      <a href="/" class="btn btn-sm mt-1 mb-1 text-white" style="background-color:{{ site.card-color }}">{{ tag[0] }}</a>
+                      <a href="/" class="btn btn-sm mt-1 mb-3 text-white" style="background-color:{{ site.card-color }}">{{ tag[0] }}</a>
                     </li>
                     {% endfor %}
                   </ul>
@@ -113,3 +113,4 @@ last-updated: 2020-10-30 5:55 PM
       <!-- /.row -->
     </div>
     <!-- /.container -->
+  </div>

@@ -156,6 +156,15 @@ layout: default
                   </tbody>
                 </table>
               </div>
+            {% elsif section.name == "Certifications" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <div class="list-group">
+                {% for cert in site.data.certifications %}
+                  <button type="button" class="list-group-item list-group-item-action">{{ cert.Cert }}</button>
+                {% endfor %}
+                </div>
+              </div>
             {% elsif section.name == "Coursework" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
                 <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>

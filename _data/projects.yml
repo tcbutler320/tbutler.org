@@ -26,3 +26,15 @@
     - PhpMyAdmin
     - Digital Ocean
 
+- name: jPigLatin
+  id: jPigLatin
+  description: >
+    JPigLatin is a pig-latin translation and speech synthesis application powered by my jPigLatin npm package. Check it out at <a href="https://jpiglatin.com/">JPigLatin.com</a>
+  date: true
+  link: https://github.com/tcbutler320/jPigLatin.com
+  image: /assets/img/projects/npm.png
+  tech: 
+    - NPM
+    - JavaScript
+
+

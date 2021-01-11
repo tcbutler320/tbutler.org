@@ -43,7 +43,7 @@ phonenumber:
 # -----------BLOG SETTINGS---------------#
 #========================================#
 
-tags:  ctf bug-bounty devops jekyll
+tags:  ctf bug-bounty devops jekyll certifications
 
 comments: false                                     # Used to enable comments on blog posts
 gitalk_client_id:             

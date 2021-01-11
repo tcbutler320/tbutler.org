@@ -11,10 +11,14 @@ layout: page
       {% if page.author %}
       <p><i>Written By: {{ page.author }}</i></p>
       {% endif %}
+      <!-- Sharingbutton Facebook -->
+      {% include sharing-socials.html %}
       <p class="card-text">{{ content | markdownify }}</p>
       {% if site.comments %}
       <div id="gitalk-container"></div>
       {% endif %}
+        <!-- Sharingbutton Facebook -->
+      {% include sharing-socials.html %}
     </div>
     <div class="card-footer text-muted">
       Posted on {{ page.date }} 

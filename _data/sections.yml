@@ -30,9 +30,3 @@
   content: 
   url: projects.html
   first: false
-
-- name: Certifications
-  id: certifications
-  description: My Certifications
-  content: 
-  first: false

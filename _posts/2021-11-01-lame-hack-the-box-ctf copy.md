@@ -1,10 +1,10 @@
 ---
 title: Lame, Hack the Box CTF Walkthrough
-description: Lame, Hack the Box CTF Walkthrough
+description: Abusing SMB with metasploit to achieve root compromise of a linux machine
 tag: CTF
-image: /assets/img/posts/2020-01-11-lame-hack-the-box-walkthrough/lame.png
+image: /assets/img/posts/2021-01-11-lame-hack-the-box-walkthrough/lame.png
 layout: post
-description: "Lame, Hack the Box CTF Walkthrough"
+description: "Abusing SMB with metasploit to achieve root compromise of a linux machine"
 date:   2021-01-10 20:01:21 -0400
 last-updated: 2021-01-10 20:01:21 -0400
 tag: ctf

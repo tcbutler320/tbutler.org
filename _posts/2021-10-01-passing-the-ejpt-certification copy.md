@@ -5,9 +5,9 @@ tag: CTF
 image: /assets/img/butler,tyler-eJPT-cert.png
 layout: post
 description: "My thoughts on eLearnSecurity's eJPT Course and Exam "
-date:   2020-10-29 20:01:21 -0400
-last-updated: 2020-10-26 20:01:21 -0400
-tag: ctf
+date:   2021-01-10 20:01:21 -0400
+last-updated: 2021-01-10 20:01:21 -0400
+tag: certifications
 author: Tyler Butler
 ---
 

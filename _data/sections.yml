@@ -4,7 +4,7 @@
   url: publications.html
   first: true
 
-- name: Bug Bounties
+- name: Bug Bounties & 0-Day's
   id: bounties
   description: My Bug Bounties
   url: /

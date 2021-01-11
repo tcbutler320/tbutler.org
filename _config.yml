@@ -34,7 +34,8 @@ linkedin: tyler-b-a700a1aa
 stackoverflow: 12935605
 website: https://tbutler.org
 codepen: tcbutler320
-email: 
+medium: tbutler0x90
+email: developer.tbutler@gmail.com
 pgp: 
 ctftime: 
 phonenumber: 
@@ -45,19 +46,19 @@ phonenumber:
 
 tags:  ctf bug-bounty devops jekyll certifications
 
-comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
-gitalk_repo:
-gitalk_owner: 
-gitalk_admin: 
-gitalk_distraction_mode: false
+comments: true                                     # Used to enable comments on blog posts
+gitalk_client_id: 'd24925f8c7a51a0e7f6d'            
+gitalk_client_secret: '11c464cc50ce3c0a1323c0396b65674b90a630a4'   
+gitalk_repo: 'https://github.com/tcbutler320/tbutler.org'
+gitalk_owner: 'tcbutler320'
+gitalk_admin:  ['tcbutler320']
+gitalk_distraction_mode: true
 
 # =======================================#
 # -----------THEME SETTINGS--------------#
 #========================================#
 
-nav-color: "#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
+nav-color: "#00334e" #"#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
 footer-color: "#00334e"
 color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values 
 card-color: "#00334e"                                # Used on cards like the home highlights section

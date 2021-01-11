@@ -15,3 +15,10 @@
 .dropdown-toggle::after {
   display: none;
 }
+
+
+.navbar-nav {
+  > h1,h2,h3,h4,h5,p {
+    color: #0d335d;
+  }
+}

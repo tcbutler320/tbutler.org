@@ -41,6 +41,7 @@ layout: default
         <p class="card-text">{{ content | markdownify }}</p>
         {% if site.home_option == "education" %}
           {% include education.html %}
+          {% include certifications.html %}
         {% elsif site.home_option == "timeline" %}
           {% include timeline.html %}
         {% elsif site.home_option =="skills" %}
@@ -132,7 +133,7 @@ layout: default
                     </div>
                     {% endfor %}
               </div>
-            {% elsif section.name == "Bug Bounties" %}
+            {% elsif section.name == "Bug Bounties & 0-Day's" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
                 <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
                 <table class="table table-striped">

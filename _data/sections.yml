@@ -3,6 +3,7 @@
   description: My Publications
   url: publications.html
   first: true
+  jsid: foo
 
 - name: Bug Bounties & 0-Day's
   id: bounties
@@ -10,12 +11,16 @@
   url: /
   content: 
   first: false
+  jsid: foo1
+
   
 - name: Coursework
   id: courses
   description: Releveant Course Work
   content: 
   first: false
+  jsid: foo2
+
 
 - name: Teaching
   id: teaching
@@ -23,6 +28,8 @@
   content: 
   url: teaching.html
   first: false
+  jsid: foo3
+
 
 - name: Projects
   id: projects
@@ -30,3 +37,5 @@
   content: 
   url: projects.html
   first: false
+  jsid: foo4
+

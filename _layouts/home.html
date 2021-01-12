@@ -65,11 +65,11 @@ layout: default
       {% for section in site.data.sections %}
         {% if section.first %}
           <li class="nav-item">
-            <a class="nav-link active" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}}" aria-selected="true">{{section.name}}</a>
+            <a class="nav-link active" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true">{{section.name}}</a>
           </li>
         {% else %}
           <li class="nav-item">
-              <a class="nav-link text-light"  href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="false">{{section.name}}</a>
+              <a class="nav-link text-light" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" >{{section.name}}</a>
           </li>
         {% endif %}
       {% endfor %}
@@ -202,35 +202,6 @@ layout: default
 <script>
 $('body').scrollspy({ target: '#list-example' })
 </script>
-
-
-<script>
-var ctx = document.getElementById('myBarChart').getContext('2d');
-var myBarChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: 'My Skills',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-
-
-
-
 
 <script>
 $('.collapse').collapse()

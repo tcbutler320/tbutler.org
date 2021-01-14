@@ -5,19 +5,29 @@ title: Contact Me
 header-img:  
 last-updated: 2020-10-30 5:55 PM
 ---
-<h1 class="mx-auto" style="font-family:Courgette;">{{ page.title }}</h1>
+
+<h3>
+  {{ page.title }}
+  <small class="text-muted">{{ page.description }}</small>
+</h3>
+<p> Feel free to reach out to me on <a href="https://twitter.com/tbutler0x90" class="highlighted">Twitter</a> or <a href="https://www.linkedin.com/in/tyler-b-a700a1aa/" class="highlighted">Linkedin</a>. You can also send me a message through the netlify form api below.</p>
+
 
 <form name="contact" method="POST" data-netlify="true">
-  <p>
-    <label>Your Name: <input type="text" name="name" /></label>   
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-  <p>
-    <button class="btn text-white" style="background-color:#00334e;" type="submit">Send</button>
-  </p>
+  <div class="mb-3">
+    <label for="inputForName" class="form-label">Your Name</label>
+    <input type="name" name="name" class="form-control" id="inputForName"/>
+  </div>
+  <div class="mb-3">
+    <label for="inputforMessage" class="form-label">Message</label>
+    <textarea type="message" name="message" class="form-control" id="inputforMessage"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="inputforEmail" class="form-label">Email</label>
+    <input type="email" name="email" class="form-control" id="inputforEmail">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+

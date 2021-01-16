@@ -17,6 +17,7 @@ Lame is an easy level retired capture the flag machine from Hack the Box. This w
 ## Getting Started   
 After connecting to the hack the box network via openvpn, the first thing I did was use a basic nmap scan to search for the top 200 open ports. The scan shows 4 open ports running services including ftp, ssh, netbiod, and microsoft-ds.
 
+
 ```bash
 ┌──(kali㉿kali)-[~/Documents/htb/lame]
 └─$ nmap --top-ports 200 -Pn 10.10.10.3                                                    

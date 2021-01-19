@@ -1,18 +1,17 @@
-- name: Publications
-  id: publications
-  description: My Publications
-  url: publications.html
-  first: true
-  jsid: foo
-
-- name: Bug Bounties & 0-Day's
+- name: 0-Day Disclosures
   id: bounties
   description: My Bug Bounties
   url: /
   content: 
-  first: false
+  first: true
   jsid: foo1
 
+- name: Publications
+  id: publications
+  description: My Publications
+  url: publications.html
+  first: false
+  jsid: foo
   
 - name: Coursework
   id: courses

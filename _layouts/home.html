@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% assign theme = site.data.themes[site.ui_theme] %}
 
 <!--  HELP TIPS SECTION  -->
 <!-- used only for develop mode, disable these in _config.yml with `help_tips: false` -->
@@ -33,43 +34,37 @@ layout: default
     <!-- EDUCATION SECTION -->
     <div class="col-md-8">
       {% if site.animate %}
-      <div class="card-body animate__animated animate__fadeInRight" style:"height: .5rem;">
+      <div class="card-body animate__animated animate__fadeInRight">
       {% else %}
-      <div class="card-body">
+      <div class="card-body mt-0">
       {% endif %}
-        <h5 class="card-title">{{ page.title }}</h5>
-        <p class="card-text">{{ content | markdownify }}</p>
+        <p>{{ content | markdownify}}<p>
         {% if site.home_option == "education" %}
           {% include education.html %}
-          {% include certifications.html %}
-        {% elsif site.home_option == "timeline" %}
-          {% include timeline.html %}
-        {% elsif site.home_option =="skills" %}
-        <canvas id="myBarChart" height="50"></canvas>
         {% endif %}
-        <p class="card-text"><small class="text-muted"><i>Last updated {{ page.date }}</i></small></p>
       </div>
     </div>
   </div>
 </div>
 
+
 <!-- HOME HIGHLIGHTS SECTION --> 
 <h5 class="card-title text-center mb-3"></h5>
 {% if site.animate %}
-<div class="card mx-auto mb-1 animate__animated animate__slideInUp animate__delay-1s" style="max-width: 100%;">
+<div class="card mx-auto animate__animated animate__slideInUp animate__delay-1s glowing-border" style="max-width: 100%;">
 {% else %}
-<div class="card mx-auto mb-1 " style="max-width: 100%;">
+<div class="card mx-auto mb-1 border-0" style="max-width: 100%;">
 {% endif %}
-  <div class="card-header" style="background-color:{{ site.card-color }};">
+  <div class="card-header" style="background-color:{{ theme.highlights-tab-color }};border-style:{{ theme.border-style}}">
     <ul class="nav nav-tabs card-header-tabs" id="test-list" role="tablist">
       {% for section in site.data.sections %}
         {% if section.first %}
           <li class="nav-item">
-            <a class="nav-link active" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true">{{section.name}}</a>
+            <a class="nav-link shadow-none" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.name}}</a>
           </li>
         {% else %}
           <li class="nav-item">
-              <a class="nav-link text-light" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" >{{section.name}}</a>
+              <a class="nav-link" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.name}}</a>
           </li>
         {% endif %}
       {% endfor %}
@@ -79,11 +74,31 @@ layout: default
       <div class="tab-content mt-3">
         {% for section in site.data.sections %}
           {% if section.first %}
-            {% if section.name == "Publications" %}
+            {% if section.name == "0-Day Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
-                <h5 class="card-title text-center" style="font-family:Courgette;"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
-                <small> Non Peer Reviewed </small>
-                <p class="card-text">{% bibliography -f papers %}</p>
+                <p><i>As a freelance security researcher, I try to constantly learn new techniques for finding vulnerabilities in everyday applications and software. Below is a list of my findings to date, including bug bounties and 0-day vulnerabilities disclosed as part of responsible disclosure guidelines</i></p>
+                <table class="table table-hover table-bordered">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Platform</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for bounty in site.data.bounties %}
+                    <tr>
+                      <th scope="row">{{ bounty.num}}</th>
+                      <th scope="row">{{ bounty.Date }}</th>
+                      <td><a class="highlighted" href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
+                      <td>{{ bounty.Vendor }}</td>
+                      <td>{{ bounty.Platform }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
             {% else %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
@@ -133,29 +148,11 @@ layout: default
                     </div>
                     {% endfor %}
               </div>
-            {% elsif section.name == "Bug Bounties & 0-Day's" %}
+            {% elsif section.name == "Publications" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
-                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
-                <table class="table table-striped">
-                  <thead class="thead">
-                    <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Vendor</th>
-                      <th scope="col">Platform</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for bounty in site.data.bounties %}
-                    <tr>
-                      <th scope="row">{{ bounty.Date }}</th>
-                      <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
-                      <td>{{ bounty.Vendor }}</td>
-                      <td>{{ bounty.Platform }}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
+                <h5 class="card-title text-center" style="font-family:Courgette;"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
+                <small> Non Peer Reviewed </small>
+                <p class="card-text">{% bibliography -f papers %}</p>
               </div>
             {% elsif section.name == "Coursework" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
@@ -177,6 +174,8 @@ layout: default
       </div>
   </div>
 </div>
+
+
 
 <!-- ANIMATE.JS ANIMATE LIBRARY
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous"></script>
@@ -211,3 +210,18 @@ $('.collapse').collapse()
 $('.show').show()
 </script>
 
+
+<script>
+var i = 0;
+var txt = 'I’m a cyber risk consultant, mainframe developer, freelance security researcher, and passionate open-source contributer. At Deloitte, I help modernize legacy IBM mainframe applications. In my own time, I conduct vulnerability research and compete in CTF competitions to better understand the cyber threat landscape.'; /* The text */
+var speed = 100; /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("about").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+// window.onload = typeWriter;
+</script>

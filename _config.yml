@@ -75,6 +75,10 @@ home_option: education                               # options: education, skill
 #========================================#          #     developers as they look into using this theme      
 help_tips: false                                    # options: true, false  | use false to disable these for production mode
 
+#========================================#
+# --------- UI THEMES -------------------#
+#========================================#
+ui_theme: minimal 
 
 # =======================================#
 # -----------BUILD SETTINGS--------------#
@@ -90,6 +94,7 @@ plugins:
   - jekyll-scholar
   - jekyll-environment-variables
   - jekyll-algolia
+  - jekyll-admin
 
 sass:
   sass_dir: _sass

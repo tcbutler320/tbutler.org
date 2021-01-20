@@ -8,6 +8,7 @@ last-updated: 2020-10-26 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
 lead: "VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability."
+card: card-2
 ---
 
 VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability. My workstation setup included VMware fusion and the 2020 release of Kali Linux for VMware which can be found on Offensive Securities VM Image Download Page. One interesting aspect of this challenge is the use of a vulnerable E-learning platform from the Greek University Network GUnet.

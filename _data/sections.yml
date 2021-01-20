@@ -1,6 +1,6 @@
 - name: 0-Day Disclosures
   id: bounties
-  description: My Bug Bounties
+  description: As a freelance security researcher, I try to constantly learn new techniques for finding vulnerabilities in everyday applications and software. Below is a list of my findings to date, including bug bounties and 0-day vulnerabilities disclosed as part of responsible disclosure guidelines
   url: /
   content: 
   first: true
@@ -9,7 +9,7 @@
 
 - name: Publications
   id: publications
-  description: My Publications
+  description: Below is a short list of articles and research papers I've published. For more information or to read the full article, click the linked icons below.
   url: publications.html
   first: false
   jsid: foo
@@ -18,7 +18,7 @@
   
 - name: Coursework
   id: courses
-  description: Releveant Course Work
+  description: Below is a short overview of courses I've taken while at The Pennsylvania State University.
   content: 
   first: false
   jsid: foo2
@@ -27,7 +27,7 @@
 
 - name: Teaching
   id: teaching
-  description: Courses I've Taught
+  description: Below is a short overview of courses I've help teach as an undergrad at The Pennsylvania State University.
   content: 
   url: teaching.html
   first: false
@@ -37,7 +37,7 @@
 
 - name: Projects
   id: projects
-  description: My Projects
+  description: As a passionate open source developer, I spent much of my time writting and reviewing code. Below is a couple projects I am currently hacking on. If you're interested in the full list of projects I'm contributing to, please see my GitHub
   content: 
   url: projects.html
   first: false

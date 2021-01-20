@@ -10,6 +10,7 @@ last-updated: 2020-10-26 20:01:21 -0400
 tag: bug-bounty
 author: Tyler Butler
 lead: This report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user img could be accessed in their original and unedited state.
+card: card-3
 ---
 
 <a href="/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf">

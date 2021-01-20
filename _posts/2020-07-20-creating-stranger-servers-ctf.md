@@ -9,6 +9,7 @@ date:   2020-10-29 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
 author: Tyler Butler
 lead: "Stranger Servers is the first CTF Challenge I've created. The basic web challenge consists of a 90's themed website with a hidden vulnerable php application. The inspiration for the backend comes from an older php application called timeclock which has several reported vulnerabilities"
+card: card-2
 ---
 >  Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge
 

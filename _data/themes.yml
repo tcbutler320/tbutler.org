@@ -25,4 +25,5 @@ minimal:
     post-tag-size: "20px"
     post-title-size: "36px"
     post-author-size: "15px"
+    post-font-weight: "700"
 

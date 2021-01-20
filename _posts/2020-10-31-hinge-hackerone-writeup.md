@@ -5,10 +5,11 @@ summary: Abusing default settings in the Cloudinary Image Transformation API
 tag: Bug Bounty
 image: /assets/img/posts/2020-07-05-hackerone-hinge/hinge-preview.png
 layout: post
-date:   2020-10-30 20:01:21 -0400
+date:   2020-10-31 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
 tag: bug-bounty
 author: Tyler Butler
+lead: This report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user img could be accessed in their original and unedited state.
 ---
 
 <a href="/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf">
@@ -23,7 +24,7 @@ author: Tyler Butler
 
 Hinge is a dating application for android and iOS devices launched in 2013. Like its competitors Tinder and Bumble, it enables users to search through a database of other users and match with potential dating partners. Offering features to create unique profiles, integrate with existing social platforms, and chat with other users, it uses a mixture of proprietary code and third-party services. This report outlines a low risk misconfiguration disclosed to Hinge through Hackerone in March of 2020 by Tyler Butler and triaged in June 2020. Hackerone is a bug bounty platform that connects freelance security researchers with clients to enable public and private security vulnerability disclosure.  
 
-The report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user img could be accessed in their original and unedited state. This posed a minimal risk to users who intend to use the crop feature to remove undesirable and potentially sensitive aspects of profile photos. While is unlikely that leaving the application in its disclosed state would result in widespread sensitive information leak, Hinge decided to triage the application to mitigate the risks involved. To exploit the flaw on a large scale, an attacker would need a highly customized. 
+This report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user img could be accessed in their original and unedited state. This posed a minimal risk to users who intend to use the crop feature to remove undesirable and potentially sensitive aspects of profile photos. While is unlikely that leaving the application in its disclosed state would result in widespread sensitive information leak, Hinge decided to triage the application to mitigate the risks involved. To exploit the flaw on a large scale, an attacker would need a highly customized. 
 
 # Scope 
 

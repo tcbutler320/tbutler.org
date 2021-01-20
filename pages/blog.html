@@ -15,7 +15,9 @@ last-updated: 2020-10-30 5:55 PM
           {% for post in site.posts %}
               <div class="blogcard card-1 mb-4 mt-4" style="width: 100%;">
                 <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+                  <a href="#" class="badge badge-primary" style="background-color: rgba(78, 34, 208, 0.1);color: #4e22d0;">{{post.tag}}</a>  
                 <p>{{post.description}}</p>
+                <p><i>{{post.lead}}</i></p>
               </div>
           {% endfor %}
         </div>
@@ -36,7 +38,7 @@ last-updated: 2020-10-30 5:55 PM
     </div>
       <!-- Twitter Side Widget -->
       <div class="card my-4 shadow border-0">
-          <a class="twitter-timeline" data-height="1000" data-theme="light" href="https://twitter.com/{{ site.twitter }}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>           
+          <a class="twitter-timeline" data-height="2300" data-theme="light" href="https://twitter.com/{{ site.twitter }}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>           
       </div>
 
 

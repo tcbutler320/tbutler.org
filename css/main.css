@@ -514,6 +514,18 @@ border-radius: 0%;
   z-index: 0;
 }
 
+.sidewid {
+  position: fixed;
+  right: 0;
+  margin-right: 0px;
+  margin-top: 500px;
+  top: 0rem;
+  height: 10rem;
+  width: 20 rem;
+  z-index: 10;
+}
+
+
 .glowing-border {
   outline: none;
   border-color: #9ecaed;
@@ -589,3 +601,86 @@ a:link {color: black;}      /* unvisited link */
 a:visited {color: black;}   /* visited link */
 a:hover {color: black;}     /* mouse over link */
 a:active {color: black;}    /* selected link */
+
+
+
+/* regular - font-weight: 400 */
+@font-face {
+  font-family: 'Proxima';
+  src: url('https://static3.avast.com/10001188/web/o/f/400/proximanova-regular-webfont.woff2') format('woff2'), 
+       url('https://static3.avast.com/10001188/web/o/f/400/proximanova-regular-webfont.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* bold - font-weight: 700 */
+@font-face {
+  font-family: 'Proxima';
+  src: url('https://static3.avast.com/10001188/web/o/f/700/proximanova-bold-webfont.woff2') format('woff2'), 
+       url('https://static3.avast.com/10001188/web/o/f/700/proximanova-bold-webfont.woff') format('woff'); 
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+$font-family: Proxima, Helvetica, Arial, sans-serif;
+
+/* Badge */
+
+.badge {
+  font-family: Proxima;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.badge-primary {
+  background-color: rgba(78, 34, 208, 0.1);
+  color: #4e22d0;
+}
+
+.badge-secondary {
+  background-color: rgba(255, 120, 0, 0.1);
+  color: #ff7800;
+}
+
+/* Size modifications */
+.badge-m {
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
+.badge-s {
+  font-size: 11px;
+  padding: 5px 12px;
+}
+
+.badge-xs {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+/* Tag */
+
+.badge-pill {
+  background-color: #e9e8f3;
+  color: rgba(38, 28, 106, 0.7);
+  padding: 10px 16px;
+  &:hover {
+  background-color: #514988 !important;
+  color: #fff;
+  }
+  &:focus {
+  background-color: #514988 !important;
+  color: #fff;
+  }
+}
+
+/* Layout */
+
+.wrap {
+  display: flex;
+  font-family: Proxima;
+  margin: 5% 0 0 15%;
+}

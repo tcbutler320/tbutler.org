@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% assign theme = site.data.themes[site.ui_theme] %}
 <html>
   {% include head-blog.html %}
   <body>
@@ -13,7 +14,7 @@
                 {{ content }}
             </p>
             {% if page.last-updated %}
-              <p class="card-text"><small class="text-muted">Last updated {{ page.last-updated }}</small></p>
+              <p class="card-text"><small class="text-muted">This page was last updated at {{ "now" | date: "%Y-%m-%d %H:%M" }}.</small></p>
             {% endif %}
           </div>
       </div>
@@ -24,7 +25,8 @@
                 {{ content }}
             </p>
             {% if page.last-updated %}
-              <p class="card-text"><small class="text-muted">Last updated {{ page.last-updated }}</small></p>
+              <p class="card-text"><small class="text-muted">This page was last updated at {{ "now" | date: "%Y-%m-%d %H:%M" }}.
+</small></p>
             {% endif %}
           </div>
       </div>

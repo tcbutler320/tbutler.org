@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+{% assign theme = site.data.themes[site.ui_theme] %}
 <html>
   {% include head.html %}
   <body>
     {% include nav.html %}
-    <div class="dumbarton-spacer-sm"></div>
     <div class="container">
-      {{ content }}
-    </div>
+    {{ content }}
     {% include footer.html %}
+    </div>
   </body>
 </html>

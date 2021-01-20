@@ -1,27 +1,18 @@
 ---
 layout: page
 ---
+{% assign theme = site.data.themes[site.ui_theme] %}
 
-         
-<!-- Blog Post -->
-  <div class="card border-0"  style="max-width: 100%;">
-    <img class="card-img-top" src="{{ page.image }}" alt="Card image cap">
-    <div class="card-body">
-      <h1 class="card-title" style="font-family:Courgette;">{{ page.title }}</h1>
-      {% if page.author %}
-      <p><i>Written By: {{ page.author }}</i></p>
-      {% endif %}
-      <!-- Sharingbutton Facebook -->
-      {% include sharing-socials.html %}
-      <p class="card-text">{{ content | markdownify }}</p>
-      
-        <!-- Sharingbutton Facebook -->
-      {% include sharing-socials.html %}
-    </div>
-    <div class="card-footer text-muted">
-      Posted on {{ page.date }} 
-    </div>
+<div class="card border-0" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title text-center" style="font-size:{{ theme.post-tag-size }};">{{ page.tag }}</h5>
+    <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};">{{ page.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-center" style="font-size:{{ theme.post-author-size }};">Author: {{page.author}} | Published {{page.date}}</h6>
+    {% include social-cards-copy.html %}
+    <p class="card-text">{{ content | markdownify }}</p>
+    <a href="https://twitter.com/tbutler0x90?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @tbutler0x90</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
+</div>
 
   <!-- Commetn Widget -->
 {% if site.comments %}

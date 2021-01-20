@@ -6,7 +6,7 @@
     {% if entry.type == "thesis" %}
       {{reference}}
     {% else %}
-      <div class="title font-weight-bold">{{entry.title}}</div>
+      <div class="title font-weight-bold" style="font-family:{{ theme.font}}">{{entry.title}}</div>
       <div class="author">
         {% for author in entry.author_array %}
           {% if forloop.length == 1 %}

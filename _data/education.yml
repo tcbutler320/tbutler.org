@@ -1,6 +1,13 @@
 - School: The Pennsylvania State University
   Degree: 
   Program: BS Security and Risk Analysis, BA Criminology
+  Start-Date: August 2014
+  End-Date:  December 2018
+  Icon: /assets/img/icons/psu.png        # Make this icon small, think 30px/30px
+
+- School: Junior Penetration Tester (eJPT)
+  Degree: 
+  Program: Accredited by eLearnSecurity 
   Start Date: 
   End Date: 
-  Icon: /assets/img/icons/psu.png        # Make this icon small, think 30px/30px
+  Icon: /assets/img/certs/1x/eJPT.png        # Make this icon small, think 30px/30px

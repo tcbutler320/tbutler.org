@@ -175,10 +175,7 @@ a.highlighted:hover {
   flex: 1 0 auto;
 }
 
-.typewriter{
-  font-family: Courgette;
-  font-size: large;
-}
+
 .resp-sharing-button__link,
 .resp-sharing-button__icon {
   display: inline-block
@@ -460,3 +457,135 @@ background-color: #FF6600
 .highlight .vi { color: #fb660a } /* Name.Variable.Instance */
 .highlight .vm { color: #fb660a } /* Name.Variable.Magic */
 .highlight .il { color: #0086f7; font-weight: bold } /* Literal.Number.Integer.Long */
+
+
+S - card-header Bootstrap 4CSS
+ .heading-footer 
+{ 
+background-image: url(bg.jpg); 
+background-size: cover; 
+height: 175px; 
+-webkit-box-shadow: none; 
+box-shadow: none; 
+border: 0px; 
+border-radius: 0px; 
+}   
+
+.panel-profile-img 
+{ 
+max-width: 250px; 
+margin-top: -160px; 
+margin-bottom: 5px; 
+border: 3px solid #fff; 
+border-radius: 0%; 
+}
+
+.heading-footer 
+{ 
+background-image: url(/assets/img/publications.png); 
+background-size: cover; 
+height: 175px; 
+-webkit-box-shadow: none; 
+box-shadow: none; 
+border: 0px; 
+border-radius: 0px; 
+}   
+ 
+.panel-profile-img 
+{ 
+max-width: 250px; 
+margin-top: -160px; 
+margin-bottom: 5px; 
+border: 3px solid #fff; 
+border-radius: 0%; 
+}
+
+
+.sidenav {
+  transform: rotateZ(90deg);
+  transform-origin: bottom left;
+  position: absolute;
+  left: 0;
+  margin-left: 0px;
+  margin-right: 5px;
+  top: -3rem;
+  height: 2rem;
+  width: 12rem;
+  z-index: 0;
+}
+
+.glowing-border {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+.glowing-border:focus { 
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+.glowing-border:hover { 
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 20px #9ecaed;
+}
+
+
+.blogcard{
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
+}
+
+.blogcard:hover{
+   transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.blogcard h3{
+font-weight: 600;
+}
+
+.blogcard img{
+position: absolute;
+top: 20px;
+right: 15px;
+max-height: 120px;
+}
+
+.card-1{
+background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+    background-repeat: no-repeat;
+  background-position: right;
+  background-size: 80px;
+}
+
+.card-2{
+ background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
+    background-repeat: no-repeat;
+  background-position: right;
+  background-size: 80px;
+}
+
+.card-3{
+ background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+    background-repeat: no-repeat;
+  background-position: right;
+  background-size: 80px;
+}
+
+@media(max-width: 990px){
+.blogcard{
+  margin: 20px;
+}
+} 
+
+a:link {color: black;}      /* unvisited link */
+a:visited {color: black;}   /* visited link */
+a:hover {color: black;}     /* mouse over link */
+a:active {color: black;}    /* selected link */

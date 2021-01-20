@@ -73,23 +73,22 @@ last-updated: 2020-10-30 5:55 PM
   </div>
 </div>
 
-
-<form name="contact" method="POST" data-netlify="true">
-  <div class="mb-3 mt-5">
-    <label for="inputForName" class="form-label">Your Name</label>
-    <input type="name" name="name" class="form-control" id="inputForName"/>
+<div class="card shadow">
+  <div class="container">
+    <form name="contact" method="POST" data-netlify="true">
+      <div class="mb-3 mt-5">
+        <input type="name" placeholder="Your Name" name="name" class="form-control" id="inputForName"/>
+      </div>
+      <div class="mb-3">
+        <textarea type="message" placeholder="Your Message" name="message" class="form-control" id="inputforMessage"></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="email" placeholder="Your Email" name="email" class="form-control" id="inputforEmail">
+      </div>
+      <button type="submit" class="btn btn-primary mb-4">Submit</button>
+    </form>
   </div>
-  <div class="mb-3">
-    <label for="inputforMessage" class="form-label">Message</label>
-    <textarea type="message" name="message" class="form-control" id="inputforMessage"></textarea>
-  </div>
-  <div class="mb-3">
-    <label for="inputforEmail" class="form-label">Email</label>
-    <input type="email" name="email" class="form-control" id="inputforEmail">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+</div>
 
 
 

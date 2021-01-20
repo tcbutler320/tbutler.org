@@ -4,11 +4,9 @@
   {% include head-blog.html %}
   <body>
     {% include nav.html %}
-    <div class="dumbarton-spacer-sm"></div>
     <div class="container">
       {% if page.header-img %}
-      <div class="card mb-3 border-0">
-        <img class="card-img-top rounded-lg" src="{{ page.header-img }}" alt="Card image cap">
+      <div class="card border-0">
           <div class="card-body">
             <p class="card-text">
                 {{ content }}
@@ -19,7 +17,7 @@
           </div>
       </div>
       {% else %}
-      <div class="card mb-3 border-0">
+      <div class="card border-0">
           <div class="card-body">
             <p class="card-text">
                 {{ content }}

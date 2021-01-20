@@ -3,61 +3,26 @@ layout: page
 ---
 {% assign theme = site.data.themes[site.ui_theme] %}
 
-<div class="card border-0" style="width: 100%;">
+
+
+<div class="blogcard card-1 mb-4 mt-4" style="width: 100%;">
   <div class="card-body">
     <h5 class="card-title text-center" style="font-size:{{ theme.post-tag-size }};">{{ page.tag }}</h5>
-    <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};">{{ page.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-center" style="font-size:{{ theme.post-author-size }};">Author: {{page.author}} | Published {{page.date}}</h6>
+    <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title }}</h5>
+    <h6 class="card-subtitle text-center" style="font-size:{{ theme.post-author-size }};">Author: {{page.author}} | Published {{page.date}}</h6>
     {% include social-cards-copy.html %}
+  </div>
+</div>
+
+<div class="card border-0" style="width: 100%;">
+  <div class="card-body">
     <p class="card-text">{{ content | markdownify }}</p>
     <a href="https://twitter.com/tbutler0x90?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @tbutler0x90</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
 </div>
 
-  <!-- Commetn Widget -->
-{% if site.comments %}
-  <div class="card mt-2">
-    <h5 class="card-header">Recent Comments on <span id="postid">{{page.title}}</span></h5>
-    <div class="card-body">
-      <div id="gitalk-container"></div>
-    </div>
-  </div>
-{% endif %}
-
-  <!-- Bottom Widget -->
-  <div class="card mt-2">
-    <h5 class="card-header">All Articles</h5>
-    <div class="card-body">
-    {% for post in site.posts %}
-          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-    </div>
-  </div>
-
-<!-- Categories Widget -->
-<div class="card mt-2">
-  <h5 class="card-header">Categories</h5>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-lg-6">
-        <ul class="list-unstyled mb-0">
-          {% for tag in site.tags %}
-          <li>
-            <a href="#" class="btn btn-sm mt-1 mb-1 text-white" style="background-color:{{ site.card-color }}">{{ tag[0] }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
 
 <script>
 var id = document.getElementById("postid").innerHTML;

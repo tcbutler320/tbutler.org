@@ -75,7 +75,7 @@ layout: default
             {% if section.name == "0-Day Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
                 <p><i>{{section.description}}</i></p>
-                <table class="table table-hover table-light table-bordered table-sm">
+                <table class="table table-light table-bordered table-sm">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -149,7 +149,6 @@ layout: default
             {% elsif section.name == "Publications" %}
               <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
                 <p><i>{{section.description}}</i></p>
-                <small> Non Peer Reviewed </small>
                 <p class="card-text">{% bibliography -f papers %}</p>
               </div>
             {% elsif section.name == "Coursework" %}

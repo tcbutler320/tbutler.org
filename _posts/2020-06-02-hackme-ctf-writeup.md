@@ -9,8 +9,8 @@ date:   2020-10-29 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
+lead: "Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine."
 ---
-
 
 Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.
 

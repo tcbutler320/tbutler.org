@@ -22,3 +22,7 @@ minimal:
     certification-section-size: "15px"
     highlights-tab-color: "White"
     border-style: ""
+    post-tag-size: "20px"
+    post-title-size: "36px"
+    post-author-size: "15px"
+

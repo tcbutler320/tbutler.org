@@ -5,6 +5,8 @@ gem 'jekyll-feed'
 gem 'jekyll-scholar'
 gem 'jekyll-environment-variables'
 gem 'jekyll-admin'
+gem 'jekyll-algolia', '~> 1.0'
+
 
 group :jekyll_plugins do
     gem 'jekyll-algolia', '~> 1.0'

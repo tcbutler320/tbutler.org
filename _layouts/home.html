@@ -1,8 +1,6 @@
 ---
 layout: default
 ---
-{% assign theme = site.data.themes[site.ui_theme] %}
-
 <!--  HELP TIPS SECTION  -->
 <!-- used only for develop mode, disable these in _config.yml with `help_tips: false` -->
 {% if site.help_tips %}
@@ -22,8 +20,8 @@ layout: default
 {% endif %}
 
 <!-- ABOUT ME SECTION -->
-<div class="card mx-auto border-0">
-  <div class="row no-gutters">
+<div class="card mx-auto border-0" style="position:relative;">
+  <div class="row">
     <div class="col-md-4">
       {% if site.animate %}
         <img src="{{ site.profile_image }}" class="img-thumbnail float-left animate__animated animate__fadeInLeft shadow bg-white rounded" alt="...">
@@ -39,6 +37,7 @@ layout: default
       <div class="card-body mt-0">
       {% endif %}
         <p>{{ content | markdownify}}<p>
+        <a href="/contact" class="btn glowing-border">Contact Me</a>
         {% if site.home_option == "education" %}
           {% include education.html %}
         {% endif %}
@@ -46,7 +45,6 @@ layout: default
     </div>
   </div>
 </div>
-
 
 <!-- HOME HIGHLIGHTS SECTION --> 
 <h5 class="card-title text-center mb-3"></h5>
@@ -60,11 +58,11 @@ layout: default
       {% for section in site.data.sections %}
         {% if section.first %}
           <li class="nav-item">
-            <a class="nav-link shadow-none" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.name}}</a>
+            <a class="nav-link shadow-none" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}}</a>
           </li>
         {% else %}
           <li class="nav-item">
-              <a class="nav-link" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.name}}</a>
+              <a class="nav-link" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}}</a>
           </li>
         {% endif %}
       {% endfor %}
@@ -77,8 +75,8 @@ layout: default
             {% if section.name == "0-Day Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
                 <p><i>As a freelance security researcher, I try to constantly learn new techniques for finding vulnerabilities in everyday applications and software. Below is a list of my findings to date, including bug bounties and 0-day vulnerabilities disclosed as part of responsible disclosure guidelines</i></p>
-                <table class="table table-hover table-bordered">
-                  <thead class="thead-dark">
+                <table class="table table-hover table-light table-bordered table-sm">
+                  <thead>
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Date</th>

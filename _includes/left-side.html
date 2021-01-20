@@ -1,11 +1,11 @@
 {% assign theme = site.data.themes[site.ui_theme] %}
-<nav class="sidenav navbar navbar-expand-lg text-white" style="font-family:{{ theme.link-font }};background-color:none;">
+<nav class="sidenav navbar navbar-expand-lg" style="font-family:{{ theme.link-font }};background-color:none;">
   <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};">{{ site.title }}</h4></a>
   <button class="navbar-toggler text-{{ theme.button-color }}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="{{ site.nav-dIcon }}"></i>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
         {% for item in site.data.nav.links %}
               <li class="nav-item">
                   <a href="{{ item.url }}" behavior="scroll" class="nav-link" style="font-family:{{ theme.link-font }};color:{{ theme.nav-text}};">{{ item.title }}</a>

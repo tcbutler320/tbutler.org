@@ -5,6 +5,7 @@
   content: 
   first: true
   jsid: foo1
+  emoji: 👾
 
 - name: Publications
   id: publications
@@ -12,6 +13,8 @@
   url: publications.html
   first: false
   jsid: foo
+  emoji: 📚
+
   
 - name: Coursework
   id: courses
@@ -19,6 +22,7 @@
   content: 
   first: false
   jsid: foo2
+  emoji: 🎒
 
 
 - name: Teaching
@@ -28,6 +32,7 @@
   url: teaching.html
   first: false
   jsid: foo3
+  emoji: 👨‍🏫
 
 
 - name: Projects
@@ -37,4 +42,5 @@
   url: projects.html
   first: false
   jsid: foo4
+  emoji: 🧑‍💻
 

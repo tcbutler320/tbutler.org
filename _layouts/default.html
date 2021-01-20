@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+{% assign theme = site.data.themes[site.ui_theme] %}
 <html>
   {% include head.html %}
   <body>
     {% include nav.html %}
-    {% include left-side.html %}
     <div class="container">
-      {{ content }}
-    </div>
+    {{ content }}
     {% include footer.html %}
+    </div>
   </body>
 </html>

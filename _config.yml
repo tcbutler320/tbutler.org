@@ -17,9 +17,10 @@ image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva
 image_alt: Cyber risk consultant, security researcher, open source developer   # image description
 
 algolia:
-  application_id: ''
-  index_name: ''
-  search_only_api_key:                                                    
+  application_id: 'HVWUXX2QH8'
+  index_name: 'tbutler.org'
+  search_only_api_key: 'c9ba51f0479c3df145867ecece573d44'
+
 
 # =======================================#
 # -----------SITE SETTINGS---------------#
@@ -45,6 +46,7 @@ phonenumber:
 #========================================#
 
 tags:  ctf bug-bounty devops jekyll certifications
+code-highlight: atom-one-dark # dracula , see options at https://highlightjs.org/
 
 comments: true                                     # Used to enable comments on blog posts
 gitalk_client_id: 'd24925f8c7a51a0e7f6d'            
@@ -95,6 +97,7 @@ plugins:
   - jekyll-environment-variables
   - jekyll-algolia
   - jekyll-admin
+  - jekyll-algolia
 
 sass:
   sass_dir: _sass

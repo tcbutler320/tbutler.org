@@ -37,7 +37,6 @@ layout: default
       <div class="card-body mt-0">
       {% endif %}
         <p>{{ content | markdownify}}<p>
-        <a href="/contact" class="btn glowing-border">Contact Me</a>
         {% if site.home_option == "education" %}
           {% include education.html %}
         {% endif %}
@@ -49,7 +48,7 @@ layout: default
 <!-- HOME HIGHLIGHTS SECTION --> 
 <h5 class="card-title text-center mb-3"></h5>
 {% if site.animate %}
-<div class="card mx-auto animate__animated animate__slideInUp animate__delay-1s glowing-border" style="max-width: 100%;">
+<div class="card mx-auto animate__animated animate__slideInUp animate__delay-1s shadow" style="max-width: 100%;">
 {% else %}
 <div class="card mx-auto mb-1 border-0" style="max-width: 100%;">
 {% endif %}
@@ -90,7 +89,7 @@ layout: default
                     <tr>
                       <th scope="row">{{ bounty.num}}</th>
                       <th scope="row">{{ bounty.Date }}</th>
-                      <td><a class="highlighted" href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
+                      <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>
                       <td>{{ bounty.Platform }}</td>
                     </tr>

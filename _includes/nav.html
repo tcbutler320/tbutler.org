@@ -7,9 +7,22 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         {% for item in site.data.nav.links %}
+          {% if item.dropdown %}
+            <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{item.title}}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for section in item.sections %}
+                    <a class="dropdown-item" href="{{item.url}}">{{section}}</a>
+                    {% endfor %}
+                  </div>
+              </li>
+          {% else %}
               <li class="nav-item">
                   <a href="{{ item.url }}" class="nav-link" style="font-family:{{ theme.link-font }};color:{{ theme.nav-text}};">{{ item.title }}</a>
               </li>
+          {% endif %}
         {% endfor %}
     </ul>
     <ul class="navbar-nav  justify-content-end">

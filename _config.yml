@@ -13,10 +13,10 @@ email: developer.tbutler@gmail.com
 description: Cyber risk consultant, security researcher, open source developer
 baseurl:                                       # the subpath of your site, e.g. /blog
 url: "https://tbutler.org"          # the base hostname & protocol for your site, e.g. http://example.com
-image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg               # used to generate site link preview
+image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg              # used to generate site link preview
 image_alt: Cyber risk consultant, security researcher, open source developer   # image description
 
-algolia:
+algolia: 
   application_id: 'HVWUXX2QH8'
   index_name: 'tbutler.org'
   search_only_api_key: 'c9ba51f0479c3df145867ecece573d44'
@@ -81,7 +81,7 @@ help_tips: false                                    # options: true, false  | us
 #========================================#
 # --------- UI THEMES -------------------#
 #========================================#
-ui_theme: minimal 
+ui_theme: tbutler 
 
 # =======================================#
 # -----------BUILD SETTINGS--------------#

@@ -24,7 +24,7 @@ layout: default
   <div class="row">
     <div class="col-md-4">
       {% if site.animate %}
-        <img src="{{ site.profile_image }}" class="img-thumbnail float-left animate__animated animate__fadeInLeft shadow bg-white rounded" alt="...">
+        <img src="{{ site.profile_image }}" class="hero img-thumbnail float-left animate__animated animate__fadeInLeft shadow bg-white rounded" alt="...">
       {% else %}
         <img src="{{ site.profile_image }}" class="img-thumbnail float-left" alt="...">
       {% endif %}
@@ -74,11 +74,10 @@ layout: default
             {% if section.name == "0-Day Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
                 <p><i>{{section.description}}</i></p>
-                <table class="table table-light table-bordered table-sm">
+                <table class="table table-borderless table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Date</th>
+                      <th scope="col">Disclosed</th>
                       <th scope="col">Title</th>
                       <th scope="col">Vendor</th>
                       <th scope="col">Platform</th>
@@ -87,7 +86,6 @@ layout: default
                   <tbody>
                     {% for bounty in site.data.bounties %}
                     <tr>
-                      <th scope="row">{{ bounty.num}}</th>
                       <th scope="row">{{ bounty.Date }}</th>
                       <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>

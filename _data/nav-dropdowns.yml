@@ -6,10 +6,6 @@ links:
 
 - title: Blog
   url: blog.html
-  dropdown: true 
-  sections:
-    - CTF
-    - Certification
 
 - title: Vitae
   url: /assets/pdf/butler,tyler-resume.pdf

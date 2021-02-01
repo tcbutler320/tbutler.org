@@ -13,6 +13,19 @@ code {
     font: 0.85em Monaco, Courier, Monospace;
 }
 
+img.grayscale {
+  filter: gray;
+  filter:  grayscale(100%); /* IE6-9 */
+  -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+  transition: filter .2s;
+}
+img.grayscale:hover {
+  filter: none;
+  -webkit-filter: grayscale(0%);
+  transition: filter .2s;
+}
+
+
 
 
 a.highlighted, a.highlighted:link {
@@ -763,3 +776,7 @@ $bg-dark: #999999;
 $bg-darkest: #000;
 
 $footer-text-color: $text-color;
+
+
+
+

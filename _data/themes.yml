@@ -1,5 +1,5 @@
-minimal:
-    name: minimal
+tbutler:
+    name: tbutler
     nav-color: "#ffffff"
     nav-text: "#272343"
     title-font: "Noto Sans JP"
@@ -11,10 +11,10 @@ minimal:
     social-color: "Black"
     button-color: "black"
     education-title-font: "Noto Sans JP"
-    education-title-size: "18px"
+    education-title-size: "16px"
     education-entry-font: "Noto Sans JP"
-    education-entry-size: "18px"
-    education-section-size: "15px"
+    education-entry-size: "14px"
+    education-section-size: "14px"
     certification-title-font: "Noto Sans JP"
     certification-title-size: "18px"
     certification-entry-font: "Noto Sans JP"

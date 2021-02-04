@@ -13,6 +13,19 @@ code {
     font: 0.85em Monaco, Courier, Monospace;
 }
 
+.navbar {
+  border: solid;
+  border-width: 0px 0em 1px 0;
+  border-bottom-width: thin;
+}
+
+.post-author {
+  border: solid;
+  border-width: 0px 0em 1px 0;
+  border-bottom-width: thin;
+}
+
+
 img.grayscale {
   filter: gray;
   filter:  grayscale(100%); /* IE6-9 */
@@ -776,7 +789,6 @@ $bg-dark: #999999;
 $bg-darkest: #000;
 
 $footer-text-color: $text-color;
-
 
 
 

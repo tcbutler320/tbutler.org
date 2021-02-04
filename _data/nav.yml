@@ -8,8 +8,9 @@ links:
   url: blog.html
   dropdown: true 
   sections:
-    - CTF
-    - Certification
+    - Capture the Flag
+    - Bug Bounties
+    - Research
 
 - title: Vitae
   url: /assets/pdf/butler,tyler-resume.pdf

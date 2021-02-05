@@ -27,4 +27,5 @@ tbutler:
     post-author-size: "15px"
     post-font-weight: "700"
     pub-title-size: "28px"
+    project-badge-color: "light"
 

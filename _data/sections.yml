@@ -6,6 +6,7 @@
   first: true
   jsid: foo1
   emoji: 
+  num: 2
 
 - name: Publications
   id: publications
@@ -14,6 +15,7 @@
   first: false
   jsid: foo
   emoji: 
+  num: 1
 
   
 - name: Coursework
@@ -33,6 +35,7 @@
   first: false
   jsid: foo3
   emoji: 
+  num: 
 
 
 - name: Projects
@@ -43,4 +46,5 @@
   first: false
   jsid: foo4
   emoji: 
+  num: 
 

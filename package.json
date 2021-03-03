@@ -21,6 +21,6 @@
   "homepage": "https://github.com/tcbutler320/Dumbarton#readme",
   "dependencies": {
     "clipboard": "^2.0.6",
-    "pug": "^3.0.0"
+    "pug": "^3.0.1"
   }
 }

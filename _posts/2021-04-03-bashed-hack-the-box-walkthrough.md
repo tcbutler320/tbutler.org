@@ -13,7 +13,10 @@ lead: "Bashed is an easy level CTF challenge from HTB, solved with an initial us
 card: card-2
 ---
 
-Bashed is a boot to root CTF from the Hack the Box archives. This was one of my favorite retired HTB challenges so far. The challenge involves initial user compromise using a developer's misconfigured server, but requires significant more work to escalate privileges to root. This challenge forced me to think outside the box for managing shells and was overall a good CTF.  
+# Overview
+<a href="https://app.hackthebox.eu/machines/118" class="highlighted">Bashed</a> is a boot to root CTF from the Hack the Box archives. This was one of my favorite retired HTB challenges so far. The challenge involves initial compromise using a developer's misconfigured server and requires significant more work to escalate privileges to root. This challenge forced me to think outside the box for managing shells and was overall a good CTF.  
+
+
 
 ## Enumeration  
 
@@ -35,7 +38,7 @@ Nmap done: 1 IP address (1 host up) scanned in 7.05 seconds
 
 ## Web Application Testing   
 
-Second, I launched BurpSuite and a firefox browser to being inspecting the target's web application. In the background, I started `dirb` a directory brute forcing tool. The resulting dirb scan revealed a directory called `dev`.  
+Nexct, I launched BurpSuite and a firefox browser to being inspecting the target's web application. In the background, I started `dirb` a directory brute forcing tool. The resulting dirb scan revealed a directory called `dev`.  
 
 ```bash
 ┌──(kali㉿kali)-[~/Documents/htb/bashed]

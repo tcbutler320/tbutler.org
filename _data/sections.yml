@@ -5,7 +5,7 @@
   content: 
   first: true
   jsid: foo1
-  emoji: 
+  emoji: 👾
   num: 2
 
 - name: Publications
@@ -14,7 +14,7 @@
   url: publications.html
   first: false
   jsid: foo
-  emoji: 
+  emoji: 📚
   num: 1
 
   
@@ -24,7 +24,7 @@
   content: 
   first: false
   jsid: foo2
-  emoji: 
+  emoji: 🎒
 
 
 - name: Teaching
@@ -34,7 +34,7 @@
   url: teaching.html
   first: false
   jsid: foo3
-  emoji: 
+  emoji: 👨‍🏫
   num: 
 
 
@@ -45,6 +45,6 @@
   url: projects.html
   first: false
   jsid: foo4
-  emoji: 
+  emoji: 🤖
   num: 
 

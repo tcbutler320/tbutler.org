@@ -16,7 +16,6 @@ date: 2020-10-27
 </div>
 {% endif %}
 
-<p style="font-family:{{ theme.title-font }};font-weight:100;color:{{ theme.nav-text}};">
+
 I’m a cyber risk consultant, mainframe developer, freelance security researcher, and passionate open-source contributer. In my own time, I conduct vulnerability research and compete in CTF competitions to better understand the cyber threat landscape.
-</p>
 

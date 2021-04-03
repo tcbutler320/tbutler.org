@@ -1,5 +1,5 @@
 {% assign theme = site.data.themes[site.ui_theme] %}
-<nav class="navbar navbar-expand-lg sticky-top border-bottom" style="font-family:{{ theme.link-font }};background-color:{{ theme.nav-color }};opacity: 0.9;">
+<nav class="navbar navbar-expand-lg sticky-top border-bottom robo" style="font-family:{{ theme.link-font }};background-color:{{ theme.nav-color }};opacity:{{ theme.nav-opacity }};">
   <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};">{{ site.title }}</h4></a>
   <button class="navbar-toggler text-{{ theme.button-color }}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="{{ site.nav-dIcon }}"></i>
@@ -9,12 +9,12 @@
         {% for item in site.data.nav.links %}
           {% if item.dropdown %}
             <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" style="font-family:{{ theme.link-font }};color:{{ theme.nav-text}};" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{item.title}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% for section in item.sections %}
-                    <a class="dropdown-item" href="{{item.url}}">{{section}}</a>
+                    <a class="dropdown-item" style="font-family:{{ theme.link-font }};color:{{ theme.nav-drop-text}};" href="{{item.url}}">{{section}}</a>
                     {% endfor %}
                   </div>
               </li>

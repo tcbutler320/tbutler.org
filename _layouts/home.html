@@ -52,16 +52,16 @@ layout: default
 {% else %}
 <div class="card mx-auto mb-1 border-0" style="max-width: 100%;">
 {% endif %}
-  <div class="card-header" style="background-color:{{ theme.highlights-tab-color }};border-style:{{ theme.border-style}}">
+  <div class="card-header robo" style="background-color:{{ theme.highlights-tab-color }};border-style:{{ theme.border-style}}">
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="test-list" role="tablist">
       {% for section in site.data.sections %}
         {% if section.first %}
           <li class="nav-item">
-            <a class="nav-link shadow-none" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-light border animate__animated animate__tada animate__infinite">{{ section.num }}</span></a>
+            <a class="nav-link shadow-none graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-warning border">{{ section.num }}</span></a>
           </li>
         {% else %}
           <li class="nav-item">
-              <a class="nav-link" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-light border">{{ section.num }}</span></a>
+              <a class="nav-link graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-warning border">{{ section.num }}</span></a>
           </li>
         {% endif %}
       {% endfor %}
@@ -71,7 +71,7 @@ layout: default
       <div class="tab-content mt-3">
         {% for section in site.data.sections %}
           {% if section.first %}
-            {% if section.name == "0-Day Disclosures" %}
+            {% if section.name == "0-Day & Bug Bounty Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
                 <p><i>{{section.description}}</i></p>
                 <table class="table table-borderless table-hover">

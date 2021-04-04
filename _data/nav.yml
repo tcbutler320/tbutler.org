@@ -6,14 +6,11 @@ links:
 
 - title: Blog
   url: blog.html
-  dropdown: true 
+  dropdown: false 
   sections:
     - Capture the Flag
     - Bug Bounties
     - Research
-
-- title: Contact for Resume
-  url: contact.html
 
 - title: Contact
   url: contact.html

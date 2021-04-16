@@ -1,3 +1,11 @@
+- Title: "Undisclosed Vulnerability on Blockfi via HackerOne"
+  Date: 04/16/2021
+  CVE: N/A
+  Platform: Hackerone
+  Vendor: BlockFi
+  Link: https://hackerone.com/tcbutler320?type=user
+  num: 0
+
 - Title: "Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application"
   Date: 05/20/2020
   CVE: N/A

@@ -57,7 +57,7 @@ layout: default
       {% for section in site.data.sections %}
         {% if section.first %}
           <li class="nav-item">
-            <a class="nav-link shadow-none graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-warning border">3</span></a>
+            <a class="nav-link shadow-none graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-warning border">{{ section.num }}</span></a>
           </li>
         {% else %}
           <li class="nav-item">
@@ -78,10 +78,12 @@ layout: default
                   <caption>Publically Disclosed Vulnerabilities</caption>
                   <thead>
                     <tr>
-                      <th scope="col">Disclosed</th>
+                      <th scope="col">Date</th>
                       <th scope="col">Title</th>
                       <th scope="col">Vendor</th>
                       <th scope="col">Platform</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Bounty</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,6 +93,8 @@ layout: default
                       <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>
                       <td>{{ bounty.Platform }}</td>
+                      <td>{{ bounty.Type }}</td>
+                      <td>{{ bounty.Bounty }}</td>
                     </tr>
                     {% endfor %}
                   </tbody>

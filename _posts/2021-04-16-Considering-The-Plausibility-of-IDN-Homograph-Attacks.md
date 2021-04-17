@@ -20,7 +20,9 @@ card: card-2
 
 #### TL;DR
 
-Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*, as such, I am publishing the report in its entirety.
+Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.
+
+**For the full research, including citations and detailed graphics, see the PDF report.**  
 
 <a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf"><button type="button" class="btn btn-dark mx-auto">Read the Full Report</button></a>
 
@@ -122,7 +124,17 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
       <td>“ȷ” (U+0237)</td>
     </tr>
   </tbody>
-</table>
+</table>  
+
+#### Development of Cloned Domain Websites
+The website to serve as the spoofed domain was developed using Jekyll, a static website generator written in Ruby. First, a Jekyll theme was selected for its resemblance to the New York Times domain. The Aspirethemes type theme was selected for its minimalistic design, making it easily adaptable. To make the site resemble the New York Times, raw html content was copied from the original article using the Google Chrome Inspector Tools. The entire header and body HTML contents were copied and pasted into the theme template. Figure 1 shows a screenshot of copying the html content.  
+
+In order to ensure that iMessage previews would be the same between the real website link and the spoofed one, it was crucial to copy meta tag headers used to generate such previews. With the same tags being used in both sites, the previews would also be the same. Generating the site preview using the local Jekyll development server revealed the resulting spoof site was a nearly identical to the original site. A small selection of JavaScript functions did not work because the original code searched for .js files from a relative path /vi-assets/static-assets/. This was fixed by replacing all instances with the original link path https://www.nytimes.com/vi-assets/static-assets/. GitHub was used to store the source code for the new spoofed site, and Netlify was used to host the domain.   
+
+
+#### Smishing Users with IDN Exploits  
+
+Delivering the IDN homograph exploit to a sample user was achieved by sending a link to the spoof domain through iMessage. It did not matter whether the link was sent in IDN or punycode form, as iMessage preview automatically converted the punycode domain back into its IDN equivalent. Figure 2 shows this conversion process. iMessage preview is pivotal to the relevance of this exploit, as additional information shown to the user such as the preview image and subject line add to the authenticity of the link. 
 
 
 
@@ -154,7 +166,25 @@ appears if hovering for a few seconds, and a normal click of the link does not t
 <figure class="figure">
   <img src="/assets/img/figure4.png" class="figure-img img-fluid rounded" alt="Figure 4">
   <figcaption class="figure-caption text-left">Figure 4:  Hovering a cursor over iMessage Link Preview shows punycode domain </figcaption>
-</figure>
+</figure>  
+
+#### Safari IDN Preview Results
+The difference in appearance between the spoofed domain and the legitimate New York Times article is barely noticeable to the
+naked eye on Safari. Figures 6 and 7 show that Chrome (left), shows the punycode domain name of the IDN site. Punycode is
+used here because this domain violates several IDN rules in use by Chrome. This is in stark contrast to Safari, which does not.   
+
+<figure class="figure">
+  <img src="/assets/img/figure67.png" class="figure-img img-fluid rounded" alt="Figure 4">
+</figure>  
+
+
+Similar results were found on MacBook. Safari shows the spoofed domain in its IDN form while Chrome shows the domain in
+punycode format. Other noticeable differences can be seen such as the “New York Times” Logo placement being located in
+different spots; however, this is due to mistakes in the cloning process.  
+
+<figure class="figure">
+  <img src="/assets/img/figure8.png" class="figure-img img-fluid rounded" alt="Figure 4">
+</figure>  
 
 
 #### Use Cases
@@ -169,7 +199,12 @@ smishing operations, and advanced misinformation operations designed to target p
 *Example: Targeted Misinformation*  
 An attacker can use this technique to send a target a crafted article that aims to change their views on a particular topic. An
 obvious pitfall to this attack is that secondary validation by the target to search for other articles on the topic would show the
-payload was the only source.   
+payload was the only source.    
+
+<figure class="figure">
+  <img src="/assets/img/figure10.png" class="figure-img img-fluid rounded" alt="Figure 4">
+</figure>  
+
 
 
 **For the full research, including citations and detailed graphics, see the PDF report.**  

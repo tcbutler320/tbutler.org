@@ -47,7 +47,7 @@ phonenumber:
 # -----------BLOG SETTINGS---------------#
 #========================================#
 
-tags:  ctf bug-bounty devops jekyll certifications
+tags:  ctf bug-bounty devops jekyll certifications research
 code-highlight: atom-one-dark # dracula , see options at https://highlightjs.org/
 alert: false
 alert-message: Coming soon, details regarding my first CVE and iOT 0-day Exploit! 🤯

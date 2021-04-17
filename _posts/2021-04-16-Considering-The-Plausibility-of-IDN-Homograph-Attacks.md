@@ -2,7 +2,7 @@
 title: Considering the Plausibility of IDN Homograph Attacks on iOS 
 description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations
 tag: research
-image: /assets/img/posts/2021-30-04-blocky-hack-the-box-walkthrough/blocky.png
+image: /assets/img/preview.png
 layout: post
 description: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
 date:  2021-04-16 00:01:21 -0400

@@ -18,19 +18,6 @@
   Bounty: "$250"
   Type: "Bug Bounty"
 
-
-- Title: "Considering the Plausibility of IDN Homograph Attacks on iOS"
-  Date: 12/08/2020
-  CVE: N/A
-  Platform: Apple Product Security
-  Vendor: Apple
-  Link: /assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf
-  num: 1
-  Bounty: "N/A"
-  Type: "Vulnerability Disclosure"
-
-
-
 - Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
   Date: 10/13/2020
   CVE: N/A

@@ -4,10 +4,10 @@ layout: page
 {% assign theme = site.data.themes[site.ui_theme] %}
 {% include reading_time.html %}
 
-<div class="blogcard mx-auto {{ page.card }} mb-4 mt-4" style="width: 100%;">
+<div class="mx-auto postcard mb-4" style="width: 100%;">
   <div class="card-body">
-    <h5 class="card-title text-center" style="font-size:{{ theme.post-tag-size }};">{{ page.tag }}</h5>
-    <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title }}</h5>
+    <h5 class="card-title text-center" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge bg-dark text-light">{{ page.tag }}</span></h5>
+    <h5 class="card-title text-center" style="color:{{theme.post-title-color}};font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title }}</h5>
     {% include social-cards-copy.html %}
   </div>
 </div>
@@ -16,7 +16,7 @@ layout: page
     <div class="col-md-3 text-left">
       <h6 style="font-size:{{ theme.post-author-size }};"><b>Authors:</b> {{page.author}}</h6>
       <h6 style="font-size:{{ theme.post-author-size }};"><b>Published:</b> {{page.date | date: "%a, %b %d, %y"}}</h6>
-      <h6 class="border-bottom border-secondary" style="font-size:{{ theme.post-author-size }};"><b>Reading Time:</b> {{ reading_time }}</h6>
+      <h6 style="font-size:{{ theme.post-author-size }};"><b>Reading Time:</b> {{ reading_time }}</h6>
     </div>
     <div class="col-md-9">
     {{ content | markdownify }}

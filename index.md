@@ -16,6 +16,4 @@ date: 2020-10-27
 </div>
 {% endif %}
 
-
 I’m a penetration tester, freelance security researcher, and passionate open-source developer. In my own time, I conduct vulnerability research and compete in CTF competitions to better understand the cyber threat landscape.
-

@@ -82,7 +82,7 @@ layout: default
                       <th scope="col">Title</th>
                       <th scope="col">Vendor</th>
                       <th scope="col">Platform</th>
-                      <th scope="col">Type</th>
+                      <th scope="col">CVE</th>
                       <th scope="col">Bounty</th>
                     </tr>
                   </thead>
@@ -93,7 +93,7 @@ layout: default
                       <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>
                       <td>{{ bounty.Platform }}</td>
-                      <td>{{ bounty.Type }}</td>
+                      <td>{{ bounty.cve }}</td>
                       <td>{{ bounty.Bounty }}</td>
                     </tr>
                     {% endfor %}

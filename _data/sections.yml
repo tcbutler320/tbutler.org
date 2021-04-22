@@ -6,7 +6,7 @@
   first: true
   jsid: foo1
   emoji: 👾
-  num: 3
+  num: 4
 
 - name: Publications
   id: publications
@@ -15,7 +15,7 @@
   first: false
   jsid: foo
   emoji: 📚
-  num: 2
+  num: 3
 
   
 - name: Coursework

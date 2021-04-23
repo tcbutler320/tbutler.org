@@ -4,12 +4,11 @@ description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Org
 tag: research
 image: /assets/img/preview.png
 layout: post
-description: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
 date:  2021-04-16 00:01:21 -0400
 last-updated: 2021-04-16 00:01:21 -0400
 tag: research
 author: Tyler Butler
-lead: ""
+lead: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
 card: card-2
 ---
 
@@ -65,7 +64,7 @@ the domain for this research, and the homograph https://www.ɴytimes.com was reg
 homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can replace “j” in sites like The Wall Street Journal
 (wsj.com). 
 
-<table class="table table-striped table-hover">
+<table class="mx-auto table table-striped table-hover table-responsive">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Organization Name</th>
@@ -77,50 +76,50 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
   <tbody>
     <tr>
       <th scope="row">The New York Times</th>
-      <td>https://www.nytimes.com/</td>
-      <td>https://www.ɴytimes.com</td>
+      <td>https://nytimes.com/</td>
+      <td>https://ɴytimes.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">The New York Post</th>
       <td>https://nypost.com/</td>
-      <td>https://www.ɴypost.com</td>
+      <td>https://ɴypost.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">NPR</th>
-      <td>https://nypost.org</td>
-      <td>https://www.ɴpr.com</td>
+      <td>https://npr.org</td>
+      <td>https://ɴpr.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
       <th scope="row">Fox News</th>
-      <td>https://www.foxnews.com</td>
-      <td>https://www.foxɴews.com</td>
+      <td>https://foxnews.com</td>
+      <td>https://foxɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
       <th scope="row">ABC News</th>
-      <td>https://www.abcnews.com</td>
-      <td>https://www.abcɴews.com</td>
+      <td>https:/abcnews.com</td>
+      <td>https://abcɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
       <th scope="row">NBC News</th>
-      <td>https://www.nbcnews.com</td>
-      <td>https://www.nbcɴews.com</td>
+      <td>https://nbcnews.com</td>
+      <td>https://nbcɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">CBS News</th>
-      <td>https://www.cbsnews.com</td>
-      <td>https://www.cbsɴews.com</td>
+      <td>https://cbsnews.com</td>
+      <td>https://cbsɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">The Wall Street Journal</th>
-      <td>https://www.wsj.com</td>
-      <td>https://www.wsȷ.com</td>
+      <td>https://wsj.com</td>
+      <td>https://wsȷ.com</td>
       <td>“ȷ” (U+0237)</td>
     </tr>
   </tbody>

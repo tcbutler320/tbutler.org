@@ -15,6 +15,10 @@ code {
     font: 0.85em Monaco, Courier, Monospace;
 }
 
+.badge-red {
+  background-color: #810000;
+}
+
 
 .robo {
   background-color: #ffffff;
@@ -584,8 +588,16 @@ border-radius: 0%;
   
 }
 
+.posttitle {
+  border-left: 5px solid rgba(129,0,0);
+}
+
 .postcard {
-  border-bottom: 1px solid #810000;
+  border-top: 1px solid black;
+}
+
+.posttitle {
+  border-left: 5px solid #810000;
 }
 
 .blogcard:hover{

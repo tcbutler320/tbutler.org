@@ -10,6 +10,9 @@ tag: "Vulnerability Research"
 author: Tyler Butler
 lead: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
 card: card-2
+redirect_from:
+  - /2021/04/16/considering-the-plausibility-of-idn-homograph-attacks
+  - /considering-the-plausibility-of-idn-homograph-attacks
 ---
 #### TL;DR
 

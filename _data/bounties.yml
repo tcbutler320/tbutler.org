@@ -1,13 +1,3 @@
-- Title: "[CVE-2021-22893] HP Officejet 4630 Stored Unauthenticated XSS"
-  Date: 01/09/2021
-  CVE: N/A
-  Platform: HP PSRT
-  Vendor: HP Inc
-  Link: /assets/pdf/CVE-2021-22893.pdf
-  num: 0
-  cve: CVE-2021-22893 
-  Bounty: "N/A"
-  
 - Title: "Undisclosed Vulnerability on Blockfi via HackerOne"
   Date: 04/16/2021
   CVE: N/A

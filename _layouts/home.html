@@ -57,11 +57,11 @@ layout: default
       {% for section in site.data.sections %}
         {% if section.first %}
           <li class="nav-item">
-            <a class="nav-link shadow-none graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-warning border">{{ section.num }}</span></a>
+            <a class="nav-link shadow-none graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge badge-red text-light border">{{ section.num }}</span></a>
           </li>
         {% else %}
           <li class="nav-item">
-              <a class="nav-link graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge bg-warning border">{{ section.num }}</span></a>
+              <a class="nav-link graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge badge-red text-light border">{{ section.num }}</span></a>
           </li>
         {% endif %}
       {% endfor %}

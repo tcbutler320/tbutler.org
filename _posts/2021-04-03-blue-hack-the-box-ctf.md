@@ -1,6 +1,6 @@
 ---
 title: Blue, Hack the Box CTF Walkthrough
-description: 
+lead: Exploiting the MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution Vulnerability
 tag: CTF
 image: /assets/img/posts/2021-03-04-blue-hack-the-box-walkthrough/blue.png
 layout: post
@@ -9,7 +9,7 @@ date:   2021-03-03 20:01:21 -0400
 last-updated: 2021-03-03 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: Blue is an easy level machine in the Hack the Box retired archives requiring simple enumeration and basic level understanding of metasploit
+description: Blue is an easy level machine in the Hack the Box retired archives requiring simple enumeration and basic level understanding of metasploit
 card: card-2
 ---
 

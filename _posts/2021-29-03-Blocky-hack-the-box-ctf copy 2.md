@@ -9,7 +9,7 @@ date:   2021-03-29 20:01:21 -0400
 last-updated: 2021-03-29 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: ""
+lead: "Using the Java Decompiler to Analyze Source Code"
 card: card-2
 ---
 

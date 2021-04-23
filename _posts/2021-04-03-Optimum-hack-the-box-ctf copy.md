@@ -1,6 +1,6 @@
 ---
 title: Optimum, Hack the Box CTF Walkthrough
-description: Exploiting CVE-2014-6287, Rejetto HTTP File Server (HFS) 2.3.x Remote Command Execution
+lead: Exploiting CVE-2014-6287, Rejetto HTTP File Server (HFS) 2.3.x Remote Command Execution
 tag: CTF
 image: /assets/img/posts/2021-03-04-Optimum-hack-the-box-walkthrough/Optimum.png
 layout: post
@@ -9,7 +9,7 @@ date:   2021-03-04 20:01:21 -0400
 last-updated: 2021-03-04 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: "Optimum is an easy level HTB challenge from the HTB archives. This challenge requires initial user access through a remote command execution vulnerability and local privilege escalation"
+desription: "Optimum is an easy level HTB challenge from the HTB archives. This challenge requires initial user access through a remote command execution vulnerability and local privilege escalation"
 card: card-2
 ---
 

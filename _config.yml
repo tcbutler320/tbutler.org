@@ -9,6 +9,7 @@
 #========================================#
 
 title: Tyler Butler 
+url-bar: " | Security Researcher"
 tagline: Freelance Security Researcher
 email: developer.tbutler@gmail.com
 description: Cyber risk consultant, security researcher, open source developer
@@ -100,9 +101,8 @@ plugins:
   - jekyll-feed
   - jekyll-scholar
   - jekyll-environment-variables
-  - jekyll-algolia
   - jekyll-admin
-  - jekyll-algolia
+  - jekyll-redirect-from
 
 sass:
   sass_dir: _sass

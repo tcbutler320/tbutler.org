@@ -1,6 +1,6 @@
 ---
 title: Bashed, Hack the Box CTF Walkthrough
-description: 
+lead: Exploiting the Linux Kernel 4.4.0 (Ubuntu) - With DCCP Double-Free Privilege Escalation
 tag: CTF
 image: /assets/img/posts/2021-03-05-bashed-hack-the-box-walkthrough/bashed.png
 layout: post
@@ -9,7 +9,7 @@ date:   2021-03-04 20:01:21 -0400
 last-updated: 2021-03-04 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: "Bashed is an easy level CTF challenge from HTB, solved with an initial user compromise through a developer misconfiguration and privilege escalation with the Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free Privilege Escalation Exploit"
+description: "Bashed is an easy level CTF challenge from HTB, solved with an initial user compromise through a developer misconfiguration and privilege escalation with the Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free Privilege Escalation Exploit"
 card: card-2
 ---
 

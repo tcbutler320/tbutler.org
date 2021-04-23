@@ -1,6 +1,6 @@
 ---
 title: Jerry, Hack the Box CTF Walkthrough
-description: 
+lead: Exploiting the Tomcat Manager Application
 tag: CTF
 image: /assets/img/posts/2021-03-04-jerry-hack-the-box-walkthrough/jerry.png
 layout: post
@@ -9,7 +9,7 @@ date:   2021-03-04 20:01:21 -0400
 last-updated: 2021-03-04 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: "Jerry is an easy level HTB challenge from the HTB archives"
+description: "Jerry is an easy level HTB challenge from the HTB archives"
 card: card-2
 ---
 

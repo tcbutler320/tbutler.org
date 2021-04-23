@@ -1,6 +1,6 @@
 ---
 title: Hackeme CTF Writeup
-description: Writeup for the HackMe CTF on Vulnhub
+description: Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine.
 tag: CTF
 image: /assets/img/posts/2020-06-02-hackme-ctf-writeup/2-dirbuster.png
 layout: post
@@ -9,7 +9,7 @@ date:   2020-10-29 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: "Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine."
+lead: "Remember when VulnHub was cooler then Hack the Box?"
 card: card-2
 ---
 

@@ -6,7 +6,8 @@
   Link: https://hackerone.com/tcbutler320?type=user
   num: 0
   Bounty: "$1,000"
-  Type: "Bug Bounty"
+  cve: N/A
+
 
 - Title: "Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application"
   Date: 05/20/2020
@@ -16,7 +17,8 @@
   Link: /assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf
   num: 0
   Bounty: "$250"
-  Type: "Bug Bounty"
+  cve: N/A
+
 
 - Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
   Date: 10/13/2020
@@ -26,7 +28,8 @@
   Link: https://www.exploit-db.com/exploits/48874
   num: 1
   Bounty: "N/A"
-  Type: "0 Day PoC"
+  cve: N/A
+
 
 
 

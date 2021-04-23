@@ -1,6 +1,6 @@
 ---
 title: Optimum, Hack the Box CTF Walkthrough
-description: 
+description: Exploiting CVE-2014-6287, Rejetto HTTP File Server (HFS) 2.3.x Remote Command Execution
 tag: CTF
 image: /assets/img/posts/2021-03-04-Optimum-hack-the-box-walkthrough/Optimum.png
 layout: post

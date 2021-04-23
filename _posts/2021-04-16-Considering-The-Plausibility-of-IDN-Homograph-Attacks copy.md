@@ -4,27 +4,24 @@ description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Org
 tag: research
 image: /assets/img/preview.png
 layout: post
-description: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
 date:  2021-04-16 00:01:21 -0400
 last-updated: 2021-04-16 00:01:21 -0400
-tag: research
+tag: "Vulnerability Research"
 author: Tyler Butler
-lead: ""
+lead: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
 card: card-2
 ---
+#### TL;DR
+
+Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.
+
+*For the full research, including citations and detailed graphics, see the* <a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf" class="badge badge-dark text-light">PDF Report</a>
 
 <figure class="figure">
   <img src="/assets/img/ios.png" class="figure-img img-fluid rounded" alt="Pictured above, previews of a real NYT article being sent via iMessage(left) and a spoofed NYT article which points to an attacker-owned domain (right)">
   <figcaption class="figure-caption text-left">Pictured above, previews of a real NYT article being sent via iMessage(left) and a spoofed NYT article which points to an attacker-owned domain (right)</figcaption>
 </figure>
 
-#### TL;DR
-
-Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.
-
-**For the full research, including citations and detailed graphics, see the PDF report.**  
-
-<a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf"><button type="button" class="btn btn-dark mx-auto">Read the Full Report</button></a>
 
 #### Abstract 
 *The introduction of International Domain Names (IDNs) drastically increased the potential availability of homograph exploitsthe use of Unicode characters to create misleading information, most notably domain names. In the years since, several mitigation strategies have been deployed by leading developers to protect users from risk. Despite these developments, Apple’s iOS devices continue to be susceptible IDN homograph exploits. The research builds on previous work and considers the plausibility of abusing design features in Apple iOS devices to exploit IDN homographs to spread misinformation and targeted malware, specifically with the ability to spoof popular news media outlets. It finds that iOS devices continue to be susceptible to such attacks, and describes techniques used to abuse features in iMessage, Messages, and Safari Web Browser This flaw leaves iOS users at significant risk of spoofing attacks which can be used to spread misinformation, steal credentials, or deliver targeted malware. Of particular concern is the ability for hostile governments to use the described techniques to target journalists with spyware. The research was presented to Apple in December of 2020, and the vendor has identified they will not be issuing a fix.*
@@ -65,7 +62,7 @@ the domain for this research, and the homograph https://www.ɴytimes.com was reg
 homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can replace “j” in sites like The Wall Street Journal
 (wsj.com). 
 
-<table class="table table-striped table-hover">
+<table class="mx-auto table table-striped table-hover table-responsive">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Organization Name</th>
@@ -77,50 +74,50 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
   <tbody>
     <tr>
       <th scope="row">The New York Times</th>
-      <td>https://www.nytimes.com/</td>
-      <td>https://www.ɴytimes.com</td>
+      <td>https://nytimes.com/</td>
+      <td>https://ɴytimes.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">The New York Post</th>
       <td>https://nypost.com/</td>
-      <td>https://www.ɴypost.com</td>
+      <td>https://ɴypost.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">NPR</th>
-      <td>https://nypost.org</td>
-      <td>https://www.ɴpr.com</td>
+      <td>https://npr.org</td>
+      <td>https://ɴpr.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
       <th scope="row">Fox News</th>
-      <td>https://www.foxnews.com</td>
-      <td>https://www.foxɴews.com</td>
+      <td>https://foxnews.com</td>
+      <td>https://foxɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
       <th scope="row">ABC News</th>
-      <td>https://www.abcnews.com</td>
-      <td>https://www.abcɴews.com</td>
+      <td>https:/abcnews.com</td>
+      <td>https://abcɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
       <th scope="row">NBC News</th>
-      <td>https://www.nbcnews.com</td>
-      <td>https://www.nbcɴews.com</td>
+      <td>https://nbcnews.com</td>
+      <td>https://nbcɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">CBS News</th>
-      <td>https://www.cbsnews.com</td>
-      <td>https://www.cbsɴews.com</td>
+      <td>https://cbsnews.com</td>
+      <td>https://cbsɴews.com</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
     <tr>
       <th scope="row">The Wall Street Journal</th>
-      <td>https://www.wsj.com</td>
-      <td>https://www.wsȷ.com</td>
+      <td>https://wsj.com</td>
+      <td>https://wsȷ.com</td>
       <td>“ȷ” (U+0237)</td>
     </tr>
   </tbody>
@@ -204,8 +201,3 @@ payload was the only source.
 <figure class="figure">
   <img src="/assets/img/figure10.png" class="figure-img img-fluid rounded" alt="Figure 4">
 </figure>  
-
-
-
-**For the full research, including citations and detailed graphics, see the PDF report.**  
-<a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf"><button type="button" class="btn btn-dark mx-auto">Read the Full Report</button></a>

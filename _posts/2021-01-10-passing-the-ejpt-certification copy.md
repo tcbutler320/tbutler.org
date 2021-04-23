@@ -1,15 +1,14 @@
 ---
 title: Passing the eJPT Certification
-description: A brief overview of eLearnSecurity's eJPT Certification, the INE Course, and eJPT Exam 
+lead: A brief overview of eLearnSecurity's eJPT Certification, the INE Course, and eJPT Exam 
 tag: CTF
 image: /assets/img/butler,tyler-eJPT-cert.png
 layout: post
-description: "My thoughts on eLearnSecurity's eJPT Course and Exam "
 date:   2021-01-10 20:01:21 -0400
 last-updated: 2021-01-10 20:01:21 -0400
 tag: certifications
 author: Tyler Butler
-lead: The eLearnSecurity Junior Penetration Tester certification, commonly referred to as the eJPT, is a great certification for anyone with basic information security skills looking to get into penetration testing. I recently completed the course and passed the certification exam, and will be using this blog post to give my overall impression of the course content
+description: The eLearnSecurity Junior Penetration Tester certification, commonly referred to as the eJPT, is a great certification for anyone with basic information security skills looking to get into penetration testing. I recently completed the course and passed the certification exam, and will be using this blog post to give my overall impression of the course content
 card: card-1
 ---
 

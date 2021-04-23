@@ -15,9 +15,8 @@ last-updated: 2020-10-30 5:55 PM
           {% for post in site.posts %}
               <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
                 <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-                  <a href="#" class="badge badge-primary" style="background-color: rgba(78, 34, 208, 0.1);color: #4e22d0;">{{post.tag}}</a>  
-                <p>{{post.description}}</p>
-                <p><i>{{post.lead}}</i></p>
+                  <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+                <p>{{post.lead}}</p>
               </div>
           {% endfor %}
         </div>

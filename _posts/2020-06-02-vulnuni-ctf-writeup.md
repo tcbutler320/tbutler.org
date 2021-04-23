@@ -1,13 +1,13 @@
 ---
 title: VulnUni CTF Writeup
-description: Unauthenticated blind SQL injection on the Greek University GUnet Platform
+lead: Unauthenticated blind SQL injection on the Greek University GUnet Platform
 image: /assets/img/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni-header.png
 layout: post
 date:   2020-10-29 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
 tag: ctf
 author: Tyler Butler
-lead: "VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability."
+description: "VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability."
 card: card-2
 ---
 

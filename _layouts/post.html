@@ -4,24 +4,23 @@ layout: page
 {% assign theme = site.data.themes[site.ui_theme] %}
 {% include reading_time.html %}
 
-<div class="blogcard mx-auto {{ page.card }} mb-4 mt-4" style="width: 100%;">
+<div class="mx-auto posttitle mb-1" style="width: 100%;">
   <div class="card-body">
-    <h5 class="card-title text-center" style="font-size:{{ theme.post-tag-size }};">{{ page.tag }}</h5>
-    <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title }}</h5>
-    {% include social-cards-copy.html %}
+    <h5 class="card-title text-left" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-red text-light">{{ page.tag }}</span></h5>
+    <h5 class="card-title text-left" style="color:{{theme.post-title-color}};font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title }}</h5>
+    <h6 class="card-title text-left" style="color:{{theme.post-lead-color}};font-size:{{ theme.post-lead-size }};font-weight:{{ theme.post-lead-font-weight }};">{{ page.lead }}</h6>
+    {% include social-cards-sm.html %}
+    <h6 class="mt-3" style="font-size:{{ theme.post-author-size }};font-weight:{{ theme.post-dets-font-weight }};">By:<i><a href={{page.author-link}}>  {{page.author}}</i></a></h6>
+    <h6 style="font-size:{{ theme.post-author-size }};font-weight:{{ theme.post-dets-font-weight }};"><i>{{page.date | date: "%a, %b %d, %y"}}</i></h6>
+    <h6 style="font-size:{{ theme.post-author-size }};font-weight:{{ theme.post-dets-font-weight }};"><i>{{ reading_time }}</i></h6>
   </div>
 </div>
 
-<div class="row">
-    <div class="col-md-3 text-left">
-      <h6 style="font-size:{{ theme.post-author-size }};"><b>Authors:</b> {{page.author}}</h6>
-      <h6 style="font-size:{{ theme.post-author-size }};"><b>Published:</b> {{page.date | date: "%a, %b %d, %y"}}</h6>
-      <h6 class="border-bottom border-secondary" style="font-size:{{ theme.post-author-size }};"><b>Reading Time:</b> {{ reading_time }}</h6>
-    </div>
-    <div class="col-md-9">
+
+<div class="mx-auto mb-4" style="width: 100%;">
+  <div class="card-body">
     {{ content | markdownify }}
-    <a href="https://twitter.com/tbutler0x90?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @tbutler0x90</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
+  </div>
 </div>
 
 

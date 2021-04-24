@@ -16,7 +16,7 @@ redirect_from:
 ---
 #### TL;DR
 
-Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.
+Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.  
 
 *For the full research, including citations and detailed graphics, see the* <a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf" class="badge badge-dark text-light">PDF Report</a>
 
@@ -204,3 +204,4 @@ payload was the only source.
 <figure class="figure">
   <img src="/assets/img/figure10.png" class="figure-img img-fluid rounded" alt="Figure 4">
 </figure>  
+

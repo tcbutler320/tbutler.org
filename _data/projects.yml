@@ -1,15 +1,3 @@
-- name: hp-cve-check [CVE-2021-091213]
-  id: hp-cve-check
-  description: >
-    A python threat intelligence tool for automating IoC discovery for CVE. Easily search targets for indicators of compromise.HP CVE Check is a python tool to search targets for indicators of compromise to CVE. The script gets product versions from the target's http response header. If the product version is vulnerable, and a module for the version has been created, the script requests the resource that could contain an exploit payload. Once the html entity that could contain an exploit is loaded, common XSS characters are searched for. The program alerts the user through the console if exploit payloads are found and can log findings to an output file.
-  date: true
-  link: https://github.com/tcbutler320/hp-cve-check
-  image:  /assets/img/projects/GitHub-Mark-64px.png
-  icon: "fab fa-github"
-  tech: 
-    - python 
-    - Shodan 
-
 - name: Jekyll-Theme-Dumbarton
   id: Jekyll-Theme-Dumbarton
   description: >

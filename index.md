@@ -16,4 +16,4 @@ date: 2020-10-27
 </div>
 {% endif %}
 
-I’m a penetration tester, freelance security researcher, and passionate open-source developer. In my own time, I conduct vulnerability research and compete in CTF competitions to better understand the cyber threat landscape.
+My name is Tyler Butler, I'm an information security professional with experience in the federal consulting industry. I approach security with a unique blend of technical expertise as an experienced developer and penetration tester with a keen eye on the geo-political forces that shape the industry. In my professional life, I improve my clients cyber risk posture as a penetration tester working in Adversary Simulation. In my free time, I conduct freelance security research and participate in bug bounty and responsible disclosure programs to keep my skills sharp. I am a passionate open-source developer and enjoy competing in CTF competitions to better understand the cyber threat landscape. On this site, you can find my personal vulnerability discoveries, projects, and blog articles. *All content here is unrelated to my employer.*

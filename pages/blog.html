@@ -7,40 +7,85 @@ header-img:
 last-updated: 2020-10-30 5:55 PM
 ---
 
-<!-- Page Content -->
-  <div class="row">
-    <!-- Blog Entries Column -->
-    <div class="col-md-8">
-          <div class="col-md-12">
-          {% for post in site.posts %}
-              <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
-                <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-                  <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
-                <p>{{post.lead}}</p>
-              </div>
-          {% endfor %}
+<!-- Featured Post -->
+  {% for post in site.posts%}
+    {% if post.featured %}
+      <div class="card mb-3">
+        <div class="card-header">
+          {{post.feature-header}}
         </div>
-      <!-- Blog Post -->
-      {% for post in site.posts %}
+        <canvas id="myCanvas" class="{{post.style}}" height="50%"></canvas>
+        <div class="card-body">
+          <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+          <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+          <p>{{post.lead}}</p>
+          <footer class="blockquote-footer">By {{post.author}} on <cite title="Source Title">{{post.date| date: "%b %d, %Y" }}</footer>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+<!-- Page Content -->
+    <!-- Experiment with Card Decks-->
+    <div class="card-deck">
+      {% for post in site.posts limit:4 %}
+        {% if post.featured != true %}
+          <div class="card">
+            <div class="card-body">
+              <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+              <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+              <p>{{post.lead}}</p>
+              <footer class="blockquote-footer">By {{post.author}} on <cite title="Source Title">{{post.date| date: "%b %d, %Y" }}</footer>
+            </div>
+          </div>
+        {% endif %}
       {% endfor %}
-
-      <!-- Pagination -->
-      <ul class="pagination justify-content-center mb-3">
-        <li class="page-item">
-          <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="page-item disabled">
-          <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-      </ul>
-
-    </div>
-      <!-- Twitter Side Widget -->
-      <div class="card my-4 shadow border-0">
-          <a class="twitter-timeline" data-height="2300" data-theme="light" href="https://twitter.com/{{ site.twitter }}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>           
       </div>
 
+          <!-- Vulnerability Research Category -->
+      
+      <span id="ctf"></span>
+      <div class="mx-auto posttitle mt-3 mb-1" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-left" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-red text-light">Vulnerability Research</span></h5>
+          <h5 class="card-title text-left" style="color:{{theme.post-title-color}};font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">Articles on my Vulnerability Research</h5>
+          <h6 class="card-title text-left" style="color:{{theme.post-lead-color}};font-size:{{ theme.post-lead-size }};font-weight:{{ theme.post-lead-font-weight }};">0-Day Disclosures, Cyber Threat Intelligence, etc</h6>
+        </div>
+      </div>
 
-  </div>
+      <div class="list-group mt-4">
+        {% for post in site.posts %}
+        {% if post.tag == 'Vulnerability Research' %}
+        <a href="{{post.url}}" class="list-group-item list-group-item-light border-0" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5>{{ post.title }}</h5>
+            <small>{{post.date| date: "%b %d, %Y" }}</small>
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- CTF Category -->
+
+      <div class="mx-auto posttitle mt-3 mb-1" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-left" id="ctf" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-red text-light">CTF</span></h5>
+          <h5 class="card-title text-left" style="color:{{theme.post-title-color}};font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">Articles on Capture the Flag</h5>
+          <h6 class="card-title text-left" style="color:{{theme.post-lead-color}};font-size:{{ theme.post-lead-size }};font-weight:{{ theme.post-lead-font-weight }};">CTF solutions, challenges I've developed, ect</h6>
+        </div>
+      </div>
+
+      <div class="list-group mt-4">
+        {% for post in site.posts %}
+        {% if post.tag == 'ctf' %}
+        <a href="{{post.url}}" class="list-group-item list-group-item-light border-0" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5>{{ post.title }}</h5>
+            <small>{{post.date| date: "%b %d, %Y" }}</small>
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
   <!-- /.row -->
 </div>

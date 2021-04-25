@@ -4,6 +4,7 @@ lead: Exploiting the Linux Kernel 4.4.0 (Ubuntu) - With DCCP Double-Free Privile
 tag: CTF
 image: /assets/img/posts/2021-03-05-bashed-hack-the-box-walkthrough/bashed.png
 layout: post
+style: blog2
 description: ""
 date:   2021-03-04 20:01:21 -0400
 last-updated: 2021-03-04 20:01:21 -0400

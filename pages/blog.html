@@ -11,7 +11,9 @@ last-updated: 2020-10-30 5:55 PM
   {% for post in site.posts%}
     {% if post.featured %}
       <div class="card mb-3">
-        <div class="card-header"><b>{{post.feature-header}}</b></div>
+        <div class="card-header">
+          {{post.feature-header}}
+        </div>
         <canvas id="myCanvas" class="{{post.style}}" height="50%"></canvas>
         <div class="card-body">
           <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
@@ -25,10 +27,9 @@ last-updated: 2020-10-30 5:55 PM
 <!-- Page Content -->
     <!-- Experiment with Card Decks-->
     <div class="card-deck">
-      {% for post in site.posts limit:3 %}
+      {% for post in site.posts limit:4 %}
         {% if post.featured != true %}
           <div class="card">
-            <canvas id="myCanvas" class="{{post.style}}" height="100%"></canvas>
             <div class="card-body">
               <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
               <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
@@ -40,17 +41,51 @@ last-updated: 2020-10-30 5:55 PM
       {% endfor %}
       </div>
 
+          <!-- Vulnerability Research Category -->
+      
+      <span id="ctf"></span>
+      <div class="mx-auto posttitle mt-3 mb-1" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-left" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-red text-light">Vulnerability Research</span></h5>
+          <h5 class="card-title text-left" style="color:{{theme.post-title-color}};font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">Articles on my Vulnerability Research</h5>
+          <h6 class="card-title text-left" style="color:{{theme.post-lead-color}};font-size:{{ theme.post-lead-size }};font-weight:{{ theme.post-lead-font-weight }};">0-Day Disclosures, Cyber Threat Intelligence, etc</h6>
+        </div>
+      </div>
 
-    <!-- Blog Entries Column -->
-    <div class="card-columns mt-4">
-      {% for post in site.posts %}
-          <div class="blogcard {{post.card}} mb-2 mt-2">
-            <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-              <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
-            <p>{{post.lead}}</p>
+      <div class="list-group mt-4">
+        {% for post in site.posts %}
+        {% if post.tag == 'Vulnerability Research' %}
+        <a href="{{post.url}}" class="list-group-item list-group-item-light border-0" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5>{{ post.title }}</h5>
+            <small>{{post.date| date: "%b %d, %Y" }}</small>
           </div>
-      {% endfor %}
-    </div>
-  </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- CTF Category -->
+
+      <div class="mx-auto posttitle mt-3 mb-1" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-left" id="ctf" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-red text-light">CTF</span></h5>
+          <h5 class="card-title text-left" style="color:{{theme.post-title-color}};font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">Articles on Capture the Flag</h5>
+          <h6 class="card-title text-left" style="color:{{theme.post-lead-color}};font-size:{{ theme.post-lead-size }};font-weight:{{ theme.post-lead-font-weight }};">CTF solutions, challenges I've developed, ect</h6>
+        </div>
+      </div>
+
+      <div class="list-group mt-4">
+        {% for post in site.posts %}
+        {% if post.tag == 'ctf' %}
+        <a href="{{post.url}}" class="list-group-item list-group-item-light border-0" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5>{{ post.title }}</h5>
+            <small>{{post.date| date: "%b %d, %Y" }}</small>
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
   <!-- /.row -->
 </div>

@@ -7,7 +7,7 @@ image: /assets/img/posts/2020-07-05-hackerone-hinge/hinge-preview.png
 layout: post
 date:   2020-10-31 20:01:21 -0400
 last-updated: 2020-10-26 20:01:21 -0400
-tag: bug-bounty
+tag: "Vulnerability Research"
 author: Tyler Butler
 description: This report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user img could be accessed in their original and unedited state.
 card: card-3

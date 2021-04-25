@@ -2,6 +2,7 @@
 title: Blocky, Hack the Box CTF Walkthrough
 description: 
 tag: CTF
+style: blog3
 image: /assets/img/posts/2021-30-04-blocky-hack-the-box-walkthrough/blocky.png
 layout: post
 description: "Blocky is an easy level CTF challenge from the Hack the Box Archives. Developed by Arrexel and consists of a linux machine configured as a Minecraft and wordpress server"

@@ -11,8 +11,8 @@ last-updated: 2020-10-30 5:55 PM
   {% for post in site.posts%}
     {% if post.featured %}
       <div class="card mb-3">
-        <div class="card-header">Featured Article</div>
-        <img class="card-img-top" src="{{post.image}}" width="759" height="180" alt="Card image cap">
+        <div class="card-header"><b>{{post.feature-header}}</b></div>
+        <canvas id="myCanvas" class="{{post.style}}" height="50%"></canvas>
         <div class="card-body">
           <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
           <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
@@ -23,30 +23,34 @@ last-updated: 2020-10-30 5:55 PM
     {% endif %}
   {% endfor %}
 <!-- Page Content -->
-        <!-- Experiment with Card Decks-->
-        <div class="card-deck">
-          {% for post in site.posts limit:3 %}
-            {% if post.featured != true %}
-              <div class="card">
-                <div class="card-body">
-                  <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-                  <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
-                  <p>{{post.lead}}</p>
-                  <footer class="blockquote-footer">By {{post.author}} on <cite title="Source Title">{{post.date| date: "%b %d, %Y" }}</footer>
-                </div>
-              </div>
-            {% endif %}
-          {% endfor %}
+    <!-- Experiment with Card Decks-->
+    <div class="card-deck">
+      {% for post in site.posts limit:3 %}
+        {% if post.featured != true %}
+          <div class="card">
+            <canvas id="myCanvas" class="{{post.style}}" height="100%"></canvas>
+            <div class="card-body">
+              <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+              <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+              <p>{{post.lead}}</p>
+              <footer class="blockquote-footer">By {{post.author}} on <cite title="Source Title">{{post.date| date: "%b %d, %Y" }}</footer>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      </div>
 
-        </div>
+
     <!-- Blog Entries Column -->
+    <div class="card-columns mt-4">
       {% for post in site.posts %}
-          <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
+          <div class="blogcard {{post.card}} mb-2 mt-2">
             <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
               <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
             <p>{{post.lead}}</p>
           </div>
       {% endfor %}
+    </div>
   </div>
   <!-- /.row -->
 </div>

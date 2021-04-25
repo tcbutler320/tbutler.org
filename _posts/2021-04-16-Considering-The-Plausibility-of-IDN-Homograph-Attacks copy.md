@@ -2,11 +2,13 @@
 title: Considering the Plausibility of IDN Homograph Attacks on iOS 
 description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations
 featured: true  
+feature-header: "Featured Research 👇"
 tag: research
 image: "https://res.cloudinary.com/tbutler-org/image/upload/c_crop,h_180,w_759/v1619357521/apple-2_kbpf8n.jpg"
 layout: post
 date:  2021-04-16 00:01:21 -0400
 last-updated: 2021-04-16 00:01:21 -0400
+style: blog1
 tag: "Vulnerability Research"
 author: Tyler Butler
 lead: "Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations"
@@ -15,8 +17,6 @@ redirect_from:
   - /2021/04/16/considering-the-plausibility-of-idn-homograph-attacks
   - /considering-the-plausibility-of-idn-homograph-attacks
 ---
-
-*Image Credit: Photo by <a href="https://unsplash.com/@bormot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexandr Bormotin</a> on <a href="https://unsplash.com/s/photos/apple?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*
   
 #### TL;DR
 

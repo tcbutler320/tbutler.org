@@ -1,8 +1,9 @@
 ---
 title: Considering the Plausibility of IDN Homograph Attacks on iOS 
 description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations
+featured: true  
 tag: research
-image: /assets/img/posts/2021-04-16-Considering-The-Plausibility-of-IDN-Homograph-Attacks copy/preview5.png
+image: "https://res.cloudinary.com/tbutler-org/image/upload/c_crop,h_180,w_759/v1619357521/apple-2_kbpf8n.jpg"
 layout: post
 date:  2021-04-16 00:01:21 -0400
 last-updated: 2021-04-16 00:01:21 -0400
@@ -14,6 +15,9 @@ redirect_from:
   - /2021/04/16/considering-the-plausibility-of-idn-homograph-attacks
   - /considering-the-plausibility-of-idn-homograph-attacks
 ---
+
+*Image Credit: Photo by <a href="https://unsplash.com/@bormot?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexandr Bormotin</a> on <a href="https://unsplash.com/s/photos/apple?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*
+  
 #### TL;DR
 
 Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.  

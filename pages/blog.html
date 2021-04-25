@@ -7,40 +7,46 @@ header-img:
 last-updated: 2020-10-30 5:55 PM
 ---
 
-<!-- Page Content -->
-  <div class="row">
-    <!-- Blog Entries Column -->
-    <div class="col-md-8">
-          <div class="col-md-12">
-          {% for post in site.posts %}
-              <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
-                <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-                  <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
-                <p>{{post.lead}}</p>
-              </div>
-          {% endfor %}
+<!-- Featured Post -->
+  {% for post in site.posts%}
+    {% if post.featured %}
+      <div class="card mb-3">
+        <div class="card-header">Featured Article</div>
+        <img class="card-img-top" src="{{post.image}}" width="759" height="180" alt="Card image cap">
+        <div class="card-body">
+          <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+          <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+          <p>{{post.lead}}</p>
+          <footer class="blockquote-footer">By {{post.author}} on <cite title="Source Title">{{post.date| date: "%b %d, %Y" }}</footer>
         </div>
-      <!-- Blog Post -->
-      {% for post in site.posts %}
-      {% endfor %}
-
-      <!-- Pagination -->
-      <ul class="pagination justify-content-center mb-3">
-        <li class="page-item">
-          <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="page-item disabled">
-          <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-      </ul>
-
-    </div>
-      <!-- Twitter Side Widget -->
-      <div class="card my-4 shadow border-0">
-          <a class="twitter-timeline" data-height="2300" data-theme="light" href="https://twitter.com/{{ site.twitter }}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>           
       </div>
+    {% endif %}
+  {% endfor %}
+<!-- Page Content -->
+        <!-- Experiment with Card Decks-->
+        <div class="card-deck">
+          {% for post in site.posts limit:3 %}
+            {% if post.featured != true %}
+              <div class="card">
+                <div class="card-body">
+                  <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+                  <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+                  <p>{{post.lead}}</p>
+                  <footer class="blockquote-footer">By {{post.author}} on <cite title="Source Title">{{post.date| date: "%b %d, %Y" }}</footer>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
 
-
+        </div>
+    <!-- Blog Entries Column -->
+      {% for post in site.posts %}
+          <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
+            <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+              <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
+            <p>{{post.lead}}</p>
+          </div>
+      {% endfor %}
   </div>
   <!-- /.row -->
 </div>

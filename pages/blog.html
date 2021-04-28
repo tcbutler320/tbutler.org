@@ -10,11 +10,13 @@ last-updated: 2020-10-30 5:55 PM
 <!-- Featured Post -->
   {% for post in site.posts%}
     {% if post.featured %}
-      <div class="card mb-3">
+      <div class="card text-center  mb-3">
         <div class="card-header">
           {{post.feature-header}}
         </div>
+        {% if post.canvass %}
         <canvas id="myCanvas" class="{{post.style}}" height="50%"></canvas>
+        {% endif %}
         <div class="card-body">
           <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
           <a href="#" class="badge badge-red text-light">{{post.tag}}</a>  
@@ -24,6 +26,7 @@ last-updated: 2020-10-30 5:55 PM
       </div>
     {% endif %}
   {% endfor %}
+  
 <!-- Page Content -->
     <!-- Experiment with Card Decks-->
     <div class="card-deck">
@@ -57,8 +60,7 @@ last-updated: 2020-10-30 5:55 PM
         {% if post.tag == 'Vulnerability Research' %}
         <a href="{{post.url}}" class="list-group-item list-group-item-light border-0" aria-current="true">
           <div class="d-flex w-100 justify-content-between">
-            <h5>{{ post.title }}</h5>
-            <small>{{post.date| date: "%b %d, %Y" }}</small>
+            <h5>{{ post.title }}</h5><small>{{post.date| date: "%b %Y" }}</small> 
           </div>
         </a>
         {% endif %}

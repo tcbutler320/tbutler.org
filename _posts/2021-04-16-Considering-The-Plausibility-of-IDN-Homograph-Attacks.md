@@ -1,7 +1,7 @@
 ---
 title: Considering the Plausibility of IDN Homograph Attacks on iOS 
 description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations
-featured: true  
+featured: false 
 feature-header: "Featured Research 👇"
 tag: research
 image: "https://res.cloudinary.com/tbutler-org/image/upload/c_scale,w_443/v1619375075/alexander-shatov-PEJtZfT6C1Q-unsplash_bupjja.jpg"

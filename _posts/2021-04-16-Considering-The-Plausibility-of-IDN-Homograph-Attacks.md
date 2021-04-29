@@ -1,7 +1,7 @@
 ---
 title: Considering the Plausibility of IDN Homograph Attacks on iOS 
 description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Organizations
-featured: false 
+featured: true 
 feature-header: "Featured Research 👇"
 tag: research
 image: "https://res.cloudinary.com/tbutler-org/image/upload/c_scale,w_443/v1619375075/alexander-shatov-PEJtZfT6C1Q-unsplash_bupjja.jpg"
@@ -20,7 +20,7 @@ redirect_from:
   
 #### TL;DR
 
-Back in December of 2020, I disclosed a novel threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"*. I respect their decision, but as the risks of such attacks could be easily mitigated using currently in use mitigation strategies, I am publishing the research for wider review.  
+Back in December of 2020, I disclosed a potential threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. This is not a new issue, as homograph attacks have been used for several years going back to the late 2000's. This research does however highlight a previously unseen attack vector. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"* between the homograph representation on iOS. I respect their decision, but disagree in their assessment. While a visual difference does exist, the homograph is convicing enough that users should be protected from the associated risks of such attacks.
 
 *For the full research, including citations and detailed graphics, see the* <a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf" class="badge badge-dark text-light">PDF Report</a>
 

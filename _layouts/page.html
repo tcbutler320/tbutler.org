@@ -4,7 +4,6 @@
   {% include head-blog.html %}
   <body>
     {% include nav.html %}
-    <div class="container-fluid">
       {% if page.header-img %}
       <div class="card border-0">
           <div class="card-body">
@@ -18,18 +17,17 @@
       </div>
       {% else %}
       <div class="card border-0">
+      {{ content }}
           <div class="card-body">
             <p class="card-text mt-0 mb-0">
-                {{ content }}
+                
             </p>
             {% if page.last-updated %}
-              <p class="card-text"><small class="text-muted">This page was last updated at {{ "now" | date: "%Y-%m-%d %H:%M" }}.
-</small></p>
+              <p class="card-text"><small class="text-muted">This page was last updated at {{ "now" | date: "%Y-%m-%d %H:%M" }}. </small></p>
             {% endif %}
           </div>
       </div>
       {% endif %}
-    </div>
     {% include footer.html %}
   </body>
 </html>

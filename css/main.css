@@ -3,52 +3,40 @@
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
 /* Styles */
-.medq{
-  width: 100%;
-}
-.medq-blog{
-  width: 100%;
-}
+  .medq{
+    width: 100%;
+  }
+  .medq-blog{
+    width: 100%;
+    font-family: Verdana, sans-serif;
+  }
+  .medq-title {
+    font-size: 2rem;
+  }
+  .medq-subtitle {
+    font-size: 1.5rem;
+  }
 }
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
+and (min-device-width : 768px) {
 /* Styles */
-.medq{
-  width: 100%;
-}
-.medq-blog{
-  width: 100%;
-}
+  .medq-blog {
+    width: 80%;
+    font-family: Arial, sans-serif;
+    font-size: large;
+  }
+
+  .medq-title {
+    font-size: 4rem;
+  }
+
+  .medq-subtitle {
+    font-size: 2rem;
+  }
 }
 
-/* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-/* Styles */
-.medq {
-  width: 70%;
-}
-.medq-blog{
-  width: 70%;
-}
-}
-
-/* iPhone 4 ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
-/* Styles */
-.medq{
-  width: 100%;
-}
-.medq-blog{
-  width: 100%;
-}
-
-}
 
 
 /* Sticky footer styles

@@ -7,6 +7,8 @@ header-img:
 last-updated: 2020-10-30 5:55 PM
 ---
 
+
+<div class="container-fluid">
 <!-- Featured Post -->
   {% for post in site.posts%}
     {% if post.featured %}
@@ -28,6 +30,7 @@ last-updated: 2020-10-30 5:55 PM
   {% endfor %}
   
 <!-- Page Content -->
+
     <!-- Experiment with Card Decks-->
     <div class="card-deck">
       {% for post in site.posts limit:4 %}
@@ -90,4 +93,6 @@ last-updated: 2020-10-30 5:55 PM
         {% endfor %}
       </div>
   <!-- /.row -->
+
+
 </div>

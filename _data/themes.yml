@@ -74,6 +74,43 @@ experiment:
     pub-title-size: "28px"
     project-badge-color: "light"
 
+dark:
+    name: tbutler
+    nav-color: "black"
+    nav-text: "white"
+    title-font: "Noto Sans JP"
+    link-font: "Poppins"
+    font: "Poppins"
+    font-color: "white"
+    social-color: "white"
+    button-color: "white"
+    education-title-font: "Noto Sans JP"
+    education-title-size: "16px"
+    education-entry-font: "Noto Sans JP"
+    education-entry-size: "14px"
+    education-section-size: "14px"
+    certification-title-font: "Noto Sans JP"
+    certification-title-size: "18px"
+    certification-entry-font: "Noto Sans JP"
+    certification-entry-size: "18px"
+    certification-section-size: "15px"
+    highlights-tab-color: "White"
+    border-style: ""
+    post-tag-size: "20px"
+    post-title-size: "32px"
+    post-lead-size: "24px"
+    post-lead-color: "#810000"
+    post-lead-font: "#810000"
+    post-author-size: "14px"
+    post-font-weight: "600"
+    post-lead-font-weight: "350"
+    post-title-color: 1b1717
+    post-title-tag-color: 1b1a17
+    post-dets-font-weight: "300"
+    pub-title-size: "28px"
+    project-badge-color: "light"
+
+
 test:
     name: test
     content-color: "black"

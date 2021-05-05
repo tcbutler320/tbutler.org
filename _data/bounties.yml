@@ -1,27 +1,38 @@
+- Title: "Cross Site Scripting (XSS) on MonkeyType.com via Word History"
+  Date: Mar 2021
+  CVE: N/A
+  Platform: GitHub
+  Vendor: <a href="https://monkeytype.com/">MonkeyType</a>
+  Link: https://github.com/Miodec/monkeytype/issues/1348
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: Low
+
 - Title: "Undisclosed Vulnerability on Blockfi via HackerOne"
-  Date: 04/16/2021
+  Date: Apr 2021
   CVE: N/A
   Platform: Hackerone
-  Vendor: BlockFi
+  Vendor: <a href="https://blockfi.com">BlockFi</a>
   Link: https://hackerone.com/tcbutler320?type=user
   num: 0
   Bounty: "$1,000"
   cve: N/A
-
+  severity: High
 
 - Title: "Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application"
-  Date: 05/20/2020
+  Date: Mar 2020
   CVE: N/A
   Platform: Hackerone
-  Vendor: Hinge
+  Vendor: <a href="https://hinge.co">Hinge</a>
   Link: /assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf
   num: 0
   Bounty: "$250"
   cve: N/A
-
+  severity: Low
 
 - Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
-  Date: 10/13/2020
+  Date: Oct 2020
   CVE: N/A
   Platform: Exploit-DB
   Vendor: Timeclock
@@ -29,6 +40,8 @@
   num: 1
   Bounty: "N/A"
   cve: N/A
+  severity: High
+
 
 
 

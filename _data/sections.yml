@@ -1,4 +1,4 @@
-- name: 0-Day & Bug Bounty Disclosures
+- name: Vulnerability Disclosures
   id: bounties
   description: As a freelance security researcher, I try to constantly learn new techniques for finding vulnerabilities in everyday applications and software. Below is a list of my findings to date, including bug bounties and 0-day vulnerabilities disclosed as part of responsible disclosure guidelines
   url: /
@@ -6,7 +6,7 @@
   first: true
   jsid: foo1
   emoji: 👾
-  num: 3
+  num: 4
 
 - name: Publications
   id: publications

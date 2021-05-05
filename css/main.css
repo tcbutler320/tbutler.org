@@ -45,7 +45,6 @@ html {
     position: relative;
     min-height: 100%;
     cursor: pointer;
-
   }
   body {
     position: relative;
@@ -815,85 +814,6 @@ $font-family: Proxima, Helvetica, Arial, sans-serif;
   font-family: Proxima;
   margin: 5% 0 0 15%;
 }
-
-
-
-// Pallete Colors: List all Site Colors
-$midnight: #00030d;
-$navy: #0a2458;
-$dblue: #184089;
-$pblue: #0064bc;
-$amtrak: #e0e5ef;
-$lblue: #c0dbee;
-$oxide: #b1dada;
-
-$dgold: #856a42;
-$mgold: #b49150;
-
-$brass: #edbe87;
-$oak: #876450;
-$copper: $oak;
-$lgold: #fffbec;
-$gold: #ecc781;
-$sunshine: #f4d165;
-$redwood: #aa604f;
-
-$red: #b80015;
-$dred: #9c1919;
-$dred-transp: rgba($dred, 0.8);
-$red: #e0000b;
-$grad1: linear-gradient(266.62deg, #0a2458 31.07%, rgba(10, 36, 88, 0) 59.59%);
-$form-error-red: #ff4d61;
-$form-error-pink: #fbe9eb;
-$form-p: #757575;
-$alertgrad: radial-gradient(
-    67.91% 66.51% at -3.08% 29.91%,
-    #708ffa 0%,
-    rgba(45, 157, 192, 0.6) 58.85%,
-    rgba(47, 153, 176, 0) 100%
-  ),
-  linear-gradient(334.81deg, #04173d 4.5%, #204377 73.7%);
-
-$primary: $navy;
-$secondary: $red;
-$tertiary: $pblue;
-
-// Accessibility helpers.
-$adark: #121212;
-$agold: $gold;
-$awhite: rgba(255, 255, 255, 0.87);
-$ared: #e8808c;
-$awhite-low: rgba(255, 255, 255, 0.6);
-
-// additional grayscale & misc
-$details: #999; //body copy, lighter
-$error-text-color: g.$red; // form errors
-$highlight-color: g.$yellow;
-$form-grey: #5f5f5f;
-
-//lightest/darkest
-$lightest: g.$white; // usually white
-$darkest: g.$black; // usually black
-
-// main color assignments
-$base-html-bg: $lightest; // underlying background on html element. (shows during overscroll)
-$body-bg: $lightest; // main color behind body elements, usually including text
-$text-color: $primary; // main color for text elements, body copy
-$text-link-color: $pblue; // links within main body copy
-$text-link-hover-color: $dred; // links within main copy, hovered or active
-
-// usually reverse colors: light text on dark backgrounds, buttons, forms borders, etc.
-$text-color-on-lite-background: $darkest; // main color used on buttons, against backgrounds, etc.
-$text-color-on-dark-background: $lightest; // main color used on buttons, against backgrounds, etc.
-
-// grayscale & backgrounds
-$bg-lightest: $lightest;
-$bg-light: #eeeeee;
-$bg-pale: #cccccc;
-$bg-dark: #999999;
-$bg-darkest: #000;
-
-$footer-text-color: $text-color;
 
 
 

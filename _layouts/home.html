@@ -30,7 +30,7 @@ layout: default
       {% endif %}
     </div>
     <!-- EDUCATION SECTION -->
-    <div class="col-md-8">
+    <div class="col-md-8 mt-0">
       {% if site.animate %}
       <div class="card-body animate__animated animate__fadeInRight">
       {% else %}
@@ -71,12 +71,12 @@ layout: default
       <div class="tab-content mt-3">
         {% for section in site.data.sections %}
           {% if section.first %}
-            {% if section.name == "0-Day & Bug Bounty Disclosures" %}
+            {% if section.name == "Vulnerability Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
                 <p><i>{{section.description}}</i></p>
-                <table class="table table-borderless table-hover">
+                <table class="table table-striped table-responsive">
                   <caption>Publically Disclosed Vulnerabilities</caption>
-                  <thead>
+                  <thead class="thead-dark">
                     <tr>
                       <th scope="col">Date</th>
                       <th scope="col">Title</th>
@@ -89,7 +89,7 @@ layout: default
                   <tbody>
                     {% for bounty in site.data.bounties %}
                     <tr>
-                      <th scope="row">{{ bounty.Date }}</th>
+                      <td>{{ bounty.Date }}</td>
                       <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>
                       <td>{{ bounty.Platform }}</td>

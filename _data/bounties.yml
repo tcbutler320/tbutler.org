@@ -1,3 +1,14 @@
+- Title: "Timeclock 1.04 - Time and Boolean Based Blind SQL Injection"
+  Date: Mar 2021
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: PHP Timeclock
+  Link: https://www.exploit-db.com/exploits/49849
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+
 - Title: "Cross Site Scripting (XSS) on MonkeyType.com via Word History"
   Date: Mar 2021
   CVE: N/A

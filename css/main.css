@@ -54,51 +54,6 @@ a.highlighted:hover {
   -o-animation: 1s blink step-end infinite;
   animation: 1s blink step-end infinite;
 }
-
-@keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-moz-keyframes blink {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-webkit-keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-ms-keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
-
-@-o-keyframes "blink" {
-  from, to {
-    color: transparent;
-  }
-  50% {
-    color: black;
-  }
-}
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -281,17 +236,13 @@ tl-item.active .tl-dot:before {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-transform: rotate(
--90deg
-);
+    -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
-    transform: rotate(
--90deg
-);
+    transform: rotate(-90deg);
     -webkit-transform-origin: 50% 100%;
     -ms-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
-
+  }
 }
 
 .d-none {
@@ -1090,6 +1041,52 @@ $font-family: Proxima, Helvetica, Arial, sans-serif;
   -o-animation: 1s blink step-end infinite;
   animation: 1s blink step-end infinite;
 }
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
 
 @keyframes "blink" {
   from, to {

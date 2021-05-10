@@ -11,6 +11,7 @@ tag: ctf
 author: Tyler Butler
 desription: "Optimum is an easy level HTB challenge from the HTB archives. This challenge requires initial user access through a remote command execution vulnerability and local privilege escalation"
 card: card-2
+navheader: posts
 ---
 
 Optimum is a easy level retired CTF from Hack the Box. To root this machine, I gained initial access by exploiting a remote command execution vulnerability (CVE-2014-6287) and escalated privileges to root through a local windows privilege escalation vulnerability (CVE-2016-0099).  

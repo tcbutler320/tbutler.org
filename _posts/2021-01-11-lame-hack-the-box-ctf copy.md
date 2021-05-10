@@ -10,6 +10,7 @@ tag: ctf
 author: Tyler Butler
 description: Lame is an easy level retired capture the flag machine from Hack the Box. This writeup will describe the techniques I used to bypass security controls and gain root access to the machine.
 card: card-2
+navheader: posts
 ---
 
 

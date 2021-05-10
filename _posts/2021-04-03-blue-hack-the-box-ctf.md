@@ -11,6 +11,7 @@ tag: ctf
 author: Tyler Butler
 description: Blue is an easy level machine in the Hack the Box retired archives requiring simple enumeration and basic level understanding of metasploit
 card: card-2
+navheader: posts
 ---
 
 Blue is an easy level machine in the Hack the Box retired archives. This machine requires a simple enumeration scan to identify services and versions, and knowledge of using pre-configured metasploit modules to exploit a well-known vulnerability. The title of this box should be a major clue to what vulnerabilities might exist. 

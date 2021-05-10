@@ -12,6 +12,7 @@ tag: ctf
 author: Tyler Butler
 lead: "Using the Java Decompiler to Analyze Source Code"
 card: card-2
+navheader: posts
 ---
 
 
@@ -24,7 +25,7 @@ Blocky is an easy level CTF challenge from the Hack the Box Archives. Developed 
 
 # Basic Enumeration 
 
-To start, I used a simple `nmap` scan to look for running services and open ports. 
+To start, I used a simple <kbd>nmap</kbd> scan to look for running services and open ports. 
 
 ```bash
 ┌──(kali㉿kali)-[~/Desktop]

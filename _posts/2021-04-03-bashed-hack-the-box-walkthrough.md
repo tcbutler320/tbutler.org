@@ -12,6 +12,7 @@ tag: ctf
 author: Tyler Butler
 description: "Bashed is an easy level CTF challenge from HTB, solved with an initial user compromise through a developer misconfiguration and privilege escalation with the Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free Privilege Escalation Exploit"
 card: card-2
+navheader: posts
 ---
 
 # Overview

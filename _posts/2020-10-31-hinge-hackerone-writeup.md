@@ -11,6 +11,7 @@ tag: "Vulnerability Research"
 author: Tyler Butler
 description: This report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user img could be accessed in their original and unedited state.
 card: card-3
+navheader: posts
 ---
 
 <a href="/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf">

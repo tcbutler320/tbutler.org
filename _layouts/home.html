@@ -4,6 +4,7 @@ navheader: home
 ---
 <!--  HELP TIPS SECTION  -->
 <!-- used only for develop mode, disable these in _config.yml with `help_tips: false` -->
+
 {% if site.help_tips %}
 <div class="toast animate__animated animate__pulse animate__infinite" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-delay="10000" style="position: absolute; top: 10px; right: 10px;z-index: 10000;">
   <div class="toast-header">
@@ -92,7 +93,7 @@ navheader: home
                     {% for bounty in site.data.bounties %}
                     <tr>
                       <td>{{ bounty.Date }}</td>
-                      <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
+                      <td><a href={{ bounty.Link }}>{{ bounty.Title }}</a></td>
                       <td>{{ bounty.Vendor }}</td>
                       <td>{{ bounty.type }}</td>
                       <td>{{ bounty.CVE }}</td>

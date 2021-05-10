@@ -1,3 +1,16 @@
+- Title: "** DISCLOSURE PENDING **"
+  Date: 01/2021
+  CVE: "RESERVED"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: "TB"
+
 - Title: "Timeclock 1.04 - Time and Boolean Based Blind SQL Injection"
   Date: 05/2021
   CVE: N/A

@@ -1,16 +1,18 @@
 - Title: "Timeclock 1.04 - Time and Boolean Based Blind SQL Injection"
-  Date: Mar 2021
+  Date: 05/2021
   CVE: N/A
   Platform: Exploit-DB
-  Vendor: PHP Timeclock
+  Vendor: <a href="http://timeclock.sourceforge.net/">PHP Timeclock</a>
   Link: https://www.exploit-db.com/exploits/49849
   num: 0
   Bounty: "N/A"
   cve: N/A
   severity: High
+  type: "0-Day"
+  vuln: SQLi
 
 - Title: "Cross Site Scripting (XSS) on MonkeyType.com via Word History"
-  Date: Mar 2021
+  Date: 05/2021
   CVE: N/A
   Platform: GitHub
   Vendor: <a href="https://monkeytype.com/">MonkeyType</a>
@@ -19,9 +21,13 @@
   Bounty: "N/A"
   cve: N/A
   severity: Low
+  type: "Responsible Disclosure"
+  vuln: XSS
+
+
 
 - Title: "Undisclosed Vulnerability on Blockfi via HackerOne"
-  Date: Apr 2021
+  Date: 04/2021
   CVE: N/A
   Platform: Hackerone
   Vendor: <a href="https://blockfi.com">BlockFi</a>
@@ -30,9 +36,25 @@
   Bounty: "$1,000"
   cve: N/A
   severity: High
+  type: "Bug Bounty"
+  vuln: Undisclosed
+
+- Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
+  Date: 10/2020
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: <a href="http://timeclock-software.net/">Timeclock</a>
+  Link: https://www.exploit-db.com/exploits/48874
+  num: 1
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: SQLi
+
 
 - Title: "Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application"
-  Date: Mar 2020
+  Date: 03/2020
   CVE: N/A
   Platform: Hackerone
   Vendor: <a href="https://hinge.co">Hinge</a>
@@ -41,17 +63,8 @@
   Bounty: "$250"
   cve: N/A
   severity: Low
-
-- Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
-  Date: Oct 2020
-  CVE: N/A
-  Platform: Exploit-DB
-  Vendor: Timeclock
-  Link: https://www.exploit-db.com/exploits/48874
-  num: 1
-  Bounty: "N/A"
-  cve: N/A
-  severity: High
+  type: "Bug Bounty"
+  vuln: Misconfiguration
 
 
 

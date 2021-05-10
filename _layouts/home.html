@@ -1,5 +1,6 @@
 ---
 layout: default
+navheader: home
 ---
 <!--  HELP TIPS SECTION  -->
 <!-- used only for develop mode, disable these in _config.yml with `help_tips: false` -->
@@ -45,6 +46,7 @@ layout: default
   </div>
 </div>
 
+
 <!-- HOME HIGHLIGHTS SECTION --> 
 <h5 class="card-title text-center mb-3"></h5>
 {% if site.animate %}
@@ -73,17 +75,17 @@ layout: default
           {% if section.first %}
             {% if section.name == "Vulnerability Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
-                <p><i>{{section.description}}</i></p>
-                <table class="table table-striped table-responsive">
-                  <caption>Publically Disclosed Vulnerabilities</caption>
-                  <thead class="thead-dark">
+                <h4><center>Publically Disclosed Vulnerabilities</center></h4>
+                <table class="table table-sm table-striped table-responsive">
+                  <caption><i class="text-muted">{{section.description}}</i></caption>
+                  <thead class="thead">
                     <tr>
                       <th scope="col">Date</th>
                       <th scope="col">Title</th>
                       <th scope="col">Vendor</th>
-                      <th scope="col">Platform</th>
+                      <th scope="col">Type</th>
                       <th scope="col">CVE</th>
-                      <th scope="col">Bounty</th>
+
                     </tr>
                   </thead>
                   <tbody>
@@ -92,9 +94,8 @@ layout: default
                       <td>{{ bounty.Date }}</td>
                       <td><a href={{ bounty.Link }}>{{ bounty.Title }}</q></td>
                       <td>{{ bounty.Vendor }}</td>
-                      <td>{{ bounty.Platform }}</td>
-                      <td>{{ bounty.cve }}</td>
-                      <td>{{ bounty.Bounty }}</td>
+                      <td>{{ bounty.type }}</td>
+                      <td>{{ bounty.CVE }}</td>
                     </tr>
                     {% endfor %}
                   </tbody>

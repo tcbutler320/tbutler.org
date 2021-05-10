@@ -11,6 +11,7 @@ tag: ctf
 author: Tyler Butler
 description: "Jerry is an easy level HTB challenge from the HTB archives"
 card: card-2
+navheader: posts
 ---
 
 Jerry is an easy level HTB challenge from the HTB archives. The challenge involves basic CVE discovery through enumeration scans, and requires manual exploitation of the tomcat apache webserver. Overall this was a straightforward CTF challenge.  

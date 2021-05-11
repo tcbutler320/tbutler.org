@@ -11,7 +11,20 @@
   type: "0-Day"
   vuln: "TB"
 
-- Title: "Timeclock 1.04 - Time and Boolean Based Blind SQL Injection"
+- Title: "PHP Timeclock 1.04 - 'Multiple' Cross Site Scripting (XSS)"
+  Date: 05/2021
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: <a href="http://timeclock.sourceforge.net/">PHP Timeclock</a>
+  Link: https://www.exploit-db.com/exploits/49853
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: XSS
+
+- Title: "PHP Timeclock 1.04 - Time and Boolean Based Blind SQL Injection"
   Date: 05/2021
   CVE: N/A
   Platform: Exploit-DB

@@ -15,6 +15,7 @@ card: card-2
 navheader: posts
 ---
 
+<button class="btn btn-sm" onclick="setTerm()" >setTerm</button>
 
 Blocky is an easy level CTF challenge from the Hack the Box Archives. Developed by [Arrexel](https://app.hackthebox.eu/users/2904), the challenge consists of a linux machine configured as a Minecraft and wordpress server. It is easy to get carried away on this challenge, especially with poking at the wordpress and minecraft server, but once the user is compromised, escalation to root is trivial. My biggest takeaway from this CTF is to expand my basic directory brute force strategy to gaurentee a greater chance of discovery. 
 

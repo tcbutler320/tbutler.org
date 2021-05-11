@@ -61,7 +61,7 @@ a.highlighted:hover {
 and (min-device-width : 768px) {
 /* Styles */
   .medq-blog {
-    width: 70%;
+    width: 65%;
     font-family: Arial, sans-serif;
     font-size: large;
   }
@@ -142,6 +142,29 @@ and (min-device-width : 768px) {
 .tl-dot {
   position: relative;
   border-color: rgba(160, 175, 185, .15)
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  position:sticky;
+  height: 4px;
+  background: #04AA6D;
+  width: 0%;
 }
 
 .tl-dot:after,

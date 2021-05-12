@@ -21,7 +21,7 @@ navheader: home
 {% endif %}
 
 <!-- ABOUT ME SECTION -->
-<div class="card mx-auto border-0 mt-4" style="position:relative;background-color: transparent;">
+<div class="card mx-auto border-0 mt-4 bg-transparent" style="position:relative;background-color: transparent;">
   <div class="row">
     <div class="col-md-4">
       {% if site.animate %}
@@ -46,13 +46,12 @@ navheader: home
   </div>
 </div>
 
-
 <!-- HOME HIGHLIGHTS SECTION --> 
 <h5 class="card-title text-center mb-3"></h5>
 {% if site.animate %}
-<div class="card mx-auto animate__animated animate__slideInUp animate__delay-1s shadow" style="max-width: 100%;">
+<div class="card bg-transparent mx-auto animate__animated animate__slideInUp animate__delay-1s shadow" style="max-width: 100%;">
 {% else %}
-<div class="card mx-auto mb-1 border-0" style="max-width: 100%;">
+<div class="card bg-transparent mx-auto mb-1 border-0" style="max-width: 100%;">
 {% endif %}
   <div class="card-header robo" style="background-color:{{ theme.highlights-tab-color }};border-style:{{ theme.border-style}}">
     <ul class="nav nav-tabs nav-fill card-header-tabs" id="test-list" role="tablist">

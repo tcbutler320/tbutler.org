@@ -1,9 +1,9 @@
 {% assign theme = site.data.themes[site.ui_theme] %}
 <nav class="navbar navbar-expand-lg sticky-top border-bottom" style="font-family:{{ theme.link-font }};background-color:{{ theme.nav-color }};opacity:{{ theme.nav-opacity }};">
   <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};font-size:{{theme.title-size}};">tyler@ubunto:~/<span id="term">{{page.navheader}}</span>➭<span class="blinking-cursor">_</span></h4></a>
-  <button class="navbar-toggler text-{{ theme.button-color }}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-toggler text-{{ theme.button-color }}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="{{ site.nav-dIcon }}"></i>
-  </button>
+  </a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         {% for item in site.data.nav.links %}
@@ -27,6 +27,9 @@
     </ul>
     <ul class="navbar-nav  justify-content-end">
       <li class="nav-item">
+        <a class="navbar-brand" onclick="goDark();chgSrc();">
+          <img id="imgClickAndChange" src="/assets/img/icons/moon.svg" width="20" height="20" alt="">
+        </a>
         {% include social.html %}
       </li>
     </ul>

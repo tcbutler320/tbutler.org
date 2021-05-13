@@ -5,7 +5,7 @@
   <body>
       {% include nav.html %}
       {% if page.header-img %}
-      <div class="card border-0">
+      <div class="card border-0 bg-transparent">
           <div class="card-body">
             <p class="card-text">
                 {{ content }}
@@ -16,7 +16,7 @@
           </div>
       </div>
       {% else %}
-      <div class="card border-0">
+      <div class="card border-0 bg-transparent">
       {{ content }}
           <div class="card-body">
             <p class="card-text mt-0 mb-0">

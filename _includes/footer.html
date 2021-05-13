@@ -19,3 +19,23 @@
       document.getElementById("term").innerHTML = "test";
   }   
 </script>
+
+
+<script>
+function goDark() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+  var elm = document.getElementsByClassName('posttitle');
+  elm.classList.toggle("dark-title");
+}
+</script>
+
+<script>
+function chgSrc() {
+  if (document.getElementById("imgClickAndChange").src == "http://localhost:4000/assets/img/icons/moon.svg") 
+    {
+        document.getElementById("imgClickAndChange").src = "http://localhost:4000/assets/img/icons/sleep-mode.svg";
+    }
+  else {document.getElementById("imgClickAndChange").src = "http://localhost:4000/assets/img/icons/moon.svg";}
+}
+</script>

@@ -5,7 +5,7 @@ navheader: posts
 {% assign theme = site.data.themes[site.ui_theme] %}
 {% include reading_time.html %}
 
-<div class="container-fluid">
+<div class="container-fluid" style="background:transparent;">
 {% include sidebar.html %}
 
 <div class="mx-auto mb-4 medq-blog">
@@ -18,7 +18,7 @@ navheader: posts
       {% include social-cards-sm.html %}
     </div>
   </div>
-  <div class="card-body">
+  <div class="card-body" style="background:transparent;"">
     {{ content | markdownify }}
   </div>
 </div>

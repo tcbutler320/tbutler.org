@@ -19,9 +19,9 @@ redirect_from:
 navheader: posts
 ---
   
-#### TL;DR
+#### **TL;DR**
 
-Back in December of 2020, I disclosed a potential threat vector to Apple regarding the ability to create Homograph Attacks on iOS devices using iMessage and Safari. The central issue at hand was the way iOS handles International Domain Name's in iMessage preview. Using the techniques described in my research, a motivated threat actor can send an iMessage link that spoofs popular news organizations, and could be used to spread misinformation or deliver targeted malware. This is not a new issue, as homograph attacks have been used for several years going back to the late 2000's. This research does however highlight a previously unseen attack vector. Apple has elected not to address the concern, on the basis that there is a  *"visually distinguishable difference"* between the homograph representation on iOS. I respect their decision, but disagree in their assessment. While a visual difference does exist, the homograph is convicing enough that users should be protected from the associated risks of such attacks.
+Back in July of 2020, I disclosed a potential threat vector to Apple regarding the ability to create IDN Homograph Attacks on iOS devices using iMessage and Safari. IDN Homograph exploits are not new, and have been widely known for over a decade. Typical exploitation of such vulnerabilities involve registering an International Domain Name which, when interpreted by some applications, can appear indistinguishable from a legitimate spoofed site. The implication here being that an attacker can send targeted links which appear legit, but actually point to an attacker owned server. While several mitigation strategies have been put in place to protect users from the associated risks, this research proposes that some `nearly indistinguishable` homograph exploits might still be effective against most victims. I disclosed an early version of this research to Apple in 2020, and they have decided not to address the concerns on the basis that the spoofing behaviors described in the report is "distinguishable from the legitimate URLs". I argue that the difference is so negligible, that normal users can still be exploited. 
 
 *For the full research, including citations and detailed graphics, see the* <a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf" class="badge badge-dark text-light">PDF Report</a>
 
@@ -30,11 +30,36 @@ Back in December of 2020, I disclosed a potential threat vector to Apple regardi
   <figcaption class="figure-caption text-left">Pictured above, previews of a real NYT article being sent via iMessage(left) and a spoofed NYT article which points to an attacker-owned domain (right)</figcaption>
 </figure>
 
+#### **Disclosure Timeline**
 
-#### Abstract 
+  <div class="timeline mt-1 mb-1">
+      <div class="tl-item active">
+          <div class="tl-dot b-warning"></div>
+          <div class="tl-content">
+              <div class="">I disclose an early version of the research to Apple</div>
+              <div class="tl-date text-muted mt-1">21 July 2020</div>
+          </div>
+      </div>
+      <div class="tl-item">
+          <div class="tl-dot b-primary"></div>
+          <div class="tl-content">
+              <div class="">Apple Product Security assigns the report to 740962732</div>
+              <div class="tl-date text-muted mt-1">23 July 2020</div>
+          </div>
+      </div>
+      <div class="tl-item">
+          <div class="tl-dot b-danger"></div>
+          <div class="tl-content">
+              <div class="">Apple releases final verdict, indicating they will not address the concern</div>
+              <div class="tl-date text-muted mt-1">4 August 2020</div>
+          </div>
+      </div>
+    </div>
+
+#### **Abstract** 
 *The introduction of International Domain Names (IDNs) drastically increased the potential availability of homograph exploitsthe use of Unicode characters to create misleading information, most notably domain names. In the years since, several mitigation strategies have been deployed by leading developers to protect users from risk. Despite these developments, Apple’s iOS devices continue to be susceptible IDN homograph exploits. The research builds on previous work and considers the plausibility of abusing design features in Apple iOS devices to exploit IDN homographs to spread misinformation and targeted malware, specifically with the ability to spoof popular news media outlets. It finds that iOS devices continue to be susceptible to such attacks, and describes techniques used to abuse features in iMessage, Messages, and Safari Web Browser This flaw leaves iOS users at significant risk of spoofing attacks which can be used to spread misinformation, steal credentials, or deliver targeted malware. Of particular concern is the ability for hostile governments to use the described techniques to target journalists with spyware. The research was presented to Apple in December of 2020, and the vendor has identified they will not be issuing a fix.*
 
-#### Introduction  
+#### **Introduction**
 
 The Domain Network System (DNS) was a foundational internet protocol that dictated the available characters which could be
 used to name websites. Its nascent form included the 256 characters in the popular character encoding set ASCII (The American
@@ -50,14 +75,14 @@ The concern that homograph IDNs could be used as a method for spoofing popular d
 range of mitigation strategies. These strategies included representing IDNs in punycode, whitelisting select IDNs, and colorcoded scripts. Despite available options, many applications have been slow to adopt a comprehensive solution.3 For example, Mozilla’s Firefox uses a combination of IDN whitelist and a custom algorithm. According to the policy, certain whitelisted IDN’s are always shown in punycode, the rest are determined based on a series of restrictions identified by the Unicode
 Technical Standard 39, such as common + inherited + a single script. Apple first started to address the issue with IDNs in 2010. The first version of Safari web browser to use punycode was its Safari 5 release in mid 2010.3 While Apple’s Safari maintains a whitelist, the threat of unknown or unblocked IDNs still remains at large.  
 
-#### Method  
+#### **Method**  
 To demonstrate the risks of current iOS design features related to the display of IDNs, a proof of concept was established to
 create false and misleading websites spoofing top news reporting agencies. The technique involves 3 main components;
 identification and registration of homograph domains, development of cloned websites, and smishing users with IDN exploits.
 Once each step was complete, the results of the iOS IDN display was then compared against Google Chrome. The POC is tested
 on iOS Messages and Safari for MacBook (macOS Catalina 10.15.7) and for iPhone ( iPhone Xs Max 14.0.1).  
 
-#### Identification and Registration of Homograph Domains  
+#### **Identification and Registration of Homograph Domains**  
 
 
 This report does not make an assessment of the amount of available homograph domains not whitelisted and thus still in
@@ -95,7 +120,7 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
     <tr>
       <th scope="row">NPR</th>
       <td>https://npr.org</td>
-      <td>https://ɴpr.com</td>
+      <td>https://ɴpr.org</td>
       <td>“ɴ” (U+0274)</td>
     </tr>
    <tr>
@@ -131,19 +156,19 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
   </tbody>
 </table>  
 
-#### Development of Cloned Domain Websites
+#### **Development of Cloned Domain Websites**
 The website to serve as the spoofed domain was developed using Jekyll, a static website generator written in Ruby. First, a Jekyll theme was selected for its resemblance to the New York Times domain. The Aspirethemes type theme was selected for its minimalistic design, making it easily adaptable. To make the site resemble the New York Times, raw html content was copied from the original article using the Google Chrome Inspector Tools. The entire header and body HTML contents were copied and pasted into the theme template. Figure 1 shows a screenshot of copying the html content.  
 
 In order to ensure that iMessage previews would be the same between the real website link and the spoofed one, it was crucial to copy meta tag headers used to generate such previews. With the same tags being used in both sites, the previews would also be the same. Generating the site preview using the local Jekyll development server revealed the resulting spoof site was a nearly identical to the original site. A small selection of JavaScript functions did not work because the original code searched for .js files from a relative path /vi-assets/static-assets/. This was fixed by replacing all instances with the original link path https://www.nytimes.com/vi-assets/static-assets/. GitHub was used to store the source code for the new spoofed site, and Netlify was used to host the domain.   
 
 
-#### Smishing Users with IDN Exploits  
+#### **Smishing Users with IDN Exploits**  
 
 Delivering the IDN homograph exploit to a sample user was achieved by sending a link to the spoof domain through iMessage. It did not matter whether the link was sent in IDN or punycode form, as iMessage preview automatically converted the punycode domain back into its IDN equivalent. Figure 2 shows this conversion process. iMessage preview is pivotal to the relevance of this exploit, as additional information shown to the user such as the preview image and subject line add to the authenticity of the link. 
 
 
 
-#### Results 
+#### **Results** 
 Overall using Unicode Character “ɴ” (U+0274) as an IDN homograph exploit on iOS devices was determined to be an effective
 method of spoofing news media websites and fooling users into trusting an attacker owned domain. The most effective threat
 vector is to use iMessage for iPhone, as there is no option to “hover over” the link, which on iMessage for MacBook converts the
@@ -173,7 +198,7 @@ appears if hovering for a few seconds, and a normal click of the link does not t
   <figcaption class="figure-caption text-left">Figure 4:  Hovering a cursor over iMessage Link Preview shows punycode domain </figcaption>
 </figure>  
 
-#### Safari IDN Preview Results
+#### **Safari IDN Preview Results**
 The difference in appearance between the spoofed domain and the legitimate New York Times article is barely noticeable to the
 naked eye on Safari. Figures 6 and 7 show that Chrome (left), shows the punycode domain name of the IDN site. Punycode is
 used here because this domain violates several IDN rules in use by Chrome. This is in stark contrast to Safari, which does not.   
@@ -192,7 +217,7 @@ different spots; however, this is due to mistakes in the cloning process.
 </figure>  
 
 
-#### Use Cases
+#### **Use Cases**
 The research presented describes a valid social engineering method that could be employed by various threat actors to deliver
 targeted malware to a vulnerable user. Due to the fact that the domains used in this report already violated IDN rules on many
 applications, the exploit is limited for use on only iOS targets. Additionally, any target which has changed their default web
@@ -203,8 +228,7 @@ smishing operations, and advanced misinformation operations designed to target p
 
 *Example: Targeted Misinformation*  
 An attacker can use this technique to send a target a crafted article that aims to change their views on a particular topic. An
-obvious pitfall to this attack is that secondary validation by the target to search for other articles on the topic would show the
-payload was the only source.    
+obvious pitfall to this attack is that secondary validation by the target to search for other articles on the topic would show the payload was the only source.  
 
 <figure class="figure">
   <img src="/assets/img/figure10.png" class="figure-img img-fluid rounded" alt="Figure 4">

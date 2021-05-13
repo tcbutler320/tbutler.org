@@ -4,7 +4,7 @@ description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Org
 featured: true 
 feature-header: "Featured Research 👇"
 tag: research
-image: "https://res.cloudinary.com/tbutler-org/image/upload/c_scale,w_443/v1619375075/alexander-shatov-PEJtZfT6C1Q-unsplash_bupjja.jpg"
+image: "/assets/img/posts/2021-04-16-Considering-The-Plausibility-of-IDN-Homograph-Attacks copy/preview.jpg"
 layout: post
 date:  2021-04-16 00:01:21 -0400
 last-updated: 2021-04-16 00:01:21 -0400
@@ -18,7 +18,9 @@ redirect_from:
   - /considering-the-plausibility-of-idn-homograph-attacks
 navheader: posts
 ---
-  
+
+<p><small><i>preview image courtesy of <a class="highlighted" href="https://unsplash.com/@wesson">@wesson</a></i></small></p>
+
 #### **TL;DR**
 
 Back in July of 2020, I disclosed a potential threat vector to Apple regarding the ability to create IDN Homograph Attacks on iOS devices using iMessage and Safari. IDN Homograph exploits are not new, and have been widely known for over a decade. Typical exploitation of such vulnerabilities involve registering an International Domain Name which, when interpreted by some applications, can appear indistinguishable from a legitimate spoofed site. The implication here being that an attacker can send targeted links which appear legit, but actually point to an attacker owned server. While several mitigation strategies have been put in place to protect users from the associated risks, this research proposes that some `nearly indistinguishable` homograph exploits might still be effective against most victims. I disclosed an early version of this research to Apple in 2020, and they have decided not to address the concerns on the basis that the homograph behaviors described in the report is "visually distinguishable". I argue that the difference is so negligible, that normal users can still be exploited. 
@@ -156,6 +158,15 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
   </tbody>
 </table>  
 
+
+<figure class="figure">
+  <img src="assets/img/posts/2021-04-16-Considering-The-Plausibility-of-IDN-Homograph-Attacks copy/nytimes.png" class="figure-img img-fluid rounded" alt="Figure 2">
+  <figcaption class="figure-caption text-left">Sample IDN Domain Used for Research</figcaption>
+</figure>
+
+
+
+
 #### **Development of Cloned Domain Websites**
 The website to serve as the spoofed domain was developed using Jekyll, a static website generator written in Ruby. First, a Jekyll theme was selected for its resemblance to the New York Times domain. The Aspirethemes type theme was selected for its minimalistic design, making it easily adaptable. To make the site resemble the New York Times, raw html content was copied from the original article using the Google Chrome Inspector Tools. The entire header and body HTML contents were copied and pasted into the theme template. Figure 1 shows a screenshot of copying the html content.  
 
@@ -163,6 +174,10 @@ In order to ensure that iMessage previews would be the same between the real web
 
 
 #### **Smishing Users with IDN Exploits**  
+
+<div class="alert alert-warning" role="alert">
+  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Research was only conducted on my own personal devices, and friends willing to participate!
+</div>
 
 Delivering the IDN homograph exploit to a sample user was achieved by sending a link to the spoof domain through iMessage. It did not matter whether the link was sent in IDN or punycode form, as iMessage preview automatically converted the punycode domain back into its IDN equivalent. Figure 2 shows this conversion process. iMessage preview is pivotal to the relevance of this exploit, as additional information shown to the user such as the preview image and subject line add to the authenticity of the link. 
 

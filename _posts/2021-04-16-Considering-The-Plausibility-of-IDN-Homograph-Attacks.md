@@ -4,7 +4,7 @@ description: Abusing Unicode Character “ɴ” (U+0274) to Spoof News Media Org
 featured: true 
 feature-header: "Featured Research 👇"
 tag: research
-image: "https://res.cloudinary.com/tbutler-org/image/upload/c_scale,w_443/v1619375075/alexander-shatov-PEJtZfT6C1Q-unsplash_bupjja.jpg"
+image: "/assets/img/posts/2021-04-16-Considering-The-Plausibility-of-IDN-Homograph-Attacks copy/preview.jpg"
 layout: post
 date:  2021-04-16 00:01:21 -0400
 last-updated: 2021-04-16 00:01:21 -0400
@@ -18,7 +18,9 @@ redirect_from:
   - /considering-the-plausibility-of-idn-homograph-attacks
 navheader: posts
 ---
-  
+
+<p><small><i>preview image courtesy of <a class="highlighted" href="https://unsplash.com/@wesson">@wesson</a></i></small></p>
+
 #### **TL;DR**
 
 Back in July of 2020, I disclosed a potential threat vector to Apple regarding the ability to create IDN Homograph Attacks on iOS devices using iMessage and Safari. IDN Homograph exploits are not new, and have been widely known for over a decade. Typical exploitation of such vulnerabilities involve registering an International Domain Name which, when interpreted by some applications, can appear indistinguishable from a legitimate spoofed site. The implication here being that an attacker can send targeted links which appear legit, but actually point to an attacker owned server. While several mitigation strategies have been put in place to protect users from the associated risks, this research proposes that some `nearly indistinguishable` homograph exploits might still be effective against most victims. I disclosed an early version of this research to Apple in 2020, and they have decided not to address the concerns on the basis that the homograph behaviors described in the report is "visually distinguishable". I argue that the difference is so negligible, that normal users can still be exploited. 

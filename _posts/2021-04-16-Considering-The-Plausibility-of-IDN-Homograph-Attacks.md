@@ -21,7 +21,7 @@ navheader: posts
   
 #### **TL;DR**
 
-Back in July of 2020, I disclosed a potential threat vector to Apple regarding the ability to create IDN Homograph Attacks on iOS devices using iMessage and Safari. IDN Homograph exploits are not new, and have been widely known for over a decade. Typical exploitation of such vulnerabilities involve registering an International Domain Name which, when interpreted by some applications, can appear indistinguishable from a legitimate spoofed site. The implication here being that an attacker can send targeted links which appear legit, but actually point to an attacker owned server. While several mitigation strategies have been put in place to protect users from the associated risks, this research proposes that some `nearly indistinguishable` homograph exploits might still be effective against most victims. I disclosed an early version of this research to Apple in 2020, and they have decided not to address the concerns on the basis that the spoofing behaviors described in the report is "distinguishable from the legitimate URLs". I argue that the difference is so negligible, that normal users can still be exploited. 
+Back in July of 2020, I disclosed a potential threat vector to Apple regarding the ability to create IDN Homograph Attacks on iOS devices using iMessage and Safari. IDN Homograph exploits are not new, and have been widely known for over a decade. Typical exploitation of such vulnerabilities involve registering an International Domain Name which, when interpreted by some applications, can appear indistinguishable from a legitimate spoofed site. The implication here being that an attacker can send targeted links which appear legit, but actually point to an attacker owned server. While several mitigation strategies have been put in place to protect users from the associated risks, this research proposes that some `nearly indistinguishable` homograph exploits might still be effective against most victims. I disclosed an early version of this research to Apple in 2020, and they have decided not to address the concerns on the basis that the homograph behaviors described in the report is "visually distinguishable". I argue that the difference is so negligible, that normal users can still be exploited. 
 
 *For the full research, including citations and detailed graphics, see the* <a href="/assets/pdf/Butler,Tyler-Considering-the-Plausibility-of-IDN-Homograph-Attacks-on-iOS.pdf" class="badge badge-dark text-light">PDF Report</a>
 
@@ -37,21 +37,21 @@ Back in July of 2020, I disclosed a potential threat vector to Apple regarding t
           <div class="tl-dot b-warning"></div>
           <div class="tl-content">
               <div class="">I disclose an early version of the research to Apple</div>
-              <div class="tl-date text-muted mt-1">21 July 2020</div>
+              <div class="tl-date text-muted mt-1">8 Dec 2020</div>
           </div>
       </div>
       <div class="tl-item">
           <div class="tl-dot b-primary"></div>
           <div class="tl-content">
-              <div class="">Apple Product Security assigns the report to 740962732</div>
-              <div class="tl-date text-muted mt-1">23 July 2020</div>
+              <div class="">Apple Product Security assigns the report to 755328679</div>
+              <div class="tl-date text-muted mt-1">8 Dec 2020</div>
           </div>
       </div>
       <div class="tl-item">
           <div class="tl-dot b-danger"></div>
           <div class="tl-content">
               <div class="">Apple releases final verdict, indicating they will not address the concern</div>
-              <div class="tl-date text-muted mt-1">4 August 2020</div>
+              <div class="tl-date text-muted mt-1">20 January 2021</div>
           </div>
       </div>
     </div>

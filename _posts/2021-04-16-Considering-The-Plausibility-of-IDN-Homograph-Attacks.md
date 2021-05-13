@@ -156,6 +156,15 @@ homoglyph that was considered was Unicode Character “ȷ” (U+0237), which can
   </tbody>
 </table>  
 
+
+<figure class="figure">
+  <img src="assets/img/posts/2021-04-16-Considering-The-Plausibility-of-IDN-Homograph-Attacks copy/nytimes.png" class="figure-img img-fluid rounded" alt="Figure 2">
+  <figcaption class="figure-caption text-left">Sample IDN Domain Used for Research</figcaption>
+</figure>
+
+
+
+
 #### **Development of Cloned Domain Websites**
 The website to serve as the spoofed domain was developed using Jekyll, a static website generator written in Ruby. First, a Jekyll theme was selected for its resemblance to the New York Times domain. The Aspirethemes type theme was selected for its minimalistic design, making it easily adaptable. To make the site resemble the New York Times, raw html content was copied from the original article using the Google Chrome Inspector Tools. The entire header and body HTML contents were copied and pasted into the theme template. Figure 1 shows a screenshot of copying the html content.  
 
@@ -163,6 +172,10 @@ In order to ensure that iMessage previews would be the same between the real web
 
 
 #### **Smishing Users with IDN Exploits**  
+
+<div class="alert alert-warning" role="alert">
+  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Research was only conducted on my own personal devices, and friends willing to participate!
+</div>
 
 Delivering the IDN homograph exploit to a sample user was achieved by sending a link to the spoof domain through iMessage. It did not matter whether the link was sent in IDN or punycode form, as iMessage preview automatically converted the punycode domain back into its IDN equivalent. Figure 2 shows this conversion process. iMessage preview is pivotal to the relevance of this exploit, as additional information shown to the user such as the preview image and subject line add to the authenticity of the link. 
 

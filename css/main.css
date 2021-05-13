@@ -1,15 +1,4 @@
 
-.dark-mode {
-  background-color: black;
-  color: white;
-  a {color:white;}
-  a:link {color: white;}      /* unvisited link */
-  a:visited {color: white;}   /* visited link */
-  a:hover {color: white;}     /* mouse over link */
-  a:active {color: white;}    /* selected link */
-  
-  
-}
 
 .container {
   background:transparent;
@@ -970,8 +959,6 @@ a:active {color: black;}    /* selected link */
   font-display: swap;
 }
 
-$font-family: Proxima, Helvetica, Arial, sans-serif;
-
 /* Badge */
 
 .badge {
@@ -1171,4 +1158,25 @@ $font-family: Proxima, Helvetica, Arial, sans-serif;
   50% {
     color: black;
   }
+}
+
+
+
+.dark-mode {
+  background-color: #000000;
+  color: white;
+  a {color:white;}
+  a:link {color: white;}      /* unvisited link */
+  a:visited {color: white;}   /* visited link */
+  a:hover {color: white;}     /* mouse over link */
+  a:active {color: white;}    /* selected link */
+
+  posttitle {
+    border-left: 5px solid white;
+  }
+  
+}
+
+.dark-title {
+  border-left: 5px solid white;
 }

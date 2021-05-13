@@ -1,6 +1,6 @@
 - Title: "** DISCLOSURE PENDING **"
-  Date: 01/2021
-  CVE: "RESERVED"
+  Date: 05/2021
+  CVE: "TBD"
   Platform: Pending
   Vendor: Pending
   Link: 
@@ -9,7 +9,20 @@
   cve: N/A
   severity: High
   type: "0-Day"
-  vuln: "TB"
+  vuln: ""
+
+- Title: "** DISCLOSURE PENDING **"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: ""
 
 - Title: "PHP Timeclock 1.04 - 'Multiple' Cross Site Scripting (XSS)"
   Date: 05/2021
@@ -64,6 +77,19 @@
   severity: High
   type: "Bug Bounty"
   vuln: Undisclosed
+
+- Title: "** DISCLOSURE PENDING **"
+  Date: 01/2021
+  CVE: "RESERVED"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: "TB"
 
 - Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
   Date: 10/2020

@@ -75,14 +75,14 @@ navheader: home
           {% if section.first %}
             {% if section.name == "Vulnerability Disclosures" %}
               <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
-                <table class="table table-sm table-striped table-responsive">
+                <table class="table table-sm table-striped">
                   <caption><i class="text-muted">{{section.description}}</i></caption>
                   <thead class="thead">
                     <tr>
                       <th scope="col">Date</th>
                       <th scope="col">Title</th>
                       <th scope="col">Vendor</th>
-                      <th scope="col">Type</th>
+                      <th scope="col">Bounty</th>
                       <th scope="col">CVE</th>
 
                     </tr>
@@ -93,7 +93,7 @@ navheader: home
                       <td>{{ bounty.Date }}</td>
                       <td><a href={{ bounty.Link }}>{{ bounty.Title }}</a></td>
                       <td>{{ bounty.Vendor }}</td>
-                      <td>{{ bounty.type }}</td>
+                      <td>{{ bounty.Bounty }}</td>
                       <td>{{ bounty.CVE }}</td>
                     </tr>
                     {% endfor %}

@@ -1173,9 +1173,20 @@ a:active {color: black;}    /* selected link */
   a:visited {color: white;}   /* visited link */
   a:hover {color: white;}     /* mouse over link */
   a:active {color: white;}    /* selected link */
+  table,ul,h1,h2,h3,h4,h5,p {
+    color:white;
+  }
 
   posttitle {
     border-left: 5px solid white;
+  }
+
+  .socicon {
+    color:white;
+  }
+
+  highlighted {
+    color:red;
   }
   
 }

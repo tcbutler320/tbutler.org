@@ -5,7 +5,7 @@
   content: 
   first: true
   jsid: foo1
-  emoji: 👾
+  emoji: <i class="fa fa-handshake-o" aria-hidden="true"></i>
   num: 9
 
 - name: Publications
@@ -14,18 +14,8 @@
   url: publications.html
   first: false
   jsid: foo
-  emoji: 📚
+  emoji: <i class="fa fa-pencil" aria-hidden="true"></i>
   num: 3
-
-  
-- name: Coursework
-  id: courses
-  description: Below is a short overview of courses I've taken while at The Pennsylvania State University.
-  content: 
-  first: false
-  jsid: foo2
-  emoji: 🎒
-
 
 - name: Teaching
   id: teaching
@@ -34,7 +24,7 @@
   url: teaching.html
   first: false
   jsid: foo3
-  emoji: 👨‍🏫
+  emoji: <i class="fa fa-graduation-cap" aria-hidden="true"></i>
   num: 
 
 
@@ -45,7 +35,7 @@
   url: projects.html
   first: false
   jsid: foo4
-  emoji: 🤖
+  emoji: <i class="fa fa-code-fork" aria-hidden="true"></i>
   num: 
 
 

@@ -1,6 +1,6 @@
 tbutler:
     name: tbutler
-    nav-color: "#ffffff"
+    nav-color: "transparent"
     nav-text: "#272343"
     title-font: "Noto Sans JP"
     link-font: "#272343"
@@ -38,7 +38,7 @@ tbutler:
 
 experiment:
     name: tbutler
-    nav-color: "#ffffff"
+    nav-color: "white"
     nav-text: "#272343"
     title-size: "1.25rem"
     title-font: "Arial"

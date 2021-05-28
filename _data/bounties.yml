@@ -1,3 +1,16 @@
+- Title: "MonkeyType.com - Stored Cross-Site Scripting (XSS) via Tribe Chat"
+  Date: 05/2021
+  CVE: "N/A"
+  Platform: GitHub
+  Vendor: MonkeyType
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: ""
+
 - Title: "** DISCLOSURE PENDING **"
   Date: 05/2021
   CVE: "TBD"
@@ -5,7 +18,7 @@
   Vendor: Pending
   Link: 
   num: 0
-  Bounty: "N/A"
+  Bounty: "TBD"
   cve: N/A
   severity: High
   type: "0-Day"
@@ -50,7 +63,7 @@
   type: "0-Day"
   vuln: SQLi
 
-- Title: "Cross Site Scripting (XSS) on MonkeyType.com via Word History"
+- Title: "MonkeyType.com - Cross Site Scripting (XSS) via Word History"
   Date: 05/2021
   CVE: N/A
   Platform: GitHub
@@ -65,7 +78,7 @@
 
 
 
-- Title: "Undisclosed Vulnerability on Blockfi via HackerOne"
+- Title: "Blockfi  - Undisclosed Vulnerability"
   Date: 04/2021
   CVE: N/A
   Platform: Hackerone
@@ -105,7 +118,7 @@
   vuln: SQLi
 
 
-- Title: "Modification of Assumed Immutable Data (M.A.I.D) on the Hinge Dating Application"
+- Title: "Hinge - Modification of Assumed Immutable Data (M.A.I.D)"
   Date: 03/2020
   CVE: N/A
   Platform: Hackerone

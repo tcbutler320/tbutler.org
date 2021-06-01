@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-post
 navheader: posts
 ---
 {% assign theme = site.data.themes[site.ui_theme] %}
@@ -7,6 +7,16 @@ navheader: posts
 
 <div class="container-fluid" style="background:transparent;">
 {% include sidebar.html %}
+
+<div class="mx-auto mb-4 medq-blog">
+  <nav aria-label="breadcrumb" style="background:transparent;">
+    <ol class="breadcrumb" style="background:transparent;">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/blog">Posts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{page.tag}}</li>
+    </ol>
+  </nav>
+</div>
 
 <div class="mx-auto mb-4 medq-blog">
 <div class="mx-auto posttitle mb-1 mt-3" style="width: 100%;">
@@ -18,7 +28,8 @@ navheader: posts
       {% include social-cards-sm.html %}
     </div>
   </div>
-  <div class="card-body" style="background:transparent;"">
+  <div class="card-body" style="background:transparent;">
+
     {{ content | markdownify }}
   </div>
 </div>

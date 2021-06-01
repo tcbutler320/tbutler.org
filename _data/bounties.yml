@@ -1,9 +1,35 @@
+- Title: "Disclosure Pending"
+  Date: 05/2021
+  CVE: "N/A"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: Medium
+  type: "0-Day"
+  vuln: ""
+
+- Title: "Disclosure Pending"
+  Date: 05/2021
+  CVE: "N/A"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: Medium
+  type: "0-Day"
+  vuln: ""
+
 - Title: "MonkeyType.com - Stored Cross-Site Scripting (XSS) via Tribe Chat"
   Date: 05/2021
   CVE: "N/A"
   Platform: GitHub
   Vendor: MonkeyType
-  Link: 
+  Link: "https://github.com/Miodec/monkeytype/issues/1476"
   num: 0
   Bounty: "N/A"
   cve: N/A
@@ -11,7 +37,7 @@
   type: "0-Day"
   vuln: ""
 
-- Title: "** DISCLOSURE PENDING **"
+- Title: "Disclosure Pending"
   Date: 05/2021
   CVE: "TBD"
   Platform: Pending
@@ -24,7 +50,7 @@
   type: "0-Day"
   vuln: ""
 
-- Title: "** DISCLOSURE PENDING **"
+- Title: "Disclosure Pending"
   Date: 05/2021
   CVE: "TBD"
   Platform: Pending
@@ -91,7 +117,7 @@
   type: "Bug Bounty"
   vuln: Undisclosed
 
-- Title: "** DISCLOSURE PENDING **"
+- Title: "Disclosure Pending"
   Date: 01/2021
   CVE: "RESERVED"
   Platform: Pending

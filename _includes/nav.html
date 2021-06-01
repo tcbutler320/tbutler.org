@@ -1,6 +1,7 @@
 {% assign theme = site.data.themes[site.ui_theme] %}
-<nav class="navbar navbar-expand-lg sticky-top border-bottom" style="font-family:{{ theme.link-font }};background-color:{{ theme.nav-color }};opacity:{{ theme.nav-opacity }};">
-  <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};font-size:{{theme.title-size}};">tyler@ubuntu:~/<span id="term">{{page.navheader}}</span>➭<span class="blinking-cursor">_</span></h4></a>
+<nav class="navbar navbar-expand-lg" style="font-family:{{ theme.link-font }};background-color:{{ theme.nav-color }};opacity:{{ theme.nav-opacity }};">
+  {% comment %} <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};font-size:{{theme.title-size}};">tyler@ubuntu:~/<span id="term">{{page.navheader}}</span>➭<span class="blinking-cursor">_</span></h4></a> {% endcomment %}
+  <a class="navbar-brand" href="/index.html" style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};font-size:{{theme.title-size}};">Tyler Butler</a>
   <a class="navbar-toggler text-{{ theme.button-color }}" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="{{ site.nav-dIcon }}"></i>
   </a>
@@ -20,7 +21,7 @@
               </li>
           {% else %}
               <li class="nav-item">
-                  <a href="{{ item.url }}" class="nav-link" style="font-family:{{ theme.link-font }};color:{{ theme.link-color}};"><b>{{ item.title }}</b></a>
+                  <a href="{{ item.url }}" class="nav-link" style="font-family:{{ theme.link-font }};color:{{ theme.link-color}};font-weight:300;"><b>{{ item.title }}</b></a>
               </li>
           {% endif %}
         {% endfor %}

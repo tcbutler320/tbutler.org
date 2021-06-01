@@ -176,7 +176,7 @@ and (min-device-width : 768px) {
 .progress-bar {
   position:sticky;
   height: 4px;
-  background: #04AA6D;
+  background: #810000;
   width: 0%;
 }
 

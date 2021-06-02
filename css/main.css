@@ -176,7 +176,7 @@ and (min-device-width : 768px) {
 .progress-bar {
   position:sticky;
   height: 4px;
-  background: #810000;
+  background: #081833;
   width: 0%;
 }
 
@@ -348,7 +348,11 @@ code {
 }
 
 .badge-red {
-  background-color: #810000;
+  background-color: #081833;
+}
+
+.badge-yellow {
+  background-color: #FED700;
 }
 
 .robo-dark {
@@ -879,7 +883,7 @@ border-radius: 0%;
 }
 
 .posttitle {
-  border-left: 5px solid rgba(129,0,0);
+  border-left: 5px solid rgba(8);
 }
 
 .posttitle-rt {
@@ -891,7 +895,7 @@ border-radius: 0%;
 }
 
 .posttitle {
-  border-left: 5px solid #810000;
+  border-left: 5px solid #081833;
 }
 
 .blogcard:hover{

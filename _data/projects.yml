@@ -1,3 +1,29 @@
+- name: Jek
+  id: jek
+  description: >
+    Jek is a minimalist jekyll theme putting the power of color schemes in the user’s hands. Toggle between schemes hassle-free, create new ones on the go, and store settings in-browser
+  date: true
+  link: https://github.com/tcbutler320/jek
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  icon: "fab fa-github"
+  tech: 
+    - jekyll 
+    - javascript 
+    - github
+
+- name: BananaCannon
+  id: BananaCannon
+  description: >
+    BananaCannon is a series of exploit proof of concepts for MonkeyType.com, a popular typing test web application with a growing community. Current research includes two cross-site scripting vulenrabilities, a proof of concept exploit that allows users to automatically top the leaderboard, and a proof of concept for impersonating other user's in Tribe chat via socket modification.
+  date: true
+  link: https://github.com/tcbutler320/jek
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  icon: "fab fa-github"
+  tech: 
+    - node 
+    - burpsuite 
+    - sockets.io
+
 - name: Jekyll-Theme-Dumbarton
   id: Jekyll-Theme-Dumbarton
   description: >

@@ -5,16 +5,23 @@
   End-Date:  December 2018
   Icon: /assets/img/icons/psu.png        # Make this icon small, think 30px/30px
 
-- School: <a href="https://verified.elearnsecurity.com/certificates/6ed71d15-99b2-44f7-a261-9bb537815d16">Web Application Penetration Tester (eWPT)</a>
+- School: <a href="https://verified.elearnsecurity.com/certificates/6ed71d15-99b2-44f7-a261-9bb537815d16">Web Application Penetration Tester (eWPT) Certified</a>
   Degree: 
   Program: Accredited by eLearnSecurity 
   Start Date: 
   End Date: 
   Icon: /assets/img/certs/1x/eWPTv1.png        # Make this icon small, think 30px/30px
 
-- School: <a href="https://verified.elearnsecurity.com/certificates/79f16adf-da5c-472e-b4ca-df1941103b55">Junior Penetration Tester (eJPT)</a>
+- School: <a href="https://verified.elearnsecurity.com/certificates/79f16adf-da5c-472e-b4ca-df1941103b55">Junior Penetration Tester (eJPT) Certified</a>
   Degree: 
   Program: Accredited by eLearnSecurity 
   Start Date: 
   End Date: 
   Icon: /assets/img/certs/1x/eJPT.png        # Make this icon small, think 30px/30px
+
+- School: <a href="https://www.motorolasolutions.com/en_us/about/security-vulnerability/hall-of-fame.html">Motorola Solutions Bug Bounty Hall of Fame Member</a>
+  Degree: 
+  Program: Accredited by MotorolaSolutions 
+  Start Date: 
+  End Date: 
+  Icon: /assets/img/certs/motorola1.png        # Make this icon small, think 30px/30px

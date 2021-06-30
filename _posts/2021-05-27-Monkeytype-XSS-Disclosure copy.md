@@ -121,5 +121,3 @@ Exploiting XSS in web sockets is fairly trivial when no input validation or outp
     </div>
 </div>  
 
-
-

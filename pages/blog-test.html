@@ -1,0 +1,45 @@
+---
+layout: page-post
+permalink: /blog-test.html
+title: My Blog
+description: I write about information security, capture the flag, and open source software development
+header-img:  
+last-updated: 2020-10-30 5:55 PM
+navheader: 
+---
+<div class="mx-auto medq-blog">
+  <nav aria-label="breadcrumb" style="background:transparent;">
+    <ol class="breadcrumb" style="background:transparent;">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/blog">Posts <i class="animate__animate animate__heartBeat fas fa-pencil-alt"></i></a></li>
+      {% comment %} <li class="breadcrumb-item active" aria-current="page">{{page.tag}}</li> {% endcomment %}
+    </ol>
+  </nav>
+</div>
+
+{% for post in site.posts%}
+  {% if post.featured %}
+    <div class="mx-auto mb-4 medq-blog">
+    <div class="mx-auto posttitle mb-1 mt-3" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title text-left" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-yellow text-light">{{ post.tag }}</span></h5>
+          <h5 class="card-title text-left medq-title" style="color:{{theme.post-title-color}};font-weight:{{ theme.post-font-weight }};"><a href="{{post.url}}">{{ post.title }}</a></h5>
+          <h6 class="card-title text-left medq-subtitle" style="color:{{theme.post-lead-color}};font-weight:{{ theme.post-lead-font-weight }};">{{ post.lead }}</h6>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %} 
+
+
+<div class="mx-auto mb-4 medq-blog">
+  <div class="mx-auto mb-1 mt-3" style="width: 100%;">
+    {% for post in site.posts %}
+        <a href="{{post.url}}" class="list-group-item list-group-item-light border-0" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5>{{ post.title }}</h5><small>{{post.date| date: "%b %Y" }}</small> 
+          </div>
+        </a>
+    {% endfor %}
+  </div>
+</div>

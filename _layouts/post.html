@@ -12,8 +12,8 @@ navheader: posts
   <nav aria-label="breadcrumb" style="background:transparent;">
     <ol class="breadcrumb" style="background:transparent;">
       <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item"><a href="/blog">Posts</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{page.tag}}</li>
+      <li class="breadcrumb-item"><a href="/blog-test">Posts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{page.tag}} <i class="animate__animate animate__heartBeat fas fa-pencil-alt"></i></li>
     </ol>
   </nav>
 </div>
@@ -29,7 +29,6 @@ navheader: posts
     </div>
   </div>
   <div class="card-body" style="background:transparent;">
-
     {{ content | markdownify }}
   </div>
 </div>

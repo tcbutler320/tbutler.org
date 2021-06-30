@@ -1,24 +1,24 @@
-- Title: "Disclosure Pending"
-  Date: 05/2021
-  CVE: "N/A"
-  Platform: Pending
-  Vendor: Pending
-  Link: 
+- Title: "AKCP sensorProbe - 'Multiple' Cross Site Scripting (XSS)"
+  Date: 06/2021
+  CVE: "CVE-2021-35956"
+  Platform: "N/A"
+  Vendor: <a href="https://www.akcp.com/support-center/customer-login/sensor-probe-firmware-changelog/">AKCP</a>
+  Link: /2021/06/28/CVE-2021-35956.html
   num: 0
   Bounty: "N/A"
   cve: N/A
   severity: Medium
   type: "0-Day"
-  vuln: ""
+  vuln: "XSS"
 
-- Title: "Disclosure Pending"
+- Title: "Authentication Bypass by Spoofing in Miodec/monkeytype"
   Date: 05/2021
   CVE: "N/A"
-  Platform: Pending
-  Vendor: Pending
-  Link: 
+  Platform: Huntr
+  Vendor: MonkeyType
+  Link: "https://huntr.dev/bounties/1-other-Miodec/monkeytype/"
   num: 0
-  Bounty: "N/A"
+  Bounty: "$40"
   cve: N/A
   severity: Medium
   type: "0-Day"

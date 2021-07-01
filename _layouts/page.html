@@ -11,9 +11,6 @@
             <p class="card-text">
                 {{ content }}
             </p>
-            {% if page.last-updated %}
-              <p class="card-text"><small class="text-muted">This page was last updated at {{ "now" | date: "%Y-%m-%d %H:%M" }}.</small></p>
-            {% endif %}
           </div>
       </div>
       {% else %}
@@ -22,9 +19,6 @@
           <div class="card-body">
             <p class="card-text mt-0 mb-0">
             </p>
-            {% if page.last-updated %}
-              <p class="card-text"><small class="text-muted">This page was last updated at {{ "now" | date: "%Y-%m-%d %H:%M" }}. </small></p>
-            {% endif %}
           </div>
       </div>
       {% endif %}

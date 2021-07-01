@@ -1,6 +1,6 @@
 - Title: "AKCP sensorProbe - 'Multiple' Cross Site Scripting (XSS)"
   Date: 06/2021
-  CVE: "CVE-2021-35956"
+  CVE: "<a href='https://nvd.nist.gov/vuln/detail/CVE-2021-35956'>CVE-2021-35956</a>"
   Platform: "N/A"
   Vendor: <a href="https://www.akcp.com/support-center/customer-login/sensor-probe-firmware-changelog/">AKCP</a>
   Link: /2021/06/28/CVE-2021-35956.html

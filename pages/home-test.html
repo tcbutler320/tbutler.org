@@ -1,0 +1,231 @@
+---
+layout: page-post
+permalink: /home-test.html
+title: Home Test
+description: I write about information security, capture the flag, and open source software development
+header-img:  
+last-updated: 2020-10-30 5:55 PM
+navheader: 
+---
+<div class="mx-auto medq-blog">
+  <nav aria-label="breadcrumb" style="background:transparent;">
+    <ol class="breadcrumb" style="background:transparent;">
+      <li class="breadcrumb-item"><a href="/home-test" class="text-muted">Home</a></li>
+      <li class="breadcrumb-item"><a href="/blog-test">Blog</a></li>
+      <li class="breadcrumb-item"><a href="/blog">Contact</a></li>
+    </ol>
+  </nav>
+</div>
+
+<div class="mx-auto medq-blog">
+  <div class="mx-auto mt-3" style="width: 100%;">
+      <div class="card-body">
+        <!-- ABOUT ME SECTION -->
+        <div class="card mx-auto border-0 bg-transparent" style="position:relative;background-color: transparent;">
+          <div class="row">
+            <div class="col-md-4">
+              {% if site.animate %}
+                <img src="{{ site.profile_image }}" class="img-thumbnail float-left animate__animated animate__fadeInLeft" alt="...">
+              {% else %}
+                <img src="{{ site.profile_image }}" class="img-thumbnail float-left" alt="...">
+              {% endif %}
+            </div>
+            <!-- EDUCATION SECTION -->
+            <div class="col-md-8 mt-0">
+              {% if site.animate %}
+              <div class="card-body animate__animated animate__fadeInRight">
+              {% else %}
+              <div class="card-body mt-0">
+              {% endif %}
+                <p>
+                  I'm an independent security researcher with industry experience in penetration testing, cyber risk consulting, and software engineering. On my website I highlight recent vulnerability disclosures or proof of concept exploits, and <a class="highlighted" href="/blog">blog</a> about Capture the Flag competitions and Bug Bounty.<p>
+                {% if site.home_option == "education" %}
+                  {% include education.html %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- HOME HIGHLIGHTS SECTION --> 
+<h5 class="card-title text-center mb-3"></h5>
+{% if site.animate %}
+<div class="card bg-transparent mx-auto animate__animated animate__slideInUp animate__delay-1s shadow" style="max-width: 100%;">
+{% else %}
+<div class="card bg-transparent mx-auto mb-1 border-0" style="max-width: 100%;">
+{% endif %}
+  <div class="card-header robo" style="background-color:{{ theme.highlights-tab-color }};border-style:{{ theme.border-style}}">
+    <ul class="nav nav-tabs nav-fill card-header-tabs" id="test-list" role="tablist">
+      {% for section in site.data.sections %}
+        {% if section.first %}
+          <li class="nav-item">
+            <a class="nav-link shadow-none graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge badge-red text-light border">{{ section.num }}</span></a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+              <a class="nav-link graph" id="{{ section.jsid }}" href="#{{section.id}}" role="tab" aria-controls="{{section.id}}" aria-selected="true" style="font-family:{{ theme.font}};color:{{ theme.font-color}};">{{section.emoji}} {{section.name}} <span class="badge badge-red text-light border">{{ section.num }}</span></a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="card-body">          
+      <div class="tab-content mt-3">
+        {% for section in site.data.sections %}
+          {% if section.first %}
+            {% if section.name == "Vulnerability Disclosures" %}
+              <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
+                <table class="table table-sm table-striped">
+                  <caption><i class="text-muted">{{section.description}}</i></caption>
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Bounty</th>
+                      <th scope="col">CVE</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for bounty in site.data.bounties %}
+                    <tr>
+                      <td>{{ bounty.Date }}</td>
+                      <td><a href={{ bounty.Link }}>{{ bounty.Title }}</a></td>
+                      <td>{{ bounty.Vendor }}</td>
+                      <td>{{ bounty.Bounty }}</td>
+                      <td>{{ bounty.CVE }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            {% else %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
+                <p class="card-text">{{section.description}}</p>
+              </div>
+            {% endif %}
+          {% else %}  
+            {% if section.name == "Presentations" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <p><i>{{section.description}}</i></p>
+                <p class="card-text">{% bibliography -f presentations %}</p>              
+              </div>
+            {% elsif section.name == "Projects" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <p><i>{{section.description}}</i></p>
+                  {% for projects in site.data.projects %}
+                  <div class="media mt-2">
+                    <a href="{{ projects.link }}"><i class="{{ projects.icon }} mr-3" style="font-size:3rem"></i></a>
+                    <div class="media-body">
+                      <h5 class="mt-0"><a href="{{ projects.link }}" class="highlighted">{{ projects.name }}</a></h5>
+                      {{ projects.description }}
+                      {% if projects.tech %}
+                        <h6><mark><u>Technologies</u></mark></h6>
+                        {% for tech in projects.tech %}
+                        <span class="badge badge-{{ theme.project-badge-color}} border mr-1">{{ tech }}</span>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>        
+              </div>
+            {% elsif section.name == "Teaching" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <p><i>{{section.description}}</i></p>
+                    {% for courses in site.data.teaching %}
+                    <div class="list-group">
+                      <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">{{ courses.Schoool }}</h5>
+                          <p>{{ courses.Program }}</p>
+                          <small>{{ courses.StartDate }} - {{ courses.EndDate }}</small>
+                        </div>
+                        <p class="mb-1">{{ courses.description }}</p>
+                        <small>{{ courses.Department }}</small>
+                      </div>
+                    </div>
+                    {% endfor %}
+              </div>
+            {% elsif section.name == "Publications" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
+                <p><i>{{section.description}}</i></p>
+                <p class="card-text">{% bibliography -f papers %}</p>
+              </div>
+            {% elsif section.name == "Coursework" %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <p><i>{{section.description}}</i></p>
+                <div class="list-group">
+                {% for courses in site.data.courses %}
+                  <button type="button" class="list-group-item text-left">{{ courses.Course }}</button>
+                {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
+                <h5 class="card-title text-center"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
+                <p class="card-text">{{ section.content }} </p>              
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+
+
+
+<!-- ANIMATE.JS ANIMATE LIBRARY
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous"></script>
+-->
+
+
+<!--JS FUNCTION FOR RECENT WORK SECTION -->
+<script>
+    $('#test-list a').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+    })
+</script> 
+
+<!-- OPTIONAL TOAST JS FUNCTION-->
+<script>
+    $(document).ready(function() {
+        $(".toast").toast("show");
+    });
+</script>
+
+
+<script>
+$('body').scrollspy({ target: '#list-example' })
+</script>
+
+<script>
+$('.collapse').collapse()
+</script>
+
+<script>
+$('.show').show()
+</script>
+
+
+<script>
+var i = 0;
+var txt = 'I’m a cyber risk consultant, mainframe developer, freelance security researcher, and passionate open-source contributer. At Deloitte, I help modernize legacy IBM mainframe applications. In my own time, I conduct vulnerability research and compete in CTF competitions to better understand the cyber threat landscape.'; /* The text */
+var speed = 100; /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("about").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+// window.onload = typeWriter;
+</script>
+
+     
+      </div>
+  </div>
+</div>

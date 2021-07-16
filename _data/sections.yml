@@ -6,7 +6,7 @@
   first: true
   jsid: foo1
   emoji: <i class="fa fa-handshake-o" aria-hidden="true"></i>
-  num: 9
+  num: 12
 
 - name: Publications
   id: publications

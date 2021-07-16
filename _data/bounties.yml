@@ -117,12 +117,12 @@
   type: "Bug Bounty"
   vuln: Undisclosed
 
-- Title: "Disclosure Pending"
+- Title: "HP OfficeJet 4630 Unauthenticated Stored Cross-Site Scripting (XSS)"
   Date: 01/2021
   CVE: "RESERVED"
   Platform: Pending
-  Vendor: Pending
-  Link: 
+  Vendor: HP Inc
+  Link: /2021/04/29/HP-OfficeJet-4630.html
   num: 0
   Bounty: "N/A"
   cve: N/A

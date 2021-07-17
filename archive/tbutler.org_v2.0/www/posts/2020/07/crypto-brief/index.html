@@ -1,0 +1,1242 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0055FF"><meta name="robots" content="index,follow"><title>Crypto &amp; Nat&#39;l Sec Brief 7/19 - Tyler Butler</title><meta name="description" content="A curated selection of news surrounding Cryptocurrency and U.S National Security interests"><meta property="og:title" content="Crypto &amp; Nat&#39;l Sec Brief 7/19 - Tyler Butler"><meta property="og:description" content="A curated selection of news surrounding Cryptocurrency and U.S National Security interests"><meta property="og:url" content="https://tbutler.org/posts/2020/07/crypto-brief/"><meta property="og:image" content="https://tbutler.org/assets/images/meta-logo.png"><meta name="twitter:site" content="@tbutler0x90"><meta name="twitter:creator" content="@tbutler0x90"><meta name="twitter:title" content="Crypto &amp; Nat&#39;l Sec Brief 7/19 - Tyler Butler"><meta name="twitter:card" content="description"><meta name="twitter:image" content="https://tbutler.org/assets/images/meta-logo.png"><link rel="shortcut icon" href="/assets/images/favicon.ico"><link rel="alternate" type="application/rss+xml" title="Feed for posts" href="/posts/feed.xml"><link rel="alternate" type="application/rss+xml" title="Feed for screencasts" href="/screencasts/feed.xml"><style>@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans'), local('IBMPlexSans'),
+       url('/assets/fonts/IBMPlexSans-Text.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans Italic'), local('IBMPlexSans-Italic'),
+       url('/assets/fonts/IBMPlexSans-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('IBM Plex Sans Semi-bold'), local('IBMPlexSans-Semi-bold'),
+       url('/assets/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+
+    /* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+
+:root {
+  --font-family-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: Menlo, Monaco, monospace;
+
+  --font-size-base: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+
+  --space-0: 0;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+
+  --color-blue: #0055FF;
+  --color-red: #FF3300;
+  --color-yellow: #FFCC00;
+  --color-green: #4CA55E;
+
+  --color-blue-100: #CCDBFF;
+  --color-red-100: #FFD3CC;
+  --color-yellow-100: #FFF8CC;
+  --color-green-100: #D9EFDE;
+
+  --mark: var(--color-yellow-100);
+  --outline: 0 0 0 3px var(--color-yellow);
+  --gap: var(--space-3);
+  --radius: 4px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.07),
+            0 2px 4px rgba(0,0,0,0.07),
+            0 4px 8px rgba(0,0,0,0.07),
+            0 8px 16px rgba(0,0,0,0.07),
+            0 16px 32px rgba(0,0,0,0.07),
+            0 32px 64px rgba(0,0,0,0.07);
+
+  --theme-color: #24292e;
+  --theme-color-primary: var(--color-blue);
+  --theme-color-gray: #6a737d;
+  --theme-color-gray-light: #F6F8FA;
+  --theme-background-color: #FFFFFF;
+  --theme-border-color: #EEEEEE;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gap: var(--space-4);
+  }
+}
+
+
+
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: var(--space-5) var(--space-3);
+  font-family: var(--font-family-sans);
+  line-height: 1.5;
+  color: var(--theme-color);
+  background-color: var(--theme-background-color);
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.o-stack--prose > * + h2,
+.o-stack--prose > * + h3 {
+  margin-top: var(--space-4);
+}
+
+.o-stack--prose h2 {
+  font-size: var(--font-size-lg);
+}
+
+.o-stack--prose h3 {
+  font-size: var(--font-size-md);
+}
+
+.o-stack--lead p:first-of-type {
+  font-size: var(--font-size-lg);
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--theme-color-primary);
+}
+
+a:hover,
+a:focus {
+  color: var(--theme-color-primary);
+}
+
+a:focus {
+  outline: 0;
+  box-shadow: var(--outline) !important;
+}
+
+h2 a {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+h2 a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul {
+  list-style: none;
+}
+
+ul:not([class]) li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+ul:not([class]) li + li {
+  margin-top: var(--space-1);
+}
+
+ul:not([class]) li::before {
+  content: '–';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--theme-color-gray);
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd + dt {
+  margin-top: var(--space-2);
+}
+
+blockquote p {
+  font-style: italic;
+}
+
+figure blockquote p::before { content: '“'; }
+figure blockquote p::after { content: '”'; }
+
+figure blockquote p {
+  text-indent: -.25rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--theme-border-color);
+  padding-left: var(--space-3);
+}
+
+main {
+  margin-bottom: var(--space-5);
+  outline: none;
+}
+
+mark {
+  padding-right: .1em;
+  padding-left: .1em;
+  background-color: var(--mark);
+}
+
+hr {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem;
+  width: 100%;
+  border: 0;
+  height: 4px;
+  background-color: var(--theme-border-color);
+}
+
+kbd {
+  display: inline-block;
+  padding-right: 4px;
+  padding-left: 4px;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  box-shadow: inset 0 -1px 0 #D9EFDE;
+  border-radius: var(--radius);
+  font-family: var(--font-family-code);
+  font-size: .95rem;
+  color: #222222;
+}
+
+
+
+/* ==========================================================================
+   OBJECTS
+   ========================================================================== */
+
+
+/**
+ * ASPECT-RATIO
+ */
+
+[style*='--aspect-ratio'] > :first-child {
+  height: auto;
+  width: 100%;
+}
+
+@supports (--custom: property) {
+  [style*='--aspect-ratio'] {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-gray-100);
+  }
+
+  [style*='--aspect-ratio']::before {
+    content: '';
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+
+  [style*='--aspect-ratio'] > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+/**
+ * BREAKOUT
+ */
+.o-breakout {
+  position: relative;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+
+.o-container {
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-3);
+  padding-left: var(--space-3);
+}
+
+.o-container--lg {
+  max-width: 75rem;
+}
+
+
+/**
+ * GRID
+ */
+
+.o-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--gap) * -1);
+  margin-bottom: calc(var(--gap) * -1);
+}
+
+.o-grid--justify-end {
+  justify-content: flex-end;
+}
+
+@media(min-width: 720px) {
+  .o-grid--reversed\@md {
+    flex-direction: row-reverse;
+  }
+}
+
+.o-grid + .o-grid {
+  margin-top: var(--gap);
+}
+
+.o-grid--align-center {
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .o-grid--align-center\@md {
+    align-items: center;
+  }
+}
+
+.o-grid__col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+
+/**
+ * STACK
+ */
+
+.o-stack > * + *    { margin-top: var(--space-3); }
+.o-stack--1 > * + * { margin-top: var(--space-1); }
+.o-stack--2 > * + * { margin-top: var(--space-2); }
+.o-stack--3 > * + * { margin-top: var(--space-3); }
+.o-stack--4 > * + * { margin-top: var(--space-4); }
+.o-stack--5 > * + * { margin-top: var(--space-5); }
+
+
+/**
+ * TAGS
+ */
+
+.o-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.o-tags--center {
+  justify-content: center;
+}
+
+.o-tags__item {
+  margin-right: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+
+
+/**
+ * AVATAR
+ */
+
+.c-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--theme-border-color);
+}
+
+
+/**
+ * BANNER
+ */
+
+.c-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 720px) {
+  .c-banner {
+    align-items: center;
+  }
+}
+
+.c-banner__branding {
+  display: inline-block;
+  border-radius: var(--radius);
+}
+
+.c-banner__branding svg {
+  vertical-align: top;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 720px) {
+  .c-banner__nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.c-banner__nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .c-banner__nav-list {
+    flex-direction: row;
+  }
+
+  .c-banner__nav-item + .c-banner__nav-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-banner__nav-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * BUTTON
+ */
+
+.c-button {
+  -webkit-appearance: none;
+  outline: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6875rem 1rem;
+  background-color: #000000;
+  border: 1px solid #000000;
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-button:hover,
+.c-button:focus {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+  color: #FFFFFF;
+}
+
+.c-button--primary {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+}
+
+.c-button--primary:hover,
+.c-button--primary:focus {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.c-button--secondary {
+  background-color: var(--theme-background-color);
+  border-color: var(--theme-color-gray);
+  color: var(--theme-color-gray);
+  box-shadow: none;
+}
+
+.c-button:focus {
+  box-shadow: var(--outline);
+}
+
+.c-button svg {
+  margin-right: var(--space-2);
+  flex-shrink: 0;
+}
+
+.c-button--sm {
+  padding: var(--space-1) .75rem;
+  font-size: smaller;
+}
+
+
+/**
+ * CARD
+ */
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--space-4);
+  background-color: var(--theme-color-gray-light);
+  border-radius: var(--radius);
+}
+
+
+/**
+ * CONTENTINFO
+ */
+
+.c-contentinfo {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--theme-border-color);
+}
+
+.c-contentinfo__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-contentinfo__list + .c-contentinfo__list {
+  margin-top: var(--space-4);
+}
+
+.c-contentinfo__list-item + .c-contentinfo__list-item {
+  margin-left: var(--space-3);
+}
+
+@media (min-width: 720px) {
+  .c-contentinfo__list-item + .c-contentinfo__list-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-contentinfo__list-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * HEADING-DECORATE
+ */
+
+.c-heading-decorate::after {
+  content: '\2009\00AC';
+  display: inline-block;
+  color: var(--theme-color-gray);
+  opacity: .5;
+}
+
+
+/**
+ * FORM
+ */
+
+.c-form__row + .c-form__row {
+  margin-top: var(--space-3);
+}
+
+.c-form__row--button {
+  display: flex;
+  align-items: flex-end;
+}
+
+.c-form__row--button div {
+  flex: 1;
+  margin-right: var(--space-3);
+}
+
+.c-form__label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.c-form__input {
+  display: block;
+  width: 100%;
+  padding: 0.6875rem var(--space-3);
+  font: inherit;
+  background-color: #FAFAFA;
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.c-form__input:focus {
+  box-shadow: var(--outline);
+}
+
+
+/**
+ * NOTE
+ */
+
+.c-note {
+  padding: var(--space-3);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+}
+
+.c-note--primary {
+  border-color: var(--theme-color-primary);
+}
+
+.c-note__label {
+  font-weight: 600;
+}
+
+
+/**
+ * LINK
+ */
+
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.c-link:hover,
+.c-link:focus {
+  text-decoration: underline;
+}
+
+.c-link svg {
+  margin-left: var(--space-1);
+}
+
+
+/**
+ * LISTING
+ */
+
+ .c-listing {
+  list-style: none;
+}
+
+.c-listing__item:not(:last-of-type) {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+
+/**
+ * META
+ */
+
+@media (min-width: 720px) {
+  .c-meta {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: repeat(50, min-content);
+    grid-column-gap: var(--space-4);
+  }
+
+  .c-meta__title {
+    grid-row-start: 1;
+  }
+}
+
+
+/**
+ * PAGINATION
+ */
+
+.c-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.c-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-pagination__item:hover {
+  color: var(--theme-color-primary);
+}
+
+.c-pagination__item[rel="next"] {
+  margin-left: auto;
+}
+
+.c-pagination__item[rel="next"] svg {
+  margin-left: var(--space-1);
+}
+
+.c-pagination__item[rel="prev"] svg {
+  margin-right: var(--space-1);
+  transform: rotate(180deg);
+}
+
+
+/**
+ * PILL
+ */
+
+ .c-pill {
+  position: relative;
+  padding: var(--space-1) .75rem;
+  border-radius: var(--space-3);
+  color: var(--theme-color-primary);
+  text-decoration: none;
+  font-size: smaller;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.c-pill:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-color-primary);
+  border-radius: var(--space-3);
+  opacity: .15;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+a.c-pill:hover {
+  color: #fff;
+}
+
+a.c-pill:hover:after {
+  opacity: 1;
+}
+
+
+/**
+ * SHARE
+ */
+
+.c-share {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-share::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--theme-border-color);
+}
+
+.c-share span {
+  position: relative;
+  padding-right: 1rem;
+  background-color: var(--theme-background-color);
+  color: var(--theme-color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+.c-share__list {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-3);
+  background-color: var(--theme-background-color);
+  z-index: 10;
+}
+
+.c-share__list-item:not(:last-of-type) {
+  margin-right: var(--space-3);
+}
+
+.c-share__list-anchor {
+  color: currentColor;
+}
+
+.c-share__list-anchor:hover {
+  color: var(--theme-color-primary);
+}
+
+
+/**
+ * VIDEO
+ */
+
+.c-video__backdrop[style] {
+  padding: var(--space-4);
+  background-color: var(--backdrop, #FAFAFA);
+}
+
+.c-video__caption {
+  margin-top: var(--space-2);
+  text-align: center;
+  color: var(--theme-color-gray);
+}
+
+
+/**
+ * QUOTE
+ */
+
+/* .c-quote {} */
+
+.c-quote__blockquote {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.c-quote--feature .c-quote__blockquote {
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+.c-quote__cite {
+  margin-top: var(--space-3);
+  display: flex;
+}
+
+.c-quote--feature .c-quote__cite {
+  flex-direction: column;
+  text-align: center;
+}
+
+.c-quote--default .c-quote__cite-media {
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+}
+
+.c-quote--feature .c-quote__cite-body {
+  margin-top: var(--space-2);
+}
+
+
+
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+
+.u-text-center {
+  text-align: center;
+}
+
+
+/**
+ * WIDTHS
+ */
+
+.u-width-1of12 {
+  width: calc(100% * 1 / 12);
+}
+
+.u-width-3of12 {
+  width: calc(100% * 3 / 12);
+}
+
+.u-width-4of12 {
+  width: calc(100% * 4 / 12);
+}
+
+.u-width-6of12 {
+  width: calc(100% * 6 / 12);
+}
+
+.u-width-7of12 {
+  width: calc(100% * 7 / 12);
+}
+
+.u-width-8of12 {
+  width: calc(100% * 8 / 12);
+}
+
+.u-width-9of12 {
+  width: calc(100% * 9 / 12);
+}
+
+.u-offset-3of12 {
+  margin-left: calc(100% * 3 / 12);
+}
+
+.u-offset-4of12 {
+  margin-left: calc(100% * 4 / 12);
+}
+
+@media (min-width: 720px) {
+  .u-width-1of12\@md {
+    width: calc(100% * 1 / 12);
+  }
+
+  .u-width-3of12\@md {
+    width: calc(100% * 3 / 12);
+  }
+
+  .u-width-4of12\@md {
+    width: calc(100% * 4 / 12);
+  }
+
+  .u-width-6of12\@md {
+    width: calc(100% * 6 / 12);
+  }
+
+  .u-width-7of12\@md {
+    width: calc(100% * 7 / 12);
+  }
+
+  .u-width-8of12\@md {
+    width: calc(100% * 8 / 12);
+  }
+
+  .u-width-9of12\@md {
+    width: calc(100% * 9 / 12);
+  }
+
+  .u-offset-3of12\@md {
+    margin-left: calc(100% * 3 / 12);
+  }
+
+  .u-offset-4of12\@md {
+    margin-left: calc(100% * 4 / 12);
+  }
+}
+
+
+/**
+ * ORDER
+ */
+@media (min-width: 720px) {
+  .u-order-first\@md {
+    order: -9999;
+  }
+}
+
+
+/**
+ * SPACING
+ */
+
+.u-margin-right-1  { margin-right: var(--space-1) !important; }
+.u-margin-right-2  { margin-right: var(--space-2) !important; }
+.u-margin-right-3  { margin-right: var(--space-3) !important; }
+
+.u-margin-top-0 { margin-top: var(--space-0) !important; }
+.u-margin-top-1 { margin-top: var(--space-1) !important; }
+.u-margin-top-2 { margin-top: var(--space-2) !important; }
+.u-margin-top-3 { margin-top: var(--space-3) !important; }
+.u-margin-top-4 { margin-top: var(--space-4) !important; }
+.u-margin-top-5 { margin-top: var(--space-5) !important; }
+.u-margin-top-6 { margin-top: var(--space-6) !important; }
+
+@media (min-width: 720px) {
+  .u-margin-top-0\@md { margin-top: var(--space-0) !important; }
+  .u-margin-top-1\@md { margin-top: var(--space-1) !important; }
+  .u-margin-top-2\@md { margin-top: var(--space-2) !important; }
+  .u-margin-top-3\@md { margin-top: var(--space-3) !important; }
+  .u-margin-top-4\@md { margin-top: var(--space-4) !important; }
+  .u-margin-top-5\@md { margin-top: var(--space-5) !important; }
+  .u-margin-top-6\@md { margin-top: var(--space-6) !important; }
+}
+
+.u-padding-left-0 { padding-left: 0 !important; }
+
+/**
+ * FONT-SCALE
+ */
+
+.u-font-size-sm   { font-size: 88.8888889% !important; }
+.u-font-size-base { font-size: var(--font-size-base) !important; }
+.u-font-size-md   { font-size: var(--font-size-md) !important; }
+.u-font-size-lg   { font-size: var(--font-size-lg) !important; }
+.u-font-size-xl   { font-size: var(--font-size-xl) !important; }
+.u-font-size-2xl  { font-size: var(--font-size-2xl) !important; }
+.u-font-size-3xl  { font-size: var(--font-size-3xl) !important; }
+.u-font-size-4xl  { font-size: var(--font-size-4xl) !important; }
+.u-font-size-5xl  { font-size: var(--font-size-5xl) !important; }
+
+@media (min-width: 720px) {
+  .u-font-size-sm\@md   { font-size: 88.8888889% !important; }
+  .u-font-size-base\@md { font-size: var(--font-size-base) !important; }
+  .u-font-size-md\@md   { font-size: var(--font-size-md) !important; }
+  .u-font-size-lg\@md   { font-size: var(--font-size-lg) !important; }
+  .u-font-size-xl\@md   { font-size: var(--font-size-xl) !important; }
+  .u-font-size-2xl\@md  { font-size: var(--font-size-2xl) !important; }
+  .u-font-size-3xl\@md  { font-size: var(--font-size-3xl) !important; }
+  .u-font-size-4xl\@md  { font-size: var(--font-size-4xl) !important; }
+  .u-font-size-5xl\@md  { font-size: var(--font-size-5xl) !important; }
+}
+
+
+/**
+ * LEADING
+ */
+
+.u-leading-strict {
+  line-height: 1.1;
+}
+
+.u-leading-tight {
+  line-height: 1.3;
+}
+
+.u-text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/**
+ * FONT-WEIGHT
+ */
+
+.u-font-weight-normal {
+  font-weight: 400;
+}
+
+.u-font-weight-semi-bold {
+  font-weight: 600;
+}
+
+
+/**
+ * COLORS
+ */
+
+.u-color-primary {
+  color: var(--theme-color-primary);
+}
+
+.u-color-gray {
+  color: var(--theme-color-gray);
+}
+
+.u-primary-anchor {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.u-primary-anchor:hover,
+.u-primary-anchor:focus {
+  text-decoration: underline;
+}
+
+
+/**
+ * HIDDEN-VISUALLY
+ */
+
+.u-hidden-visually {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+
+/**
+ * FLEXBOX
+ */
+
+.u-flex {
+  display: flex;
+}
+
+.u-justify-center {
+  justify-content: center;
+}
+
+.u-justify-between {
+  justify-content: space-between;
+}
+
+.u-align-center {
+  align-items: center;
+}
+
+.u-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+
+/**
+ * BORDERS
+ */
+
+.u-bordered {
+  border: 1px solid var(--theme-border-color);
+}
+
+.u-border-none {
+  border: 0;
+}
+
+.u-shadow {
+  box-shadow: var(--shadow);
+}
+
+.u-rounded {
+  border-radius: var(--radius);
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    code[class*="language-"],
+pre[class*="language-"] {
+  font-family: var(--font-family-code);
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .95rem;
+  line-height: 1.3;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+code:not([class]) {
+  padding: 2px 4px;
+  font-family: var(--font-family-code);
+  font-size: .875rem;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  overflow: auto;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  color: #222222;
+  border-radius: 4px;
+}
+
+.highlight-line {
+  padding: 0.25rem 1rem;
+  border-left: 4px solid #FAFAFA;
+}
+
+.highlight-line-active {
+  background-color: var(--color-blue-100);
+  border-color: var(--theme-color-primary);
+}
+
+.highlight-line-add {
+  background-color: var(--color-green-100);
+  border-color: var(--color-green);
+}
+
+.highlight-line-remove {
+  background-color: var(--color-red-100);
+  border-color: var(--color-red);
+}
+
+.token.comment {
+  color: #777;
+}</style></head><body><header class="c-banner" role="banner"><a class="c-banner__branding" href="/"><span class="u-hidden-visually">Tyler Butler</span> <svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" width="4rem" height="4rem" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="var(--theme-color-primary, #000)" d="M0 0h40v40H0z"/><path fill="#fff" d="M20.515 12.273c1.667 0 3.606.454 5.243 1.363v7.485c0 2.515.394 3.303 1.424 3.303 1.454 0 2.515-1.515 2.515-6.424 0-5.273-2.91-8.515-9.212-8.515-6.515 0-10.152 4.394-10.152 10.697 0 6.454 3.515 10.515 10.182 10.515 2.091 0 4.394-.455 5.97-1.03l1.121 3.303c-1.909.727-4.576 1.272-7.121 1.272C11.697 34.242 6 28.758 6 20.182 6 11.939 12.06 6 20.515 6 29.121 6 34 11.727 34 17.94c0 5.484-2.606 9.454-6.606 9.454-2.424 0-3.727-1.606-4.06-3.091-.728 1.697-2.122 2.97-4.334 2.97-3.848 0-5.545-2.91-5.545-6.818 0-4.97 2.575-8.182 7.06-8.182zm-.879 12c1.091 0 1.728-.788 2.061-1.485v-7.212c-.455-.182-.818-.273-1.333-.273-1.576 0-2.576 1.273-2.576 5.182 0 2.788.576 3.788 1.848 3.788z"/></g></svg></a><nav class="c-banner__nav"><ul class="c-banner__nav-list"><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/work/">Work</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/posts/">Posts</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/contact/">Contact</a></li></ul></nav></header><main id="main" tabindex="-1"><article class="o-stack o-stack--4"><header><time class="u-color-gray u-text-uppercase">Jul 19, 2020</time><h1 class="u-font-size-2xl">Crypto &amp; Nat&#39;l Sec Brief 7/19</h1></header><div class="o-stack o-stack--prose"><blockquote><p>The Crypto &amp; National Security Brief is a curated selection of news surrounding Cryptocurrency and U.S National Security interests</p></blockquote><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="roundup.png"></div></div><h2 id="on-terrorism"><a href="#terrorism">On Terrorism</a></h2><p><em>No Significant News to Report</em></p><h2 id="on-aml%2C-kyc%2C-%26-regulation"><a href="#on-aml-kyc--regulation">On AML, KYC, &amp; Regulation</a></h2><ul><li><a href="#treasury-targets-chinese-persons-involved-with-drug-trafficking-organization-moving-fentanyl">Treasury Targets Chinese Persons Involved with Drug Trafficking Organization Moving Fentanyl</a> <em>(Office of Foreign Assets Control)</em></li><li><a href="#irs-seeks-elliptics-crypto-tracing-software-in-response-to-covid-19">IRS Seeks Elliptic’s Crypto Tracing Software in Response to COVID-19</a> <em>(Coindesk)</em></li><li><a href="#improving-amlkyc-compliance-will-be-a-differentiator-says-exec">Improving AML/KYC Compliance Will Be a Differentiator Says Exec</a> <em>(Cointelegraph)</em></li></ul><h2 id="on-domestic"><a href="#on-domestic">On Domestic</a></h2><ul><li><a href="#twitter-hack-hit-130-accounts-company-embarrassed">Twitter: Hack hit 130 accounts, company ‘embarrassed’</a> <em>(AP)</em></li><li><a href="#twitter-hackers-caught-using-bitpay-and-coinbase-on-hack-related-wallet">Twitter Hackers Caught Using BitPay and Coinbase on Hack-Related Wallet</a> <em>(Cointelegraph)</em></li><li><a href="#exclusive-us-fbi-is-leading-an-inquiry-into-the-twitter-hack-sources-say">Exclusive: U.S. FBI is leading an inquiry into the Twitter hack, sources say</a> <em>(Reuters)</em></li><li><a href="#twitter-hacker-is-mixing-bitcoin-loot-using-a-wasabi-wallet-elliptic-says">Twitter Hacker Is Mixing Bitcoin Loot Using a Wasabi Wallet, Elliptic Says</a> <em>(Coindesk)</em></li><li><a href="#us-army-seeks-a-cloud-based-solution-to-track-illicit-crypto-activities">US Army Seeks a Cloud-Based Solution to Track Illicit Crypto Activities</a> <em>(Cointelegraph)</em></li><li><a href="#the-doj-wants-to-hire-a-crypto-crime-attorney-adviser">The DOJ Wants to Hire a Crypto Crime Attorney Adviser</a> <em>(Coindesk)</em></li></ul><h2 id="on-russia"><a href="#russia">On Russia</a></h2><ul><li><a href="#missing-wirecard-exec-found-in-belarus-russias-fsb-involvement-suspected">Missing Wirecard Exec Found in Belarus; Russia’s FSB Involvement Suspected</a> <em>(Cointelegraph)</em></li></ul><h2 id="on-china"><a href="#china">On China</a></h2><ul><li><a href="#china-to-test-digital-yuan-on-food-delivery-platform-with-435-million-users">China to Test Digital Yuan on Food Delivery Platform With 435 Million Users</a> <em>(Cointelegraph)</em></li><li><a href="#digital-yuan-cbdc-momentum-grows-as-more-chinese-firms-get-to-testing">Digital Yuan CBDC Momentum Grows as More Chinese Firms Get to Testing</a> <em>(Cointelegraph)</em></li><li><a href="">Beijing: 140 Government Services Applications Are Using Blockchain</a> <em>(Cointelegraph)</em></li></ul><h2 id="on-iran"><a href="#on-iran">On Iran</a></h2><p><em>No Significant News to Report</em></p><h2 id="on-venezuela"><a href="#on-venezuela">On Venezuela</a></h2><ul><li><a href="#venezuela-bans-crypto-mining-from-public-housing">Venezuela Bans Crypto Mining From Public Housing</a> <em>(Cointelegraph)</em></li></ul><h2 id="other"><a href="#other">Other</a></h2><ul><li><a href="#shariah-law-opens-to-crypto-trading-but-full-adoption-highly-unlikely">Shariah Law Opens to Crypto Trading, but Full Adoption Highly Unlikely</a> *(Cointelegraph)</li></ul><blockquote><p>articles</p></blockquote><h2 id="on-aml%2C-kyc%2C-%26-regulation-2">On AML, KYC, &amp; Regulation</h2><h4>Treasury Targets Chinese Persons Involved with Drug Trafficking Organization Moving Fentanyl</h4><p>By: U.S. Department of the Treasury’s Office of Foreign Assets, JUL 17 2020<br><a href="https://home.treasury.gov/news/press-releases/sm1063"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Washington – Today, the U.S. Department of the Treasury’s Office of Foreign Assets Control (OFAC) designated four individuals and one entity pursuant to the Foreign Narcotics Kingpin Designation Act (Kingpin Act). The four individuals were designated for providing support to the Zheng Drug Trafficking Organization (DTO), which is run by Chinese synthetic opioid trafficker Fujing Zheng. These designations include Songyan Ji, Longbao Zhang, Guifeng Cheng, and Guangfu Zheng, all located in China. OFAC also designated Global United Biotechnology Inc. for being owned or controlled by the Zheng DTO. OFAC previously identified Fujing Zheng and the Zheng DTO as significant foreign narcotics traffickers pursuant to the Kingpin Act in August 2019.</p><p>“Fentanyl and other drugs have caused overwhelming devastation to communities across America,” said Deputy Secretary Justin G. Muzinich. “The United States is committed to holding drug traffickers and those who facilitate their operations accountable for the suffering they impose upon American families.”</p><p>OFAC designated Songyan Ji, Longbao Zhang, Guifeng Cheng, and Guangfu Zheng for facilitating payments for the purchase of fentanyl analogues or other controlled substances, including synthetic cannabinoids or cathinones, for the Zheng DTO, which is directed by Fujing Zheng. The Zheng DTO manufactures and distributes hundreds of controlled substances, including fentanyl analogues such as carfentanil, acetyl fentanyl, and furanyl fentanyl. The Zheng DTO laundered its drug proceeds in part by using digital currency such as bitcoin, transmitted drug proceeds into and out of bank accounts in China and Hong Kong, and bypassed currency restrictions and reporting requirements. OFAC also designated Global United Biotechnology Inc., which is managed by Fujing Zheng, and was a virtual storefront for the Zheng DTO to sell its deadly substances. In August 2018, the U.S. Attorney’s Office for the Northern District of Ohio unsealed a 43-count indictment in federal court in Cleveland, Ohio, charging Fujing Zheng and Guanghua Zheng with operating a conspiracy that manufactured and shipped deadly fentanyl analogues, cathinones, and cannabinoids to at least 37 U.S. states and 25 countries. Fujing Zheng remains in China.</p><p>OFAC closely coordinated today’s action with the U.S. Attorney’s Office for the Northern District of Ohio, the Department of Justice’s Criminal Division, the Drug Enforcement Administration’s (DEA) Cleveland office, Homeland Security Investigations’ (HSI) Cleveland office, Internal Revenue Service – Criminal Investigation’s (IRS-CI) Cleveland office, and the DEA’s Special Operations Division, including assigned attorneys from the Department of Justice’s Narcotic and Dangerous Drug Section.</p><p>As a result of today’s action, all property and interests in property of these individuals and the entity that are in the United States or in the possession or control of U.S. persons must be blocked and reported to OFAC. OFAC’s regulations generally prohibit all dealings by U.S. persons or within (or transiting) the United States that involve any property or interests in property of blocked or designated persons.</p><p>Since June 2000, more than 2,200 individuals and entities have been named pursuant to the Kingpin Act for their role in international narcotics trafficking. Penalties for violations of the Kingpin Act range from civil penalties of up to $1,529,991 per violation to more severe criminal penalties. Criminal penalties for corporate officers may include up to 30 years in prison and fines up to $5 million. Criminal fines for corporations may reach $10 million. Other individuals could face up to 10 years in prison and fines pursuant to Title 18 of the United States Code for criminal violations of the Kingpin Act.</p><h4>IRS Seeks Elliptic’s Crypto Tracing Software in Response to COVID-19</h4><p>By: DANNY NELSON, <em>Coindesk</em>, JUL 17 2020<br><a href="https://www.coindesk.com/irs-seeks-elliptics-crypto-tracing-software-in-response-to-covid-19"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The U.S. Internal Revenue Service (IRS) is trying to license Elliptic’s cryptocurrency tracing software as an emergency response to COVID-19.</p><p>On July 15, the tax agency said it had negotiated a “COVID-19” crypto tracing deal solely with the British analytics firm under federal disaster relief law known as the Stafford Act, public records obtained by CoinDesk show.<br>President Donald J. Trump’s March declaration of a coronavirus emergency authorizes federal agencies to spend vast sums in response to the virus. That, apparently, is what is happening here.</p><p>CI Cyber Crimes wants to use the software for “tracing and analysis of various types of cryptocurrency transactions and the entities involved in transacting them,” the notice read, saying also that investigators asked for Elliptic by name.<br>The IRS did not immediately respond to CoinDesk’s queries as to why it needs crypto-tracing software to respond to COVID-19. However, the IRS has previously warned the public about COVID-19 fraud.</p><p>While the deal has already been negotiated, the full terms and dollar value are not yet publicly known. Additionally, competing firms have until July 22 to petition the IRS for consideration.</p><h4>Improving AML/KYC Compliance Will Be a Differentiator Says Exec</h4><p>By: EMILIA DAVID, <em>Cointelegraph</em>, JUL 19 2020<br><a href="https://cointelegraph.com/news/improving-aml-kyc-compliance-will-be-a-differentiator-says-exec"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Trulioo said improving compliance for AML and KYC can be a big differentiator for crypto companies.</p><p>The ability to verify documents and comply with anti-money laundering (AML) and know-your-customer (KYC) requirements is now a differentiator for crypto firms, said identity verification provider Trulioo.</p><p>Anatoly Kvitnitsky, Trulioo’s vice president for growth, told Cointelegraph that as crypto crosses many borders, those who want to stand out and maybe attract those looking to exchange crypto to fiat or vice-versa compliance with regulatory requirements.</p><p>“It is a good idea to improve the crypto world’s approach to compliance, especially as exchanges become more and more common,” Kvitnitsky said. “Definitely something like document verification is very much a differentiator and that’s something we’ve seen a shift in the past two years or so. The crypto world is really looking at these solutions.”</p><p>Trulioo launched EmbedID, a tool that embeds identity verification for KYC through an API, on July 8. It is targeted for firms with a small compliance team to make KYC and AML activities more automated and less manual. Kvitnitsky said Trulioo and EmbedID already count some crypto companies as customers.</p><p>Kvitnitsky said Trulioo wanted to make document and identity verification as streamlined as possible for clients that don’t have access to large bank-grade technologies. Crypto exchanges and asset managers, he said, often have a very small team of people who will look at all the papers their own clients present to make sure these comply with regulations.</p><p>Regulatory jurisdictions also have different KYC and AML requirements, said Kvitnitsky, so it can be difficult to match the needed paperwork for each country. He said the inherently international and borderless nature of crypto is perfect for Trulioo.</p><p>“If the firm really wants to work with regulators, you’re going to see a more mainstream approach to compliance,” Kvitnitsky said.</p><p>Some governments have stepped up monitoring of crypto even though few have specific regulations. The United Kingdom’s Financial Conduct Authority urged local crypto businesses to register with the watchdog as a means to help it keep an eye on AML activities. The Commodity and Futures Trading Commission of the United States also promised a new crypto framework soon.</p><h2 id="on-domestic-2">On Domestic</h2><h2 id="twitter%3A-hack-hit-130-accounts%2C-company-%E2%80%98embarrassed%E2%80%99">Twitter: Hack hit 130 accounts, company ‘embarrassed’</h2><p>By BARBARA ORTUTAY, <em>AP</em>, JUL 18 2020<br><a href="https://apnews.com/860daee9d51ceb588c9bd0feebddc323"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>OAKLAND, Calif. (AP) — Twitter says the hack that compromised the accounts of some of its most high-profile users targeted 130 people. The hackers were able to reset the passwords of 45 of those accounts.</p><p>The San Francisco=based company said in a posts post Saturday that for up to eight of these accounts the attackers also downloaded the account’s information through the “Your Twitter Data” tool. None of the eight were verified accounts, Twitter said, adding that it is contacting the owners of the affected accounts.</p><p>“We’re embarrassed, we’re disappointed, and more than anything, we’re sorry. We know that we must work to regain your trust, and we will support all efforts to bring the perpetrators to justice,” Twitter said in the posts post.</p><p>The July 17 attack broke into the Twitter accounts of world leaders, celebrities and tech moguls in one of the most high-profile security breaches in recent years. The attackers sent out tweets from the accounts of the public figures, offering to send $2,000 for every $1,000 sent to an anonymous Bitcoin address.</p><p>It highlighted a major flaw with the service millions of people have come to rely on as an essential communications tool.</p><p>Allison Nixon, chief research officer at cybersecurity firm 221B said in an email Sunday that the people behind the attack appear to have come from the “OG” community, a group interested in original, short Twitter handles such as @a, @b or @c, for instance.</p><p>“Based upon what we have seen,the motivation for the most recent Twitter attack is similar to previous incidents we have observed in the OG community — a combination of financial incentive, technical bragging rights, challenge, and disruption,” Nixon wrote. “The OG community is not known to be tied to any nation state. Rather they are a disorganized crime community with a basic skillset and are a loosely organized group of serial fraudsters.”</p><p>While this attack did not appear go further than the Bitcoin ruse — at least for now — it raises questions about Twitter’s ability to secure its service against election interference and misinformation ahead of the U.S. presidential election.</p><p>“Entire markets and potentially elections may be manipulated or altered in this way,” Nixon said. “Victims of account takeovers generally do not know that the fraud has occurred, and generally cannot take security precautions to prevent it.”</p><h4>Twitter Hackers Caught Using BitPay and Coinbase on Hack-Related Wallet</h4><p>By: ANDREY SHEVCHENKO, <em>Cointelegraph</em>, JUL 16, 2020<br><a href="https://cointelegraph.com/news/twitter-hackers-caught-using-bitpay-and-coinbase-on-hack-related-wallet"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The Twitter hackers had used one of the addresses involved, which shows transactions to BitPay and Coinbase.</p><p>The Twitter hackers who compromised more than a dozen celebrity accounts on Wednesday appear to be consolidating their funds to an address that had earlier sent money to BitPay and Coinbase.</p><p>According to research from Whitestream, a blockchain analytics company, three transactions originating from the “1Ai5” address lead to wallets associated with Coinbase and BitPay, both of which provide merchant solutions. The legacy address was the first to be offered by the hackers, who later switched to a Bech32 address when targeting non-crypto accounts.</p><p>However, the original address is now the consolidation point of all the proceeds gotten through the attack. It received 14.75 Bitcoin (BTC), worth about $135,000.</p><p>Three transactions are believed to be leading to Coinbase and Bitpay. The first involves a transfer of about 1.2 BTC in May 2020, worth about $11,000 at the time. The latter two were sent two days before the hack and are for much smaller amounts.</p><p>Notably, the latter transactions are much more sophisticated as the change address is always of a different type than any of the other inputs. This makes it more difficult to trace, though it is possible that the hacker was simply in the process of switching to a Bech32 address.</p><p>According to Whitestream, the first transaction sent a small amount of funds to a BitPay-associated address, while the other two were sent to Coinbase.</p><p>The hackers’ address appears to be clearly traceable for those companies, possibly exposing their identity. It is however likely that these transactions are related to merchant usage, which could make investigations more difficult.</p><p>It is also unclear why the hackers used an old address to perform the attack, as it appears to be giving unnecessary clues for the future investigation. Furthermore, given that the hackers owned at least $11,000 before the attack, such a massive account compromise could have been used to publish market-moving announcements. By entering heavily leveraged positions before the tweets, the hackers likely would have made much more money.</p><p>Twitter employees getting exploited<br>As Cointelegraph reported extensively on Wednesday, dozens of Twitter accounts from crypto exchanges and influencers, tech companies, politicians and celebrities progressively fell to the hackers. The accounts published a well-known crypto scam that promised to double the money of anyone who sent Bitcoin to a certain address.</p><p>Twitter said that the issue was due to a social engineering attack performed on high-rank employees with admin access. Through the admin panel, hackers took control of the accounts by changing their passwords and recovery emails.</p><p>This is similar to a BlockFi data breach in May, where criminals used a SIM swap attack to gain access to internal customer records.</p><h4>Exclusive: U.S. FBI is leading an inquiry into the Twitter hack, sources say</h4><p>By: Joseph Menn, Mark Hosenball, <em>Reuters</em>, JULY 16, 2020<br><a href="https://www.reuters.com/article/us-twitter-cyber-fbi-exclusive/exclusive-u-s-fbi-is-leading-an-inquiry-into-the-twitter-hack-sources-say-idUSKCN24H2PH"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>WASHINGTON (Reuters) - The U.S. Federal Bureau of Investigation is leading a federal inquiry into the Twitter hacking, two sources familiar with the situation said, after hackers seized control of accounts belonging to Joe Biden, Kim Kardashian and others in what appeared to be a bitcoin scam.</p><p>Earlier the FBI had said: “We are aware of today’s security incident involving several Twitter accounts belonging to high profile individuals. The accounts appear to have been compromised in order to perpetuate cryptocurrency fraud.”</p><p>Shares of Twitter added to losses on the news and traded down 1.3 percent.</p><h4>Twitter Hacker Is Mixing Bitcoin Loot Using a Wasabi Wallet, Elliptic Says</h4><p>By: Jaspreet Kalra, <em>Coindesk</em>, JUL 17 2020<br><a href="https://www.coindesk.com/twitter-hacker-is-mixing-bitcoin-loot-using-a-wasabi-wallet-elliptic-says"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Funds collected by the scam that breached Twitter this week appear to be on the move, cryptocurrency tracing firm Elliptic said.</p><p>According to transaction data associated with crypto wallets used in the security breach, a total of about $123,000 was collected by the attackers. Of that about 22%, 2.89 BTC, was transferred late last night to an address Elliptic said it “strongly believe[s]” is a Wasabi wallet.</p><p>Wasabi wallets allow users to circumvent the transparency guaranteed by bitcoin’s public blockchain by mixing up the transaction trail, thus making it harder for law enforcement to follow the money.<br>According to Elliptic, the firm is able to identify Wasabi wallets based on distinctive transaction patterns. While exchanges can usually identify their clients using KYC checks, which makes it possible to flag fraudsters for law enforcement, the use of a Wasabi wallet makes it harder to pin down where a client’s money came from.<br>In a recent statement, Twitter said Wednesday’s security breach had targeted over 130 users, allowing attackers to gain control of user accounts and post identical messages demanding bitcoin. The firm also said it was investigating whether the attackers had accessed any non-public data on the platform.</p><h4>US Army Seeks a Cloud-Based Solution to Track Illicit Crypto Activities</h4><p>By: MOHAMMAD MUSHARRAF, <em>Cointelegraph</em>, JUL 14, 2020<br><a href="https://cointelegraph.com/news/us-army-seeks-a-cloud-based-solution-to-track-illicit-crypto-activities"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The U.S. Army Criminal Investigation Division Command plans to use a web application to track and trace cryptocurrency transitions.</p><p>The United States Army Criminal Investigation Division Command (USACIDC) is seeking a Software-as-as-Service web application to help them track and trace illicit cryptocurrency transactions.</p><p>According to a statement of work published on July 10, the USACIDC along with the Major Cybercrime Unit and FBI will use the application to detect activities such as fraud, extortion and money laundering carried out using cryptocurrencies.</p><p>The organization is taking bids for developed, tested and read-to-deploy web applications for the purpose till July 20.</p><p>The application must allow multi-currency analysis<br>As per the USACIDC — an arm of the U.S. Army that conducts criminal investigations worldwide — the web application they are seeking must be able to analyze Bitcoin (BTC) and other major cryptocurrencies in real-time while also enabling users to “conduct an in-depth investigation into the source of cryptocurrency transactions.”</p><p>The document further explains that the cloud application should help the USACIDC with quick detection of “criminal and suspicious financial connections, identify suspicious cryptocurrency transactions, and investigate cryptocurrency connections.”</p><p>The application should also come with the ability to spot suspicious transaction patterns and interactions with other entities, and a link analysis tool to facilitate the analysis of data.</p><p>Last year, in July, the United States Army Contracting Command of New Jersey published a pre-solicitation notice seeking a similar web application to help law enforcement agencies to track and identify people using cryptocurrencies for illegal purposes.</p><h2 id="the-doj-wants-to-hire-a-crypto-crime-attorney-adviser">The DOJ Wants to Hire a Crypto Crime Attorney Adviser</h2><p>By DANNY NELSON, <em>Coindesk</em>, JUL 17 2020<br><a href="https://www.coindesk.com/justice-department-hiring-crypto-attorney"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The U.S. Department of Justice (DOJ) is looking to hire a dark web, cryptocurrency and computer hacking attorney adviser to assist in its crackdown on international cybercrime.</p><p>This 12-month position will build out DOJ’s crypto tracing and blockchain analysis capabilities, according to a Thursday job listing by the Criminal Division’s overseas development office.<br>Asia Pacific, Eastern Europe and Central Asia - regions DOJ said are rife with “sophisticated transnational organized crime threats” in the cybercrime and intellectual property underworld - will be a top focus for the adviser, according to the posting.<br>Applicants must attain or maintain a Top Secret security clearance as they work alongside DOJ’s Computer Crime and Intellectual Property Section and the U.S. Transnational and High-Tech Crime Global Law Enforcement Network, according to the posting.</p><h2 id="russia">Russia</h2><h4>Missing Wirecard Exec Found in Belarus; Russia’s FSB Involvement Suspected</h4><p>By: TING PENG, <em>Cointelegraph</em>, JUL 19 2020<br><a href="https://cointelegraph.com/news/missing-wirecard-exec-found-in-belarus-russias-fsb-involvement-suspected"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Russian intelligence might have a lot to do with helping former Wirecard COO Jan Marsalek disappear into thin air.</p><p>Jan Marsalek, the former chief operations officer of Wirecard who went missing after his supposed trip to the Philippines last month to chase the missing 2 billion Euro in the company’s books, has been located in Belarus.</p><p>Marsalek reportedly entered the Philippines via Manila before flying to Cebu City and then to China in June. Philippine authorities said there was no footage of Marsalek arriving in the city nor were there records of a flight leaving Cebu for China.</p><p>Forged traveling tracks<br>According to investigative reporting website Bellingcat, the former Wirecard executive’s trip to the Philippines was forged. Investigations have pointed to Russia’s Federal Security Service’s, or FSB, involvement in helping him vanishing into thin air by tampering with Marsalek’s travel information. It explained that:</p><p>“FSB has complete control over the Russian border service, and thus over the centralized Russia-Belarus border database. Therefore, any manipulation of data would have to be done at the behest of, or at least with the consent of, the FSB. If this were to happen, this would indicate a direct collaboration between Jan Marsalek and the FSB…”</p><p>The FSB allegedly began its monitoring on Marsalek’s international trips at the beginning of 2015 and had stopped tracking his movement at the end of 2018. He was found using a number of different passports, including a third-country diplomatic passport. Russia’s FSB immigration data suggest that Russia’s security service had a long-standing interest in Marsalek. He was also a frequent visitor to the country.</p><p>As Philippine authorities believed his immigration records to the country were forged, it was assumed Marsalek hid in a different country. Based on Bellingcat’s investigation, Marsalek told a colleague that he’s in a country where “the same people have been in power for the last 25 years.” The investigators, who hypothesized that with Russia’s interest in Marsalek, he might be in a country with the same president for the past 25 years. Russia and Belarus share an external border. Data obtained by Bellingcat showed he flew to Belarus on June 19th and did not leave the country after that.</p><p>As Cointelegraph reported previously, Jan Marsalek bragged of ties with Russian intelligence services and touted secret documents about chemical weapons used in the UK.</p><h2 id="terrorism">Terrorism</h2><p><em>No Significant News to Report</em></p><h2 id="on-china-2">On China</h2><h4>China to Test Digital Yuan on Food Delivery Platform With 435 Million Users</h4><p>By MOHAMMAD MUSHARRAF, *Cointelegraph, JUL 15, 2020<br><a href="https://cointelegraph.com/news/china-to-test-digital-yuan-on-food-delivery-platform-with-435-million-users"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The People’s Bank of China (PBoC) is planning to add the Tencent-backed food delivery giant Meituan Dianping to its list of platforms that will test real-world use cases of the digital yuan.</p><p>Meituan Dianping is a Beijing-based food delivery platform that currently boasts of more than 435 million active users and billions of dollars of daily transactions. This creates a huge opportunity for the mass adoption of the digital yuan, which is also referred to as the Digital Currency Electronic Payment or DCEP.</p><p>Unnamed sources told Bloomberg that Meituan had been in talks with the research arm of China’s central bank — the Digital Currency Research Institute — regarding the use-cases for its central bank digital currency (CBDC). However, both parties are yet to specify the details about their partnership.</p><p>The Tencent-backed video streaming platform Bilibili is also reportedly in discussions with the PBoC to test the digital yuan. Recently, one of the largest ride-hailing applications DiDi also joined the project.</p><p>No release date yet, but China is making fast progress<br>The PBoC had already clarified that it doesn’t have a specific launch date for the digital yuan, but the central bank and its research wing have been increasing their efforts to explore the use cases of the CBDC in the real world.</p><p>In April, there were rumors about the launch of a wallet application across four Chinese cities — Shenzhen, Chengdu, Suzhou and Xiongan — for the initial testing of the digital currency.</p><p>China’s progress toward testing and launching its digital currency has only gained more speed during the pandemic. In June, the former vice-chair of the PBoC’s Na­tional Coun­cil for So­cial Se­cu­rity Fund, Wang Zhong­min, had announced that China had completed the backend development of its CBDC. The government had also started drafting laws for the same in March this year.</p><h4>Digital Yuan CBDC Momentum Grows as More Chinese Firms Get to Testing</h4><p>By: JULIA MAGAS, <em>Cointelegraph</em>, JUL 19 2020<br><a href="https://cointelegraph.com/news/digital-yuan-cbdc-momentum-grows-as-more-chinese-firms-get-to-testing"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>As the development of the digital yuan project progresses, the number of China’s largest companies testing the national cryptocurrency is rapidly growing.</p><p>Despite the global economic crisis and the consequences of the coronavirus pandemic, the development of the Chinese national cryptocurrency, the Digital Currency Electronic Payment, is steadily progressing. The increase in the number of large companies joining the digital yuan initiative as partners in testing and implementing the technology is clear evidence of the progress the project is making in its development.</p><p>Meituan Dianping, the country’s largest wholesale and delivery platform for products, has become the latest corporation to agree to assist the People’s Bank of China in testing and implementing the initiative. The platform currently has almost 450 million customers and about 6 million companies using it to sell their products.</p><p>Earlier, DiDi Chuxing, the Chinese Uber counterpart with a client base of about 550 million, and streaming platform Bilibili, which is used by more than 170 million, also joined the testing of China’s national digital currency. Additionally, Simon Li, founding partner of Chain Capital, revealed to Cointelegraph that DiDi will become the world’s first private enterprise to accept central bank digital currency payments.</p><p>What is in it for these companies?<br>The People’s Bank of China started selecting the first merchants for testing the DCEP back in April. As reported by Cointelegraph, the list supposedly included mainly retail companies, especially food and beverage ones such as Starbucks and McDonald’s.</p><p>The choice behind entities such as DiDi, Bilibili and Meituan Dianping can be explained by the fact that their users make transactions worth several billion dollars daily. Such volumes can significantly accelerate the popularization, and hence the adoption, of a digital yuan.</p><p>The total number of customers of the three services combined is over 1 billion people located not only in China but also in Australia and several countries in South America, according to statistics provided by the companies. If such a global approach is realized, the DCEP could gain access in test mode to a vast segment of users, among which are representatives of large companies in the world of finance. As a result, the DCEP has exceptional chances of being popularized in a reasonable amount of time.</p><p>Additionally, the aforementioned companies will gain a significant competitive advantage by becoming the first to introduce such a new technology into their products. As infrastructures with a large flow of daily transactions, the companies will make use of facilitating remittances in a more reliable, cheaper, faster fashion. Experiments have shown that while it usually takes about 45 days to complete a full cycle of letters of credit with the participation of the banks of buyers and sellers in different countries, using blockchain can reduce the process to just one or two days.</p><p>Testing well underway<br>It is as of yet unclear how long the testing period of the digital yuan will last. However, given that the number of China’s largest companies that are getting involved with the technology is growing rapidly, it is safe to assume that the first phase of testing is underway.</p><p>According to available information, testing of the DCEP is already being conducted in four cities: Shenzhen, Suzhou, Chengdu and Xiong’an. The goal is to test for theoretical reliability, system stability, functional availability, process convenience, scenario applicability and risk management. This is also the first time that regulatory authorities have confirmed the dynamics of the transitional digital currency pilot project, as Jianing Yu, president of Huobi University explained.</p><p>Earlier, four state-owned banks as well as a number of large companies, including Huawei and telecommunications giants China Telecom, China Mobile and China Unicom, all joined the testing phase. In April, the Agricultural Bank of China also confirmed its participation in the pilot project. However, it may still be far from completing testing, as Yu noted in a conversation with Cointelegraph:</p><p>“We should see that these current tests are actually still in the research stage, not preparing for immediate launch. Besides, according to the latest report, Didi, Meituan, Bilibili and some other Internet companies have partnered with a list of companies and banks to test DC/EP. Meituan and Didi will explore the application of digital currency on the smart transport platform. Bilibili’s cooperation has started the technology development stage.”</p><p>Are WeChat and Alipay off the list?<br>In total, more than 20 companies are involved in the digital yuan project to date. It is notable, however, that Alipay and WeChat Pay — the largest payment systems in China — are not on the list of participants, according to the information available to the public.</p><p>The South China Morning Post recently suggested that China is launching the digital yuan as an alternative to Alipay and WeChat Pay. Given that these peer-to-peer payment systems control about 90% of China’s digital payments market and exceed Mastercard and Visa combined, it will be interesting to see if they will play a part in the launch of the CBDC system. The question being posed by most analysts is whether WeChat and Alipay will become the main providers of digital yuan services, or whether they are aiming to compete with the CBDC.</p><p>According to Jeff Chu, founding partner of BN Capital, Beijing is not looking to replace Alipay and WeChat Pay with the DCEP; rather, the companies are likely to be integrated into the DCEP, as he told Cointelegraph:</p><p>“The popularization of P2P payment is now gradually increasing, and the usage scenarios have changed from simple transaction payment scenarios to areas such as life travel, entertainment, medical health, and insurance. That kind of peer-to-peer electronic payment software has become an essential tool for payment scenarios in China. We have reason to believe that the relationship between CBDC and WeChat and Alipay will be more of cooperation than competition.”</p><p>Even though 90% of contactless payments are made through digital platforms in China, the national cryptocurrency can offer the financial market elements that are lacking in modern electronic payments. In a conversation with Cointelegraph, Yu dwelled upon the problems that the DCEP may solve:</p><p>“First, the cost of cash circulation is too high to track, there is a risk for money laundering. Second, current electronic payment in existing bank accounts is based on the tight coupling, which often causes leakage of personal privacy information, and it cannot meet the public’s demand for anonymous payment.”</p><p>Among other aspects, Yu noted that China’s payment platforms such as WeChat Pay and Alipay only cover a part of all transaction scenarios, such as customer-to-customer transfers and small payments in the customer-to-business sector, for example. However, scenarios such as business-to-customer salary payments and business-to-business transaction settlements cannot be facilitated by the currently available mobile payment systems. Users that have other needs may have to choose between WeChat and Alipay, or the CBDC. Yu assumed that in the short term, the DCEP and third-party payment platforms may coexist. However, in the long run, they will gradually merge into a single system.</p><p>Given that China is seeking to fully digitize its financial industry, Alipay and WeChat Pay may get even more popular as the payment systems of choice after the DCEP starts replacing cash payments. Over time, the two platforms can also become vital instruments for the government in accelerating China’s transformation into a cashless economy. According to another scenario, Alipay and WeChat Pay might serve as providers for digital yuan services. Chain Capital’s Li told Cointelegraph:</p><p>“Although neither Ali nor Tencent participated in the research and development work of DCEP, DCEP will have an impact on WeChat and payment. In the future, Alipay and WeChat Pay will play the role of channel or scenario providers, namely platform functions such as booking air tickets, hotel, shopping and so on.”</p><p>Considering that both Alibaba — the creator of Alipay — and Tencent —the creator of WeChat — have previously worked on blockchain-related initiatives with provincial governments and also at the national level, they are not likely to disregard the adoption of the DCEP. Musheer Ahmed, managing director of FinStep Asia — an advisory firm assisting financial technology startups — is confident that the two will become major platforms for the adoption of the digital yuan at the local level, given the scale of their use in China, telling Cointelegraph:</p><p>“The two techfins are an important and integral part of the payment ecosystem. I expect that they will also be a major part of the usage of digital yuan locally. With the digital yuan also playing the role of further enabling cross-border usage of the currency, both of these firms, especially Alibaba, will be a major facilitator for ecommerce on the OBOR countries/Digital Silk Road.”</p><p>The merger can be questioned<br>It may be too early to look into the future to see how cooperation between the government and the large companies may shape out given how young blockchain technology and the regulatory aspects surround it are. It is also unclear whether blockchain, which is partially used by the DCEP, will be able to work on par with electronic systems with a load of billions of transactions per day.</p><p>Speaking to Cointelegraph, Olinga Taeed, a council member and expert advisor of the China E-Commerce Blockchain Committee, provided extensive thoughts on why full-scale cooperation between WeChat, Alipay and the DCEP might be called into question, even though WeChat owner Tencent is providing its Meituan Dianping platform to pilot the CBDC:</p><p>“Whilst AliPay and WeChat pay are moving towards ’blockchain-esque’ transaction protocols they currently consider them as unsuitable for the volume they have to manage. Bitcoin, for example, currently has a transaction speed of approximately 3 per second, but AliPay is at around 300,000 per second with scalability of over a million destined before year end.”</p><p>Taeed also added that blockchain protocols and architecture are unsuitable, but fifth-generation payment systems such as AeMoney, which was created by former AliPay chief technology officer Hu Yan, are moving toward implementing a peer-to-peer system but scoff at blockchain as a viable solution.</p><h4>Beijing: 140 Government Services Applications Are Using Blockchain</h4><p>By: TING PENG, <em>Cointelegraph</em>, JUL 16, 2020<br><a href="https://cointelegraph.com/news/beijing-140-government-services-applications-are-using-blockchain"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The Beijing government has released its first blockchain application blueprint for government services, claiming 140 applications already use the technology.</p><p>The Beijing government will release its first blockchain application blueprint on government services in China today, according to the local news on July 15.</p><p>According to the blueprint, 140 government service applications are already on the blockchain. These applications are divided into three categories: “data sharing and exchange”, “business collaborative processing” and “electronic certificate and certificate storage”. The official in charge of the blueprint said:</p><p>&quot;Blockchain is a breakthrough in data sharing which is difficult to get through the traditional sharing way […] ‘electronic certificate storage’ means that the electronic certificate is stored on the chain, and […] improves the credibility and verification efficiency.”</p><p>Blockchain gets real<br>The real estate registration blockchain system, for instance, involves 11 government sectors, including the municipal planning commission, the housing and urban rural development commission, the tax bureau, the public security bureau. The official said:</p><p>“The relevant departments will handle the real estate registration business and store the relevant information in the blockchain to ensure the credibility of the electronic license […] to realize the traceability of the sharing process.”</p><p>As Cointelegraph reported previously, China is looking into the use of blockchain technology to promote data sharing among medical institutions amid future pandemics. But Chinese local governments also face challenges implementing blockchain applications as stakeholders don’t want to share their data.</p><h2 id="on-iran-2">On Iran</h2><p><em>No Significant News to Report</em></p><h2 id="on-venezueula">On Venezueula</h2><h4>Venezuela Bans Crypto Mining From Public Housing</h4><p>By: FELIPE ERAZO, <em>Cointelegraph</em>, JUL 17, 2020<br><a href="https://cointelegraph.com/news/venezuela-bans-crypto-mining-from-public-housing"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Crypto mining can harm the country’s electricity distribution, says a Venezuelan minister.</p><p>Venezuelan Minister of Habitat and Housing Ildemaro Villarroel announced today that crypto mining operations won’t be allowed in any state-owned housing or neighborhoods that are part of the “Gran Misión Vivienda” project (Great Home Mission).</p><p>During an official speech on July 15, Villaroel stated that any kind of equipment related to crypto mining is banned in public housing due to “high power consumption” and for widely “violating” the government’s electrical supply policy.</p><p>The minister added:</p><p>“In this coordinated work, we have detected the harmful effects of these elements of high electrical demand in the public houses of the Gran Misión Vivienda project.”</p><p>Gran Misión Vivienda is a plan by the Venezuelan government to grant housing to citizens with low income amid a long-lasting economic crisis that the country had already been facing before COVID-19 showed up.</p><p>“Hurting” the local power supply system<br>Villarroel says that crypto mining activities could harm the distribution of the power supply in every neighborhood. But critics of the measure, primarily through social media, point out that the Venezuela was negligent in improving the local electric supply system. The issue went major after a national electrical shutdown in 2019 as a result of the failure of the “Guri” hydroelectric dam.</p><p>Recently the Bolivarian National Guard of Puerto Ordaz seized 315 Bitcoin (BTC) mining machines manufactured by Bitmain. The owners of the mining rigs were told that they did not possess the necessary permits to own and operate the machines.</p><h2 id="other-2">Other</h2><h4>Shariah Law Opens to Crypto Trading, but Full Adoption Highly Unlikely</h4><p>By: SHIRAZ JAGATI, <em>Cointelegraph</em>, JUL 14, 2020<br><a href="https://cointelegraph.com/news/shariah-law-opens-to-crypto-trading-but-full-adoption-highly-unlikely"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The Islamic world seems primed for widespread digital asset adoption, as well-respected scholars claim that crypto trading is fully compatible with Sharia law.</p><p>Even though in most western countries today, matters related to religion and money have been independent of one another. However, in Islam, especially those following the Shariah code of ethics, the two are intertwined inextricably. Also, in the past, there have been serious efforts to introduce crypto within the world of Shariah-based cooperative finance, such as the Stellar Network and Halal Chain. By and large, this market is still quite nascent and not as mature as many from within the region would like it to be.</p><p>In this regard, according to a landmark announcement made by the Securities Commission of Malaysia’s Shariah Advisory Council, trading of digital assets is now permissible by law within the country’s borders. The new ruling will not only help spur the growth of Malaysia’s existing financial ecosystem but will also enable the creation of a blueprint that can be used by other Shariah-observing nations to promote crypto innovation while staying in line with the deep ethical values outlined by Islamic traditions.</p><p>To better understand how crypto fits in with the Shariah scheme of things, Cointelegraph reached out to Adlin Zulkefli, a Shariah designated officer representing Masryef Management House — an advisory firm on Islamic finance. In her view, a normal crypto spot trade for investment purposes is deemed permissible by the Shariah code of finance. However, other activities may be seen as haram — actions that lay in direct conflict with the Shariah code of values — and they will not be permissible. She added:</p><p>“Shariah law is compatible with the digital asset token if it’s recognized as an asset. Additionally, there should be underlying value or utility to the digital asset, the issuer’s business or cause should definitely be guided by Shariah standards.”</p><p>In general, Shariah-compliant digital assets can operate as any other conventional digital offering, but several key differences still exist, such as (1) they cannot be used to make investments in companies in sectors that are not Shariah-compliant; (2) certain requirements need to be met so that investors are treated equally; (3) the inability of users to utilize conventional financing or invest in companies highly leveraged with conventional debt, and (4) the requirement for oversight of investment activities and investments by a Shariah Board.</p><p>Shariah’s financial guidelines are flexible in nature<br>On the subject of whether scriptural precedents can potentially impede the growth of crypto-based finance in the Middle East, Babak Behboudi, the CEO of fintech firm Synchronium, told Cointelegraph that Shariah rules have always been progressive and are constantly being updated by Islamic experts in accordance with the circumstances and advances surrounding any new technology.</p><p>However, he did concede that due to the fact that even the basic idea surrounding cryptocurrencies is totally new to Islamic Shariah, it might take some time for experts to distinguish them from haram activities. Behboudi also pointed out that before the rise of cryptocurrencies, a similar issue of Sharia compatibility was also observed in relation to stock market trading when it first started to gain mainstream traction across the Middle East.</p><p>Lastly, since Islamic regulations are quite sensitive when it comes to determining the source of money being used to carry out any transactional activity, cryptocurrencies — thanks to their transparency-oriented frameworks — can be quite useful when issuing, distributing and trading funds in a Sharia-compliant manner. Behboudi believes that adoption by Islamic Banks from Saudi Arabia, the United Arab Emirates and Qatar is very likely, adding:</p><p>“Currently, a number of Islamic Banks in the Middle East are evaluating the advantages of using blockchain and security tokens for their financial products. However, it’s too early to say what type of financial products they will adopt based on blockchain and cryptocurrencies.”</p><p>Shariah approval will hasten adoption<br>It’s important to note that the approval and audit of respected Islamic scholars remains an integral part of any process related to the launch of a Sharia-compliant digital asset. As a result, platforms/services that allow to create rulesets, as well as streamlined auditing protocols for Shariah boards, will help facilitate the acceptance of crypto-related products within the Muslim world in a much more hassle-free manner.</p><p>In this regard, Nabil Issa, a partner at King &amp; Spalding — a white-shoe international corporate law firm — told Cointelegraph that automatically enforced sophisticated policies are essential for digital instruments and help financial services providers and their lawyers to work with Shariah scholars to structure compliant digital assets.</p><p>And while the stringent guidelines presented by Shariah law may have an influence on potential investors who may not be willing to enter this space due to these demands, a fully-compliant product will be more marketable than a conventional fund in Malaysia, as well as the Gulf Cooperation Council region. Issa added:</p><p>“In general, nothing prevents a non-Muslim investor from investing in a Shariah-compliant product, therefore, forming and ensuring the digital asset is Shariah-compliant opens such to a wider pool of potential participants. In fact, many potential non-Muslim investors appreciate that such investments are being made ethically and will not involve high-risk financial products. Such are often re-termed as ‘ethical’ financial products.”</p><p>Lastly, careful consideration also needs to be given to target investment companies that may be deriving a part of their income from haram activities, such as supermarkets, airlines, hotels and restaurants. Issa pointed out that it is generally accepted that any haram income of a noncompliant target company that does not exceed 5% of its overall gross income can be classified as marginal or incidental.</p><p>The Muslim world should get ready<br>Contrary to some popular misconceptions surrounding Islam and its incompatibility with crypto, it is worth noting that all four Sunni schools have fully recognized nonphysical items as valid property and, therefore, permissible to trade. Intellectual property and trademarks are examples of non-physical property. What’s more, any valid type of property can also be traded under Shariah. Matthew Martin, the founder and CEO of Blossom Finance — a blockchain-based securitization and investment platform utilizing Islamic finance principles — told Cointelegraph:</p><p>“Shariah scholars such as Mufti Faraz Adam and Mufti Muhammad Abu Bakar have noted that cryptocurrencies generally meet the definition of money under Shariah, and Dr. Mohamed Daud Bakr notes that cryptocurrencies meet most but perhaps not all requirements for Islamic currency. Given this, it’s advisable for Muslims to only trade on a cash basis.”</p><p>Also, while crypto trading may soon start to gain mainstream traction within the Islamic world, the vast majority of digital asset derivatives are not Shariah-compliant and thus will (most likely) not be available in these regions. Martin explained: “I can’t imagine any crypto-asset derivative being Shariah-compliant unless you had, for example, trade receivables in that asset, and you needed to hedge against the risk of volatility in the asset’s price.”</p><p>Malaysian decision a game-changer?<br>On the subject of how Malaysia’s recent move to legalize digital asset trading could impact the rest of the Islamic world, Kelvyn Chuah, a co-founder and managing director of SINEGY —a regulated Malaysian digital asset exchange — told Cointelegraph that the latest decision can have implications on the issuance of digital assets that are guided by the principles of Islamic finance, adding: “This opportunity can put Malaysia on the world map for creating an environment where innovation can flourish, yet be harmoniously guided by deep ethical values.”</p><p>A similar sentiment is also shared by Behboudi, who believes that in the near future, Shariah experts across every Muslim nation will be able to formulate a comfortable set of rules to resolve any unknown issues regarding crypto to make the novel asset class fully available to the global Muslim community. In fact, he pointed out that a number of countries like Iran, Turkey, and UAE already have clear Shariah rules on how cryptocurrencies should be governed.</p><p>Lastly, Martin believes that due to the simple fact that Shariah law is primarily concerned with the generation and preservation of wealth, digital tokens present Islamic governments with the promise of channeling capital to productive sectors, such as crypto, all while being rooted in principles like transparency and accountability.</p><p>Some areas tied with crypto still need more consideration<br>While digital asset trading may be compatible with a vast majority of the Shariah guidelines in existence today, as far as the buying and selling of digital asset derivatives go, things can become much more complicated — especially since a vast majority of these offerings are highly speculative in nature and thus incompatible with the basic tenets of Islamic finance. On the subject, Issa noted:</p><p>“In many cases, derivatives are not Shariah-compliant if they involve gharar, a high degree of risk or uncertainty. We note, however, that there are Shariah-compliant derivatives that operate by limiting the level of risk. Thus, any digital asset will need to meet the same requirement as a non-digital asset.”</p></div><div class="c-share"><span>Share on</span><ul class="c-share__list"><li class="c-share__list-item"><a href="https://twitter.com/intent/tweet/?text=Crypto%20%26%20Nat&#39;l%20Sec%20Brief%207%2F19&amp;url=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F07%2Fcrypto-brief%2F" aria-label="Twitter" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-share__list-item"><a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F07%2Fcrypto-brief%2F" aria-label="Facebook" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/></svg></a></li></ul></div></article></main><footer class="c-contentinfo" role="contentinfo"><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/work/">Work</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/posts/">Posts</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/contact/">Contact</a></li></ul><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Twitter" href="https://twitter.com/tbutler0x90"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Github" href="https://github.com/tcbutler320"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Linkedin" href="https://www.linkedin.com/in/tyler-b-a700a1aa"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a></li></ul></footer><script src="//instant.page/5.0.1" type="module" integrity="sha384-0DvoZ9kNcB36fWcQApIMIGQoTzoBDYTQ85e8nmsfFOGz4RHAdUhADqJt4k3K2uLS"></script></body></html>

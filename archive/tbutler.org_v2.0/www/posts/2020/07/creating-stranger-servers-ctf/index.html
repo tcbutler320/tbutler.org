@@ -1,0 +1,1242 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0055FF"><meta name="robots" content="index,follow"><title>Creating my first CTF Challenge - Tyler Butler</title><meta name="description" content="Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge"><meta property="og:title" content="Creating my first CTF Challenge - Tyler Butler"><meta property="og:description" content="Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge"><meta property="og:url" content="https://tbutler.org/posts/2020/07/creating-stranger-servers-ctf/"><meta property="og:image" content="https://tbutler.org/assets/images/meta-logo.png"><meta name="twitter:site" content="@tbutler0x90"><meta name="twitter:creator" content="@tbutler0x90"><meta name="twitter:title" content="Creating my first CTF Challenge - Tyler Butler"><meta name="twitter:card" content="description"><meta name="twitter:image" content="https://tbutler.org/assets/images/meta-logo.png"><link rel="shortcut icon" href="/assets/images/favicon.ico"><link rel="alternate" type="application/rss+xml" title="Feed for posts" href="/posts/feed.xml"><link rel="alternate" type="application/rss+xml" title="Feed for screencasts" href="/screencasts/feed.xml"><style>@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans'), local('IBMPlexSans'),
+       url('/assets/fonts/IBMPlexSans-Text.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans Italic'), local('IBMPlexSans-Italic'),
+       url('/assets/fonts/IBMPlexSans-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('IBM Plex Sans Semi-bold'), local('IBMPlexSans-Semi-bold'),
+       url('/assets/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+
+    /* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+
+:root {
+  --font-family-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: Menlo, Monaco, monospace;
+
+  --font-size-base: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+
+  --space-0: 0;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+
+  --color-blue: #0055FF;
+  --color-red: #FF3300;
+  --color-yellow: #FFCC00;
+  --color-green: #4CA55E;
+
+  --color-blue-100: #CCDBFF;
+  --color-red-100: #FFD3CC;
+  --color-yellow-100: #FFF8CC;
+  --color-green-100: #D9EFDE;
+
+  --mark: var(--color-yellow-100);
+  --outline: 0 0 0 3px var(--color-yellow);
+  --gap: var(--space-3);
+  --radius: 4px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.07),
+            0 2px 4px rgba(0,0,0,0.07),
+            0 4px 8px rgba(0,0,0,0.07),
+            0 8px 16px rgba(0,0,0,0.07),
+            0 16px 32px rgba(0,0,0,0.07),
+            0 32px 64px rgba(0,0,0,0.07);
+
+  --theme-color: #24292e;
+  --theme-color-primary: var(--color-blue);
+  --theme-color-gray: #6a737d;
+  --theme-color-gray-light: #F6F8FA;
+  --theme-background-color: #FFFFFF;
+  --theme-border-color: #EEEEEE;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gap: var(--space-4);
+  }
+}
+
+
+
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: var(--space-5) var(--space-3);
+  font-family: var(--font-family-sans);
+  line-height: 1.5;
+  color: var(--theme-color);
+  background-color: var(--theme-background-color);
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.o-stack--prose > * + h2,
+.o-stack--prose > * + h3 {
+  margin-top: var(--space-4);
+}
+
+.o-stack--prose h2 {
+  font-size: var(--font-size-lg);
+}
+
+.o-stack--prose h3 {
+  font-size: var(--font-size-md);
+}
+
+.o-stack--lead p:first-of-type {
+  font-size: var(--font-size-lg);
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--theme-color-primary);
+}
+
+a:hover,
+a:focus {
+  color: var(--theme-color-primary);
+}
+
+a:focus {
+  outline: 0;
+  box-shadow: var(--outline) !important;
+}
+
+h2 a {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+h2 a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul {
+  list-style: none;
+}
+
+ul:not([class]) li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+ul:not([class]) li + li {
+  margin-top: var(--space-1);
+}
+
+ul:not([class]) li::before {
+  content: '–';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--theme-color-gray);
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd + dt {
+  margin-top: var(--space-2);
+}
+
+blockquote p {
+  font-style: italic;
+}
+
+figure blockquote p::before { content: '“'; }
+figure blockquote p::after { content: '”'; }
+
+figure blockquote p {
+  text-indent: -.25rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--theme-border-color);
+  padding-left: var(--space-3);
+}
+
+main {
+  margin-bottom: var(--space-5);
+  outline: none;
+}
+
+mark {
+  padding-right: .1em;
+  padding-left: .1em;
+  background-color: var(--mark);
+}
+
+hr {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem;
+  width: 100%;
+  border: 0;
+  height: 4px;
+  background-color: var(--theme-border-color);
+}
+
+kbd {
+  display: inline-block;
+  padding-right: 4px;
+  padding-left: 4px;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  box-shadow: inset 0 -1px 0 #D9EFDE;
+  border-radius: var(--radius);
+  font-family: var(--font-family-code);
+  font-size: .95rem;
+  color: #222222;
+}
+
+
+
+/* ==========================================================================
+   OBJECTS
+   ========================================================================== */
+
+
+/**
+ * ASPECT-RATIO
+ */
+
+[style*='--aspect-ratio'] > :first-child {
+  height: auto;
+  width: 100%;
+}
+
+@supports (--custom: property) {
+  [style*='--aspect-ratio'] {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-gray-100);
+  }
+
+  [style*='--aspect-ratio']::before {
+    content: '';
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+
+  [style*='--aspect-ratio'] > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+/**
+ * BREAKOUT
+ */
+.o-breakout {
+  position: relative;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+
+.o-container {
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-3);
+  padding-left: var(--space-3);
+}
+
+.o-container--lg {
+  max-width: 75rem;
+}
+
+
+/**
+ * GRID
+ */
+
+.o-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--gap) * -1);
+  margin-bottom: calc(var(--gap) * -1);
+}
+
+.o-grid--justify-end {
+  justify-content: flex-end;
+}
+
+@media(min-width: 720px) {
+  .o-grid--reversed\@md {
+    flex-direction: row-reverse;
+  }
+}
+
+.o-grid + .o-grid {
+  margin-top: var(--gap);
+}
+
+.o-grid--align-center {
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .o-grid--align-center\@md {
+    align-items: center;
+  }
+}
+
+.o-grid__col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+
+/**
+ * STACK
+ */
+
+.o-stack > * + *    { margin-top: var(--space-3); }
+.o-stack--1 > * + * { margin-top: var(--space-1); }
+.o-stack--2 > * + * { margin-top: var(--space-2); }
+.o-stack--3 > * + * { margin-top: var(--space-3); }
+.o-stack--4 > * + * { margin-top: var(--space-4); }
+.o-stack--5 > * + * { margin-top: var(--space-5); }
+
+
+/**
+ * TAGS
+ */
+
+.o-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.o-tags--center {
+  justify-content: center;
+}
+
+.o-tags__item {
+  margin-right: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+
+
+/**
+ * AVATAR
+ */
+
+.c-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--theme-border-color);
+}
+
+
+/**
+ * BANNER
+ */
+
+.c-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 720px) {
+  .c-banner {
+    align-items: center;
+  }
+}
+
+.c-banner__branding {
+  display: inline-block;
+  border-radius: var(--radius);
+}
+
+.c-banner__branding svg {
+  vertical-align: top;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 720px) {
+  .c-banner__nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.c-banner__nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .c-banner__nav-list {
+    flex-direction: row;
+  }
+
+  .c-banner__nav-item + .c-banner__nav-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-banner__nav-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * BUTTON
+ */
+
+.c-button {
+  -webkit-appearance: none;
+  outline: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6875rem 1rem;
+  background-color: #000000;
+  border: 1px solid #000000;
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-button:hover,
+.c-button:focus {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+  color: #FFFFFF;
+}
+
+.c-button--primary {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+}
+
+.c-button--primary:hover,
+.c-button--primary:focus {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.c-button--secondary {
+  background-color: var(--theme-background-color);
+  border-color: var(--theme-color-gray);
+  color: var(--theme-color-gray);
+  box-shadow: none;
+}
+
+.c-button:focus {
+  box-shadow: var(--outline);
+}
+
+.c-button svg {
+  margin-right: var(--space-2);
+  flex-shrink: 0;
+}
+
+.c-button--sm {
+  padding: var(--space-1) .75rem;
+  font-size: smaller;
+}
+
+
+/**
+ * CARD
+ */
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--space-4);
+  background-color: var(--theme-color-gray-light);
+  border-radius: var(--radius);
+}
+
+
+/**
+ * CONTENTINFO
+ */
+
+.c-contentinfo {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--theme-border-color);
+}
+
+.c-contentinfo__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-contentinfo__list + .c-contentinfo__list {
+  margin-top: var(--space-4);
+}
+
+.c-contentinfo__list-item + .c-contentinfo__list-item {
+  margin-left: var(--space-3);
+}
+
+@media (min-width: 720px) {
+  .c-contentinfo__list-item + .c-contentinfo__list-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-contentinfo__list-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * HEADING-DECORATE
+ */
+
+.c-heading-decorate::after {
+  content: '\2009\00AC';
+  display: inline-block;
+  color: var(--theme-color-gray);
+  opacity: .5;
+}
+
+
+/**
+ * FORM
+ */
+
+.c-form__row + .c-form__row {
+  margin-top: var(--space-3);
+}
+
+.c-form__row--button {
+  display: flex;
+  align-items: flex-end;
+}
+
+.c-form__row--button div {
+  flex: 1;
+  margin-right: var(--space-3);
+}
+
+.c-form__label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.c-form__input {
+  display: block;
+  width: 100%;
+  padding: 0.6875rem var(--space-3);
+  font: inherit;
+  background-color: #FAFAFA;
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.c-form__input:focus {
+  box-shadow: var(--outline);
+}
+
+
+/**
+ * NOTE
+ */
+
+.c-note {
+  padding: var(--space-3);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+}
+
+.c-note--primary {
+  border-color: var(--theme-color-primary);
+}
+
+.c-note__label {
+  font-weight: 600;
+}
+
+
+/**
+ * LINK
+ */
+
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.c-link:hover,
+.c-link:focus {
+  text-decoration: underline;
+}
+
+.c-link svg {
+  margin-left: var(--space-1);
+}
+
+
+/**
+ * LISTING
+ */
+
+ .c-listing {
+  list-style: none;
+}
+
+.c-listing__item:not(:last-of-type) {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+
+/**
+ * META
+ */
+
+@media (min-width: 720px) {
+  .c-meta {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: repeat(50, min-content);
+    grid-column-gap: var(--space-4);
+  }
+
+  .c-meta__title {
+    grid-row-start: 1;
+  }
+}
+
+
+/**
+ * PAGINATION
+ */
+
+.c-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.c-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-pagination__item:hover {
+  color: var(--theme-color-primary);
+}
+
+.c-pagination__item[rel="next"] {
+  margin-left: auto;
+}
+
+.c-pagination__item[rel="next"] svg {
+  margin-left: var(--space-1);
+}
+
+.c-pagination__item[rel="prev"] svg {
+  margin-right: var(--space-1);
+  transform: rotate(180deg);
+}
+
+
+/**
+ * PILL
+ */
+
+ .c-pill {
+  position: relative;
+  padding: var(--space-1) .75rem;
+  border-radius: var(--space-3);
+  color: var(--theme-color-primary);
+  text-decoration: none;
+  font-size: smaller;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.c-pill:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-color-primary);
+  border-radius: var(--space-3);
+  opacity: .15;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+a.c-pill:hover {
+  color: #fff;
+}
+
+a.c-pill:hover:after {
+  opacity: 1;
+}
+
+
+/**
+ * SHARE
+ */
+
+.c-share {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-share::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--theme-border-color);
+}
+
+.c-share span {
+  position: relative;
+  padding-right: 1rem;
+  background-color: var(--theme-background-color);
+  color: var(--theme-color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+.c-share__list {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-3);
+  background-color: var(--theme-background-color);
+  z-index: 10;
+}
+
+.c-share__list-item:not(:last-of-type) {
+  margin-right: var(--space-3);
+}
+
+.c-share__list-anchor {
+  color: currentColor;
+}
+
+.c-share__list-anchor:hover {
+  color: var(--theme-color-primary);
+}
+
+
+/**
+ * VIDEO
+ */
+
+.c-video__backdrop[style] {
+  padding: var(--space-4);
+  background-color: var(--backdrop, #FAFAFA);
+}
+
+.c-video__caption {
+  margin-top: var(--space-2);
+  text-align: center;
+  color: var(--theme-color-gray);
+}
+
+
+/**
+ * QUOTE
+ */
+
+/* .c-quote {} */
+
+.c-quote__blockquote {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.c-quote--feature .c-quote__blockquote {
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+.c-quote__cite {
+  margin-top: var(--space-3);
+  display: flex;
+}
+
+.c-quote--feature .c-quote__cite {
+  flex-direction: column;
+  text-align: center;
+}
+
+.c-quote--default .c-quote__cite-media {
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+}
+
+.c-quote--feature .c-quote__cite-body {
+  margin-top: var(--space-2);
+}
+
+
+
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+
+.u-text-center {
+  text-align: center;
+}
+
+
+/**
+ * WIDTHS
+ */
+
+.u-width-1of12 {
+  width: calc(100% * 1 / 12);
+}
+
+.u-width-3of12 {
+  width: calc(100% * 3 / 12);
+}
+
+.u-width-4of12 {
+  width: calc(100% * 4 / 12);
+}
+
+.u-width-6of12 {
+  width: calc(100% * 6 / 12);
+}
+
+.u-width-7of12 {
+  width: calc(100% * 7 / 12);
+}
+
+.u-width-8of12 {
+  width: calc(100% * 8 / 12);
+}
+
+.u-width-9of12 {
+  width: calc(100% * 9 / 12);
+}
+
+.u-offset-3of12 {
+  margin-left: calc(100% * 3 / 12);
+}
+
+.u-offset-4of12 {
+  margin-left: calc(100% * 4 / 12);
+}
+
+@media (min-width: 720px) {
+  .u-width-1of12\@md {
+    width: calc(100% * 1 / 12);
+  }
+
+  .u-width-3of12\@md {
+    width: calc(100% * 3 / 12);
+  }
+
+  .u-width-4of12\@md {
+    width: calc(100% * 4 / 12);
+  }
+
+  .u-width-6of12\@md {
+    width: calc(100% * 6 / 12);
+  }
+
+  .u-width-7of12\@md {
+    width: calc(100% * 7 / 12);
+  }
+
+  .u-width-8of12\@md {
+    width: calc(100% * 8 / 12);
+  }
+
+  .u-width-9of12\@md {
+    width: calc(100% * 9 / 12);
+  }
+
+  .u-offset-3of12\@md {
+    margin-left: calc(100% * 3 / 12);
+  }
+
+  .u-offset-4of12\@md {
+    margin-left: calc(100% * 4 / 12);
+  }
+}
+
+
+/**
+ * ORDER
+ */
+@media (min-width: 720px) {
+  .u-order-first\@md {
+    order: -9999;
+  }
+}
+
+
+/**
+ * SPACING
+ */
+
+.u-margin-right-1  { margin-right: var(--space-1) !important; }
+.u-margin-right-2  { margin-right: var(--space-2) !important; }
+.u-margin-right-3  { margin-right: var(--space-3) !important; }
+
+.u-margin-top-0 { margin-top: var(--space-0) !important; }
+.u-margin-top-1 { margin-top: var(--space-1) !important; }
+.u-margin-top-2 { margin-top: var(--space-2) !important; }
+.u-margin-top-3 { margin-top: var(--space-3) !important; }
+.u-margin-top-4 { margin-top: var(--space-4) !important; }
+.u-margin-top-5 { margin-top: var(--space-5) !important; }
+.u-margin-top-6 { margin-top: var(--space-6) !important; }
+
+@media (min-width: 720px) {
+  .u-margin-top-0\@md { margin-top: var(--space-0) !important; }
+  .u-margin-top-1\@md { margin-top: var(--space-1) !important; }
+  .u-margin-top-2\@md { margin-top: var(--space-2) !important; }
+  .u-margin-top-3\@md { margin-top: var(--space-3) !important; }
+  .u-margin-top-4\@md { margin-top: var(--space-4) !important; }
+  .u-margin-top-5\@md { margin-top: var(--space-5) !important; }
+  .u-margin-top-6\@md { margin-top: var(--space-6) !important; }
+}
+
+.u-padding-left-0 { padding-left: 0 !important; }
+
+/**
+ * FONT-SCALE
+ */
+
+.u-font-size-sm   { font-size: 88.8888889% !important; }
+.u-font-size-base { font-size: var(--font-size-base) !important; }
+.u-font-size-md   { font-size: var(--font-size-md) !important; }
+.u-font-size-lg   { font-size: var(--font-size-lg) !important; }
+.u-font-size-xl   { font-size: var(--font-size-xl) !important; }
+.u-font-size-2xl  { font-size: var(--font-size-2xl) !important; }
+.u-font-size-3xl  { font-size: var(--font-size-3xl) !important; }
+.u-font-size-4xl  { font-size: var(--font-size-4xl) !important; }
+.u-font-size-5xl  { font-size: var(--font-size-5xl) !important; }
+
+@media (min-width: 720px) {
+  .u-font-size-sm\@md   { font-size: 88.8888889% !important; }
+  .u-font-size-base\@md { font-size: var(--font-size-base) !important; }
+  .u-font-size-md\@md   { font-size: var(--font-size-md) !important; }
+  .u-font-size-lg\@md   { font-size: var(--font-size-lg) !important; }
+  .u-font-size-xl\@md   { font-size: var(--font-size-xl) !important; }
+  .u-font-size-2xl\@md  { font-size: var(--font-size-2xl) !important; }
+  .u-font-size-3xl\@md  { font-size: var(--font-size-3xl) !important; }
+  .u-font-size-4xl\@md  { font-size: var(--font-size-4xl) !important; }
+  .u-font-size-5xl\@md  { font-size: var(--font-size-5xl) !important; }
+}
+
+
+/**
+ * LEADING
+ */
+
+.u-leading-strict {
+  line-height: 1.1;
+}
+
+.u-leading-tight {
+  line-height: 1.3;
+}
+
+.u-text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/**
+ * FONT-WEIGHT
+ */
+
+.u-font-weight-normal {
+  font-weight: 400;
+}
+
+.u-font-weight-semi-bold {
+  font-weight: 600;
+}
+
+
+/**
+ * COLORS
+ */
+
+.u-color-primary {
+  color: var(--theme-color-primary);
+}
+
+.u-color-gray {
+  color: var(--theme-color-gray);
+}
+
+.u-primary-anchor {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.u-primary-anchor:hover,
+.u-primary-anchor:focus {
+  text-decoration: underline;
+}
+
+
+/**
+ * HIDDEN-VISUALLY
+ */
+
+.u-hidden-visually {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+
+/**
+ * FLEXBOX
+ */
+
+.u-flex {
+  display: flex;
+}
+
+.u-justify-center {
+  justify-content: center;
+}
+
+.u-justify-between {
+  justify-content: space-between;
+}
+
+.u-align-center {
+  align-items: center;
+}
+
+.u-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+
+/**
+ * BORDERS
+ */
+
+.u-bordered {
+  border: 1px solid var(--theme-border-color);
+}
+
+.u-border-none {
+  border: 0;
+}
+
+.u-shadow {
+  box-shadow: var(--shadow);
+}
+
+.u-rounded {
+  border-radius: var(--radius);
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    code[class*="language-"],
+pre[class*="language-"] {
+  font-family: var(--font-family-code);
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .95rem;
+  line-height: 1.3;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+code:not([class]) {
+  padding: 2px 4px;
+  font-family: var(--font-family-code);
+  font-size: .875rem;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  overflow: auto;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  color: #222222;
+  border-radius: 4px;
+}
+
+.highlight-line {
+  padding: 0.25rem 1rem;
+  border-left: 4px solid #FAFAFA;
+}
+
+.highlight-line-active {
+  background-color: var(--color-blue-100);
+  border-color: var(--theme-color-primary);
+}
+
+.highlight-line-add {
+  background-color: var(--color-green-100);
+  border-color: var(--color-green);
+}
+
+.highlight-line-remove {
+  background-color: var(--color-red-100);
+  border-color: var(--color-red);
+}
+
+.token.comment {
+  color: #777;
+}</style></head><body><header class="c-banner" role="banner"><a class="c-banner__branding" href="/"><span class="u-hidden-visually">Tyler Butler</span> <svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" width="4rem" height="4rem" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="var(--theme-color-primary, #000)" d="M0 0h40v40H0z"/><path fill="#fff" d="M20.515 12.273c1.667 0 3.606.454 5.243 1.363v7.485c0 2.515.394 3.303 1.424 3.303 1.454 0 2.515-1.515 2.515-6.424 0-5.273-2.91-8.515-9.212-8.515-6.515 0-10.152 4.394-10.152 10.697 0 6.454 3.515 10.515 10.182 10.515 2.091 0 4.394-.455 5.97-1.03l1.121 3.303c-1.909.727-4.576 1.272-7.121 1.272C11.697 34.242 6 28.758 6 20.182 6 11.939 12.06 6 20.515 6 29.121 6 34 11.727 34 17.94c0 5.484-2.606 9.454-6.606 9.454-2.424 0-3.727-1.606-4.06-3.091-.728 1.697-2.122 2.97-4.334 2.97-3.848 0-5.545-2.91-5.545-6.818 0-4.97 2.575-8.182 7.06-8.182zm-.879 12c1.091 0 1.728-.788 2.061-1.485v-7.212c-.455-.182-.818-.273-1.333-.273-1.576 0-2.576 1.273-2.576 5.182 0 2.788.576 3.788 1.848 3.788z"/></g></svg></a><nav class="c-banner__nav"><ul class="c-banner__nav-list"><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/work/">Work</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/posts/">Posts</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/contact/">Contact</a></li></ul></nav></header><main id="main" tabindex="-1"><article class="o-stack o-stack--4"><header><time class="u-color-gray u-text-uppercase">Jul 20, 2020</time><h1 class="u-font-size-2xl">Creating my first CTF Challenge</h1></header><div class="o-stack o-stack--prose"><blockquote><p>Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge</p></blockquote><div class="row mt-3"><div class="center"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/stranger-servers-ctf.png"></div></div><br><h2 id="overview">Overview</h2><p><strong>Stranger Servers</strong> is the first CTF Challenge I’ve created. The basic web challenge consists of a 90’s themed website with a hidden vulnerable php application. The inspiration for the backend comes from an older php application called timeclock which has several reported vulnerabilities <a href="https://www.exploit-db.com/exploits/39427">(See Employee TimeClock Software 0.99 - SQL Injection)</a></p><p>The main challenge website is hosted on an apache webserver on a basic tier droplet from digital ocean. This is not the cheapest way to host a challenge, however, I chose this design because I was already using the server as a testing ground for vulnerability research into the timeclock application.</p><div class="alert alert-danger alert-dismissible fade show" role="alert"><strong class="text-dark">Before you Read!</strong> This article will contain spoilers, if you want to solve this challenge, have a go before reading. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><p><a href="https://0x90skids.com/ctf/"><button type="button" class="btn btn-dark">Go to Challenge</button><br></a></p><h2 id="index">Index</h2><ul><li><a href="#overview">Overview</a></li><li><a href="#index">Index</a></li><li><a href="#seting-up">Seting up</a><ul><li><a href="#infrastructure">Infrastructure</a><ul><li><a href="#spinning-up-a-digital-ocean-droplet">Spinning up a Digital Ocean Droplet</a></li><li><a href="#ubunto-server-configuration">Ubunto Server Configuration</a></li></ul></li><li><a href="#back-end">Back-end</a><ul><li><a href="#configuring-vulnerable-timeclock-app">Configuring Vulnerable Timeclock App</a></li><li><a href="#creating-a-mysql-database">Creating a MySQL Database</a></li><li><a href="#connecting-mysql-to-timeclock-app">Connecting MySQL to Timeclock App</a></li><li><a href="#flag-layout">Flag Layout</a></li><li><a href="#making-the-app-vulnerable">Making the App Vulnerable</a></li></ul></li><li><a href="#front-end">Front-End</a><ul><li><a href="#website-generation">Website Generation</a></li></ul></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul><h2 id="seting-up">Seting up</h2><h3 id="infrastructure">Infrastructure</h3><h4>Spinning up a Digital Ocean Droplet</h4><ol><li><p>First, I created a digital <a href="https://www.digitalocean.com/">ocean account</a></p></li><li><p>Next, I created an ubunto droplet with a basic plan. I chose the lowest possible tier, which, for $5 a month gets you 1 GB / 1 CPU, 25 GB SSD disk, 1000 GB transfer. This will be much more then I need for the challenge, and will allow me to host other challenges on the same droplet,</p></li></ol><div class="row mt-3"><div class="center"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/stranger-servers-1.png"></div></div><br><ol start="3"><li>I selected a data center region to host the droplet, and finally created SSH credentials to enable remote log in</li></ol><h4>Ubunto Server Configuration</h4><p>After the server booted up, I logged into it with SSH and started some initial configuration</p><ol><li>First, I ran the usual update commands to ensure I was using the latest packages</li></ol><pre class="language-bash"><code class="language-bash"><div class="highlight-line"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> upgrade</div></code></pre><ol start="2"><li>I install <a href="https://gohugo.io/">Hugo</a>, a static web generator to quickly create websites from templates. I used snap for installation</li></ol><pre class="language-bash"><code class="language-bash"><div class="highlight-line">snap <span class="token function">install</span> hugo --channel<span class="token operator">=</span>extended</div></code></pre><h3 id="back-end">Back-end</h3><h4>Configuring Vulnerable Timeclock App</h4><p><em>Now for the fun stuff.</em></p><p>The idea for this CTF was to use the <a href="http://timeclock-software.net/">timeclock</a> application as a basic SQLinjectible form. Timeclock is a basic php app which enables employers to track empolyee working time through an apache, php, and mysql website. Older versions of the app are vulnerable to a host of exploits, including three on the exploit-db database. These include exploits like as <a href="https://www.exploit-db.com/exploits/39427">Employee TimeClock Software 0.99 - SQL Injection</a>, <a href="https://www.exploit-db.com/exploits/39404">TimeClock Software 0.995 - Multiple SQL Injections</a>, and <a href="https://www.exploit-db.com/exploits/11516">TimeClock 0.99 - Cross-Site Request Forgery (Add Admin)</a>.</p><div class="row mt-3"><div class="center"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/exploit-db.png"></div></div><br><p>Each of these exploits were for older versions of timeclock. Since I was unable to find these particular versions, I settled on removing the security patches from the latest version 1.01.</p><p>I downloaded the latest version from the vendor portal at <a href="http://timeclock-software.net/timeclock-download.php">http://timeclock-software.net/timeclock-download.php</a>. I unzipped the download package and using SCP I transfered the entire application to my digital ocean server.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line"><span class="token function">scp</span> /path/to/timeclock user@<span class="token punctuation">[</span>ip address of server<span class="token punctuation">]</span>:/path/to/destination</div></code></pre><h4>Creating a MySQL Database</h4><p>Timeclock uses a mysql database to store user information such as username and passwords as well as time entry and pay rate. The app download includes a .sql file to automatically create the database. I used the following commands to set it up.</p><p>Log in and create empty database</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">mysql -u root -p    </div><div class="highlight-line"></div><div class="highlight-line">mysql<span class="token operator">></span> CREATE DATABASE timeclock<span class="token punctuation">;</span></div></code></pre><p>Log out, and modify database with .sql file</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">mysql -u root -p timeclock <span class="token operator">></span> timeclock.sql</div></code></pre><h4>Connecting MySQL to Timeclock App</h4><p>The only setup step required for the timeclock app is to change the default configuration in the db.php file to use the correct mysql options.</p><pre class="language-php"><code class="language-php"><div class="highlight-line"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></span></div><div class="highlight-line"><span class="token comment">// You need to change these to your settings.</span></div><div class="highlight-line"></div><div class="highlight-line"><span class="token comment">/** the name of the database */</span></div><div class="highlight-line"><span class="token variable">$db_name</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"xxx"</span><span class="token punctuation">;</span></div><div class="highlight-line"></div><div class="highlight-line"><span class="token comment">/** mysql database username */</span></div><div class="highlight-line"><span class="token variable">$db_user</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"xxx"</span><span class="token punctuation">;</span></div><div class="highlight-line"></div><div class="highlight-line"><span class="token comment">/** mysql database password */</span></div><div class="highlight-line"><span class="token variable">$db_password</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"xxx"</span><span class="token punctuation">;</span></div><div class="highlight-line"></div><div class="highlight-line"><span class="token comment">/** mysql hostname */</span></div><div class="highlight-line"><span class="token variable">$db_host</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"xxx"</span><span class="token punctuation">;</span></div></code></pre><p>To test if the application works, I moved it to the /var/www/html directory and started the apache webserver.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line"><span class="token function">cp</span> /timeclock /var/www/html</div><div class="highlight-line"><span class="token function">service</span> apache2 start </div></code></pre><h4>Flag Layout</h4><p>The plan for the CTF was to have 3 flags at varying levels of difficulty. Each flag would provide hints to the next, with the first flag being found through common directory scanning or a hint in the challenge description. The flags are structured like this.</p><ol><li>Beginner Flag: Located at robots.txt</li><li>Intermediate Flag: Available through a simple SQL injection in the login-in field of the hidden timeclock application</li><li>Intermediate-Advanced Flag: Available through either a time-based SQLinjection in the add_time form, or alternatively available through a modified SQLinjection of the second flag in the log-in field.</li></ol><h4>Making the App Vulnerable</h4><p>According to some basic research, the timeclock 1.01 application is not vulnerable to any known exploits, however, older versions are. Looking at the exploit-db records for timeclock, I noticed there was a SQLinjection on the log-in form in version .99. It appears as if there was not any proper sanitization of user input in this field, leading to this exploit.</p><p>While I could not be certain, taking a look at the source code 1.01, it appears the developers added the cclean and dclean functions to sanitize inputs.</p><pre class="language-php"><code class="language-php"><div class="highlight-line"><span class="token keyword">function</span> <span class="token function">dclean</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></div><div class="highlight-line">	<span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>is_numeric <span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span></div><div class="highlight-line">		<span class="token keyword">echo</span> <span class="token double-quoted-string string">"Invalid Data"</span><span class="token punctuation">;</span></div><div class="highlight-line">		<span class="token keyword">exit</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token punctuation">}</span></div><div class="highlight-line">	<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token function">htmlspecialchars</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token constant">ENT_QUOTES</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line"><span class="token keyword">return</span> <span class="token variable">$data</span><span class="token punctuation">;</span></div><div class="highlight-line"><span class="token punctuation">}</span></div><div class="highlight-line"></div><div class="highlight-line"><span class="token keyword">function</span> <span class="token function">cclean</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></div><div class="highlight-line">	<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token function">htmlspecialchars</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token constant">ENT_QUOTES</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line"><span class="token keyword">return</span> <span class="token variable">$data</span><span class="token punctuation">;</span></div><div class="highlight-line"><span class="token punctuation">}</span></div></code></pre><p>Removing the references to these functions, would remove any user input sanitization. The SQLi on the log-in form still would not work until I removed the password_verify function in the login_action.php file.</p><p><em>Original Timeclock Application</em></p><pre class="language-php"><code class="language-php"><div class="highlight-line"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">password_verify</span><span class="token punctuation">(</span><span class="token variable">$timeapp_password</span><span class="token punctuation">,</span> <span class="token variable">$password</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></div><div class="highlight-line">	<span class="token comment">//echo "&lt;p>Success!&lt;/p>";</span></div><div class="highlight-line">	<span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_id'</span><span class="token punctuation">]</span> 		<span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"user_id"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_level'</span><span class="token punctuation">]</span>		<span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"level"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"timeapp_username"</span><span class="token punctuation">]</span>	<span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"username"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></div><div class="highlight-line">	header <span class="token punctuation">(</span><span class="token double-quoted-string string">"Location: index.php?success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	</div><div class="highlight-line"><span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span></div><div class="highlight-line">	<span class="token comment">//echo "&lt;p>Failure&lt;/p>";</span></div><div class="highlight-line">	<span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_username'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_password'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_level'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token variable">$_SESSION</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token function">session_destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	header <span class="token punctuation">(</span><span class="token double-quoted-string string">"Location: login.php?error2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">	<span class="token keyword">exit</span><span class="token punctuation">;</span></div><div class="highlight-line"><span class="token punctuation">}</span></div></code></pre><p>With the p</p><p><em>New CTF Application</em></p><pre class="language-php"><code class="language-php"><div class="highlight-line"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">num_rows</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></div><div class="highlight-line">   	<span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_id'</span><span class="token punctuation">]</span>                 <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"user_id"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></div><div class="highlight-line">        <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_level'</span><span class="token punctuation">]</span>              <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"level"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></div><div class="highlight-line">        <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"timeapp_username"</span><span class="token punctuation">]</span>   <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"username"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></div><div class="highlight-line">        header <span class="token punctuation">(</span><span class="token double-quoted-string string">"Location: index.php?timeapp_password:<span class="token interpolation"><span class="token variable">$timeapp_password</span></span>:passcode:<span class="token interpolation"><span class="token variable">$passcode</span></span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span></div><div class="highlight-line">      <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_username'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">      <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_password'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">      <span class="token keyword">unset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'timeapp_level'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">      <span class="token variable">$_SESSION</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">      <span class="token function">session_destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">      header <span class="token punctuation">(</span><span class="token double-quoted-string string">"Location: login.php?better_luck_next_time:<span class="token interpolation"><span class="token variable">$sql</span></span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></div><div class="highlight-line">      <span class="token keyword">exit</span><span class="token punctuation">;</span></div><div class="highlight-line"><span class="token punctuation">}</span></div></code></pre><p>With the <code>password_verify</code> function gone, any SQLi that returns a valid user can log into the app as that user.</p><h3 id="front-end">Front-End</h3><h4>Website Generation</h4><p>To quickly create a fun front-end for the challenge. I searched through the hugo themes until I found a retro 90s theme from cshoredaniel called <a href="https://github.com/cshoredaniel/new-oldnew-mashup">new-oldnew-mashup</a>.</p><p>I mostly followed a fantastic article from Justin Ellingwood on the digital ocean website, <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-hugo-a-static-site-generator-on-ubuntu-14-04">“How To Install and Use Hugo, a Static Site Generator, on Ubuntu 14.04”</a> for setup instructions, generating the site with the following.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">hugo new site ~/Hawkins-Library</div><div class="highlight-line"><span class="token builtin class-name">cd</span> ~/Hawkins-Library</div></code></pre><p>I edited the config file to the followig</p><pre class="language-html"><code class="language-html"><div class="highlight-line">baseurl = "http://public.ip.address"</div><div class="highlight-line">languageCode = "en-us"</div><div class="highlight-line">title = "Hawkins Public Library"</div><div class="highlight-line">theme = "new-oldnew-mashup"</div></code></pre><p>Last, I created new pages for the site, including the books, news, study groups, and home pages.</p><pre class="language-bash"><code class="language-bash"><div class="highlight-line">hugo new book.md</div></code></pre><p>When I was finished designing the front end for the challenge. I copied the generated static site into the apache web directory, restarted apache, and the challenge was live.</p><div class="row mt-3"><div class="center"><img class="img-fluid rounded z-depth-1" src="/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/hawkins-lab.png"></div></div><h2 id="conclusion">Conclusion</h2><p>Overall it was a good learning experience to design, create, and host my own capture the flag challenge. In the future, I will plan on dockerizing this challenge for easier portabiliy and allow others to host the challenge locally instead of on a remote server.</p></div><div class="c-share"><span>Share on</span><ul class="c-share__list"><li class="c-share__list-item"><a href="https://twitter.com/intent/tweet/?text=Creating%20my%20first%20CTF%20Challenge&amp;url=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F07%2Fcreating-stranger-servers-ctf%2F" aria-label="Twitter" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-share__list-item"><a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F07%2Fcreating-stranger-servers-ctf%2F" aria-label="Facebook" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/></svg></a></li></ul></div></article></main><footer class="c-contentinfo" role="contentinfo"><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/work/">Work</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/posts/">Posts</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/contact/">Contact</a></li></ul><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Twitter" href="https://twitter.com/tbutler0x90"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Github" href="https://github.com/tcbutler320"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Linkedin" href="https://www.linkedin.com/in/tyler-b-a700a1aa"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a></li></ul></footer><script src="//instant.page/5.0.1" type="module" integrity="sha384-0DvoZ9kNcB36fWcQApIMIGQoTzoBDYTQ85e8nmsfFOGz4RHAdUhADqJt4k3K2uLS"></script></body></html>

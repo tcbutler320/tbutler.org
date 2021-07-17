@@ -1,18 +1,12 @@
----
-layout: compress
----
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: " en " }}">
-{% include header.html %}
-
-<body data-theme="{{ site.mode }}">
-  {% include navbar.html %}
-  <div class="wrapper">
-    {% include author.html %}
-    <main aria-label="Content">
-      {{ content }}
-    </main>
+{% assign theme = site.data.themes[site.ui_theme] %}
+<html>
+  {% include head.html %}
+  <body>
+    {% include nav-test.html %}
+    <div class="container">
+    {{ content }}
     {% include footer.html %}
-  </div>
-</body>
+    </div>
+  </body>
 </html>

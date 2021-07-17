@@ -1,0 +1,25 @@
+- title: home
+  url: /
+  external: false
+
+- title: articles
+  url: /articles/
+  external: false
+
+- title: publications
+  url: /publications/
+  external: false
+
+- title: projects
+  url: /projects/
+  external: false 
+
+- title: bug trophies
+  url: /trophies/
+  external: false 
+
+- title: vitae
+  url: /assets/pdf/Butler,Tyler-Resume.pdf
+  external: false
+
+

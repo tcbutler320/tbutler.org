@@ -1,23 +1,27 @@
----
-layout: compress
----
-
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: " en " }}">
-
-{% include header.html %}
-
-<body data-theme="{{ site.mode }}">
-  {% include navbar.html %}
-  <div class="wrapper">
-    <header class="header">
-      <h1 class="header-title center" itemprop="headline">{{ page.title | escape }}.</h1>
-    </header>
-    <main class="page-content" aria-label="Content">
-      {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=4 h_max=4 %}
-    </main>
+{% assign theme = site.data.themes[site.ui_theme] %}
+<html>
+  {% include head-blog.html %}
+  <body>
+      {% include nav-test.html %}
+      <div class="sticky-top progress-bar mb-5" id="myBar"></div>
+      {% if page.header-img %}
+      <div class="card border-0 bg-transparent">
+          <div class="card-body">
+            <p class="card-text">
+                {{ content }}
+            </p>
+          </div>
+      </div>
+      {% else %}
+      <div class="card border-0 bg-transparent">
+      {{ content }}
+          <div class="card-body">
+            <p class="card-text mt-0 mb-0">
+            </p>
+          </div>
+      </div>
+      {% endif %}
     {% include footer.html %}
-  </div>
-</body>
-
+  </body>
 </html>

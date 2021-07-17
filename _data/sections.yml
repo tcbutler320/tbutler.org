@@ -1,0 +1,43 @@
+- name: Vulnerability Disclosures
+  id: bounties
+  description: As a freelance security researcher, I try to constantly learn new techniques for finding vulnerabilities in everyday applications and software. This list includes my findings to date, including bug bounties and 0-day vulnerabilities disclosed as part of responsible disclosure guidelines.
+  url: /
+  content: 
+  first: true
+  jsid: foo1
+  emoji: <i class="fa fa-handshake-o" aria-hidden="true"></i>
+  num: 12
+
+- name: Publications
+  id: publications
+  description: Below is a short list of articles and research papers I've published. For more information or to read the full article, click the linked icons below.
+  url: publications.html
+  first: false
+  jsid: foo
+  emoji: <i class="fa fa-pencil" aria-hidden="true"></i>
+  num: 3
+
+- name: Teaching
+  id: teaching
+  description: Below is a short overview of courses I've help teach as an undergrad at The Pennsylvania State University.
+  content: 
+  url: teaching.html
+  first: false
+  jsid: foo3
+  emoji: <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+  num: 
+
+
+- name: Projects
+  id: projects
+  description: As a passionate open source developer, I spent much of my time writting and reviewing code. Below is a couple projects I am currently hacking on. If you're interested in the full list of projects I'm contributing to, please see my GitHub
+  content: 
+  url: projects.html
+  first: false
+  jsid: foo4
+  emoji: <i class="fa fa-code-fork" aria-hidden="true"></i>
+  num: 
+
+
+
+

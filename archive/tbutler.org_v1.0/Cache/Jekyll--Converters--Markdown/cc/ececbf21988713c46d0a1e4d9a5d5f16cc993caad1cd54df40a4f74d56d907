@@ -1,0 +1,262 @@
+I"�I<blockquote>
+  <p>Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge</p>
+</blockquote>
+
+<div class="row mt-3">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="stranger-servers-ctf.png" />
+    </div>
+</div>
+<p><br /></p>
+
+<h2 id="overview">Overview</h2>
+
+<p><strong>Stranger Servers</strong> is the first CTF Challenge I’ve created. The basic web challenge consists of a 90’s themed website with a hidden vulnerable php application. The inspiration for the backend comes from an older php application called timeclock which has several reported vulnerabilities <a href="https://www.exploit-db.com/exploits/39427">(See Employee TimeClock Software 0.99 - SQL Injection)</a></p>
+
+<p>The main challenge website is hosted on an apache webserver on a basic tier droplet from digital ocean. This is not the cheapest way to host a challenge, however, I chose this design because I was already using the server as a testing ground for vulnerability research into the timeclock application.</p>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong class="text-dark">Before you Read!</strong> This article will contain spoilers, if you want to solve this challenge, have a go before reading.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<p><a href="https://0x90skids.com/ctf/"><button type="button" class="btn btn-dark">Go to Challenge</button>
+</a></p>
+
+<h2 id="index">Index</h2>
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#index">Index</a></li>
+  <li><a href="#seting-up">Seting up</a>
+    <ul>
+      <li><a href="#infrastructure">Infrastructure</a>
+        <ul>
+          <li><a href="#spinning-up-a-digital-ocean-droplet">Spinning up a Digital Ocean Droplet</a></li>
+          <li><a href="#ubunto-server-configuration">Ubunto Server Configuration</a></li>
+        </ul>
+      </li>
+      <li><a href="#back-end">Back-end</a>
+        <ul>
+          <li><a href="#configuring-vulnerable-timeclock-app">Configuring Vulnerable Timeclock App</a></li>
+          <li><a href="#creating-a-mysql-database">Creating a MySQL Database</a></li>
+          <li><a href="#connecting-mysql-to-timeclock-app">Connecting MySQL to Timeclock App</a></li>
+          <li><a href="#flag-layout">Flag Layout</a></li>
+          <li><a href="#making-the-app-vulnerable">Making the App Vulnerable</a></li>
+        </ul>
+      </li>
+      <li><a href="#front-end">Front-End</a>
+        <ul>
+          <li><a href="#website-generation">Website Generation</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<h2 id="seting-up">Seting up</h2>
+
+<h3 id="infrastructure">Infrastructure</h3>
+
+<h4 id="spinning-up-a-digital-ocean-droplet">Spinning up a Digital Ocean Droplet</h4>
+
+<p>1) First, I created a digital <a href="https://www.digitalocean.com/">ocean account </a></p>
+
+<p>2) Next, I created an ubunto droplet with a basic plan. I chose the lowest possible tier, which, for $5 a month gets you 1 GB / 1 CPU, 25 GB SSD disk, 1000 GB transfer. This will be much more then I need for the challenge, and will allow me to host other challenges on the same droplet,</p>
+
+<div class="row mt-3">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="stranger-servers-1.png" />
+    </div>
+</div>
+<p><br /></p>
+
+<p>3) I selected a data center region to host the droplet, and finally created SSH credentials to enable remote log in</p>
+
+<h4 id="ubunto-server-configuration">Ubunto Server Configuration</h4>
+
+<p>After the server booted up, I logged into it with SSH and started some initial configuration</p>
+
+<p>1)  First, I ran the usual update commands to ensure I was using the latest packages</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade
+</code></pre></div></div>
+
+<p>2) I install <a href="https://gohugo.io/">Hugo</a>, a static web generator to quickly create websites from templates. I used snap for installation</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snap <span class="nb">install </span>hugo <span class="nt">--channel</span><span class="o">=</span>extended
+</code></pre></div></div>
+
+<h3 id="back-end">Back-end</h3>
+
+<h4 id="configuring-vulnerable-timeclock-app">Configuring Vulnerable Timeclock App</h4>
+<p><em>Now for the fun stuff.</em></p>
+
+<p>The idea for this CTF was to use the <a href="http://timeclock-software.net/">timeclock</a> application as a basic SQLinjectible form. Timeclock is a basic php app which enables employers to track empolyee working time through an apache, php, and mysql website. Older versions of the app are vulnerable to a host of exploits, including three on the exploit-db database. These include exploits like as <a href="https://www.exploit-db.com/exploits/39427">Employee TimeClock Software 0.99 - SQL Injection</a>, <a href="https://www.exploit-db.com/exploits/39404">TimeClock Software 0.995 - Multiple SQL Injections</a>, and <a href="https://www.exploit-db.com/exploits/11516">TimeClock 0.99 - Cross-Site Request Forgery (Add Admin)</a>.</p>
+
+<div class="row mt-3">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="exploit-db.png" />
+    </div>
+</div>
+<p><br /></p>
+
+<p>Each of these exploits were for older versions of timeclock. Since I was unable to find these particular versions, I settled on removing the security patches from the latest version 1.01.</p>
+
+<p>I downloaded the latest version from the vendor portal at http://timeclock-software.net/timeclock-download.php. I unzipped the download package and using SCP I transfered the entire application to my digital ocean server.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp /path/to/timeclock user@[ip address of server]:/path/to/destination
+</code></pre></div></div>
+
+<h4 id="creating-a-mysql-database">Creating a MySQL Database</h4>
+<p>Timeclock uses a mysql database to store user information such as username and passwords as well as time entry and pay rate. The app download includes a .sql file to automatically create the database. I used the following commands to set it up.</p>
+
+<p>Log in and create empty database</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql <span class="nt">-u</span> root <span class="nt">-p</span>    
+
+mysql&gt; CREATE DATABASE timeclock<span class="p">;</span>
+</code></pre></div></div>
+
+<p>Log out, and modify database with .sql file</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql <span class="nt">-u</span> root <span class="nt">-p</span> timeclock <span class="o">&gt;</span> timeclock.sql
+</code></pre></div></div>
+
+<h4 id="connecting-mysql-to-timeclock-app">Connecting MySQL to Timeclock App</h4>
+
+<p>The only setup step required for the timeclock app is to change the default configuration in the db.php file to use the correct mysql options.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// You need to change these to your settings.</span>
+
+<span class="cd">/** the name of the database */</span>
+<span class="nv">$db_name</span> <span class="o">=</span> <span class="s2">"xxx"</span><span class="p">;</span>
+
+<span class="cd">/** mysql database username */</span>
+<span class="nv">$db_user</span> <span class="o">=</span> <span class="s2">"xxx"</span><span class="p">;</span>
+
+<span class="cd">/** mysql database password */</span>
+<span class="nv">$db_password</span> <span class="o">=</span> <span class="s2">"xxx"</span><span class="p">;</span>
+
+<span class="cd">/** mysql hostname */</span>
+<span class="nv">$db_host</span> <span class="o">=</span> <span class="s2">"xxx"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>To test if the application works, I moved it to the /var/www/html directory and started the apache webserver.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /timeclock /var/www/html
+service apache2 start 
+</code></pre></div></div>
+
+<h4 id="flag-layout">Flag Layout</h4>
+
+<p>The plan for the CTF was to have 3 flags at varying levels of difficulty. Each flag would provide hints to the next, with the first flag being found through common directory scanning or a hint in the challenge description. The flags are structured like this.</p>
+
+<ol>
+  <li>Beginner Flag: Located at robots.txt</li>
+  <li>Intermediate Flag: Available through a simple SQL injection in the login-in field of the hidden timeclock application</li>
+  <li>Intermediate-Advanced Flag: Available through either a time-based SQLinjection in the add_time form, or alternatively available through a modified SQLinjection of the second flag in the log-in field.</li>
+</ol>
+
+<h4 id="making-the-app-vulnerable">Making the App Vulnerable</h4>
+
+<p>According to some basic research, the timeclock 1.01 application is not vulnerable to any known exploits, however, older versions are. Looking at the exploit-db records for timeclock, I noticed there was a SQLinjection on the log-in form in version .99. It appears as if there was not any proper sanitization of user input in this field, leading to this exploit.</p>
+
+<p>While I could not be certain, taking a look at the source code 1.01, it appears the developers added the cclean and dclean functions to sanitize inputs.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="nf">dclean</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nb">is_numeric</span> <span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="s2">"Invalid Data"</span><span class="p">;</span>
+		<span class="k">exit</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="nv">$data</span> <span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">cclean</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$data</span> <span class="o">=</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nx">ENT_QUOTES</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Removing the references to these functions, would remove any user input sanitization. The SQLi on the log-in form still would not work until I removed the password_verify function in the login_action.php file.</p>
+
+<p><em>Original Timeclock Application</em></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nb">password_verify</span><span class="p">(</span><span class="nv">$timeapp_password</span><span class="p">,</span> <span class="nv">$password</span><span class="p">))</span> <span class="p">{</span>
+	<span class="c1">//echo "&lt;p&gt;Success!&lt;/p&gt;";</span>
+	<span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_id'</span><span class="p">]</span> 		<span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">];</span>
+	<span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_level'</span><span class="p">]</span>		<span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s2">"level"</span><span class="p">];</span>
+	<span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"timeapp_username"</span><span class="p">]</span>	<span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s2">"username"</span><span class="p">];</span>
+	<span class="nb">header</span> <span class="p">(</span><span class="s2">"Location: index.php?success"</span><span class="p">);</span>
+	
+<span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+	<span class="c1">//echo "&lt;p&gt;Failure&lt;/p&gt;";</span>
+	<span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_username'</span><span class="p">]);</span>
+	<span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_password'</span><span class="p">]);</span>
+	<span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_level'</span><span class="p">]);</span>
+	<span class="nv">$_SESSION</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+	<span class="nb">session_destroy</span><span class="p">();</span>
+	<span class="nb">header</span> <span class="p">(</span><span class="s2">"Location: login.php?error2"</span><span class="p">);</span>
+	<span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With the p</p>
+
+<p><em>New CTF Application</em></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">num_rows</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+   	<span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_id'</span><span class="p">]</span>                 <span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">];</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_level'</span><span class="p">]</span>              <span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s2">"level"</span><span class="p">];</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"timeapp_username"</span><span class="p">]</span>   <span class="o">=</span> <span class="nv">$row</span><span class="p">[</span><span class="s2">"username"</span><span class="p">];</span>
+        <span class="nb">header</span> <span class="p">(</span><span class="s2">"Location: index.php?timeapp_password:</span><span class="nv">$timeapp_password</span><span class="s2">:passcode:</span><span class="nv">$passcode</span><span class="s2">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_username'</span><span class="p">]);</span>
+      <span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_password'</span><span class="p">]);</span>
+      <span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'timeapp_level'</span><span class="p">]);</span>
+      <span class="nv">$_SESSION</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+      <span class="nb">session_destroy</span><span class="p">();</span>
+      <span class="nb">header</span> <span class="p">(</span><span class="s2">"Location: login.php?better_luck_next_time:</span><span class="nv">$sql</span><span class="s2">"</span><span class="p">);</span>
+      <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With the <code class="language-plaintext highlighter-rouge">password_verify</code> function gone, any SQLi that returns a valid user can log into the app as that user.</p>
+
+<h3 id="front-end">Front-End</h3>
+
+<h4 id="website-generation">Website Generation</h4>
+<p>To quickly create a fun front-end for the challenge. I searched through the hugo themes until I found a retro 90s theme from cshoredaniel called <a href="https://github.com/cshoredaniel/new-oldnew-mashup">new-oldnew-mashup</a>.</p>
+
+<p>I mostly followed a fantastic article from Justin Ellingwood on the digital ocean website, <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-hugo-a-static-site-generator-on-ubuntu-14-04">“How To Install and Use Hugo, a Static Site Generator, on Ubuntu 14.04”</a> for setup instructions, generating the site with the following.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hugo new site ~/Hawkins-Library
+<span class="nb">cd</span> ~/Hawkins-Library
+</code></pre></div></div>
+
+<p>I edited the config file to the followig</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>baseurl = "http://public.ip.address"
+languageCode = "en-us"
+title = "Hawkins Public Library"
+theme = "new-oldnew-mashup"
+</code></pre></div></div>
+
+<p>Last, I created new pages for the site, including the books, news, study groups, and home pages.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hugo new book.md
+</code></pre></div></div>
+
+<p>When I was finished designing the front end for the challenge. I copied the generated static site into the apache web directory, restarted apache, and the challenge was live.</p>
+
+<div class="row mt-3">
+    <div class="center">
+        <img class="img-fluid rounded z-depth-1" src="hawkins-lab.png" />
+    </div>
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Overall it was a good learning experience to design, create, and host my own capture the flag challenge. In the future, I will plan on dockerizing this challenge for easier portabiliy and allow others to host the challenge locally instead of on a remote server.</p>
+
+:ET

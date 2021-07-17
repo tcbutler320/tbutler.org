@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% assign theme = site.data.themes[site.ui_theme] %}
+<html>
+  {% include head-blog.html %}
+  <body>
+      {% comment %} {% include nav.html %} {% endcomment %}
+      <div class="sticky-top progress-bar mb-5" id="myBar"></div>
+      {% if page.header-img %}
+      <div class="card border-0 bg-transparent">
+          <div class="card-body">
+            <p class="card-text">
+                {{ content }}
+            </p>
+          </div>
+      </div>
+      {% else %}
+      <div class="card border-0 bg-transparent">
+      {{ content }}
+          <div class="card-body">
+            <p class="card-text mt-0 mb-0">
+            </p>
+          </div>
+      </div>
+      {% endif %}
+    {% include footer.html %}
+  </body>
+</html>

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Site settings
 title: tbutler.org 
 description:  Tyler Butler is a cyber risk consultant and developer
@@ -40,6 +41,8 @@ scholar:
   details_layout: bibtex.html
   details_link: Details
 =======
+=======
+>>>>>>> 667e03314b8940ec1df4440b784e1f9f2117cad6
 # =======================================#
 # -----------DUMBARTON THEME-------------#
 # ----------------By: Tyler Butler-------#
@@ -56,7 +59,11 @@ tagline: Freelance Security Researcher
 email: developer.tbutler@gmail.com
 description: Cyber risk consultant, security researcher, open source developer
 baseurl:                                       # the subpath of your site, e.g. /blog
+<<<<<<< HEAD
 url: "/"          # the base hostname & protocol for your site, e.g. http://example.com
+=======
+url: "https://tbutler.org"          # the base hostname & protocol for your site, e.g. http://example.com
+>>>>>>> 667e03314b8940ec1df4440b784e1f9f2117cad6
 image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg              # used to generate site link preview
 image_alt: Cyber risk consultant, security researcher, open source developer   # image description
 
@@ -134,6 +141,7 @@ ui_theme: experiment
 # -----------BUILD SETTINGS--------------#
 #========================================#
 theme: 
+<<<<<<< HEAD
 markdown: kramdown
 >>>>>>> 78b47a5... adjust link basepath
 
@@ -153,60 +161,74 @@ collections:
     output: true
 
 # Markdown settings
+=======
+>>>>>>> 667e03314b8940ec1df4440b784e1f9f2117cad6
 markdown: kramdown
-highlighter: rouge
+
 kramdown:
   syntax_highlighter: rouge
 
-# Default front matter
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: post
-      comments: false
+plugins:
+  - jekyll-feed
+  - jekyll-scholar
+  - jekyll-environment-variables
+  - jekyll-admin
+  - jekyll-redirect-from
 
-# Jekyll Compose default front matter
-jekyll_compose:
-  post_default_front_matter:
-    modified:
-    tags: []
-    description:
-  draft_default_front_matter:
-    modified:
-    tags: []
-    description:
-
-# Build settings
 sass:
-  style: compressed
   sass_dir: _sass
-  load_paths:
-    - _sass
-    - node_modules
-  exclude: []
-
-
+  style: compressed
 
 
 include:
-  - _redirects
-  - .htaccess
+  - _posts
 
 exclude:
-  - CNAME
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
   - Gemfile
   - Gemfile.lock
-  - LICENSE
-  - CHANGELOG.md
-  - README.md
-  - node_modules
-  - CODE_OF_CONDUCT.md
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - /archive
 
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-postfiles
-  - jekyll/scholar
+# =======================================#
+# -----JEKYLL SCHOLAR SETTINGS-----------#
+#========================================#
+scholar:
+  last_name: Butler
+  style: apa
+  locale: en
+  source: /_bibliography/
+  bibliography: papers.bib
+  bibliography_template: bib
+  replace_strings: true
+  join_strings: true
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: 
+  query: "@*"
 
+# =======================================#
+# ------------CDN SETTINGS---------------#
+#-------------Used to generate icons-----#
+#========================================#
+font_awesome_id: 32a2b2a489                       # Register for free at https://fontawesome.com/ to get your id
+
+
+# =======================================#        # For more information about these settings, visit https://htmlhead.dev #
+# ------------META TAG SETTINGS----------#
+#========================================#
+google-site-verification:                         #<meta name="google-site-verification" content="verification_token"><!-- Google Search Console -->
+yandex-verification:                              #<meta name="yandex-verification" content="verification_token"><!-- Yandex Webmasters -->
+msvalidate:                                       # meta name="msvalidate.01" content="verification_token"><!-- Bing Webmaster Center -->
+alexaVerifyID:                                    # <meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
+pinterestdomain_verify:                           #<meta name="p:domain_verify" content="code_from_pinterest"><!-- Pinterest Console-->
+norton-safeweb:                                   # <meta name="norton-safeweb-site-verification" content="norton_code"><!-- Norton Safe Web -->
+detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers 
+x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
+fbappid:                                          # Facebook OpenGraph 

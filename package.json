@@ -1,25 +1,27 @@
 {
-  "name": "tbutler.org",
+  "name": "dumbarton",
   "version": "1.0.0",
-  "description": "tbutler.org is Tyler Butler's personal blog and portfolio.",
+  "description": "A Jekyll theme for academics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/piharpi/jekyll-klise.git"
+    "url": "git+https://github.com/tcbutler320/Dumbarton.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "jekyll"
+  ],
+  "author": "Tyler Butler",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/piharpi/jekyll-klise/issues"
+    "url": "https://github.com/tcbutler320/Dumbarton/issues"
   },
-  "homepage": "https://github.com/piharpi/jekyll-klise#readme",
+  "homepage": "https://github.com/tcbutler320/Dumbarton#readme",
   "dependencies": {
-    "bootstrap": "^4.5.0",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "@jlengstorf/get-share-image": "^0.8.0",
+    "clipboard": "^2.0.8",
+    "pug": "^3.0.2"
   }
 }

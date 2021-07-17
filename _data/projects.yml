@@ -1,0 +1,69 @@
+- name: Jek
+  id: jek
+  description: >
+    Jek is a minimalist jekyll theme putting the power of color schemes in the user’s hands. Toggle between schemes hassle-free, create new ones on the go, and store settings in-browser
+  date: true
+  link: https://github.com/tcbutler320/jek
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  icon: "fab fa-github"
+  tech: 
+    - jekyll 
+    - javascript 
+    - github
+
+- name: BananaCannon
+  id: BananaCannon
+  description: >
+    BananaCannon is a series of exploit proof of concepts for MonkeyType.com, a popular typing test web application with a growing community. Current research includes two cross-site scripting vulenrabilities, a proof of concept exploit that allows users to automatically top the leaderboard, and a proof of concept for impersonating other user's in Tribe chat via socket modification.
+  date: true
+  link: https://github.com/tcbutler320/jek
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  icon: "fab fa-github"
+  tech: 
+    - node 
+    - burpsuite 
+    - sockets.io
+
+- name: Jekyll-Theme-Dumbarton
+  id: Jekyll-Theme-Dumbarton
+  description: >
+    Dumbarton is a jekyll theme designed for academics. It is the theme that powers this site.
+    It provides enough content to fully represent a full body of work but still retains a minimalistic feel. 
+    The theme features a central homepage with easy access to publications, projects, courses, 
+    and projects in a single interactive card.
+  date: true
+  link: https://github.com/tcbutler320/Jekyll-Theme-Dumbarton
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  icon: "fab fa-github"
+  tech: 
+    - jekyll 
+    - github 
+    - bootstrap
+
+- name: TimeClock-1.01-Vuln
+  id: TimeClock-1.01-Vuln
+  description: >
+    TimeClock-1.01-Vuln is a proof of concept for a time-based SQL injection attack in the Employee Time-clock software, version 1.01. 
+    This exploit was added to Exploit-DB in entry 48874.
+  date: true
+  link: https://github.com/tcbutler320/TimeClock-1.01-Vuln
+  image:  /assets/img/projects/GitHub-Mark-64px.png
+  icon: "fab fa-github"
+  tech: 
+    - docker
+    - PhpMyAdmin
+    - Digital Ocean
+
+- name: jPigLatin
+  id: jPigLatin
+  description: >
+    JPigLatin is a pig-latin translation and speech synthesis application powered by my jPigLatin npm package. Check it out at <a href="https://jpiglatin.com/">JPigLatin.com</a>
+  date: true
+  link: https://github.com/tcbutler320/jPigLatin.com
+  image: /assets/img/projects/npm.png
+  icon: "fab fa-npm"
+  tech: 
+    - NPM
+    - JavaScript
+
+

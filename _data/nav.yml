@@ -1,0 +1,17 @@
+nav_list_title: Navigation List
+links:
+
+- title: Publications
+  url: publications.html
+
+- title: Blog
+  url: blog.html
+  dropdown: false 
+  sections:
+    - Capture the Flag
+    - Bug Bounties
+    - Research
+
+- title: Contact
+  url: contact.html
+  

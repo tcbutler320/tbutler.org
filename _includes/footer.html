@@ -1,28 +1,43 @@
-<footer class="footer">
-  <a class="footer_item" href="/thanks">ack.</a>
-  <a class="footer_item" href="/resume">resume</a>
-  <a class="footer_item" href="/feed.xml">rss</a>
-  <span class="footer_item">&copy; {{ site.time | date: "%Y" }}</span>
-  <small class="footer_theme-copyright">
-    <!-- Klisé Theme: https://github.com/piharpi/jekyll-klise -->
-    <a
-      href="https://github.com/piharpi/jekyll-klise"
-      target="_blank"
-      rel="noreferrer noopener"
-      >klisé</a
-    >
-    theme on
-    <a href="https://jekyllrb.com" target="_blank" rel="noreferrer noopener"
-      >jekyll</a
-    >
-  </small>
-</footer>
-<script src="/assets/js/main.js" defer="defer"></script>
-<script src="/assets/js/galite.js"></script>
+<div class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    <p class="navbar-text pull-left">© 2021 - Theme by me, view on
+        <a class="highlighted" href="https://github.com/tcbutler320/Jekyll-Theme-Dumbarton" target="_blank" >GitHub</a>
+    </p>
+    <p class="navbar-text pull-right">
+            {% include social-footer.html %}
+    </p>
+  </div>
+</div> 
 <script>
-  var galite = galite || {};
-  galite.UA = "{{ site.google_analytics }}";
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
 </script>
-<script src="{{'/node_modules/jquery/dist/jquery.min.js' | prepend: site.baseurl}}"></script>
-<script src="{{'/node_modules/popper.js/dist/umd/popper.min.js' | prepend: site.baseurl}}"></script>
-<script src="{{'/node_modules/bootstrap/dist/js/bootstrap.min.js' | prepend: site.baseurl}}"></script>
+
+<script type="text/javascript">
+  function setTerm(){
+      document.getElementById("term").innerHTML = "test";
+  }   
+</script>
+
+
+<script>
+function goDark() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+  var elm = document.getElementsByClassName('posttitle');
+  elm.classList.toggle("dark-title");
+}
+</script>
+
+<script>
+function chgSrc() {
+  if (document.getElementById("imgClickAndChange").src == "http://localhost:4000/assets/img/icons/moon.svg") 
+    {
+        document.getElementById("imgClickAndChange").src = "http://localhost:4000/assets/img/icons/sleep-mode.svg";
+    }
+  else {document.getElementById("imgClickAndChange").src = "http://localhost:4000/assets/img/icons/moon.svg";}
+}
+</script>
+
+<script async src="https://cse.google.com/cse.js?cx=80cadbcff63dac6cb"></script>

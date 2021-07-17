@@ -1,0 +1,14 @@
+nav_list_title: Navigation List
+links:
+
+- title: Publications
+  url: publications.html
+
+- title: Blog
+  url: blog.html
+
+- title: Vitae
+  url: /assets/pdf/butler,tyler-resume.pdf
+
+- title: Contact
+  url: contact.html

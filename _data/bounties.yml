@@ -1,0 +1,156 @@
+- Title: "AKCP sensorProbe - 'Multiple' Cross Site Scripting (XSS)"
+  Date: 06/2021
+  CVE: "<a href='https://nvd.nist.gov/vuln/detail/CVE-2021-35956'>CVE-2021-35956</a>"
+  Platform: "N/A"
+  Vendor: <a href="https://www.akcp.com/support-center/customer-login/sensor-probe-firmware-changelog/">AKCP</a>
+  Link: /2021/06/28/CVE-2021-35956.html
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: Medium
+  type: "0-Day"
+  vuln: "XSS"
+
+- Title: "Authentication Bypass by Spoofing in Miodec/monkeytype"
+  Date: 05/2021
+  CVE: "N/A"
+  Platform: Huntr
+  Vendor: MonkeyType
+  Link: "https://huntr.dev/bounties/1-other-Miodec/monkeytype/"
+  num: 0
+  Bounty: "$40"
+  cve: N/A
+  severity: Medium
+  type: "0-Day"
+  vuln: ""
+
+- Title: "MonkeyType.com - Stored Cross-Site Scripting (XSS) via Tribe Chat"
+  Date: 05/2021
+  CVE: "N/A"
+  Platform: GitHub
+  Vendor: MonkeyType
+  Link: "https://github.com/Miodec/monkeytype/issues/1476"
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: ""
+
+- Title: "Disclosure Pending"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "TBD"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: ""
+
+- Title: "Disclosure Pending"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Pending
+  Vendor: Pending
+  Link: 
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: ""
+
+- Title: "PHP Timeclock 1.04 - 'Multiple' Cross Site Scripting (XSS)"
+  Date: 05/2021
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: <a href="http://timeclock.sourceforge.net/">PHP Timeclock</a>
+  Link: https://www.exploit-db.com/exploits/49853
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: XSS
+
+- Title: "PHP Timeclock 1.04 - Time and Boolean Based Blind SQL Injection"
+  Date: 05/2021
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: <a href="http://timeclock.sourceforge.net/">PHP Timeclock</a>
+  Link: https://www.exploit-db.com/exploits/49849
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: SQLi
+
+- Title: "MonkeyType.com - Cross Site Scripting (XSS) via Word History"
+  Date: 05/2021
+  CVE: N/A
+  Platform: GitHub
+  Vendor: <a href="https://monkeytype.com/">MonkeyType</a>
+  Link: https://github.com/Miodec/monkeytype/issues/1348
+  num: 0
+  Bounty: "N/A"
+  cve: N/A
+  severity: Low
+  type: "Responsible Disclosure"
+  vuln: XSS
+
+
+
+- Title: "Blockfi  - Undisclosed Vulnerability"
+  Date: 04/2021
+  CVE: N/A
+  Platform: Hackerone
+  Vendor: <a href="https://blockfi.com">BlockFi</a>
+  Link: https://hackerone.com/tcbutler320?type=user
+  num: 0
+  Bounty: "$1,000"
+  cve: N/A
+  severity: High
+  type: "Bug Bounty"
+  vuln: Undisclosed
+
+
+- Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
+  Date: 10/2020
+  CVE: N/A
+  Platform: Exploit-DB
+  Vendor: <a href="http://timeclock-software.net/">Timeclock</a>
+  Link: https://www.exploit-db.com/exploits/48874
+  num: 1
+  Bounty: "N/A"
+  cve: N/A
+  severity: High
+  type: "0-Day"
+  vuln: SQLi
+
+
+- Title: "Hinge - Modification of Assumed Immutable Data (M.A.I.D)"
+  Date: 03/2020
+  CVE: N/A
+  Platform: Hackerone
+  Vendor: <a href="https://hinge.co">Hinge</a>
+  Link: /assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf
+  num: 0
+  Bounty: "$250"
+  cve: N/A
+  severity: Low
+  type: "Bug Bounty"
+  vuln: Misconfiguration
+
+
+
+
+
+
+
+
+
+  

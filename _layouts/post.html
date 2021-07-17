@@ -1,74 +1,100 @@
 ---
-layout: compress
+layout: page-post
+navheader: posts
 ---
+{% assign theme = site.data.themes[site.ui_theme] %}
+{% include reading_time.html %}
 
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<div class="container-fluid" style="background:transparent;">
+{% include sidebar.html %}
 
-{% include header.html %}
+<div class="mx-auto mb-4 medq-blog">
+  <nav aria-label="breadcrumb" style="background:transparent;">
+    <ol class="breadcrumb" style="background:transparent;">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/blog-test">Posts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{page.tag}} <i class="animate__animate animate__heartBeat fas fa-pencil-alt"></i></li>
+    </ol>
+  </nav>
+</div>
 
-<body data-theme="{{ site.mode }}">
-  {% include navbar.html %}
-  <div class="wrapper post">
-    <main class="page-content" aria-label="Content">
-      <article itemscope itemtype="https://schema.org/BlogPosting">
-
-        <header class="header">
-          {% if page.tags and page.tags != empty %}
-          <div class="tags">
-            {% assign tags = page.tags %}
-            <span itemprop="keywords">
-              {% for tag in tags %}
-              <a class="tag"
-                href="/tags/#{{tag | downcase | slugify}}">{{tag | upcase }}</a>{% unless forloop.last %},{% endunless %}
-              {% endfor %}
-            </span>
-          </div>
-          {% endif %}
-          <h1 class="header-title" itemprop="headline">{{ page.title | escape }}</h1>
-          {% if page.date %}
-          <div class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-              {{ page.date | date: "%b %d, %Y" }}
-            </time>
-            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <span itemprop="name">{{ site.author.name }}</span>
-            </span>
-            <time hidden datetime="{{ page.modified | date_to_xmlschema }}" itemprop="dateModified">
-              {{ page.date | date: "%b %d, %Y" }}
-            </time>
-            <span hidden itemprop="publisher" itemtype="Person">{{ site.author.name }}</span>
-            <span hidden itemprop="image">{{ page.image }}</span>
-            <span hidden itemprop="mainEntityOfPage">{{ page.excerpt }}</span>
-          </div>
-          {% endif %}
-        </header>
-
-        <div class="page-content" itemprop="articleBody">
-          {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=1 h_max=4 %}
-          {% if page.tweet %}
-          <p>Comments this article on 
-            <a href="https://twitter.com/{{site.username}}/status/{{page.tweet}}">Twitter</a>.
-          </p>
-          {% endif %}
-        </div>
-      </article>
-    
-      {% if page.comments %}
-        {% include comments.html%}
-      {% endif %}
-
-    </main>
-
-    {% if page.modified %}
-      <small class="post-updated-at">updated_at {{page.modified | date: "%d-%m-%Y"}}</small>
-    {% endif %}
-    {% if page.next or page.previous %}
-      {% include navigation.html %}
-    {% endif %}
-
-    {% include footer.html %}
+<div class="mx-auto mb-4 medq-blog">
+<div class="mx-auto posttitle mb-1 mt-3" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title text-left" style="color:{{theme.post-tag-color}};font-size:{{ theme.post-tag-size }};"><span class="badge badge-yellow text-light">{{ page.tag }}</span></h5>
+      <h5 class="card-title text-left medq-title" style="color:{{theme.post-title-color}};font-weight:{{ theme.post-font-weight }};">{{ page.title }}</h5>
+      <h6 class="card-title text-left medq-subtitle" style="color:{{theme.post-lead-color}};font-weight:{{ theme.post-lead-font-weight }};">{{ page.lead }}</h6>
+      <h6 class="mb-3" style="font-size:{{ theme.post-author-size }};font-weight:{{ theme.post-dets-font-weight }};">By:<i><a href={{page.author-link}}>  {{page.author}}</i></a>, <i>{{page.date | date: "%b %d, %Y"}}</i>  |  <i>{{ reading_time }}</i></h6>
+      {% include social-cards-sm.html %}
+    </div>
   </div>
-</body>
+  <div class="card-body" style="background:transparent;">
+    {{ content | markdownify }}
+  </div>
+</div>
 
-</html>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+var id = document.getElementById("postid").innerHTML;
+
+const gitalk = new Gitalk({
+  clientID: 'd24925f8c7a51a0e7f6d',
+  clientSecret: '11c464cc50ce3c0a1323c0396b65674b90a630a4',
+  repo: 'tbutler.org',      // The repository of store comments,
+  owner: 'tcbutler320',
+  admin: ['tcbutler320'],
+  id: encodeURI(id),      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+
+<i class="up fa fa-hand-o-down fa-2x"  onclick="topFunction()" id="myBtn" aria-hidden="true"></i>
+
+
+<script>
+window.addEventListener('scroll', (event) => {
+  console.log('User is scrolling');
+  myFunction();
+});
+</script>
+<script>
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+
+<script>
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+</div>
+
+

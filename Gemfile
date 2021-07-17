@@ -1,13 +1,14 @@
 source "https://rubygems.org"
-
-gem "jekyll", "~> 4.1.0"
-
+#gemspec
+gem 'jekyll'                    #Needed since this is a theme for Jekyll
+gem 'jekyll-feed'
+gem 'jekyll-scholar'
+gem 'jekyll-environment-variables'
+gem 'jekyll-admin'
+gem 'jekyll-algolia', '~> 1.0'
+gem 'jekyll-redirect-from'
 
 
 group :jekyll_plugins do
-  gem 'jekyll-feed', '~> 0.13.0'
-  gem 'jekyll-sitemap', '~> 1.4'
-  gem 'jekyll-compose', '~> 0.12.0'
-  gem 'jekyll-postfiles', '~> 3.1'
-  gem 'jekyll-scholar'
-end
+    gem 'jekyll-algolia', '~> 1.0'
+  end

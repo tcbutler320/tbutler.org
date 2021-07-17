@@ -117,18 +117,6 @@
   type: "Bug Bounty"
   vuln: Undisclosed
 
-- Title: "HP OfficeJet 4630 Unauthenticated Stored Cross-Site Scripting (XSS)"
-  Date: 01/2021
-  CVE: "RESERVED"
-  Platform: Pending
-  Vendor: HP Inc
-  Link: /2021/04/29/HP-OfficeJet-4630.html
-  num: 0
-  Bounty: "N/A"
-  cve: N/A
-  severity: High
-  type: "0-Day"
-  vuln: "TB"
 
 - Title: "TimeClock Software 1.01 0(Authenticated) Time-Based SQL Injection"
   Date: 10/2020

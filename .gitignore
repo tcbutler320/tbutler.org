@@ -7,5 +7,6 @@ Gemfile.lock
 
 # Demo Site 
 /Demo
+/delete
 *.sh 
 *.xml

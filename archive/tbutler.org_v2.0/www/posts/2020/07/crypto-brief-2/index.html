@@ -1,0 +1,1242 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0055FF"><meta name="robots" content="index,follow"><title>Crypto &amp; Nat&#39;l Sec Brief 7/12 - Tyler Butler</title><meta name="description" content="A curated selection of news surrounding Cryptocurrency and U.S National Security interests"><meta property="og:title" content="Crypto &amp; Nat&#39;l Sec Brief 7/12 - Tyler Butler"><meta property="og:description" content="A curated selection of news surrounding Cryptocurrency and U.S National Security interests"><meta property="og:url" content="https://tbutler.org/posts/2020/07/crypto-brief-2/"><meta property="og:image" content="https://tbutler.org/assets/images/meta-logo.png"><meta name="twitter:site" content="@tbutler0x90"><meta name="twitter:creator" content="@tbutler0x90"><meta name="twitter:title" content="Crypto &amp; Nat&#39;l Sec Brief 7/12 - Tyler Butler"><meta name="twitter:card" content="description"><meta name="twitter:image" content="https://tbutler.org/assets/images/meta-logo.png"><link rel="shortcut icon" href="/assets/images/favicon.ico"><link rel="alternate" type="application/rss+xml" title="Feed for posts" href="/posts/feed.xml"><link rel="alternate" type="application/rss+xml" title="Feed for screencasts" href="/screencasts/feed.xml"><style>@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans'), local('IBMPlexSans'),
+       url('/assets/fonts/IBMPlexSans-Text.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Sans Italic'), local('IBMPlexSans-Italic'),
+       url('/assets/fonts/IBMPlexSans-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('IBM Plex Sans Semi-bold'), local('IBMPlexSans-Semi-bold'),
+       url('/assets/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+
+    /* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+
+:root {
+  --font-family-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: Menlo, Monaco, monospace;
+
+  --font-size-base: 1rem;
+  --font-size-md: 1.25rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+
+  --space-0: 0;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+
+  --color-blue: #0055FF;
+  --color-red: #FF3300;
+  --color-yellow: #FFCC00;
+  --color-green: #4CA55E;
+
+  --color-blue-100: #CCDBFF;
+  --color-red-100: #FFD3CC;
+  --color-yellow-100: #FFF8CC;
+  --color-green-100: #D9EFDE;
+
+  --mark: var(--color-yellow-100);
+  --outline: 0 0 0 3px var(--color-yellow);
+  --gap: var(--space-3);
+  --radius: 4px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.07),
+            0 2px 4px rgba(0,0,0,0.07),
+            0 4px 8px rgba(0,0,0,0.07),
+            0 8px 16px rgba(0,0,0,0.07),
+            0 16px 32px rgba(0,0,0,0.07),
+            0 32px 64px rgba(0,0,0,0.07);
+
+  --theme-color: #24292e;
+  --theme-color-primary: var(--color-blue);
+  --theme-color-gray: #6a737d;
+  --theme-color-gray-light: #F6F8FA;
+  --theme-background-color: #FFFFFF;
+  --theme-border-color: #EEEEEE;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gap: var(--space-4);
+  }
+}
+
+
+
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: var(--space-5) var(--space-3);
+  font-family: var(--font-family-sans);
+  line-height: 1.5;
+  color: var(--theme-color);
+  background-color: var(--theme-background-color);
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.o-stack--prose > * + h2,
+.o-stack--prose > * + h3 {
+  margin-top: var(--space-4);
+}
+
+.o-stack--prose h2 {
+  font-size: var(--font-size-lg);
+}
+
+.o-stack--prose h3 {
+  font-size: var(--font-size-md);
+}
+
+.o-stack--lead p:first-of-type {
+  font-size: var(--font-size-lg);
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--theme-color-primary);
+}
+
+a:hover,
+a:focus {
+  color: var(--theme-color-primary);
+}
+
+a:focus {
+  outline: 0;
+  box-shadow: var(--outline) !important;
+}
+
+h2 a {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+h2 a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul {
+  list-style: none;
+}
+
+ul:not([class]) li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+ul:not([class]) li + li {
+  margin-top: var(--space-1);
+}
+
+ul:not([class]) li::before {
+  content: '–';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--theme-color-gray);
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd + dt {
+  margin-top: var(--space-2);
+}
+
+blockquote p {
+  font-style: italic;
+}
+
+figure blockquote p::before { content: '“'; }
+figure blockquote p::after { content: '”'; }
+
+figure blockquote p {
+  text-indent: -.25rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--theme-border-color);
+  padding-left: var(--space-3);
+}
+
+main {
+  margin-bottom: var(--space-5);
+  outline: none;
+}
+
+mark {
+  padding-right: .1em;
+  padding-left: .1em;
+  background-color: var(--mark);
+}
+
+hr {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem;
+  width: 100%;
+  border: 0;
+  height: 4px;
+  background-color: var(--theme-border-color);
+}
+
+kbd {
+  display: inline-block;
+  padding-right: 4px;
+  padding-left: 4px;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  box-shadow: inset 0 -1px 0 #D9EFDE;
+  border-radius: var(--radius);
+  font-family: var(--font-family-code);
+  font-size: .95rem;
+  color: #222222;
+}
+
+
+
+/* ==========================================================================
+   OBJECTS
+   ========================================================================== */
+
+
+/**
+ * ASPECT-RATIO
+ */
+
+[style*='--aspect-ratio'] > :first-child {
+  height: auto;
+  width: 100%;
+}
+
+@supports (--custom: property) {
+  [style*='--aspect-ratio'] {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-gray-100);
+  }
+
+  [style*='--aspect-ratio']::before {
+    content: '';
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+
+  [style*='--aspect-ratio'] > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+/**
+ * BREAKOUT
+ */
+.o-breakout {
+  position: relative;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+
+.o-container {
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-3);
+  padding-left: var(--space-3);
+}
+
+.o-container--lg {
+  max-width: 75rem;
+}
+
+
+/**
+ * GRID
+ */
+
+.o-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--gap) * -1);
+  margin-bottom: calc(var(--gap) * -1);
+}
+
+.o-grid--justify-end {
+  justify-content: flex-end;
+}
+
+@media(min-width: 720px) {
+  .o-grid--reversed\@md {
+    flex-direction: row-reverse;
+  }
+}
+
+.o-grid + .o-grid {
+  margin-top: var(--gap);
+}
+
+.o-grid--align-center {
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .o-grid--align-center\@md {
+    align-items: center;
+  }
+}
+
+.o-grid__col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+
+/**
+ * STACK
+ */
+
+.o-stack > * + *    { margin-top: var(--space-3); }
+.o-stack--1 > * + * { margin-top: var(--space-1); }
+.o-stack--2 > * + * { margin-top: var(--space-2); }
+.o-stack--3 > * + * { margin-top: var(--space-3); }
+.o-stack--4 > * + * { margin-top: var(--space-4); }
+.o-stack--5 > * + * { margin-top: var(--space-5); }
+
+
+/**
+ * TAGS
+ */
+
+.o-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.o-tags--center {
+  justify-content: center;
+}
+
+.o-tags__item {
+  margin-right: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+
+
+/**
+ * AVATAR
+ */
+
+.c-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--theme-border-color);
+}
+
+
+/**
+ * BANNER
+ */
+
+.c-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 720px) {
+  .c-banner {
+    align-items: center;
+  }
+}
+
+.c-banner__branding {
+  display: inline-block;
+  border-radius: var(--radius);
+}
+
+.c-banner__branding svg {
+  vertical-align: top;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 720px) {
+  .c-banner__nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.c-banner__nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .c-banner__nav-list {
+    flex-direction: row;
+  }
+
+  .c-banner__nav-item + .c-banner__nav-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-banner__nav-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * BUTTON
+ */
+
+.c-button {
+  -webkit-appearance: none;
+  outline: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6875rem 1rem;
+  background-color: #000000;
+  border: 1px solid #000000;
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-button:hover,
+.c-button:focus {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+  color: #FFFFFF;
+}
+
+.c-button--primary {
+  background-color: var(--theme-color-primary);
+  border-color: var(--theme-color-primary);
+}
+
+.c-button--primary:hover,
+.c-button--primary:focus {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.c-button--secondary {
+  background-color: var(--theme-background-color);
+  border-color: var(--theme-color-gray);
+  color: var(--theme-color-gray);
+  box-shadow: none;
+}
+
+.c-button:focus {
+  box-shadow: var(--outline);
+}
+
+.c-button svg {
+  margin-right: var(--space-2);
+  flex-shrink: 0;
+}
+
+.c-button--sm {
+  padding: var(--space-1) .75rem;
+  font-size: smaller;
+}
+
+
+/**
+ * CARD
+ */
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--space-4);
+  background-color: var(--theme-color-gray-light);
+  border-radius: var(--radius);
+}
+
+
+/**
+ * CONTENTINFO
+ */
+
+.c-contentinfo {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--theme-border-color);
+}
+
+.c-contentinfo__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c-contentinfo__list + .c-contentinfo__list {
+  margin-top: var(--space-4);
+}
+
+.c-contentinfo__list-item + .c-contentinfo__list-item {
+  margin-left: var(--space-3);
+}
+
+@media (min-width: 720px) {
+  .c-contentinfo__list-item + .c-contentinfo__list-item {
+    margin-left: var(--space-4);
+  }
+}
+
+.c-contentinfo__list-anchor {
+  text-decoration: none;
+}
+
+
+/**
+ * HEADING-DECORATE
+ */
+
+.c-heading-decorate::after {
+  content: '\2009\00AC';
+  display: inline-block;
+  color: var(--theme-color-gray);
+  opacity: .5;
+}
+
+
+/**
+ * FORM
+ */
+
+.c-form__row + .c-form__row {
+  margin-top: var(--space-3);
+}
+
+.c-form__row--button {
+  display: flex;
+  align-items: flex-end;
+}
+
+.c-form__row--button div {
+  flex: 1;
+  margin-right: var(--space-3);
+}
+
+.c-form__label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.c-form__input {
+  display: block;
+  width: 100%;
+  padding: 0.6875rem var(--space-3);
+  font: inherit;
+  background-color: #FAFAFA;
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.c-form__input:focus {
+  box-shadow: var(--outline);
+}
+
+
+/**
+ * NOTE
+ */
+
+.c-note {
+  padding: var(--space-3);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--radius);
+}
+
+.c-note--primary {
+  border-color: var(--theme-color-primary);
+}
+
+.c-note__label {
+  font-weight: 600;
+}
+
+
+/**
+ * LINK
+ */
+
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.c-link:hover,
+.c-link:focus {
+  text-decoration: underline;
+}
+
+.c-link svg {
+  margin-left: var(--space-1);
+}
+
+
+/**
+ * LISTING
+ */
+
+ .c-listing {
+  list-style: none;
+}
+
+.c-listing__item:not(:last-of-type) {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+
+/**
+ * META
+ */
+
+@media (min-width: 720px) {
+  .c-meta {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: repeat(50, min-content);
+    grid-column-gap: var(--space-4);
+  }
+
+  .c-meta__title {
+    grid-row-start: 1;
+  }
+}
+
+
+/**
+ * PAGINATION
+ */
+
+.c-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.c-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all ease-in-out 0.2s;
+}
+
+.c-pagination__item:hover {
+  color: var(--theme-color-primary);
+}
+
+.c-pagination__item[rel="next"] {
+  margin-left: auto;
+}
+
+.c-pagination__item[rel="next"] svg {
+  margin-left: var(--space-1);
+}
+
+.c-pagination__item[rel="prev"] svg {
+  margin-right: var(--space-1);
+  transform: rotate(180deg);
+}
+
+
+/**
+ * PILL
+ */
+
+ .c-pill {
+  position: relative;
+  padding: var(--space-1) .75rem;
+  border-radius: var(--space-3);
+  color: var(--theme-color-primary);
+  text-decoration: none;
+  font-size: smaller;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.c-pill:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-color-primary);
+  border-radius: var(--space-3);
+  opacity: .15;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+a.c-pill:hover {
+  color: #fff;
+}
+
+a.c-pill:hover:after {
+  opacity: 1;
+}
+
+
+/**
+ * SHARE
+ */
+
+.c-share {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-share::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--theme-border-color);
+}
+
+.c-share span {
+  position: relative;
+  padding-right: 1rem;
+  background-color: var(--theme-background-color);
+  color: var(--theme-color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+.c-share__list {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-3);
+  background-color: var(--theme-background-color);
+  z-index: 10;
+}
+
+.c-share__list-item:not(:last-of-type) {
+  margin-right: var(--space-3);
+}
+
+.c-share__list-anchor {
+  color: currentColor;
+}
+
+.c-share__list-anchor:hover {
+  color: var(--theme-color-primary);
+}
+
+
+/**
+ * VIDEO
+ */
+
+.c-video__backdrop[style] {
+  padding: var(--space-4);
+  background-color: var(--backdrop, #FAFAFA);
+}
+
+.c-video__caption {
+  margin-top: var(--space-2);
+  text-align: center;
+  color: var(--theme-color-gray);
+}
+
+
+/**
+ * QUOTE
+ */
+
+/* .c-quote {} */
+
+.c-quote__blockquote {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.c-quote--feature .c-quote__blockquote {
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+.c-quote__cite {
+  margin-top: var(--space-3);
+  display: flex;
+}
+
+.c-quote--feature .c-quote__cite {
+  flex-direction: column;
+  text-align: center;
+}
+
+.c-quote--default .c-quote__cite-media {
+  flex-shrink: 0;
+  margin-right: var(--space-3);
+}
+
+.c-quote--feature .c-quote__cite-body {
+  margin-top: var(--space-2);
+}
+
+
+
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+
+.u-text-center {
+  text-align: center;
+}
+
+
+/**
+ * WIDTHS
+ */
+
+.u-width-1of12 {
+  width: calc(100% * 1 / 12);
+}
+
+.u-width-3of12 {
+  width: calc(100% * 3 / 12);
+}
+
+.u-width-4of12 {
+  width: calc(100% * 4 / 12);
+}
+
+.u-width-6of12 {
+  width: calc(100% * 6 / 12);
+}
+
+.u-width-7of12 {
+  width: calc(100% * 7 / 12);
+}
+
+.u-width-8of12 {
+  width: calc(100% * 8 / 12);
+}
+
+.u-width-9of12 {
+  width: calc(100% * 9 / 12);
+}
+
+.u-offset-3of12 {
+  margin-left: calc(100% * 3 / 12);
+}
+
+.u-offset-4of12 {
+  margin-left: calc(100% * 4 / 12);
+}
+
+@media (min-width: 720px) {
+  .u-width-1of12\@md {
+    width: calc(100% * 1 / 12);
+  }
+
+  .u-width-3of12\@md {
+    width: calc(100% * 3 / 12);
+  }
+
+  .u-width-4of12\@md {
+    width: calc(100% * 4 / 12);
+  }
+
+  .u-width-6of12\@md {
+    width: calc(100% * 6 / 12);
+  }
+
+  .u-width-7of12\@md {
+    width: calc(100% * 7 / 12);
+  }
+
+  .u-width-8of12\@md {
+    width: calc(100% * 8 / 12);
+  }
+
+  .u-width-9of12\@md {
+    width: calc(100% * 9 / 12);
+  }
+
+  .u-offset-3of12\@md {
+    margin-left: calc(100% * 3 / 12);
+  }
+
+  .u-offset-4of12\@md {
+    margin-left: calc(100% * 4 / 12);
+  }
+}
+
+
+/**
+ * ORDER
+ */
+@media (min-width: 720px) {
+  .u-order-first\@md {
+    order: -9999;
+  }
+}
+
+
+/**
+ * SPACING
+ */
+
+.u-margin-right-1  { margin-right: var(--space-1) !important; }
+.u-margin-right-2  { margin-right: var(--space-2) !important; }
+.u-margin-right-3  { margin-right: var(--space-3) !important; }
+
+.u-margin-top-0 { margin-top: var(--space-0) !important; }
+.u-margin-top-1 { margin-top: var(--space-1) !important; }
+.u-margin-top-2 { margin-top: var(--space-2) !important; }
+.u-margin-top-3 { margin-top: var(--space-3) !important; }
+.u-margin-top-4 { margin-top: var(--space-4) !important; }
+.u-margin-top-5 { margin-top: var(--space-5) !important; }
+.u-margin-top-6 { margin-top: var(--space-6) !important; }
+
+@media (min-width: 720px) {
+  .u-margin-top-0\@md { margin-top: var(--space-0) !important; }
+  .u-margin-top-1\@md { margin-top: var(--space-1) !important; }
+  .u-margin-top-2\@md { margin-top: var(--space-2) !important; }
+  .u-margin-top-3\@md { margin-top: var(--space-3) !important; }
+  .u-margin-top-4\@md { margin-top: var(--space-4) !important; }
+  .u-margin-top-5\@md { margin-top: var(--space-5) !important; }
+  .u-margin-top-6\@md { margin-top: var(--space-6) !important; }
+}
+
+.u-padding-left-0 { padding-left: 0 !important; }
+
+/**
+ * FONT-SCALE
+ */
+
+.u-font-size-sm   { font-size: 88.8888889% !important; }
+.u-font-size-base { font-size: var(--font-size-base) !important; }
+.u-font-size-md   { font-size: var(--font-size-md) !important; }
+.u-font-size-lg   { font-size: var(--font-size-lg) !important; }
+.u-font-size-xl   { font-size: var(--font-size-xl) !important; }
+.u-font-size-2xl  { font-size: var(--font-size-2xl) !important; }
+.u-font-size-3xl  { font-size: var(--font-size-3xl) !important; }
+.u-font-size-4xl  { font-size: var(--font-size-4xl) !important; }
+.u-font-size-5xl  { font-size: var(--font-size-5xl) !important; }
+
+@media (min-width: 720px) {
+  .u-font-size-sm\@md   { font-size: 88.8888889% !important; }
+  .u-font-size-base\@md { font-size: var(--font-size-base) !important; }
+  .u-font-size-md\@md   { font-size: var(--font-size-md) !important; }
+  .u-font-size-lg\@md   { font-size: var(--font-size-lg) !important; }
+  .u-font-size-xl\@md   { font-size: var(--font-size-xl) !important; }
+  .u-font-size-2xl\@md  { font-size: var(--font-size-2xl) !important; }
+  .u-font-size-3xl\@md  { font-size: var(--font-size-3xl) !important; }
+  .u-font-size-4xl\@md  { font-size: var(--font-size-4xl) !important; }
+  .u-font-size-5xl\@md  { font-size: var(--font-size-5xl) !important; }
+}
+
+
+/**
+ * LEADING
+ */
+
+.u-leading-strict {
+  line-height: 1.1;
+}
+
+.u-leading-tight {
+  line-height: 1.3;
+}
+
+.u-text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+/**
+ * FONT-WEIGHT
+ */
+
+.u-font-weight-normal {
+  font-weight: 400;
+}
+
+.u-font-weight-semi-bold {
+  font-weight: 600;
+}
+
+
+/**
+ * COLORS
+ */
+
+.u-color-primary {
+  color: var(--theme-color-primary);
+}
+
+.u-color-gray {
+  color: var(--theme-color-gray);
+}
+
+.u-primary-anchor {
+  color: var(--theme-color-primary);
+  text-decoration: none;
+}
+
+.u-primary-anchor:hover,
+.u-primary-anchor:focus {
+  text-decoration: underline;
+}
+
+
+/**
+ * HIDDEN-VISUALLY
+ */
+
+.u-hidden-visually {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+
+/**
+ * FLEXBOX
+ */
+
+.u-flex {
+  display: flex;
+}
+
+.u-justify-center {
+  justify-content: center;
+}
+
+.u-justify-between {
+  justify-content: space-between;
+}
+
+.u-align-center {
+  align-items: center;
+}
+
+.u-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+
+/**
+ * BORDERS
+ */
+
+.u-bordered {
+  border: 1px solid var(--theme-border-color);
+}
+
+.u-border-none {
+  border: 0;
+}
+
+.u-shadow {
+  box-shadow: var(--shadow);
+}
+
+.u-rounded {
+  border-radius: var(--radius);
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    code[class*="language-"],
+pre[class*="language-"] {
+  font-family: var(--font-family-code);
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: .95rem;
+  line-height: 1.3;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+code:not([class]) {
+  padding: 2px 4px;
+  font-family: var(--font-family-code);
+  font-size: .875rem;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  overflow: auto;
+  background-color: #FAFAFA;
+  border: 1px solid #EAEAEA;
+  color: #222222;
+  border-radius: 4px;
+}
+
+.highlight-line {
+  padding: 0.25rem 1rem;
+  border-left: 4px solid #FAFAFA;
+}
+
+.highlight-line-active {
+  background-color: var(--color-blue-100);
+  border-color: var(--theme-color-primary);
+}
+
+.highlight-line-add {
+  background-color: var(--color-green-100);
+  border-color: var(--color-green);
+}
+
+.highlight-line-remove {
+  background-color: var(--color-red-100);
+  border-color: var(--color-red);
+}
+
+.token.comment {
+  color: #777;
+}</style></head><body><header class="c-banner" role="banner"><a class="c-banner__branding" href="/"><span class="u-hidden-visually">Tyler Butler</span> <svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" width="4rem" height="4rem" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="var(--theme-color-primary, #000)" d="M0 0h40v40H0z"/><path fill="#fff" d="M20.515 12.273c1.667 0 3.606.454 5.243 1.363v7.485c0 2.515.394 3.303 1.424 3.303 1.454 0 2.515-1.515 2.515-6.424 0-5.273-2.91-8.515-9.212-8.515-6.515 0-10.152 4.394-10.152 10.697 0 6.454 3.515 10.515 10.182 10.515 2.091 0 4.394-.455 5.97-1.03l1.121 3.303c-1.909.727-4.576 1.272-7.121 1.272C11.697 34.242 6 28.758 6 20.182 6 11.939 12.06 6 20.515 6 29.121 6 34 11.727 34 17.94c0 5.484-2.606 9.454-6.606 9.454-2.424 0-3.727-1.606-4.06-3.091-.728 1.697-2.122 2.97-4.334 2.97-3.848 0-5.545-2.91-5.545-6.818 0-4.97 2.575-8.182 7.06-8.182zm-.879 12c1.091 0 1.728-.788 2.061-1.485v-7.212c-.455-.182-.818-.273-1.333-.273-1.576 0-2.576 1.273-2.576 5.182 0 2.788.576 3.788 1.848 3.788z"/></g></svg></a><nav class="c-banner__nav"><ul class="c-banner__nav-list"><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/work/">Work</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/posts/">Posts</a></li><li class="c-banner__nav-item"><a class="c-banner__nav-anchor" href="/contact/">Contact</a></li></ul></nav></header><main id="main" tabindex="-1"><article class="o-stack o-stack--4"><header><time class="u-color-gray u-text-uppercase">Jul 12, 2020</time><h1 class="u-font-size-2xl">Crypto &amp; Nat&#39;l Sec Brief 7/12</h1></header><div class="o-stack o-stack--prose"><blockquote><p>The Crypto &amp; National Security Brief is a curated selection of news surrounding Cryptocurrency and U.S National Security interests</p></blockquote><div class="row mt-3"><div class="col-sm mt-3 mt-md-0"><img class="img-fluid rounded z-depth-1" src="roundup.png"></div></div><h2 id="on-terrorism"><a href="#terrorism">On Terrorism</a></h2><p><em>No Significant News to Report</em></p><h2 id="on-aml%2C-kyc%2C-%26-regulation"><a href="#aml-kyc--regulation">On AML, KYC, &amp; Regulation</a></h2><ul><li><a href="#crypto-stablecoins-face-increasing-regulatory-scrutiny"><strong>Crypto Stablecoins Face Increasing Regulatory Scrutiny</strong></a> <em>(bloomberg)</em></li><li><a href="#coinbase-ceo-defends-licensing-of-analytics-platform-to-govt-agencies"><strong>Coinbase CEO Defends Licensing of Analytics Platform to Gov’t Agencies</strong></a> <em>(cointelegraph)</em></li><li><a href="#how-the-us-and-europe-are-regulating-crypto-in-2020"><strong>How the US and Europe Are Regulating Crypto in 2020</strong></a> <em>(cointelegraph)</em></li><li><a href="#tether-blacklists-39-ethereum-addresses-worth-over-46-million"><strong>Tether Blacklists 39 Ethereum Addresses Worth Over $46 Million</strong></a> <em>(cointelegraph)</em></li></ul><h2 id="on-domestic"><a href="#domestic">On Domestic</a></h2><ul><li><a href="#us-secret-service-creates-finance-related-cybercrime-task-force"><strong>US Secret Service Creates Finance-Related Cybercrime Task Force</strong></a> <em>(cointelegraph)</em></li><li><a href="#us-cftc-promises-holistic-framework-for-digital-assets-by-2024"><strong>US CFTC Promises ‘Holistic Framework’ for Digital Assets by 2024</strong></a> <em>(cointelegraph)</em></li><li><a href="#us-secret-service-creates-finance-related-cybercrime-task-force"><strong>Anonymous Crypto Hacker’s Identity Revealed by US Authorities</strong></a> <em>(cointelegraph)</em></li></ul><h2 id="on-russia"><a href="#russia">On Russia</a></h2><ul><li><a href="#russias-blockchain-e-vote-participants-may-have-had-their-private-data-leaked"><strong>Russia’s Blockchain E-Vote Participants May Have Had Their Private Data Leaked</strong></a> <em>(cointelegraph)</em></li></ul><h2 id="on-china"><a href="#china">On China</a></h2><ul><li><a href="#chinese-police-dismantle-14m-crypto-scam"><strong>Chinese Police Dismantle $14M Crypto Scam</strong></a> <em>(cointelegraph)</em></li><li><a href="#hong-kongs-national-security-law-could-threaten-local-crypto-brokerages"><strong>Hong Kong’s National Security Law Could Threaten Local Crypto Brokerages</strong></a> <em>(coindesk)</em></li><li><a href="#expert-chinas-digital-yuan-will-target-the-dollar-not-bitcoin"><strong>Expert: China’s Digital Yuan Will Target the Dollar, Not Bitcoin</strong></a> <em>(cointelegraph)</em></li></ul><h2 id="on-iran"><a href="#iran">On Iran</a></h2><ul><li><a href="#iran-gives-crypto-miners-one-month-to-register-with-the-state"><strong>Iran Gives Crypto Miners One Month to Register With the State</strong></a> <em>(coindesk)</em></li><li><a href="#up-to-47-power-tariff-discount-offered-to-authorized-cryptominers"><strong>Up to 47% Power Tariff Discount Offered to Authorized Cryptominers</strong></a> <em>(financial tribune)</em></li></ul><h2 id="on-venezuela"><a href="#venezuela">On Venezuela</a></h2><ul><li><a href="#venezuelan-authorities-seize-over-300-bitcoin-mining-machines"><strong>Venezuelan Authorities Seize Over 300 Bitcoin Mining Machines</strong></a> <em>(cointelegraph)</em></li></ul><blockquote><p>articles</p></blockquote><h2 id="terrorism">Terrorism</h2><p><em>No Significant News to Report</em></p><h2 id="aml%2C-kyc%2C-%26-regulation">AML, KYC, &amp; Regulation</h2><h4>Crypto Stablecoins Face Increasing Regulatory Scrutiny</h4><p>By: Olga Kharif, <em>Bloomberg</em>, JUL 07, 2020<br><a href="https://www.bloomberg.com/news/articles/2020-07-07/crypto-stablecoins-face-increasing-global-regulatory-scrutiny"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Tether and other so-called cryptocurrency stablecoins have long flown under the radar of international regulators. That’s about to change.</p><p>The Financial Action Task Force, with members from about 200 countries who recommend ways to stop money laundering and the financing of terrorism, said in a report Tuesday that stablecoins need to comply with standards to guard against both practices.</p><p>That means that exchanges and other entities supporting them will likely have to verify their users’ identities and comply with other policies on virtual assets such as Bitcoin that FATF set forth last year. The FATF report was prepared for G-20 finance ministers and central bank governors after the completion of a 12-month review.</p><p>“My assumption would be that FATF will update guidance in relations to stablecoins in the near future,” said Jesse Spiro, global head of policy and regulatory affairs for compliance technology provider Chainalysis.</p><p>The new rules would also impose anti-money-laundering and know-your-customer requirements on stablecoin issuers like Tether as well as new endeavors such as Libra, an association started by Facebook Inc. to develop global stablecoins. Stablecoin providers, as well as exchanges that support the coins, would have to set up processes for monitoring transactions, investigations and regulatory filings. They’d also have to make sure that over-the-counter trading desks, which often buy stablecoins for clients, are compliant, Spiro said.</p><h4>Coinbase CEO Defends Licensing of Analytics Platform to Gov’t Agencies</h4><p>By: EMILIA DAVID, <em>Cointelegraph</em>, JUL 12, 2020<br><a href="https://cointelegraph.com/news/coinbase-ceo-defends-licensing-of-analytics-platform-to-govt-agencies"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Coinbase CEO says analytics platform is important to comply with AML rules and that only privacy coins can offer true privacy.Coinbase defended the licensing of its analytics software saying if people really wanted privacy, privacy coins were around.</p><p>Coinbase CEO Brian Armstrong took to Twitter to talk about Coinbase Analytics and the company’s practice of licensing out the platform, explaining why crypto exchanges must have some sort of analytics software to comply with banking regulations.</p><p>“Exchanges that maintain connections into the existing financial system (i.e. ability to connect your bank account, do wires, etc so you can convert fiat to crypto) need to follow AML laws, and this often includes utilizing blockchain analytics software for transaction monitoring,” Armstrong tweeted. “There is a lot that could be better about existing AML laws, and we didn’t create them - but those are the rules to operate a fiat to crypto exchange legally.”</p><p>The exchange came under fire on social media over the weekend after it licensed its blockchain analytics software to the U.S. Secret Service and to the U.S. Department of Homeland Security, as first reported by The Block. Armstrong added that it’s expensive to build an analytics platform so they wanted to recoup costs by selling it. He said it was important to have analytics software particularly as a means to encourage more interaction between fiat and crypto.</p><h5>How the US and Europe Are Regulating Crypto in 2020</h5><p>By: ELENA PEREZ, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/how-the-us-and-europe-are-regulating-crypto-in-2020"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Crypto regulation in 2020: The U.S. tightens regulation of crypto, while India has finally allowed banks to get involved with firms.Cryptocurrencies have been around for more than 10 years, but the legal status of Bitcoin (BTC) and most other cryptocurrencies remains unclear and has different definitions in various jurisdictions. Are they money, an asset, a product, property or something else? Should they trade freely or must be tightly regulated? In the absence of a clear answer, governments in the United States and Europe are still issuing legal acts to regulate the cryptocurrency market and trying to determine their attitude toward cryptos.</p><p>In the first several months of 2020 alone in France, Germany and Australia, authorities issued decisions with three different interpretations of the nature of Bitcoin: as a currency, a financial instrument that is applied as a means of exchange among individuals or legal entities, and as a security.</p><p>Meanwhile, the taxation system, the complexity of regulation and reporting depend on the classification of cryptocurrencies. For example, currency functions in conditions of relatively weak regulatory oversight. Securities, by contrast, are usually subject to more onerous rules regarding price transparency and trade reporting.</p><p>Only one thing is for sure: Cryptocurrencies are difficult to attribute to any existing class of assets because they are unique. Given that cryptocurrencies are very different from one another, they also fit into several classes. But that issue aside, here’s what the legal regimes for cryptocurrencies in various countries make of crypto in 2020.</p><h5>Tether Blacklists 39 Ethereum Addresses Worth Over $46 Million</h5><p>By: JOSHUA MAPPERSON, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/tether-blacklists-39-ethereum-addresses-worth-over-46-million"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Just after 100,000 in USDC were blacklisted by Centre, Tether blacklists 46 million Tether in Ethereum addresses.Tether (USDT) has blacklisted 39 Ethereum addresses worth $46 million in USDT, with 24 holding a total of over 5.5 million USDT being blacklisted this year. This revelation comes on the back of Centre’s first blacklisting of an Ethereum address holding $100,000 USDC.</p><p>Ethereum researcher at Horizon Games Philippe Castonguay used Dune Analytics to create a dashboard that tracks the number of addresses blacklisted by both Centre and Tether. The largest address holds over 4.5 million USDT and was only recently blacklisted on April 5.</p><p>Similar to blacklisted addresses holding USDC, Tether addresses that receive a blacklisting function are no longer able to transact with Tether, freezing any existing coins held in the address.</p><p>General counsel at Bitfinex (sister company of Tether) Stuart Hoegner told the media that Tether works with international law enforcement agencies and blacklists addresses when required:</p><p>“Tether routinely assists law enforcement in their investigations… Through the freeze address feature, Tether has been able to help users and exchanges to save and recover tens of millions of dollars stolen from them by hackers.”</p><h2 id="domestic">Domestic</h2><h4>US Secret Service Creates Finance-Related Cybercrime Task Force</h4><p>By: FELIPE ERAZO, <em>Cointelegraph</em>, JUL 12, 2020<br><a href="https://cointelegraph.com/news/us-secret-service-creates-finance-related-cybercrime-task-force"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The Cyber Fraud Task Force created by the U.S. Secret Service aims to combat the growing trend of cybercrimes related to financial matters.The U.S. Secret Service announced the creation of the Cyber Fraud Task Force, or CFTF on July 10, after merged its Electronic Crimes Task Forces and Financial Crimes Task Forces into a single network.</p><p>According to the official announcement, the Secret Service had been planning over two years to create a unified task force to combat cybercrimes related to the financial sector and fight things like ransomware attacks, business email compromise scams, credit card online stealing, among others.</p><p>The CFTF appears in a context that the illegal market of credit card stolen data through the dark web and banking details from companies keeps rising.</p><h5>How the US and Europe Are Regulating Crypto in 2020</h5><p>By: Elena Perez, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/how-the-us-and-europe-are-regulating-crypto-in-2020"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button>&lt;/&gt;</a></p><p>Crypto regulation in 2020: The U.S. tightens regulation of crypto, while India has finally allowed banks to get involved with firms.Cryptocurrencies have been around for more than 10 years, but the legal status of Bitcoin (BTC) and most other cryptocurrencies remains unclear and has different definitions in various jurisdictions. Are they money, an asset, a product, property or something else? Should they trade freely or must be tightly regulated? In the absence of a clear answer, governments in the United States and Europe are still issuing legal acts to regulate the cryptocurrency market and trying to determine their attitude toward cryptos.</p><p>In the first several months of 2020 alone in France, Germany and Australia, authorities issued decisions with three different interpretations of the nature of Bitcoin: as a currency, a financial instrument that is applied as a means of exchange among individuals or legal entities, and as a security.</p><p>Meanwhile, the taxation system, the complexity of regulation and reporting depend on the classification of cryptocurrencies. For example, currency functions in conditions of relatively weak regulatory oversight. Securities, by contrast, are usually subject to more onerous rules regarding price transparency and trade reporting.</p><h4>US CFTC Promises ‘Holistic Framework’ for Digital Assets by 2024</h4><p>By: KOLLEN POST, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/us-cftc-promises-holistic-framework-for-digital-assets-by-2024"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The CFTC has made comprehensive crypto regulation a strategic objective to accomplish over the next few years, referring to digital assets as “21st century commodities.”In its finalized strategy for the next four years, released on July 8, the United States Commodity Futures Trading Commission has made comprehensive crypto regulation a priority.</p><p>New strategy promises to embrace innovation<br>“We will develop a holistic framework to promote responsible innovation in digital assets,” the new framework promises within its strategic objectives.</p><p>The new framework puts out goals for the next four years, up until 2024, which is when current Chairman Heath Tarbert’s term is scheduled to end. The broad strategy includes heavily pro-innovation language, for which Tarbert and predecessors at the CFTC are well-known in the crypto community.</p><h4>Anonymous Crypto Hacker’s Identity Revealed by US Authorities</h4><p>By: FELIPE ERAZO, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/anonymous-crypto-hackers-identity-revealed-by-us-authorities"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The U.S. Department of Justice unveiled the identity of the hacker behind the pseudonym “fxmsp” after charging him with federal crimes.The U.S. Department of Justice, or DoJ, indicted Andrey Turchin, known under the pseudonym “fxmsp,” with various federal crimes. Turchin allegedly founded a cybercrime group that targeted the computer networks of several companies. After stealing each company’s data, Turchin’s group allegedly sold the data on the dark web.</p><p>Turchin, a 37 year old Kazakhstan national, is affectionately known on the dark web as “the invisible god of networks.” He allegedly sold access to thousands of networks breached with his malware attacks, amassing a million dollar crypto fortune over the course of three years.</p><p>The Western District of Washington is now conducting criminal indictment procedures against Turchin, who is accused of attacking companies based in over 40 countries.</p><h2 id="russia">Russia</h2><h4>Russia’s Blockchain E-Vote Participants May Have Had Their Private Data Leaked</h4><p>By: STEPHEN O’NEAL, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/russias-blockchain-e-vote-participants-may-have-had-their-private-data-leaked"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Russia’s blockchain vote experiences yet another hiccup, as e-constituents’ personal data is reportedly exposed.Personal data for over a million Russian nationals has reportedly been leaked. The data allegedly belongs to some of the citizens who participated in the recent blockchain-based e-vote on Constitutional amendments.</p><p>The archive was reportedly available for everyone to download<br>According to an investigation published by Russian language media outlet Meduza, an archive titled “degvoter.zip”, which contains said data, was publicly available for download for at least several hours on July 1 via a government website. The file has since been distributed through various Telegram groups and channels.</p><p>The archive was password protected. According to the publication, however, it could be easily hacked with a free password cracking tool.</p><h2 id="china">China</h2><h5>Chinese Police Dismantle $14M Crypto Scam</h5><p>By: FELIPE ERAZO, <em>Cointelegraph</em><br><a href="https://cointelegraph.com/news/chinese-police-dismantle-14m-crypto-scam"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The Chinese police busted a massive crypto scam in Wenzhou that managed to amass over $14.31 million.The Chinese authorities dismantled a significant crypto-related scam in Wenzhou. The scheme amassed over 100 million yuan ($14.31 million), which was seized along with a number of luxury cars and villas.</p><p>According to Toutiao, the gang has been operating since 2019 and primarily sought out victims through Telegram chat groups, including one called “Huobi Global Moving Brick Arbitrage HT Chinese Group Community.”</p><p>ETH, BTC, and USDT stolen from victims<br>The report states the scammers pretended to be investors who had benefited from an “investment scheme.”</p><p>The scammers told their victims that all they had to do was send their cryptos to a fake Huobi wallet address, and the “investor” would receive a more substantial amount in Huobi Token (HT) in return. Instead, they received a fake HT link.</p><p>Mo Li, the head of marketing at HashKey Hub, said through a tweet that Chinese police had seized “tens of thousands” of Ether (ETH), Bitcoin (BTC), and Tether (USDT).</p><h4>Hong Kong’s National Security Law Could Threaten Local Crypto Brokerages</h4><p>By: DAVID PAN, <em>Coindesk</em>, JUL 8, 2020<br><a href="https://www.coindesk.com/hong-kongs-national-security-law-could-threaten-local-crypto-brokerages"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>U.S. sanctions in response to Hong Kong’s national security law – and Beijing’s tighter grip over the city’s financial system – could pose challenges for local crypto brokerage firms.</p><p>The U.S. Senate passed the Hong Kong Autonomy Act on Thursday to penalize China for eroding Hong Kong’s autonomy. The bill is in response to a new national security law that broadly criminalizes acts of sedition, collusion, terrorism and subversion, which could include publicly criticizing the Chinese Communist Party. The law is already sending a chill over free expression in Hong Kong.</p><p>The bill stipulates that the U.S. government should restrict foreign banks and subsidiaries of U.S. banks in Hong Kong from accessing the U.S. dollar system if they conduct significant transactions with persons or entities that contribute to weakening Hong Kong’s autonomy.</p><p>No specific banks have been targeted and the bill does not provide the criteria that determine whether a bank deserves a sanction. The U.S. Treasury Secretary will decide on what behavior would result in a sanction on a bank, according to the bill.</p><p>This could take a toll on cryptocurrency companies in Hong Kong. In particular, it could affect crypto brokerages, which are highly dependent on the U.S. dollar system to settle and clear transactions. Hong Kong is an important crypto hub, especially in Asia. Major mainland China-originated crypto exchanges such as OKCoin and Huobi have offices, and offer crypto trading services, in Hong Kong, given its relatively crypto-friendly regulations.</p><h4>Expert: China’s Digital Yuan Will Target the Dollar, Not Bitcoin</h4><p>By: MARIE HUILLET, <em>Coindesk</em>, JUL 06, 2020<br><a href="https://cointelegraph.com/news/expert-chinas-digital-yuan-will-target-the-dollar-not-bitcoin"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>With its forthcoming digital yuan, China will aim to rival the U.S. dollar, not Bitcoin, say experts.</p><p>Having learned what it needs from the cryptocurrency space and blockchain, China will aim to rival the U.S. dollar, not Bitcoin (BTC), with its highly-anticipated digital yuan.</p><p>Matthew Graham, a veteran investment banker in China and the CEO of Beijing-based Sino Global Capital — analyzed what is known so far about the forthcoming digital currency and argued that the Chinese government sees new technologies as a “leapfrog opportunity” to chip away at the dollar’s hegemony.</p><p>Speaking with Boxmining founder Michael Gu at the Unitize conference on July 6, Graham said that even though it’s extremely difficult for China to internationalize the renminbi:</p><p>“Swift, CHIPS, Fedwire […] they’re antiquated, they’re expensive, they’re slow. It’s 2020 and we have transactions that take three days to clear and that are far more expensive than they should be. All of these technologies that underpin much of the USD-centric global economy are really showing their age. So that’s a big opportunity [for China].”</p><p>Beijing uses the acronym DCEP to refer to its forthcoming digital currency electronic payment system and, as Matthew Gu noted, has “borrowed a lot of its technological details from blockchain,” including concepts such as UTXO.</p><p>Yet DCEP is a far cry from public blockchains such as Bitcoin. It will reportedly be issued by the People’s Bank of China and remain under the central bank’s full control and authority, as with other existing national fiat currencies.</p><p>Graham emphasized that “if you’re approaching this [DCEP] from a crypto or blockchain framework, I think you’re going to really have a hard time understanding what it is and what and why it’s so important.”</p><p>The new technologies integrated into the digital yuan, including those aspects learned from blockchain, are being used to a different end. Gu cited comments from the chairman of the China International Economic Exchange Center, who has previously said:</p><p>“DCEP can achieve real-time collection of data related to money creation, bookkeeping, etc, providing useful reference for the provision of money and the implementation of monetary policies.”</p><p>Graham added that for monetary policy, DCEP “could be very useful for implementing negative interest rates.” Moreover, “it opens up a lot of capabilities in terms of AI and machine learning for fraud detection […] and there’s potential programmability aspects as well.”</p><p>Contrast this with systems such as Fedwire, CHIPS, SWIFT — the “plumbing” that underpins much of the global dollar economy. These, as Graham noted, are “thirty, forty, fifty year old technologies, with all the frictions and costs.&quot;</p><p>“There is a leapfrog opportunity” here, he said. “DCEP’s not about Bitcoin. It’s about potentially internationalizing renminbi, at least to some extent.”</p><h2 id="iran">Iran</h2><h4>Iran Gives Crypto Miners One Month to Register With the State</h4><p>By: DANNY NELSON, <em>Coindesk</em>, JUL 06, 2020<br><a href="https://www.coindesk.com/iran-cryprocurrency-mining-registration"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>Iranian Vice President Eshaq Jahangiri announced on Monday the country’s cryptocurrency miners will soon have to register their rigs with the government.</p><p>Under the directive, miners will have to disclose their identities, the size of their mining farms and their mining equipment type with the Ministry of Industry, Mines and Trade.</p><p>Miners will have a month to register their equipment, according to the Ministry, which will then publish a list of licensed mining centers.</p><p>Jahangiri’s announcement is the latest in Iran’s cat-and-mouse game with the country’s illegal crypto miners, who smuggle in rigs and are sometimes caught.</p><p>Officials said Monday they want to “eliminate the confusion of cryptocurrency activists” with the new directive. That confusion has largely been of Iran’s own making: conflicting mining policies, tariffs and laws have left miners in a gray zone for years.</p><p>The directive will ultimately give Iran tighter control over its on-the-books miners, though it remains to be seen how much of the underground community will heed the directive. Iranian miners contributed nearly 4% of bitcoin’s hashrate in April.</p><p>The directive did not specify the punishment for failing to register. However, illegal bitcoin miners have faced jail time and steep fines in the past.</p><h4>Up to 47% Power Tariff Discount Offered to Authorized Cryptominers</h4><p>By: <em>Financial Tribune</em>, JUL 12, 2020<br><a href="https://financialtribune.com/articles/business-and-markets/104298/up-to-47-power-tariff-discount-offered-to-authorized"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>In a bid to support authorized cryptocurrency mining, Iran Power Generation, Distribution and Transmission Company (Tavanir) said it will cut up to 47% of electricity tariff for miners during the peak consumption periods.</p><p>Speaking to state TV, Mostafa Rajabi, a spokesman for the main utility in Iran, said the aim is to support legal mining centers during the four summer months during which electricity rates are usually set much higher for crypto miners.</p><p>“To be eligible for the incentives, the miners can take part or invest in Tavanir’s recent efficiency plans such as the ongoing project to replace one million old (gas-powered) air conditioners with energy-efficient ACs,” he said.</p><h2 id="venezuela">Venezuela</h2><h4>Venezuelan Authorities Seize Over 300 Bitcoin Mining Machines</h4><p>By: FELIPE ERAZO, <em>Cointelegraph</em>, JUL 08, 2020<br><a href="https://cointelegraph.com/news/venezuelan-authorities-seize-over-300-bitcoin-mining-machines"><button type="button" class="btn btn-sm btn-dark">Read Full Article</button></a></p><p>The Bolivarian National Guard of Puerto Ordaz, Venezuela, seized 315 Bitcoin (BTC) mining machines manufactured by Bitmain. The owners of the mining rigs were told that they did not possess the necessary permits to own and operate the machines. They also were not authorized to be transporting the machines during the COVID-19 quarantine.</p><p>According to current legislation, Venezuelan citizens who are interested in conducting crypto-related mining activities must obtain the appropriate permits from a government office called the National Superintendence of Cryptoactives. Owners who fail to obtain these permits risk being fined, and having their equipment confiscated.</p></div><div class="c-share"><span>Share on</span><ul class="c-share__list"><li class="c-share__list-item"><a href="https://twitter.com/intent/tweet/?text=Crypto%20%26%20Nat&#39;l%20Sec%20Brief%207%2F12&amp;url=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F07%2Fcrypto-brief-2%2F" aria-label="Twitter" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-share__list-item"><a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftbutler.org%2Fposts%2F2020%2F07%2Fcrypto-brief-2%2F" aria-label="Facebook" class="c-share__list-anchor"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/></svg></a></li></ul></div></article></main><footer class="c-contentinfo" role="contentinfo"><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/work/">Work</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/posts/">Posts</a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" href="/contact/">Contact</a></li></ul><ul class="c-contentinfo__list"><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Twitter" href="https://twitter.com/tbutler0x90"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M23.954 4.569a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.061a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.937 4.937 0 0 0 4.604 3.417 9.868 9.868 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 0 0 2.46-2.548l-.047-.02z"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Github" href="https://github.com/tcbutler320"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a></li><li class="c-contentinfo__list-item"><a class="c-contentinfo__list-anchor" rel="me" aria-label="Linkedin" href="https://www.linkedin.com/in/tyler-b-a700a1aa"><svg focusable="false" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a></li></ul></footer><script src="//instant.page/5.0.1" type="module" integrity="sha384-0DvoZ9kNcB36fWcQApIMIGQoTzoBDYTQ85e8nmsfFOGz4RHAdUhADqJt4k3K2uLS"></script></body></html>

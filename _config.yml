@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Site settings
 title: tbutler.org 
 description:  Tyler Butler is a cyber risk consultant and developer
@@ -38,6 +39,103 @@ scholar:
   details_dir: bibliography
   details_layout: bibtex.html
   details_link: Details
+=======
+# =======================================#
+# -----------DUMBARTON THEME-------------#
+# ----------------By: Tyler Butler-------#
+#-----------------https://tbutler.org----#
+#========================================#
+
+# =======================================#
+# -----------BASE SETTINGS---------------#
+#========================================#
+
+title: Tyler Butler 
+url-bar: " | Security Researcher"
+tagline: Freelance Security Researcher
+email: developer.tbutler@gmail.com
+description: Cyber risk consultant, security researcher, open source developer
+baseurl:                                       # the subpath of your site, e.g. /blog
+url: "/"          # the base hostname & protocol for your site, e.g. http://example.com
+image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg              # used to generate site link preview
+image_alt: Cyber risk consultant, security researcher, open source developer   # image description
+
+algolia: 
+  application_id: 'HVWUXX2QH8'
+  index_name: 'tbutler.org'
+  search_only_api_key: 'c9ba51f0479c3df145867ecece573d44'
+
+
+# =======================================#
+# -----------SITE SETTINGS---------------#
+#========================================#: 
+author: Tyler Butler 
+profile_image: https://res.cloudinary.com/tbutler-org/image/upload/v1603912192/me_clgeva.jpg #/assets/img/avatar/avatar.jpeg 
+occupation: 
+snippet: 
+twitter: tbutler0x90
+github: tcbutler320
+linkedin: tyler-b-a700a1aa
+stackoverflow: 12935605
+website: https://tbutler.org
+codepen: tcbutler320
+medium: tbutler0x90
+email: developer.tbutler@gmail.com
+keybase: tbutler320
+pgp: 
+ctftime: 
+phonenumber: 
+
+# =======================================#
+# -----------BLOG SETTINGS---------------#
+#========================================#
+
+tags:  ctf bug-bounty devops jekyll certifications research
+code-highlight: atom-one-dark # dracula , see options at https://highlightjs.org/
+alert: false
+alert-message: Coming soon, details regarding my first CVE and iOT 0-day Exploit! 🤯
+alert-link: 
+
+comments: true                                     # Used to enable comments on blog posts
+gitalk_client_id: 'd24925f8c7a51a0e7f6d'            
+gitalk_client_secret: '11c464cc50ce3c0a1323c0396b65674b90a630a4'   
+gitalk_repo: 'https://github.com/tcbutler320/tbutler.org'
+gitalk_owner: 'tcbutler320'
+gitalk_admin:  ['tcbutler320']
+gitalk_distraction_mode: true
+
+# =======================================#
+# -----------THEME SETTINGS--------------#
+#========================================#
+
+nav-color: "#00334e" #"#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
+footer-color: "#00334e"
+color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values 
+card-color: "#00334e"                                # Used on cards like the home highlights section
+nav-dIcon: "fas fa-caret-down"                       # Change the navbar dropdown (for mobile or small screen sizes) to any fontawesome icon. for a list of icons visit https://fontawesome.com/ 
+animate: true                                        # false or true, uses animate.css to animate certain functions
+
+# =======================================#
+# -----------HOME PAGE  SETTINGS --------#
+#========================================#
+home_option: education                               # options: education, skills, timeline
+
+# =======================================#          # These  settings are for demo purposes only, things like 
+# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new 
+#========================================#          #     developers as they look into using this theme      
+help_tips: false                                    # options: true, false  | use false to disable these for production mode
+
+#========================================#
+# --------- UI THEMES -------------------#
+#========================================#
+ui_theme: experiment 
+
+# =======================================#
+# -----------BUILD SETTINGS--------------#
+#========================================#
+theme: 
+markdown: kramdown
+>>>>>>> 78b47a5... adjust link basepath
 
   query: "@*"
 

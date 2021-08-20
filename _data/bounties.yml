@@ -1,12 +1,12 @@
 - Title: "HP OfficeJet 4630 Unauthenticated Stored Cross-Site Scripting (XSS)"
   Date: 01/2021
-  CVE: "RESERVED"
-  Platform: Pending
+  CVE: "CVE-2021-3441"
+  Platform: HP PSRT
   Vendor: HP Inc
   Link: /2021/04/29/HP-OfficeJet-4630.html
   num: 0
   Bounty: "N/A"
-  cve: N/A
+  cve: CVE-2021-3441
   severity: High
   type: "0-Day"
   vuln: "TB"

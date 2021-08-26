@@ -11,6 +11,19 @@
   type: "0-Day"
   vuln: "TB"
 
+- Title: "Colorhunt.co Reflective Cross-Site Scripting (XSS) via Pallet Type"
+  Date: 07/2021
+  CVE: "N/A"
+  Platform: Colorhunt.co
+  Vendor: Colorhunt.co
+  Link: /2021/06/28/colorhunt-xss.html
+  num: 0
+  Bounty: "N/A"
+  cve: n/a
+  severity: Med
+  type: "0-Day"
+  vuln: "XSS"
+
 - Title: "AKCP sensorProbe - 'Multiple' Cross Site Scripting (XSS)"
   Date: 06/2021
   CVE: "<a href='https://nvd.nist.gov/vuln/detail/CVE-2021-35956'>CVE-2021-35956</a>"

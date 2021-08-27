@@ -6,7 +6,7 @@ feature-header: "Featured Research \U0001F447"
 tag: Vulnerability Research
 image: "/assets/img/posts/2021-06-28-CVE-2021-35956/preview.png"
 layout: post
-date: '2021-06-28 00:01:21 -0400'
+date: '2021-08-25 00:01:21 -0400'
 last-updated: '2021-06-28 00:01:21 -0400'
 style: blog1
 author: Tyler Butler

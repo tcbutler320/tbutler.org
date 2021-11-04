@@ -1,3 +1,29 @@
+- Title: "Freshports Reflective Cross-Site Scripting (XSS)"
+  Date: 09/2021
+  CVE: "N/A"
+  Platform: Freshports
+  Vendor: Freshports
+  Link: https://www.openbugbounty.org/researchers/tbutler0x90/
+  num: 0
+  Bounty: "N/A"
+  cve: "N/A"
+  severity: Medium
+  type: "0-Day"
+  vuln: "TB"
+
+- Title: "Avigilon Presence Detector, H4A Box/Fisheye, Dome, Bullet, Multisenso Camera Authenticated Stored XSS"
+  Date: 09/2021
+  CVE: "CVE-2021-38701"
+  Platform: Motorolasolutions
+  Vendor: Avigilon
+  Link: https://obsrva.org/2021/10/23/CVE-2021-38701.html
+  num: 0
+  Bounty: "N/A"
+  cve: CVE-2021-38701
+  severity: Medium
+  type: "0-Day"
+  vuln: "TB"
+  
 - Title: "HP OfficeJet 4630 Unauthenticated Stored Cross-Site Scripting (XSS)"
   Date: 01/2021
   CVE: "CVE-2021-3441"

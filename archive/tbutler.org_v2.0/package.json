@@ -16,7 +16,7 @@
     "common-tags": "^1.8.0",
     "html-minifier": "^3.5.21",
     "luxon": "^1.22.0",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "markdown-it-anchor": "^5.2.5",
     "markdown-it-kbd": "^2.0.0",
     "markdown-it-mark": "^3.0.0",

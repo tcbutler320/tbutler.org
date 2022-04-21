@@ -1,9 +1,16 @@
+- School: Georgetown University University
+  Degree: 
+  Program: M.A. Security Studies at Walsh School of Foreign Service
+  Start-Date: January 2023
+  End-Date:  May 2025
+  Icon:         # Make this icon small, think 30px/30px
+
 - School: The Pennsylvania State University
   Degree: 
-  Program: BS Security and Risk Analysis, BA Criminology
+  Program: B.S. Security and Risk Analysis, B.A. Criminology
   Start-Date: August 2014
   End-Date:  December 2018
-  Icon: /assets/img/icons/psu.png        # Make this icon small, think 30px/30px
+  Icon:         # Make this icon small, think 30px/30px
 
 - School: <a href="https://verified.elearnsecurity.com/certificates/6ed71d15-99b2-44f7-a261-9bb537815d16">Web Application Penetration Tester (eWPT) Certified</a>
   Degree: 
